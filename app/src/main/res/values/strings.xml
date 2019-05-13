@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">AyoLelang</string>
+    <string name="app_name">LPSE</string>
+    <string name="tittle_inbox">Inbox</string>
+    <string name="title_progress">Progress</string>
+    <string name="title_garapan">Garapan</string>
+    <string name="title_search">Search</string>
+    <string name="title_account">Account</string>
 </resources>

@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import feri.com.lpse.R;
+import com.ags.ayolelang.R;
 
 public class Attachment extends AppCompatActivity {
 
