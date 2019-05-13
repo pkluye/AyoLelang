@@ -8,24 +8,26 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.ags.ayolelang.API.RetrofitClient;
+import com.ags.ayolelang.Models.DefaultResponse;
+import com.ags.ayolelang.Models.User;
+import com.ags.ayolelang.R;
+import com.ags.ayolelang.Storage.SharedPrefManager;
 import com.goodiebag.pinview.Pinview;
 
-import feri.com.lpse.API.RetrofitClient;
-import feri.com.lpse.Models.DefaultResponse;
-import feri.com.lpse.Models.User;
-import feri.com.lpse.Models.VerifCodeRespon;
-import feri.com.lpse.Models.Verification;
-import feri.com.lpse.R;
-import feri.com.lpse.Storage.SharedPrefManager;
+
+import java.util.ArrayList;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.ags.ayolelang.API.RetrofitClient.secret_key;
+
 public class VerificationActivity extends AppCompatActivity {
 
-    EditText code1,code2,code3,code4,code5,code6;
-    Verification verification;
-    String username,email,pin;
+    EditText code1, code2, code3, code4, code5, code6;
+    String user_id, pin;
     Pinview pinview;
 
     @Override
@@ -33,75 +35,43 @@ public class VerificationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_verification);
 
-        loadData();
-
         pinview = (Pinview) findViewById(R.id.pinview);
         pinview.setPinViewEventListener(new Pinview.PinViewEventListener() {
             @Override
             public void onDataEntered(Pinview pinview, boolean b) {
-                pin=pinview.getValue().toString();
+                pin = pinview.getValue().toString();
             }
         });
 
-    }
-
-    private void loadData() {
         Intent intent = getIntent();
-        username = intent.getStringExtra("username");
-        email = intent.getStringExtra("email");
-        Log.d("loaddd testtt","haloooooooo "+username+" "+email);
-        Call<VerifCodeRespon> call = RetrofitClient.getInstance()
-                .getApi().getVerifCode(username,"register");
+        user_id = intent.getStringExtra("user_id");
 
-        call.enqueue(new Callback<VerifCodeRespon>() {
-
-            @Override
-            public void onResponse(Call<VerifCodeRespon> call, Response<VerifCodeRespon> response) {
-                VerifCodeRespon verifCodeRespon=response.body();
-                Log.d("tessssss","test2");
-                if (!verifCodeRespon.isError()){
-                    verification=verifCodeRespon.getVerification();
-                }else{
-                    Toast.makeText(getApplicationContext(),verifCodeRespon.getMessage(),Toast.LENGTH_LONG).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<VerifCodeRespon> call, Throwable t) {
-                Log.d("gagall",t.getMessage());
-            }
-        });
     }
-
-
 
     public void verif(View view) {
-        String code = pin;
-
-        if (code.equals(verification.getCode())){
-            Call<DefaultResponse> call=RetrofitClient.getInstance()
-                    .getApi().userVerification(verification.getId_verification(),username);
-            call.enqueue(new Callback<DefaultResponse>() {
-                @Override
-                public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
-                    DefaultResponse defaultResponse = response.body();
-
-                    if(!defaultResponse.isError()){
-                        SharedPrefManager.getInstance(VerificationActivity.this)
-                                .saveUser(new User(username,email,null,null,null,true));
-
-                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                        finish();
-                    }
+        Call<DefaultResponse> call = RetrofitClient.getInstance()
+                .getApi().auth_verif(secret_key,user_id,pin);
+        call.enqueue(new Callback<DefaultResponse>() {
+            @Override
+            public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
+                DefaultResponse defaultResponse = response.body();
+                ArrayList<User> users=(ArrayList<User>)(ArrayList<?>) defaultResponse.getData();
+                if (!defaultResponse.isError()) {
+                    SharedPrefManager.getInstance(VerificationActivity.this)
+                            .saveUser(users.get(0));
+                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    finish();
+                }else {
+                    Log.d("test", defaultResponse.getMessage());
+                    Toast.makeText(VerificationActivity.this, defaultResponse.getMessage(), Toast.LENGTH_LONG).show();
                 }
+            }
 
-                @Override
-                public void onFailure(Call<DefaultResponse> call, Throwable t) {
+            @Override
+            public void onFailure(Call<DefaultResponse> call, Throwable t) {
 
-                }
-            });
-        }else{
-            return;
-        }
+            }
+        });
+
     }
 }

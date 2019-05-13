@@ -12,6 +12,7 @@ import com.ags.ayolelang.API.RetrofitClient;
 import com.ags.ayolelang.Models.DefaultResponse;
 import com.ags.ayolelang.Models.User;
 import com.ags.ayolelang.R;
+import com.google.gson.internal.LinkedTreeMap;
 
 import java.util.ArrayList;
 
@@ -86,11 +87,18 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
                 DefaultResponse registerResponse = response.body();
-                ArrayList<User> users=(ArrayList<User>)(ArrayList<?>)registerResponse.getData();
+                LinkedTreeMap<Object,Object> t = (LinkedTreeMap) registerResponse.getData();
+                User user=new User(t.get("user_id").toString(),
+                        t.get("user_nama").toString(),
+                        t.get("user_email").toString(),
+                        t.get("user_telpon").toString(),
+                        t.get("user_alamat").toString(),
+                        t.get("user_imgurl").toString(),
+                        (boolean)t.get("user_verif"));
                 if (!registerResponse.isError()){
                     Intent intent = new Intent(RegisterActivity.this, VerificationActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    intent.putExtra("user_id",users.get(0).getUser_id());
+                    intent.putExtra("user_id",user.getUser_id());
                     startActivity(intent);
                     finish();
                 }else{

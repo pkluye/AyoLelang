@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -15,6 +14,7 @@ import com.ags.ayolelang.Models.DefaultResponse;
 import com.ags.ayolelang.Models.User;
 import com.ags.ayolelang.R;
 import com.ags.ayolelang.Storage.SharedPrefManager;
+import com.google.gson.internal.LinkedTreeMap;
 
 import java.util.ArrayList;
 
@@ -27,7 +27,6 @@ import static com.ags.ayolelang.API.RetrofitClient.secret_key;
 public class LoginActivity extends AppCompatActivity {
 
     private EditText in_email,in_password;
-    private Button btn_login;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +35,6 @@ public class LoginActivity extends AppCompatActivity {
 
         in_email = (EditText) findViewById(R.id.in_email);
         in_password = (EditText) findViewById(R.id.in_password);
-        btn_login = (Button) findViewById(R.id.btn_login);
 
         if (SharedPrefManager.getInstance(this).isLoggedIn()) {
             Intent intent = new Intent(this, MainActivity.class);
@@ -81,12 +79,19 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
                 DefaultResponse loginResponse = response.body();
-                Log.d("test",loginResponse.getMessage());
-                ArrayList<User> users=(ArrayList<User>)(ArrayList<?>)loginResponse.getData();
+                LinkedTreeMap<Object,Object> t = (LinkedTreeMap) loginResponse.getData();
+                User user=new User(t.get("user_id").toString(),
+                        t.get("user_nama").toString(),
+                        t.get("user_email").toString(),
+                        t.get("user_telpon").toString(),
+                        t.get("user_alamat").toString(),
+                        t.get("user_imgurl").toString(),
+                        (boolean)t.get("user_verif"));
+                Log.d("print user", user.isUser_verif()+"");
                 if (!loginResponse.isError()) {
-                    if (users.get(0).isUser_verif()){
+                    if (user.isUser_verif()){
                         SharedPrefManager.getInstance(LoginActivity.this)
-                                .saveUser(users.get(0));
+                                .saveUser(user);
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
@@ -94,7 +99,7 @@ public class LoginActivity extends AppCompatActivity {
                     }else{
                         Intent intent = new Intent(LoginActivity.this, VerificationActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        intent.putExtra("user_id",users.get(0).getUser_id());
+                        intent.putExtra("user_id",user.getUser_id());
                         startActivity(intent);
                         finish();
                     }

@@ -2,12 +2,37 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ags.ayolelang">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"></application>
+        android:theme="@style/AppTheme.NoActionBar">
+
+        <activity android:name=".Activity.Preview"></activity>
+        <activity android:name=".Activity.Deskripsi" />
+        <activity android:name=".Activity.Attachment" />
+
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".Activity.MainActivity" />
+
+        <activity android:name=".Activity.DetailSpesifikasi" />
+        <activity android:name=".Activity.LupaPasswordActivity" />
+        <activity android:name=".Activity.RegisterActivity" />
+        <activity android:name=".Activity.VerificationActivity" />
+        <activity android:name=".Activity.LoginActivity" />
+        <activity android:name=".Activity.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+    </application>
 
 </manifest>

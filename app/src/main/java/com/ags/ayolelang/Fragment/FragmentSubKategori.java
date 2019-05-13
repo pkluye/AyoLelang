@@ -10,16 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.ags.ayolelang.API.RetrofitClient;
-import com.ags.ayolelang.Models.DefaultResponse;
 import com.ags.ayolelang.Models.Kategori;
 import com.ags.ayolelang.R;
 
 import java.util.ArrayList;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class FragmentSubKategori extends Fragment {
 

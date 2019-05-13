@@ -18,7 +18,7 @@
         android:id="@+id/logo"
         android:layout_width="125dp"
         android:layout_height="125dp"
-        android:src="@drawable/Logo"
+        android:src="@drawable/logo"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="80dp"
         />

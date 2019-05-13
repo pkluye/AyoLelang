@@ -6,7 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 
-import feri.com.lpse.R;
+import com.ags.ayolelang.R;
+
 
 public class DetailSpesifikasi extends AppCompatActivity {
 

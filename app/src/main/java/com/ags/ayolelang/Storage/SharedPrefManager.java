@@ -7,7 +7,7 @@ import com.ags.ayolelang.Models.User;
 
 public class SharedPrefManager {
 
-    private static final String SHARED_PREF_NAME = "lpse_shared_preff";
+    private static final String SHARED_PREF_NAME = "ayolelang_shared_preff";
 
     private static SharedPrefManager mInstance;
     private Context mCtx;
@@ -40,7 +40,7 @@ public class SharedPrefManager {
 
     public boolean isLoggedIn() {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        return sharedPreferences.getString("username", null) != null;
+        return sharedPreferences.getString("id", null) != null;
     }
 
     public User getUser() {

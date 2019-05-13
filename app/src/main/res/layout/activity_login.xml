@@ -13,7 +13,7 @@
         android:id="@+id/gambar_login"
         android:layout_width="125dp"
         android:layout_height="125dp"
-        app:srcCompat="@drawable/Logo"
+        app:srcCompat="@drawable/logo"
         android:layout_gravity="center"/>
 
     <LinearLayout
@@ -81,7 +81,7 @@
             android:layout_width="225dp"
             android:layout_height="40dp"
             android:layout_marginTop="25dp"
-            android:background="@drawable/button_roundGoogle"
+            android:background="@drawable/button_roundgoogle"
             android:drawableLeft="@drawable/google"
             android:onClick="login"
             android:paddingLeft="10dp"
