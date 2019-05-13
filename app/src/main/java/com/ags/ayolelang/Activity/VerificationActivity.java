@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.ags.ayolelang.Models.Verification;
 import com.goodiebag.pinview.Pinview;
 
 import feri.com.lpse.API.RetrofitClient;

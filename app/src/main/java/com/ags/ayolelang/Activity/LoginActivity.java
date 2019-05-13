@@ -10,13 +10,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import feri.com.lpse.API.RetrofitClient;
-import feri.com.lpse.Models.LoginResponse;
-import feri.com.lpse.R;
-import feri.com.lpse.Storage.SharedPrefManager;
+import com.ags.ayolelang.API.RetrofitClient;
+import com.ags.ayolelang.Models.DefaultResponse;
+import com.ags.ayolelang.Models.User;
+import com.ags.ayolelang.R;
+import com.ags.ayolelang.Storage.SharedPrefManager;
+
+import java.util.ArrayList;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static com.ags.ayolelang.API.RetrofitClient.secret_key;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -67,21 +73,20 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        Call<LoginResponse> call = RetrofitClient
-                .getInstance().getApi().userLogin(email, password);
+        Call<DefaultResponse> call = RetrofitClient
+                .getInstance().getApi().userLogin(secret_key,email, password);
 
-        call.enqueue(new Callback<LoginResponse>() {
+        call.enqueue(new Callback<DefaultResponse>() {
 
             @Override
-            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                LoginResponse loginResponse = response.body();
+            public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
+                DefaultResponse loginResponse = response.body();
                 Log.d("test",loginResponse.getMessage());
-
+                ArrayList<User> users=(ArrayList<User>)(ArrayList<?>)loginResponse.getData();
                 if (!loginResponse.isError()) {
-                    if (loginResponse.getUser().isStatus()){
+                    if (users.get(0).isUser_verif()){
                         SharedPrefManager.getInstance(LoginActivity.this)
-                                .saveUser(loginResponse.getUser());
-
+                                .saveUser(users.get(0));
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
@@ -89,9 +94,7 @@ public class LoginActivity extends AppCompatActivity {
                     }else{
                         Intent intent = new Intent(LoginActivity.this, VerificationActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        intent.putExtra("username",loginResponse.getUser().getUsername());
-                        intent.putExtra("email",loginResponse.getUser().getEmail());
-                        intent.putExtra("type","register");
+                        intent.putExtra("user_id",users.get(0).getUser_id());
                         startActivity(intent);
                         finish();
                     }
@@ -102,9 +105,10 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<LoginResponse> call, Throwable t) {
+            public void onFailure(Call<DefaultResponse> call, Throwable t) {
                 Log.d("errror",t.getMessage());
             }
+
         });
     }
 

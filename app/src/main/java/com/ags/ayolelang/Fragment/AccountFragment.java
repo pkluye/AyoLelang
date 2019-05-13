@@ -10,9 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import feri.com.lpse.Activity.LoginActivity;
-import feri.com.lpse.R;
-import feri.com.lpse.Storage.SharedPrefManager;
+import com.ags.ayolelang.Activity.LoginActivity;
+import com.ags.ayolelang.R;
+import com.ags.ayolelang.Storage.SharedPrefManager;
 
 public class AccountFragment extends Fragment {
 

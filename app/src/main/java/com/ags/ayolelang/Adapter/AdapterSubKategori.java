@@ -10,13 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import com.ags.ayolelang.Models.Kategori;
+import com.ags.ayolelang.R;
 
-import feri.com.lpse.Activity.DetailSpesifikasi;
-import feri.com.lpse.Activity.MainActivity;
-import feri.com.lpse.Fragment.FragmentSubKategori;
-import feri.com.lpse.Models.Kategori;
-import feri.com.lpse.R;
+import java.util.ArrayList;
 
 public class AdapterSubKategori extends RecyclerView.Adapter<AdapterSubKategori.CustomViewHolder> {
 
@@ -40,34 +37,34 @@ public class AdapterSubKategori extends RecyclerView.Adapter<AdapterSubKategori.
 
     @Override
     public void onBindViewHolder(@NonNull AdapterSubKategori.CustomViewHolder customViewHolder, int i) {
-        String nama_kategori=kategoris.get(i).getName();
-        final int id_category = kategoris.get(i).getId_category();
-        int id_parent = kategoris.get(i).getId_parent();
-        int id_subparent = kategoris.get(i).getId_sub_parent();
-        int id_priority = kategoris.get(i).getPriority();
-
-        customViewHolder.nama_kategori.setText(nama_kategori);
-        if (id_priority ==1){
-            customViewHolder.nama_kategori.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    FragmentSubKategori fragmentSubKategori=new FragmentSubKategori();
-                    Bundle bundle=new Bundle();
-                    bundle.putInt("id_subparent",id_category);
-                    fragmentSubKategori.setArguments(bundle);
-                    ((MainActivity)context)._loadFragment(fragmentSubKategori);
-                }
-            });
-        }else{
-            customViewHolder.nama_kategori.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(context, DetailSpesifikasi.class);
-                    intent.putExtra("id_category",id_category);
-                    context.startActivity(intent);
-                }
-            });
-        }
+//        String nama_kategori=kategoris.get(i).getName();
+//        final int id_category = kategoris.get(i).getId_category();
+//        int id_parent = kategoris.get(i).getId_parent();
+//        int id_subparent = kategoris.get(i).getId_sub_parent();
+//        int id_priority = kategoris.get(i).getPriority();
+//
+//        customViewHolder.nama_kategori.setText(nama_kategori);
+//        if (id_priority ==1){
+//            customViewHolder.nama_kategori.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    FragmentSubKategori fragmentSubKategori=new FragmentSubKategori();
+//                    Bundle bundle=new Bundle();
+//                    bundle.putInt("id_subparent",id_category);
+//                    fragmentSubKategori.setArguments(bundle);
+//                    ((MainActivity)context)._loadFragment(fragmentSubKategori);
+//                }
+//            });
+//        }else{
+//            customViewHolder.nama_kategori.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    Intent intent = new Intent(context, DetailSpesifikasi.class);
+//                    intent.putExtra("id_category",id_category);
+//                    context.startActivity(intent);
+//                }
+//            });
+//        }
     }
 
     @Override

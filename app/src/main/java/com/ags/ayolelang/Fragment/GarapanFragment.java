@@ -4,37 +4,39 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import feri.com.lpse.Activity.MainActivity;
-import feri.com.lpse.R;
+import com.ags.ayolelang.Activity.MainActivity;
+import com.ags.ayolelang.R;
 
-public class GarapanFragment extends Fragment implements View.OnClickListener{
+public class GarapanFragment extends Fragment implements View.OnClickListener {
     private View v;
-    private Button button1,button2,button3,button4,button5,button6,button7;
+
     private int id_parent;
+    private CardView cv_pendidikan, cv_percetakan, cv_kuliner, cv_hiburan, cv_otomotif, cv_fotografi, cv_palugada;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragment_garapan, container, false);
-        button1 = v.findViewById(R.id.btn_kategori1);
-        button2 = v.findViewById(R.id.btn_kategori2);
-        button3 = v.findViewById(R.id.btn_kategori3);
-        button4 = v.findViewById(R.id.btn_kategori4);
-        button5 = v.findViewById(R.id.btn_kategori5);
-        button6 = v.findViewById(R.id.btn_kategori6);
-        button7 = v.findViewById(R.id.btn_kategori7);
-        button1.setOnClickListener(this);
-        button2.setOnClickListener(this);
-        button3.setOnClickListener(this);
-        button4.setOnClickListener(this);
-        button5.setOnClickListener(this);
-        button6.setOnClickListener(this);
-        button7.setOnClickListener(this);
+        cv_pendidikan = v.findViewById(R.id.cv_pendidikan);
+        cv_percetakan = v.findViewById(R.id.cv_percetakan);
+        cv_kuliner = v.findViewById(R.id.cv_kuliner);
+        cv_hiburan = v.findViewById(R.id.cv_hiburan);
+        cv_otomotif = v.findViewById(R.id.cv_otomotif);
+        cv_fotografi = v.findViewById(R.id.cv_fotografi);
+        cv_palugada = v.findViewById(R.id.cv_palugada);
+        cv_pendidikan.setOnClickListener(this);
+        cv_percetakan.setOnClickListener(this);
+        cv_hiburan.setOnClickListener(this);
+        cv_otomotif.setOnClickListener(this);
+        cv_fotografi.setOnClickListener(this);
+        cv_kuliner.setOnClickListener(this);
+        cv_palugada.setOnClickListener(this);
         return v;
     }
 
@@ -48,28 +50,29 @@ public class GarapanFragment extends Fragment implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
-        Fragment fragment = fragment = new FragmentSubKategori();;
+        Fragment fragment = fragment = new FragmentSubKategori();
+        ;
         Bundle bundle = new Bundle();
-        switch (v.getId()){
-            case R.id.btn_kategori1:
+        switch (v.getId()) {
+            case R.id.cv_pendidikan:
                 bundle.putInt("id_parent", 1);
                 break;
-            case R.id.btn_kategori2:
+            case R.id.cv_percetakan:
                 bundle.putInt("id_parent", 2);
                 break;
-            case R.id.btn_kategori3:
+            case R.id.cv_kuliner:
                 bundle.putInt("id_parent", 3);
                 break;
-            case R.id.btn_kategori4:
+            case R.id.cv_otomotif:
                 bundle.putInt("id_parent", 4);
                 break;
-            case R.id.btn_kategori5:
+            case R.id.cv_hiburan:
                 bundle.putInt("id_parent", 5);
                 break;
-            case R.id.btn_kategori6:
+            case R.id.cv_fotografi:
                 bundle.putInt("id_parent", 6);
                 break;
-            case R.id.btn_kategori7:
+            case R.id.cv_palugada:
                 bundle.putInt("id_parent", 7);
                 break;
 

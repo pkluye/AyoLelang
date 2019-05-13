@@ -5,7 +5,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
 
-    private static final String BASE_URL = "http://10.0.2.2:80/lpse-web/api/";
+    private static final String BASE_URL = "https://lelang.agsgroup.co.id/api";
+    public static final String secret_key = "6621AC59567F158090B9F54C9E1FF4C9252CF05B";
     private static RetrofitClient mInstance;
     private Retrofit retrofit;
 

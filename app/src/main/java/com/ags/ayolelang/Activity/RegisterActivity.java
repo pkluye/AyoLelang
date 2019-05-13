@@ -8,12 +8,18 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import feri.com.lpse.API.RetrofitClient;
-import feri.com.lpse.Models.DefaultResponse;
-import feri.com.lpse.R;
+import com.ags.ayolelang.API.RetrofitClient;
+import com.ags.ayolelang.Models.DefaultResponse;
+import com.ags.ayolelang.Models.User;
+import com.ags.ayolelang.R;
+
+import java.util.ArrayList;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static com.ags.ayolelang.API.RetrofitClient.secret_key;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -32,12 +38,12 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public void register(View view) {
-        String username = in_username.getText().toString().trim();
+        String nama = in_username.getText().toString().trim();
         String email = in_email.getText().toString().trim();
         String password = in_password.getText().toString().trim();
         String repassword = in_repassword.getText().toString().trim();
 
-        if (username.isEmpty()) {
+        if (nama.isEmpty()) {
             in_username.setError("Username is required");
             in_username.requestFocus();
             return;
@@ -74,19 +80,17 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
         Call<DefaultResponse> call = RetrofitClient
-                .getInstance().getApi().userRegister(username,email, password);
+                .getInstance().getApi().userRegister(secret_key,nama,email, password);
 
         call.enqueue(new Callback<DefaultResponse>() {
             @Override
             public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
                 DefaultResponse registerResponse = response.body();
-
+                ArrayList<User> users=(ArrayList<User>)(ArrayList<?>)registerResponse.getData();
                 if (!registerResponse.isError()){
                     Intent intent = new Intent(RegisterActivity.this, VerificationActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    intent.putExtra("username",in_username.getText().toString());
-                    intent.putExtra("email",in_email.getText().toString());
-                    intent.putExtra("type","register");
+                    intent.putExtra("user_id",users.get(0).getUser_id());
                     startActivity(intent);
                     finish();
                 }else{

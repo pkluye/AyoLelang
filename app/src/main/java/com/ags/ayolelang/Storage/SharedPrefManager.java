@@ -3,7 +3,7 @@ package com.ags.ayolelang.Storage;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import feri.com.lpse.Models.User;
+import com.ags.ayolelang.Models.User;
 
 public class SharedPrefManager {
 
@@ -26,13 +26,13 @@ public class SharedPrefManager {
     public void saveUser(User user) {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-
-        editor.putString("username", user.getUsername());
-        editor.putString("email", user.getEmail());
-        editor.putString("phone", user.getPhone());
-        editor.putBoolean("status", user.isStatus());
-        editor.putString("address",user.getAddress());
-        editor.putString("photo",user.getPhoto());
+        editor.putString("id", user.getUser_id());
+        editor.putString("nama", user.getUser_nama());
+        editor.putString("email", user.getUser_email());
+        editor.putString("telpon", user.getUser_telpon());
+        editor.putBoolean("verif", user.isUser_verif());
+        editor.putString("alamat",user.getUser_alamat());
+        editor.putString("img_url",user.getUser_imgurl());
 
         editor.apply();
 
@@ -46,12 +46,13 @@ public class SharedPrefManager {
     public User getUser() {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         return new User(
-                sharedPreferences.getString("username",null),
+                sharedPreferences.getString("id",null),
+                sharedPreferences.getString("nama",null),
                 sharedPreferences.getString("email",null),
-                sharedPreferences.getString("phone",null),
-                sharedPreferences.getString("address",null),
-                sharedPreferences.getString("photo",null),
-                sharedPreferences.getBoolean("status",false)
+                sharedPreferences.getString("telpon",null),
+                sharedPreferences.getString("alamat",null),
+                sharedPreferences.getString("img_url",null),
+                sharedPreferences.getBoolean("verif",false)
         );
     }
 

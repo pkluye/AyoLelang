@@ -1,60 +1,60 @@
 package com.ags.ayolelang.API;
 
-import feri.com.lpse.Models.DefaultResponse;
-import feri.com.lpse.Models.KategoriRespon;
-import feri.com.lpse.Models.LoginResponse;
-import feri.com.lpse.Models.VerifCodeRespon;
+import com.ags.ayolelang.Models.DefaultResponse;
+
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface Api {
 
     @FormUrlEncoded
-    @POST("auth/userlogin")
-    Call<LoginResponse> userLogin(
+    @POST("c_auth/auth_login")
+    Call<DefaultResponse> userLogin(
+            @Field("secret_key") String secret_key,
             @Field("email") String email,
             @Field("password") String password
     );
 
     @FormUrlEncoded
-    @POST("auth/userregister")
+    @POST("c_auth/auth_register")
     Call<DefaultResponse> userRegister(
-            @Field("username") String username,
+            @Field("secret_key") String secret_key,
+            @Field("nama") String nama,
             @Field("email") String email,
             @Field("password") String password
     );
 
     @FormUrlEncoded
-    @POST("auth/userverif")
-    Call<DefaultResponse> userVerification(
-            @Field("id_verification") int id_verification,
-            @Field("username") String username
-    );
+    @POST("c_auth/auth_verif")
+    Call<DefaultResponse> auth_verif(
+            @Field("secret_key") String secret_key,
+            @Field("user_id") String user_id,
+            @Field("code") String code);
 
-    @FormUrlEncoded
-    @POST("auth/getVerifCode")
-    Call<VerifCodeRespon> getVerifCode(
-            @Field("username") String username,
-            @Field("type") String type
-    );
-
-    @FormUrlEncoded
-    @POST("auth/reqNewVerifCode")
-    Call<VerifCodeRespon> reqNewVerifCode(
-            @Field("id_verification") String id_verification,
-            @Field("username") String username
-    );
-
-    @FormUrlEncoded
-    @GET("category/getwithmessage")
-    Call<KategoriRespon> getwithmessage(
-            @Field("id_category") String id_verification
-    );
-
-    @GET("category/getwithmessage")
-    Call<KategoriRespon> getwithmessage();
+//    @FormUrlEncoded
+//    @POST("auth/auth_verif")
+//    Call<DefaultResponse> userVerification(
+//            @Field("id_verification") int id_verification,
+//            @Field("username") String username
+//    );
+//
+//
+//    @FormUrlEncoded
+//    @POST("auth/reqNewVerifCode")
+//    Call<DefaultResponse> reqNewVerifCode(
+//            @Field("id_verification") String id_verification,
+//            @Field("username") String username
+//    );
+//
+//    @FormUrlEncoded
+//    @GET("category/getwithmessage")
+//    Call<KategoriRespon> getwithmessage(
+//            @Field("id_category") String id_verification
+//    );
+//
+//    @GET("category/getwithmessage")
+//    Call<KategoriRespon> getwithmessage();
 
 }

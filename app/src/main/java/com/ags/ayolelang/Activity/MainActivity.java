@@ -9,13 +9,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 
-import feri.com.lpse.Fragment.AccountFragment;
-import feri.com.lpse.Fragment.GarapanFragment;
-import feri.com.lpse.Fragment.InboxFragment;
-import feri.com.lpse.Fragment.ProgressFragment;
-import feri.com.lpse.Fragment.SearchFragment;
-import feri.com.lpse.R;
-import feri.com.lpse.Storage.SharedPrefManager;
+import com.ags.ayolelang.Fragment.AccountFragment;
+import com.ags.ayolelang.Fragment.GarapanFragment;
+import com.ags.ayolelang.Fragment.InboxFragment;
+import com.ags.ayolelang.Fragment.ProgressFragment;
+import com.ags.ayolelang.Fragment.SearchFragment;
+import com.ags.ayolelang.R;
+import com.ags.ayolelang.Storage.SharedPrefManager;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
 
@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         setContentView(R.layout.activity_main);
         bottomNavigation=findViewById(R.id.navigation);
         if (SharedPrefManager.getInstance(this).isLoggedIn()) {
-            Log.d("test",SharedPrefManager.getInstance(this).getUser().getUsername());
+
             bottomNavigation.setOnNavigationItemSelectedListener(this);
             if (savedInstanceState == null) {
                 bottomNavigation.setSelectedItemId(R.id.navigation_garapan);
@@ -80,4 +80,12 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         return false;
     }
 
+    public void _loadFragment(Fragment fragment) {
+        if (fragment != null)
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, fragment)
+                    .addToBackStack(null)
+                    .commit();
+    }
 }
