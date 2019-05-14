@@ -5,4 +5,10 @@
     <string name="title_garapan">Garapan</string>
     <string name="title_search">Search</string>
     <string name="title_account">Account</string>
+    <string-array name="metode_bayar">
+        <item>Rekber</item>
+        <item>Transfer</item>
+        <item>COD</item>
+        <item>Hutang</item>
+    </string-array>
 </resources>
