@@ -16,8 +16,6 @@ import com.ags.ayolelang.R;
 import com.ags.ayolelang.Storage.SharedPrefManager;
 import com.google.gson.internal.LinkedTreeMap;
 
-import java.util.ArrayList;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -86,10 +84,10 @@ public class LoginActivity extends AppCompatActivity {
                         t.get("user_telpon").toString(),
                         t.get("user_alamat").toString(),
                         t.get("user_imgurl").toString(),
-                        (boolean)t.get("user_verif"));
-                Log.d("print user", user.isUser_verif()+"");
+                        (boolean)t.get("user_status"));
+                Log.d("print user", user.isUser_status()+"");
                 if (!loginResponse.isError()) {
-                    if (user.isUser_verif()){
+                    if (user.isUser_status()){
                         SharedPrefManager.getInstance(LoginActivity.this)
                                 .saveUser(user);
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);

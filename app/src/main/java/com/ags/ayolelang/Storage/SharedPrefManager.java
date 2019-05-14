@@ -30,7 +30,7 @@ public class SharedPrefManager {
         editor.putString("nama", user.getUser_nama());
         editor.putString("email", user.getUser_email());
         editor.putString("telpon", user.getUser_telpon());
-        editor.putBoolean("verif", user.isUser_verif());
+        editor.putBoolean("status", user.isUser_status());
         editor.putString("alamat",user.getUser_alamat());
         editor.putString("img_url",user.getUser_imgurl());
 
@@ -52,7 +52,7 @@ public class SharedPrefManager {
                 sharedPreferences.getString("telpon",null),
                 sharedPreferences.getString("alamat",null),
                 sharedPreferences.getString("img_url",null),
-                sharedPreferences.getBoolean("verif",false)
+                sharedPreferences.getBoolean("status",false)
         );
     }
 

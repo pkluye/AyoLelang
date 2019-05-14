@@ -94,7 +94,7 @@ public class RegisterActivity extends AppCompatActivity {
                         t.get("user_telpon").toString(),
                         t.get("user_alamat").toString(),
                         t.get("user_imgurl").toString(),
-                        (boolean)t.get("user_verif"));
+                        (boolean)t.get("user_status"));
                 if (!registerResponse.isError()){
                     Intent intent = new Intent(RegisterActivity.this, VerificationActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

@@ -14,6 +14,7 @@ import com.ags.ayolelang.Models.User;
 import com.ags.ayolelang.R;
 import com.ags.ayolelang.Storage.SharedPrefManager;
 import com.goodiebag.pinview.Pinview;
+import com.google.gson.internal.LinkedTreeMap;
 
 
 import java.util.ArrayList;
@@ -55,10 +56,17 @@ public class VerificationActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
                 DefaultResponse defaultResponse = response.body();
-                ArrayList<User> users=(ArrayList<User>)(ArrayList<?>) defaultResponse.getData();
+                LinkedTreeMap<Object,Object> t = (LinkedTreeMap) defaultResponse.getData();
+                User user=new User(t.get("user_id").toString(),
+                        t.get("user_nama").toString(),
+                        t.get("user_email").toString(),
+                        t.get("user_telpon").toString(),
+                        t.get("user_alamat").toString(),
+                        t.get("user_imgurl").toString(),
+                        (boolean)t.get("user_status"));
                 if (!defaultResponse.isError()) {
                     SharedPrefManager.getInstance(VerificationActivity.this)
-                            .saveUser(users.get(0));
+                            .saveUser(user);
                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
                     finish();
                 }else {
