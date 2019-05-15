@@ -1,6 +1,7 @@
 package com.ags.ayolelang.API;
 
-import com.ags.ayolelang.Models.DefaultResponse;
+import com.ags.ayolelang.Models.UserRespon;
+import com.ags.ayolelang.Models.KategoriResponArray;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -11,7 +12,7 @@ public interface Api {
 
     @FormUrlEncoded
     @POST("c_auth/auth_login")
-    Call<DefaultResponse> userLogin(
+    Call<UserRespon> auth_login(
             @Field("secret_key") String secret_key,
             @Field("email") String email,
             @Field("password") String password
@@ -19,7 +20,7 @@ public interface Api {
 
     @FormUrlEncoded
     @POST("c_auth/auth_register")
-    Call<DefaultResponse> userRegister(
+    Call<UserRespon> auth_register(
             @Field("secret_key") String secret_key,
             @Field("nama") String nama,
             @Field("email") String email,
@@ -28,26 +29,24 @@ public interface Api {
 
     @FormUrlEncoded
     @POST("c_auth/auth_verif")
-    Call<DefaultResponse> auth_verif(
+    Call<UserRespon> auth_verif(
             @Field("secret_key") String secret_key,
             @Field("user_id") String user_id,
             @Field("code") String code);
 
-//    @FormUrlEncoded
-//    @POST("auth/auth_verif")
-//    Call<DefaultResponse> userVerification(
-//            @Field("id_verification") int id_verification,
-//            @Field("username") String username
-//    );
-//
-//
-//    @FormUrlEncoded
-//    @POST("auth/reqNewVerifCode")
-//    Call<DefaultResponse> reqNewVerifCode(
-//            @Field("id_verification") String id_verification,
-//            @Field("username") String username
-//    );
-//
+    @FormUrlEncoded
+    @POST("c_kategori/kategori_getDataKategori")
+    Call<KategoriResponArray> kategori_getDataKategori(
+            @Field("secret_key") String secret_key,
+            @Field("id")int kategori_id);
+
+    @FormUrlEncoded
+    @POST("c_kategori/kategori_getDataSubParentKategori")
+    Call<KategoriResponArray> kategori_getDataSubParentKategori(
+            @Field("secret_key") String secret_key,
+            @Field("id")int kategori_id);
+
+
 //    @FormUrlEncoded
 //    @GET("category/getwithmessage")
 //    Call<KategoriRespon> getwithmessage(

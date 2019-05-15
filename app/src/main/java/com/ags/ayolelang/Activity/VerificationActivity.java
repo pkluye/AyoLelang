@@ -9,15 +9,13 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.ags.ayolelang.API.RetrofitClient;
-import com.ags.ayolelang.Models.DefaultResponse;
+import com.ags.ayolelang.Models.UserRespon;
 import com.ags.ayolelang.Models.User;
 import com.ags.ayolelang.R;
 import com.ags.ayolelang.Storage.SharedPrefManager;
 import com.goodiebag.pinview.Pinview;
 import com.google.gson.internal.LinkedTreeMap;
 
-
-import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -50,33 +48,26 @@ public class VerificationActivity extends AppCompatActivity {
     }
 
     public void verif(View view) {
-        Call<DefaultResponse> call = RetrofitClient.getInstance()
+        Call<UserRespon> call = RetrofitClient.getInstance()
                 .getApi().auth_verif(secret_key,user_id,pin);
-        call.enqueue(new Callback<DefaultResponse>() {
+        call.enqueue(new Callback<UserRespon>() {
             @Override
-            public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
-                DefaultResponse defaultResponse = response.body();
-                LinkedTreeMap<Object,Object> t = (LinkedTreeMap) defaultResponse.getData();
-                User user=new User(t.get("user_id").toString(),
-                        t.get("user_nama").toString(),
-                        t.get("user_email").toString(),
-                        t.get("user_telpon").toString(),
-                        t.get("user_alamat").toString(),
-                        t.get("user_imgurl").toString(),
-                        (boolean)t.get("user_status"));
-                if (!defaultResponse.isError()) {
+            public void onResponse(Call<UserRespon> call, Response<UserRespon> response) {
+                UserRespon userRespon = response.body();
+                if (!userRespon.isError()) {
+                    User user=userRespon.getData();
                     SharedPrefManager.getInstance(VerificationActivity.this)
                             .saveUser(user);
                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
                     finish();
                 }else {
-                    Log.d("test", defaultResponse.getMessage());
-                    Toast.makeText(VerificationActivity.this, defaultResponse.getMessage(), Toast.LENGTH_LONG).show();
+                    Log.d("test", userRespon.getMessage());
+                    Toast.makeText(VerificationActivity.this, userRespon.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<DefaultResponse> call, Throwable t) {
+            public void onFailure(Call<UserRespon> call, Throwable t) {
 
             }
         });

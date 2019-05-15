@@ -2,15 +2,15 @@ package com.ags.ayolelang.Models;
 
 import java.util.ArrayList;
 
-public class DefaultResponseArray {
+public class KategoriResponArray {
     private boolean error;
     private String message;
-    private ArrayList<Object> data;
+    private ArrayList<Kategori> data;
 
-    public DefaultResponseArray() {
+    public KategoriResponArray() {
     }
 
-    public DefaultResponseArray(boolean error, String message, ArrayList<Object> data) {
+    public KategoriResponArray(boolean error, String message, ArrayList<Kategori> data) {
         this.error = error;
         this.message = message;
         this.data = data;
@@ -32,11 +32,11 @@ public class DefaultResponseArray {
         this.message = message;
     }
 
-    public ArrayList<Object> getData() {
+    public ArrayList<Kategori> getData() {
         return data;
     }
 
-    public void setData(ArrayList<Object> data) {
+    public void setData(ArrayList<Kategori> data) {
         this.data = data;
     }
 }

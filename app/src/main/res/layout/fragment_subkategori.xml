@@ -50,7 +50,7 @@
             android:id="@+id/txt_subPenjelasan"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Penjelasan Kategori"
+            android:text="Apa yang anda butuhkan?"
             android:gravity="center_vertical"
             android:textSize="18sp"
             android:textColor="@android:color/black"

@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.ags.ayolelang.API.RetrofitClient;
-import com.ags.ayolelang.Models.DefaultResponse;
+import com.ags.ayolelang.Models.UserRespon;
 import com.ags.ayolelang.Models.User;
 import com.ags.ayolelang.R;
 import com.ags.ayolelang.Storage.SharedPrefManager;
@@ -69,24 +69,17 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        Call<DefaultResponse> call = RetrofitClient
-                .getInstance().getApi().userLogin(secret_key,email, password);
+        Call<UserRespon> call = RetrofitClient
+                .getInstance().getApi().auth_login(secret_key,email, password);
 
-        call.enqueue(new Callback<DefaultResponse>() {
+        call.enqueue(new Callback<UserRespon>() {
 
             @Override
-            public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
-                DefaultResponse loginResponse = response.body();
-                LinkedTreeMap<Object,Object> t = (LinkedTreeMap) loginResponse.getData();
-                User user=new User(t.get("user_id").toString(),
-                        t.get("user_nama").toString(),
-                        t.get("user_email").toString(),
-                        t.get("user_telpon").toString(),
-                        t.get("user_alamat").toString(),
-                        t.get("user_imgurl").toString(),
-                        (boolean)t.get("user_status"));
-                Log.d("print user", user.isUser_status()+"");
+            public void onResponse(Call<UserRespon> call, Response<UserRespon> response) {
+                UserRespon loginResponse = response.body();
                 if (!loginResponse.isError()) {
+                    User user=loginResponse.getData();
+                    Log.d("print user", user.isUser_status()+"");
                     if (user.isUser_status()){
                         SharedPrefManager.getInstance(LoginActivity.this)
                                 .saveUser(user);
@@ -108,7 +101,7 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<DefaultResponse> call, Throwable t) {
+            public void onFailure(Call<UserRespon> call, Throwable t) {
                 Log.d("errror",t.getMessage());
             }
 

@@ -28,15 +28,7 @@ public class DetailSpesifikasi extends AppCompatActivity {
         finishing = findViewById(R.id.in_finishing);
         catatan = findViewById(R.id.in_catatan);
         //Log.d("id_category",""+id_category);
-        assert getSupportActionBar() != null;
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-    }
-
-    @Override
-    public boolean onSupportNavigateUp() {
-        finish();
-        return true;
     }
 
     public void next(View view) {

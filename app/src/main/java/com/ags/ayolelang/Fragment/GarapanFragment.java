@@ -53,27 +53,35 @@ public class GarapanFragment extends Fragment implements View.OnClickListener {
         Fragment fragment = fragment = new FragmentSubKategori();
         ;
         Bundle bundle = new Bundle();
+        bundle.putInt("mode", 1);
         switch (v.getId()) {
             case R.id.cv_pendidikan:
-                bundle.putInt("id_parent", 1);
+                bundle.putInt("id", 1);
+                bundle.putString("tittle",getString(R.string.garapan_1));
                 break;
             case R.id.cv_percetakan:
-                bundle.putInt("id_parent", 2);
+                bundle.putInt("id", 2);
+                bundle.putString("tittle",getString(R.string.garapan_2));
                 break;
             case R.id.cv_kuliner:
-                bundle.putInt("id_parent", 3);
+                bundle.putInt("id", 3);
+                bundle.putString("tittle",getString(R.string.garapan_3));
                 break;
             case R.id.cv_otomotif:
-                bundle.putInt("id_parent", 4);
+                bundle.putInt("id", 4);
+                bundle.putString("tittle",getString(R.string.garapan_4));
                 break;
             case R.id.cv_hiburan:
-                bundle.putInt("id_parent", 5);
+                bundle.putInt("id", 5);
+                bundle.putString("tittle",getString(R.string.garapan_5));
                 break;
             case R.id.cv_fotografi:
-                bundle.putInt("id_parent", 6);
+                bundle.putInt("id", 6);
+                bundle.putString("tittle",getString(R.string.garapan_6));
                 break;
             case R.id.cv_palugada:
-                bundle.putInt("id_parent", 7);
+                bundle.putInt("id", 7);
+                bundle.putString("tittle",getString(R.string.garapan_7));
                 break;
 
         }
