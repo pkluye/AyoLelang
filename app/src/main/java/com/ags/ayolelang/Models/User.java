@@ -73,4 +73,17 @@ public class User {
     public void setUser_status(boolean user_status) {
         this.user_status = user_status;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "user_id='" + user_id + '\'' +
+                ", user_nama='" + user_nama + '\'' +
+                ", user_email='" + user_email + '\'' +
+                ", user_telpon='" + user_telpon + '\'' +
+                ", user_alamat='" + user_alamat + '\'' +
+                ", user_imgurl='" + user_imgurl + '\'' +
+                ", user_status=" + user_status +
+                '}';
+    }
 }

@@ -1,5 +1,6 @@
 package com.ags.ayolelang.Activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -81,9 +82,21 @@ public class RegisterActivity extends AppCompatActivity {
         Call<UserRespon> call = RetrofitClient
                 .getInstance().getApi().auth_register(secret_key,nama,email, password);
 
+        // Set up progress before call
+        final ProgressDialog progressDoalog;
+        progressDoalog = new ProgressDialog(RegisterActivity.this);
+        //progressDoalog.setMax(100);
+        progressDoalog.setMessage("Loading....");
+        //progressDoalog.setTitle("ProgressDialog bar example");
+        progressDoalog.setCancelable(false);
+        progressDoalog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        // show it
+        progressDoalog.show();
+
         call.enqueue(new Callback<UserRespon>() {
             @Override
             public void onResponse(Call<UserRespon> call, Response<UserRespon> response) {
+                progressDoalog.dismiss();
                 UserRespon registerResponse = response.body();
                 if (!registerResponse.isError()){
                     User user=registerResponse.getData();
@@ -99,7 +112,8 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<UserRespon> call, Throwable t) {
-
+                progressDoalog.dismiss();
+                Toast.makeText(getApplicationContext(),t.getMessage(),Toast.LENGTH_LONG).show();
             }
         });
     }

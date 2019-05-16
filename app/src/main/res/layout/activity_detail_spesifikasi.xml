@@ -20,6 +20,7 @@
             android:background="@android:color/transparent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="back"
             app:srcCompat="@drawable/ic_arrow_back_black_24dp"
             tools:ignore="VectorDrawableCompat" />
 
@@ -40,6 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Next"
+            android:onClick="next"
             android:textSize="18sp"
             android:textColor="@color/white"
             />
@@ -111,6 +113,7 @@
             <EditText
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:id="@+id/in_quantity"/>
         </LinearLayout>
 
@@ -127,24 +130,10 @@
             <EditText
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:id="@+id/in_harga"/>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_marginTop="4dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Finishing"/>
-
-            <EditText
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/in_finishing"/>
-        </LinearLayout>
 
         <LinearLayout
             android:layout_marginTop="4dp"

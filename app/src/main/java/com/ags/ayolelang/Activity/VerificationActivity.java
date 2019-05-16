@@ -1,5 +1,6 @@
 package com.ags.ayolelang.Activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -50,9 +51,22 @@ public class VerificationActivity extends AppCompatActivity {
     public void verif(View view) {
         Call<UserRespon> call = RetrofitClient.getInstance()
                 .getApi().auth_verif(secret_key,user_id,pin);
+
+        // Set up progress before call
+        final ProgressDialog progressDoalog;
+        progressDoalog = new ProgressDialog(VerificationActivity.this);
+        //progressDoalog.setMax(100);
+        progressDoalog.setMessage("Loading....");
+        //progressDoalog.setTitle("ProgressDialog bar example");
+        progressDoalog.setCancelable(false);
+        progressDoalog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        // show it
+        progressDoalog.show();
+
         call.enqueue(new Callback<UserRespon>() {
             @Override
             public void onResponse(Call<UserRespon> call, Response<UserRespon> response) {
+                progressDoalog.dismiss();
                 UserRespon userRespon = response.body();
                 if (!userRespon.isError()) {
                     User user=userRespon.getData();
@@ -68,7 +82,8 @@ public class VerificationActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<UserRespon> call, Throwable t) {
-
+                progressDoalog.dismiss();
+                Toast.makeText(getApplicationContext(),t.getMessage(),Toast.LENGTH_LONG).show();
             }
         });
 

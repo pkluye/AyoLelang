@@ -1,5 +1,6 @@
 package com.ags.ayolelang.Activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -72,14 +73,26 @@ public class LoginActivity extends AppCompatActivity {
         Call<UserRespon> call = RetrofitClient
                 .getInstance().getApi().auth_login(secret_key,email, password);
 
+        // Set up progress before call
+        final ProgressDialog progressDoalog;
+        progressDoalog = new ProgressDialog(LoginActivity.this);
+        //progressDoalog.setMax(100);
+        progressDoalog.setMessage("Loading....");
+        //progressDoalog.setTitle("ProgressDialog bar example");
+        progressDoalog.setCancelable(false);
+        progressDoalog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        // show it
+        progressDoalog.show();
+
         call.enqueue(new Callback<UserRespon>() {
 
             @Override
             public void onResponse(Call<UserRespon> call, Response<UserRespon> response) {
+                progressDoalog.dismiss();
                 UserRespon loginResponse = response.body();
                 if (!loginResponse.isError()) {
                     User user=loginResponse.getData();
-                    Log.d("print user", user.isUser_status()+"");
+                    //Log.d("print user", user.isUser_status()+"");
                     if (user.isUser_status()){
                         SharedPrefManager.getInstance(LoginActivity.this)
                                 .saveUser(user);
@@ -103,6 +116,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<UserRespon> call, Throwable t) {
                 Log.d("errror",t.getMessage());
+                progressDoalog.dismiss();
+                Toast.makeText(getApplicationContext(),t.getMessage(),Toast.LENGTH_LONG).show();
             }
 
         });

@@ -5,14 +5,18 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
+import com.ags.ayolelang.Models.Pekerjaan;
 import com.ags.ayolelang.R;
-
 
 public class DetailSpesifikasi extends AppCompatActivity {
 
-    int id_category;
-    EditText ukuran, bahan, quantity, harga, finishing, catatan;
+    public static Pekerjaan req_pekerjaan = new Pekerjaan();
+
+    private int kategori_id;
+    private EditText ukuran, bahan, quantity, harga, catatan;
+    private ImageButton btn_back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,15 +24,13 @@ public class DetailSpesifikasi extends AppCompatActivity {
         setContentView(R.layout.activity_detail_spesifikasi);
         this.setTitle("Detail Spesifikasi");
         Intent intent = getIntent();
-        id_category = intent.getIntExtra("id_category", 0);
+        kategori_id = intent.getIntExtra("kategori_id", 0);
         ukuran = findViewById(R.id.in_ukuran);
         bahan = findViewById(R.id.in_bahan);
         quantity = findViewById(R.id.in_quantity);
         harga = findViewById(R.id.in_harga);
-        finishing = findViewById(R.id.in_finishing);
         catatan = findViewById(R.id.in_catatan);
         //Log.d("id_category",""+id_category);
-
     }
 
     public void next(View view) {
@@ -36,18 +38,19 @@ public class DetailSpesifikasi extends AppCompatActivity {
                 bahan = this.bahan.getText().toString(),
                 quantity = this.quantity.getText().toString(),
                 harga = this.harga.getText().toString(),
-                finishing = this.finishing.toString(),
-                catatan = this.catatan.toString();
+                catatan = this.catatan.getText().toString();
 
-        Intent intent = new Intent(this,Attachment.class);
-        intent.putExtra("ukuran",ukuran);
-        intent.putExtra("bahan",bahan);
-        intent.putExtra("quantity",quantity);
-        intent.putExtra("harga",harga);
-        intent.putExtra("finishing",finishing);
-        intent.putExtra("catatan",catatan);
-        intent.putExtra("id_category",this.id_category);
+        req_pekerjaan.setPekerjaan_kategoriid(kategori_id);
+        req_pekerjaan.setPekerjaan_bahan(bahan);
+        req_pekerjaan.setPekerjaan_catatan(catatan);
+        req_pekerjaan.setPekerjaan_harga(Long.parseLong(harga));
+        req_pekerjaan.setPekerjaan_ukuran(ukuran);
+        req_pekerjaan.setPekerjaan_jumlah(Integer.parseInt(quantity));
 
-        startActivity(intent);
+        startActivity(new Intent(this, Attachment.class));
+    }
+
+    public void back(View view) {
+        onBackPressed();
     }
 }

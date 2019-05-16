@@ -1,14 +1,14 @@
 package com.ags.ayolelang.Models;
 
-public class UserRespon {
+public class StringRespon {
     private boolean error;
     private String message;
-    private User data;
+    private String data;
 
-    public UserRespon() {
+    public StringRespon() {
     }
 
-    public UserRespon(boolean error, String message, User data) {
+    public StringRespon(boolean error, String message, String data) {
         this.error = error;
         this.message = message;
         this.data = data;
@@ -30,20 +30,20 @@ public class UserRespon {
         this.message = message;
     }
 
-    public User getData() {
+    public String getData() {
         return data;
     }
 
-    public void setData(User data) {
+    public void setData(String data) {
         this.data = data;
     }
 
     @Override
     public String toString() {
-        return "UserRespon{" +
+        return "StringRespon{" +
                 "error=" + error +
                 ", message='" + message + '\'' +
-                ", data=" + data +
+                ", data='" + data + '\'' +
                 '}';
     }
 }

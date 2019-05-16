@@ -48,4 +48,13 @@ public class Kategori {
         this.kategori_nama = kategori_nama;
     }
 
+    @Override
+    public String toString() {
+        return "Kategori{" +
+                "kategori_id=" + kategori_id +
+                ", kategori_parentid=" + kategori_parentid +
+                ", kategori_subparentid=" + kategori_subparentid +
+                ", kategori_nama='" + kategori_nama + '\'' +
+                '}';
+    }
 }

@@ -1,5 +1,6 @@
 package com.ags.ayolelang.Adapter;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ags.ayolelang.API.RetrofitClient;
 import com.ags.ayolelang.Activity.DetailSpesifikasi;
@@ -83,7 +85,7 @@ public class AdapterSubKategori extends RecyclerView.Adapter<AdapterSubKategori.
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, DetailSpesifikasi.class);
-                    intent.putExtra("id", kategori_id);
+                    intent.putExtra("kategori_id", kategori_id);
                     context.startActivity(intent);
                 }
             });
@@ -93,9 +95,22 @@ public class AdapterSubKategori extends RecyclerView.Adapter<AdapterSubKategori.
     private void loadDesc(int kategori_id, final TextView txt) {
         Call<KategoriResponArray> call = RetrofitClient.getInstance().getApi()
                 .kategori_getDataKategori(secret_key, kategori_id);
+
+        // Set up progress before call
+        final ProgressDialog progressDoalog;
+        progressDoalog = new ProgressDialog(context);
+        //progressDoalog.setMax(100);
+        //progressDoalog.setMessage("Loading....");
+        //progressDoalog.setTitle("ProgressDialog bar example");
+        progressDoalog.setCancelable(false);
+        progressDoalog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        // show it
+        progressDoalog.show();
+
         call.enqueue(new Callback<KategoriResponArray>() {
             @Override
             public void onResponse(Call<KategoriResponArray> call, Response<KategoriResponArray> response) {
+                progressDoalog.dismiss();
                 KategoriResponArray kategoriResponArray = response.body();
                 if (!kategoriResponArray.isError()) {
                     ArrayList<Kategori> kategoris = kategoriResponArray.getData();
@@ -103,7 +118,7 @@ public class AdapterSubKategori extends RecyclerView.Adapter<AdapterSubKategori.
                     if(kategoris.size()>3){
                         String s="";
                         for (int i = 0; i < 3;i++){
-                            s+=kategoris.get(i).getKategori_nama()+",";
+                            s+=kategoris.get(i).getKategori_nama()+", ";
                         }
                         s+="...";
                         Log.d("desc",s);
@@ -111,7 +126,7 @@ public class AdapterSubKategori extends RecyclerView.Adapter<AdapterSubKategori.
                     }else{
                         String s=null;
                         for (int i = 0; i < kategoris.size();i++){
-                            s+=kategoris.get(i).getKategori_nama()+",";
+                            s+=kategoris.get(i).getKategori_nama()+", ";
                         }
                         s+="...";
                         Log.d("desc",s);
@@ -127,6 +142,8 @@ public class AdapterSubKategori extends RecyclerView.Adapter<AdapterSubKategori.
             @Override
             public void onFailure(Call<KategoriResponArray> call, Throwable t) {
                 Log.d("error", t.getMessage());
+                progressDoalog.dismiss();
+                Toast.makeText(context,t.getMessage(),Toast.LENGTH_LONG).show();
             }
         });
     }

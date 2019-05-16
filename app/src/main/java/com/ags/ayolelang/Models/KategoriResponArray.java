@@ -39,4 +39,13 @@ public class KategoriResponArray {
     public void setData(ArrayList<Kategori> data) {
         this.data = data;
     }
+
+    @Override
+    public String toString() {
+        return "KategoriResponArray{" +
+                "error=" + error +
+                ", message='" + message + '\'' +
+                ", data=" + data +
+                '}';
+    }
 }
