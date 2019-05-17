@@ -1,5 +1,7 @@
 package com.ags.ayolelang.API;
 
+import com.ags.ayolelang.Models.KotaResponArray;
+import com.ags.ayolelang.Models.ProvinsiResponArray;
 import com.ags.ayolelang.Models.StringRespon;
 import com.ags.ayolelang.Models.UserRespon;
 import com.ags.ayolelang.Models.KategoriResponArray;
@@ -61,5 +63,14 @@ public interface Api {
             @Part MultipartBody.Part userfile
     );
 
+    @FormUrlEncoded
+    @POST("c_indonesia/getkabupaten")
+    Call<KotaResponArray> getkabupaten(
+            @Field("secret_key") String secret_key,
+            @Field("provinsi_id")int provinsi_id);
 
+    @FormUrlEncoded
+    @POST("c_indonesia/getprovinsi")
+    Call<ProvinsiResponArray> getprovinsi(
+            @Field("secret_key") String secret_key);
 }
