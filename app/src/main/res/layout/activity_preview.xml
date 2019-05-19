@@ -1,75 +1,406 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".Activity.Preview">
 
-    <TextView
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/btn_tambah_keranjang"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="judul"
-        android:id="@+id/txt_judul"/>
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="70dp"
+        android:layout_marginRight="16dp"
+        android:scaleY="0.8"
+        android:scaleX="0.8"
+        app:srcCompat="@drawable/ic_cart"
+        app:backgroundTint="@color/button"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="alamat"
-        android:id="@+id/txt_alamat"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="deskripsi"
-        android:id="@+id/txt_deskripsi"/>
+        <LinearLayout
+            android:id="@+id/layoutLinear1"
+            android:orientation="horizontal"
+            android:background="@color/bg"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:gravity="center"
+            android:padding="16dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ukuran"
-        android:id="@+id/txt_ukuran"/>
+            <ImageButton
+                android:id="@+id/btn_Back"
+                android:layout_gravity="left|center"
+                android:background="@android:color/transparent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_home"
+                tools:ignore="VectorDrawableCompat"
+                android:scaleY="1.5"
+                android:scaleX="1.5"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="bahan"
-        android:id="@+id/txt_bahan"/>
+            <TextView
+                android:id="@+id/txt_subTittle"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="Preview"
+                android:textColor="@color/white"
+                android:textSize="24sp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="quantity"
-        android:id="@+id/txt_quantity"/>
+            <ImageButton
+                android:id="@+id/btn_More"
+                android:layout_gravity="right|center"
+                android:background="@android:color/transparent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_more"
+                tools:ignore="VectorDrawableCompat"
+                android:scaleY="1.5"
+                android:scaleX="1.5"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="perkiraan harga"
-        android:id="@+id/txt_harga"/>
+        </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="finishing"
-        android:id="@+id/txt_finishing"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="catatan"
-        android:id="@+id/txt_catatan"/>
+            <LinearLayout
+                android:layout_marginTop="12dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="pembayaran"
-        android:id="@+id/txt_pembayaran"/>
+                <ProgressBar
+                    android:id="@+id/determinateBar"
+                    android:layout_gravity="center"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:progress="100"
+                    style="@style/MyProgressBarTwo"
+                    android:theme="@style/MyProgressBarTwo"
+                    />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="File Attachment : -"
-        android:id="@+id/txt_attachment"/>
-</LinearLayout>
+                <LinearLayout
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="18dp">
+
+                    <TextView
+                        android:id="@+id/txt_judul"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Judul"
+                        android:textColor="@android:color/black"
+                        android:textSize="18sp"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:srcCompat="@drawable/ic_location"
+                            android:scaleX="0.8"
+                            android:scaleY="0.8"
+                            android:layout_gravity="center_vertical"/>
+
+                        <TextView
+                            android:id="@+id/txt_alamat"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Kota, Provinsi, Negara"
+                            android:textColor="@color/colorlight"
+                            android:textSize="14sp"
+                            android:layout_gravity="center_vertical"/>
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_marginTop="8dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="#F0F0F0"/>
+
+                    <com.ags.ayolelang.Function.ExpendableTextView
+                        android:id="@+id/txt_deskripsi"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="#F0F0F0"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="visible"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/txt_teks_ukuran"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Ukuran"
+                                />
+
+                            <TextView
+                                android:id="@+id/txt_teks_bahan"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Bahan"
+                                />
+
+                            <TextView
+                                android:id="@+id/txt_teks_quantity"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Quantity"
+                                />
+
+                            <TextView
+                                android:id="@+id/txt_teks_harga"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Perkiraan Harga"
+                                />
+
+                            <TextView
+                                android:id="@+id/txt_teks_deadline"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Deadline"
+                                />
+
+                            <TextView
+                                android:id="@+id/txt_teks_pembayaran"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Pembayaran"
+                                />
+
+                            <Button
+                                android:id="@+id/btn_edit"
+                                android:layout_marginTop="8dp"
+                                android:layout_width="60dp"
+                                android:layout_height="30dp"
+                                android:text="Edit"
+                                android:textColor="@color/white"
+                                android:background="@drawable/button_rectangle"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginRight="8dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=":"
+                                />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=":"
+                                />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=":"
+                                />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=":"
+                                />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=":"
+                                />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=":"
+                                />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/txt_ukuran"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="ukuran"
+                                />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="bahan"
+                                android:id="@+id/txt_bahan"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="quantity"
+                                android:id="@+id/txt_quantity"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="perkiraan harga"
+                                android:id="@+id/txt_harga"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="deadline"
+                                android:id="@+id/txt_deadline"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="pembayaran"
+                                android:id="@+id/txt_pembayaran"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/reyclerview_listItem_lelang"
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    </android.support.v7.widget.RecyclerView>
+
+                    <View
+                        android:layout_marginTop="8dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="#F0F0F0"/>
+
+                    <LinearLayout
+                        android:layout_marginTop="8dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/txt_teks_attachment"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="File Attachment"
+                            />
+
+                        <TextView
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginRight="8dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=":"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="attachment"
+                            android:id="@+id/txt_attachment"/>
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_marginTop="8dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="#F0F0F0"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="end|center_vertical"
+                android:layout_gravity="bottom"
+                android:background="@color/bgCerah"
+                android:padding="12dp"
+                android:layout_weight="0">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="end">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Total Perkiraan Harga :"/>
+
+                    <TextView
+                        android:id="@+id/txt_perkiraan_totalHarga"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="harga"
+                        android:textColor="@android:color/holo_red_light"/>
+                </LinearLayout>
+
+                <Button
+                    android:layout_marginLeft="12dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="34dp"
+                    android:background="@color/button"
+                    android:text="Posting"
+                    android:textColor="@color/white"
+                    android:textAllCaps="false" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</android.support.design.widget.CoordinatorLayout>
