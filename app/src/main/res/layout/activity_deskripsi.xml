@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="Detail Spesifikasi"
+            android:text="Deskripsi"
             android:textColor="@color/white"
             android:textSize="24sp" />
 
@@ -42,6 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Next"
+            android:onClick="next"
             android:textSize="18sp"
             android:textColor="@color/white"
             />
@@ -164,6 +165,21 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_marginTop="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Alamat Lengkap"/>
+
+            <EditText
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/in_alamat"/>
+        </LinearLayout>
 
     </LinearLayout>
 

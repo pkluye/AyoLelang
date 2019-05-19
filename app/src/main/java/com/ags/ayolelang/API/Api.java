@@ -1,6 +1,9 @@
 package com.ags.ayolelang.API;
 
+import com.ags.ayolelang.Models.IntegerRespon;
+import com.ags.ayolelang.Models.KotaProvinsiRespon;
 import com.ags.ayolelang.Models.KotaResponArray;
+import com.ags.ayolelang.Models.LelangRespon;
 import com.ags.ayolelang.Models.ProvinsiResponArray;
 import com.ags.ayolelang.Models.StringRespon;
 import com.ags.ayolelang.Models.UserRespon;
@@ -73,4 +76,56 @@ public interface Api {
     @POST("c_indonesia/getprovinsi")
     Call<ProvinsiResponArray> getprovinsi(
             @Field("secret_key") String secret_key);
+
+    @FormUrlEncoded
+    @POST("c_lelang/lelang_buat_plus_pekerjaan")
+    Call<StringRespon> lelang_buat_plus_pekerjaan(
+            @Field("secret_key") String secret_key,
+            @Field("lelang_userid") String user_id,
+            @Field("lelang_deskripsi") String deskripsi,
+            @Field("lelang_tglselesai") String deadline,
+            @Field("lelang_judul") String judul,
+            @Field("lelang_pembayaran") int pembayaran,
+            @Field("lelang_alamat") String alamat,
+            @Field("lelang_kota") int kotaid,
+            @Field("pekerjaan_ukuran") String pekerjaan_ukuran,
+            @Field("pekerjaan_bahan") String pekerjaan_bahan,
+            @Field("pekerjaan_jumlah") int pekerjaan_jumlah,
+            @Field("pekerjaan_harga") long pekerjaan_harga,
+            @Field("pekerjaan_kategoriid") int pekerjaan_kategoriid,
+            @Field("pekerjaan_fileurl") String pekerjaan_fileurl,
+            @Field("pekerjaan_catatan") String pekerjaan_catatan);
+
+    @FormUrlEncoded
+    @POST("c_lelang/lelang_edit")
+    Call<StringRespon> lelang_edit(
+            @Field("secret_key") String secret_key,
+            @Field("lelang_id") int lelang_id,
+            @Field("lelang_userid") String user_id,
+            @Field("lelang_deskripsi") String deskripsi,
+            @Field("lelang_tglselesai") String deadline,
+            @Field("lelang_judul") String judul,
+            @Field("lelang_pembayaran") int pembayaran,
+            @Field("lelang_alamat") String alamat,
+            @Field("lelang_kota") int kotaid,
+            @Field("lelang_anggaran") long pekerjaan_harga);
+
+    @FormUrlEncoded
+    @POST("c_lelang/lelang_posting")
+    Call<LelangRespon> lelang_posting(
+            @Field("secret_key") String secret_key,
+            @Field("lelang_id") int lelang_id,
+            @Field("lelang_userid") String user_id);
+
+    @FormUrlEncoded
+    @POST("c_lelang/lelang_getlelang")
+    Call<LelangRespon> lelang_getLelang(
+            @Field("secret_key") String secret_key,
+            @Field("lelang_id") int lelang_id);
+
+    @FormUrlEncoded
+    @POST("c_indonesia/getkabupatenprovinsi")
+    Call<KotaProvinsiRespon> getkabupatenprovinsi(
+            @Field("secret_key") String secret_key,
+            @Field("lelang_id") int lelang_id);
 }

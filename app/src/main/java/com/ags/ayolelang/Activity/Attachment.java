@@ -74,6 +74,8 @@ public class Attachment extends AppCompatActivity {
             txt_namaFile.setText(file.getName());
             txt_namaFile.setVisibility(View.VISIBLE);
             uploadToserver.setVisibility(View.VISIBLE);
+            uploadToserver.setEnabled(true);
+            findViewById(R.id.btn_clear).setVisibility(View.VISIBLE);
         }
     }
 
@@ -119,6 +121,7 @@ public class Attachment extends AppCompatActivity {
                 if (!stringRespon.isError()) {
                     Toast.makeText(getApplicationContext(), stringRespon.getMessage(), Toast.LENGTH_LONG).show();
                     DetailSpesifikasi.req_pekerjaan.setPekerjaan_fileurl(stringRespon.getData());
+                    uploadToserver.setEnabled(false);
                 } else {
                     Toast.makeText(getApplicationContext(), "Some error occurred...", Toast.LENGTH_LONG).show();
                 }
@@ -130,5 +133,12 @@ public class Attachment extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),t.getMessage(),Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    public void clear(View view) {
+        txt_namaFile.setVisibility(View.INVISIBLE);
+        uploadToserver.setVisibility(View.INVISIBLE);
+        findViewById(R.id.btn_clear).setVisibility(View.INVISIBLE);
+        DetailSpesifikasi.req_pekerjaan.setPekerjaan_fileurl(null);
     }
 }
