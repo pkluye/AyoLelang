@@ -1,14 +1,17 @@
 package com.ags.ayolelang.Models;
 
+import java.util.ArrayList;
+
 public class Lelang {
     private String lelang_deskripsi,lelang_tglmulai,lelang_tglselesai,lelang_judul,lelang_userid,lelang_pembayaran,lelang_alamat;
-    private int lelang_id,lelang_kota;
-    private long lelang_totalharga;
+    private int lelang_id,lelang_kota,lelang_status;
+    private long lelang_anggaran;
+    private ArrayList<Pekerjaan> pekerjaan;
 
     public Lelang() {
     }
 
-    public Lelang(String lelang_deskripsi, String lelang_tglmulai, String lelang_tglselesai, String lelang_judul, String lelang_userid, String lelang_pembayaran, String lelang_alamat, int lelang_id, int lelang_kota, long lelang_totalharga) {
+    public Lelang(String lelang_deskripsi, String lelang_tglmulai, String lelang_tglselesai, String lelang_judul, String lelang_userid, String lelang_pembayaran, String lelang_alamat, int lelang_id, int lelang_kota, int lelang_status, long lelang_anggaran, ArrayList<Pekerjaan> pekerjaan) {
         this.lelang_deskripsi = lelang_deskripsi;
         this.lelang_tglmulai = lelang_tglmulai;
         this.lelang_tglselesai = lelang_tglselesai;
@@ -18,7 +21,25 @@ public class Lelang {
         this.lelang_alamat = lelang_alamat;
         this.lelang_id = lelang_id;
         this.lelang_kota = lelang_kota;
-        this.lelang_totalharga = lelang_totalharga;
+        this.lelang_status = lelang_status;
+        this.lelang_anggaran = lelang_anggaran;
+        this.pekerjaan = pekerjaan;
+    }
+
+    public ArrayList<Pekerjaan> getPekerjaan() {
+        return pekerjaan;
+    }
+
+    public void setPekerjaan(ArrayList<Pekerjaan> pekerjaan) {
+        this.pekerjaan = pekerjaan;
+    }
+
+    public int getLelang_status() {
+        return lelang_status;
+    }
+
+    public void setLelang_status(int lelang_status) {
+        this.lelang_status = lelang_status;
     }
 
     public String getLelang_deskripsi() {
@@ -93,12 +114,12 @@ public class Lelang {
         this.lelang_kota = lelang_kota;
     }
 
-    public long getLelang_totalharga() {
-        return lelang_totalharga;
+    public long getLelang_anggaran() {
+        return lelang_anggaran;
     }
 
-    public void setLelang_totalharga(long lelang_totalharga) {
-        this.lelang_totalharga = lelang_totalharga;
+    public void setLelang_anggaran(long lelang_anggaran) {
+        this.lelang_anggaran = lelang_anggaran;
     }
 
     @Override
@@ -113,7 +134,9 @@ public class Lelang {
                 ", lelang_alamat='" + lelang_alamat + '\'' +
                 ", lelang_id=" + lelang_id +
                 ", lelang_kota=" + lelang_kota +
-                ", lelang_totalharga=" + lelang_totalharga +
+                ", lelang_status=" + lelang_status +
+                ", lelang_anggaran=" + lelang_anggaran +
+                ", pekerjaan=" + pekerjaan.size() +
                 '}';
     }
 }

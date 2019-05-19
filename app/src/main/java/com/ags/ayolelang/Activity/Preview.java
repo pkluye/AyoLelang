@@ -3,15 +3,25 @@ package com.ags.ayolelang.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.EditText;
 
+import com.ags.ayolelang.API.RetrofitClient;
+import com.ags.ayolelang.Models.KotaProvinsi;
+import com.ags.ayolelang.Models.KotaProvinsiRespon;
+import com.ags.ayolelang.Models.Lelang;
+import com.ags.ayolelang.Models.LelangRespon;
 import com.ags.ayolelang.R;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static com.ags.ayolelang.API.RetrofitClient.secret_key;
 
 public class Preview extends AppCompatActivity {
 
-    private int id_category;
-    private EditText txt_ukuran, txt_bahan, txt_quantity, txt_harga, txt_finishing, txt_catatan, txt_pembayaran, txt_alamat, txt_judul, txt_deskripsi, txt_deadline;
-    private String ukuran, bahan, quantity, harga, finishing, catatan, pembayaran, alamat, judul, deskripsi, deadline;
+    private int lelang_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,25 +29,65 @@ public class Preview extends AppCompatActivity {
         setContentView(R.layout.activity_preview);
 
         Intent intent = getIntent();
-        ukuran = intent.getStringExtra("ukuran");
-        bahan = intent.getStringExtra("bahan");
-        quantity = intent.getStringExtra("quantity");
-        harga = intent.getStringExtra("harga");
-        finishing = intent.getStringExtra("finishing");
-        catatan = intent.getStringExtra("catatan");
-        id_category = intent.getIntExtra("id_category", 0);
-        pembayaran = intent.getStringExtra("pembayaran");
-        alamat = intent.getStringExtra("alamat");
-        judul = intent.getStringExtra("judul");
-        deskripsi = intent.getStringExtra("deskripsi");
-        deadline = intent.getStringExtra("deadline");
-
-
-
-        loadData();
+        lelang_id=intent.getIntExtra("lelang_id",0);
+        loadDataLelang();
     }
 
-    private void loadData() {
+    private void loadDataLelang() {
+        Call<LelangRespon> call= RetrofitClient
+                .getInstance().getApi().lelang_getLelang(secret_key,lelang_id);
+
+        call.enqueue(new Callback<LelangRespon>() {
+            @Override
+            public void onResponse(Call<LelangRespon> call, Response<LelangRespon> response) {
+                if (response.isSuccessful()){
+                    LelangRespon lelangRespon =response.body();
+                    if (!lelangRespon.isError()){
+                        Lelang lelang =lelangRespon.getData();
+                        LoadDataKota(lelang.getLelang_kota());
+                        //set tampilan
+                    }else {
+                        Log.d("error",lelangRespon.getMessage());
+                    }
+
+                }else{
+                    Log.d("respon error",response.toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<LelangRespon> call, Throwable t) {
+                Log.d("ERROR REQ",t.getMessage());
+            }
+        });
+    }
+
+    private void LoadDataKota(int i) {
+        Call<KotaProvinsiRespon>call=RetrofitClient
+                .getInstance().getApi().getkabupatenprovinsi(secret_key,i);
+
+        call.enqueue(new Callback<KotaProvinsiRespon>() {
+            @Override
+            public void onResponse(Call<KotaProvinsiRespon> call, Response<KotaProvinsiRespon> response) {
+                if (response.isSuccessful()){
+                    KotaProvinsiRespon kotaProvinsiRespon =response.body();
+                    if (!kotaProvinsiRespon.isError()){
+                        KotaProvinsi kotaProvinsi=kotaProvinsiRespon.getData();
+                        //set tampilan
+                    }else {
+                        Log.d("error",kotaProvinsiRespon.getMessage());
+                    }
+
+                }else{
+                    Log.d("respon error",response.toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<KotaProvinsiRespon> call, Throwable t) {
+
+            }
+        });
     }
 
 

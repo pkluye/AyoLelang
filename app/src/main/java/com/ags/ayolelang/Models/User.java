@@ -2,8 +2,8 @@ package com.ags.ayolelang.Models;
 
 public class User {
 
-    String user_id,user_nama, user_email, user_telpon, user_alamat, user_imgurl;
-    boolean user_status;
+    private String user_id,user_nama, user_email, user_telpon, user_alamat, user_imgurl;
+    private boolean user_status;
 
     public User() {
     }
