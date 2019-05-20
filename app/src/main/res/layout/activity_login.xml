@@ -32,7 +32,7 @@
             android:layout_height="50dp"
             android:background="@drawable/button_round_border"
             android:ems="8"
-            android:hint="Username"
+            android:hint="E-Mail"
             android:inputType="textEmailAddress" />
 
         <EditText
