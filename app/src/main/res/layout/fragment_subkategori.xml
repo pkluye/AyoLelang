@@ -75,7 +75,8 @@
         android:layout_below="@+id/layoutLinear2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/item_subkategori">
+        tools:listitem="@layout/item_subkategori"
+        android:layout_marginBottom="60dp">
 
     </android.support.v7.widget.RecyclerView>
 

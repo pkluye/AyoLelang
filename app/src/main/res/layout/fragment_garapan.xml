@@ -1,431 +1,428 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:id="@+id/layoutLinear1"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:background="@color/bg"
-        android:weightSum="3"
-        android:padding="16dp">
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/color_back"
+            android:layout_width="match_parent"
+            android:layout_height="124dp"
+            android:background="@color/bg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="114dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:text="LELANG"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.243"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btnEvent"
+            android:layout_width="100dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="72dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/button_round_green"
+            android:text="Event"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.25"
+            app:layout_constraintStart_toEndOf="@+id/btnKategori"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btnKategori"
+            android:layout_width="100dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="64dp"
+            android:layout_marginLeft="64dp"
+            android:layout_marginTop="72dp"
+            android:background="@drawable/button_round_green"
+            android:text="Kategori"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2"
-            android:orientation="horizontal">
+            android:layout_height="400dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:orientation="vertical"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/color_back">
 
-            <TextView
-                android:layout_marginLeft="25dp"
-                android:layout_gravity="center_vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="LELANG"
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                android:textSize="24sp"/>
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <Button
-                android:layout_marginLeft="20dp"
-                android:id="@+id/btnKategori"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:text="Kategori"
-                android:background="@drawable/button_round_green"
-                android:textColor="@color/white"
-                android:textStyle="bold"/>
-
-            <Button
-                android:layout_marginLeft="20dp"
-                android:id="@+id/btnEvent"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:text="Event"
-                android:background="@drawable/button_round_green"
-                android:textColor="@color/white"
-                android:textStyle="bold"/>
-
-
-
-        </LinearLayout>
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_below="@id/layoutLinear1"
-        android:layout_width="match_parent"
-        android:layout_height="500dp"
-        android:orientation="vertical">
-
-        <GridLayout
-            android:id="@+id/mainGrid"
-            android:columnCount="3"
-            android:rowCount="3"
-            android:alignmentMode="alignMargins"
-            android:columnOrderPreserved="false"
-            android:layout_weight="8"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:padding="8dp"
-            android:layout_marginTop="18dp"
-            android:layout_marginBottom="18dp">
-
-            <!--baris 1-->
-
-            <!--Pendidikan-->
-
-            <android.support.v7.widget.CardView
-                android:id="@+id/cv_pendidikan"
+            <GridLayout
+                android:id="@+id/mainGrid"
+                android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_width="0dp"
-                android:layout_columnWeight="1"
-                android:layout_rowWeight="1"
-                android:layout_marginBottom="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                app:cardElevation="2dp"
-                app:cardCornerRadius="8dp">
-                
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_margin="16dp"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    >
-                    
-                    <ImageView
-                        android:src="@drawable/logo"
-                        android:layout_width="75dp"
-                        android:layout_height="75dp"
-                        android:layout_gravity="center_horizontal"
-                        />
+                android:layout_marginTop="18dp"
+                android:layout_marginBottom="18dp"
+                android:layout_weight="8"
+                android:alignmentMode="alignMargins"
+                android:columnCount="3"
+                android:columnOrderPreserved="false"
+                android:padding="8dp"
+                android:rowCount="3">
 
-                    <TextView
-                        android:layout_gravity="center_horizontal"
+                <!--baris 1-->
+
+                <!--Pendidikan-->
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cv_pendidikan"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="16dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="2dp">
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/garapan_1"
-                        android:textAlignment="center"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        android:layout_marginTop="8dp"
-                        />
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_margin="16dp"
+                        android:orientation="vertical">
 
-            <!--Percetakan-->
+                        <ImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/logo" />
 
-            <android.support.v7.widget.CardView
-                android:id="@+id/cv_percetakan"
-                android:layout_height="0dp"
-                android:layout_width="0dp"
-                android:layout_columnWeight="1"
-                android:layout_rowWeight="1"
-                android:layout_marginBottom="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                app:cardElevation="2dp"
-                app:cardCornerRadius="8dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="8dp"
+                            android:text="@string/garapan_1"
+                            android:textAlignment="center"
+                            android:textSize="8sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_margin="16dp"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    >
+                <!--Percetakan-->
 
-                    <ImageView
-                        android:src="@drawable/printer"
-                        android:layout_width="75dp"
-                        android:layout_height="75dp"
-                        android:layout_gravity="center_horizontal"
-                        />
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cv_percetakan"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="16dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="2dp">
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/garapan_2"
-                        android:textAlignment="center"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        android:layout_marginTop="8dp"
-                        />
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_margin="16dp"
+                        android:orientation="vertical">
 
-            <!--Kuliner-->
+                        <ImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/printer" />
 
-            <android.support.v7.widget.CardView
-                android:id="@+id/cv_kuliner"
-                android:layout_height="0dp"
-                android:layout_width="0dp"
-                android:layout_columnWeight="1"
-                android:layout_rowWeight="1"
-                android:layout_marginBottom="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                app:cardElevation="2dp"
-                app:cardCornerRadius="8dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="@string/garapan_2"
+                            android:textAlignment="center"
+                            android:textSize="8sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_margin="16dp"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    >
+                <!--Kuliner-->
 
-                    <ImageView
-                        android:src="@drawable/logo"
-                        android:layout_width="75dp"
-                        android:layout_height="75dp"
-                        android:layout_gravity="center_horizontal"
-                        />
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cv_kuliner"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="16dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="2dp">
 
-                    <TextView
-                        android:layout_gravity="center_horizontal"
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/garapan_3"
-                        android:textAlignment="center"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        android:layout_marginTop="8dp"
-                        />
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_margin="16dp"
+                        android:orientation="vertical">
 
-            <!--baris 2-->
+                        <ImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/logo" />
 
-            <!--Otomotif-->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="8dp"
+                            android:text="@string/garapan_3"
+                            android:textAlignment="center"
+                            android:textSize="8sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
 
-            <android.support.v7.widget.CardView
-                android:id="@+id/cv_otomotif"
-                android:layout_height="0dp"
-                android:layout_width="0dp"
-                android:layout_columnWeight="1"
-                android:layout_rowWeight="1"
-                android:layout_marginBottom="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                app:cardElevation="2dp"
-                app:cardCornerRadius="8dp">
+                <!--baris 2-->
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_margin="16dp"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    >
+                <!--Otomotif-->
 
-                    <ImageView
-                        android:src="@drawable/logo"
-                        android:layout_width="75dp"
-                        android:layout_height="75dp"
-                        android:layout_gravity="center_horizontal"
-                        />
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cv_otomotif"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="16dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="2dp">
 
-                    <TextView
-                        android:layout_gravity="center_horizontal"
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/garapan_4"
-                        android:textAlignment="center"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        android:layout_marginTop="8dp"
-                        />
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_margin="16dp"
+                        android:orientation="vertical">
 
-            <!--Hiburan-->
+                        <ImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/logo" />
 
-            <android.support.v7.widget.CardView
-                android:id="@+id/cv_hiburan"
-                android:layout_height="0dp"
-                android:layout_width="0dp"
-                android:layout_columnWeight="1"
-                android:layout_rowWeight="1"
-                android:layout_marginBottom="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                app:cardElevation="2dp"
-                app:cardCornerRadius="8dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="8dp"
+                            android:text="@string/garapan_4"
+                            android:textAlignment="center"
+                            android:textSize="8sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_margin="16dp"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    >
+                <!--Hiburan-->
 
-                    <ImageView
-                        android:src="@drawable/logo"
-                        android:layout_width="75dp"
-                        android:layout_height="75dp"
-                        android:layout_gravity="center_horizontal"
-                        />
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cv_hiburan"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="16dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="2dp">
 
-                    <TextView
-                        android:layout_gravity="center_horizontal"
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/garapan_5"
-                        android:textAlignment="center"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        android:layout_marginTop="8dp"
-                        />
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_margin="16dp"
+                        android:orientation="vertical">
 
-            <!--Fotografi-->
+                        <ImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/logo" />
 
-            <android.support.v7.widget.CardView
-                android:id="@+id/cv_fotografi"
-                android:layout_height="0dp"
-                android:layout_width="0dp"
-                android:layout_columnWeight="1"
-                android:layout_rowWeight="1"
-                android:layout_marginBottom="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                app:cardElevation="2dp"
-                app:cardCornerRadius="8dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="8dp"
+                            android:text="@string/garapan_5"
+                            android:textAlignment="center"
+                            android:textSize="8sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_margin="16dp"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    >
+                <!--Fotografi-->
 
-                    <ImageView
-                        android:src="@drawable/logo"
-                        android:layout_width="75dp"
-                        android:layout_height="75dp"
-                        android:layout_gravity="center_horizontal"
-                        />
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cv_fotografi"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="16dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="2dp">
 
-                    <TextView
-                        android:layout_gravity="center_horizontal"
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/garapan_6"
-                        android:textAlignment="center"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        android:layout_marginTop="8dp"
-                        />
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_margin="16dp"
+                        android:orientation="vertical">
 
-            <!--baris 3-->
+                        <ImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/logo" />
 
-            <!--Palugada-->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="8dp"
+                            android:text="@string/garapan_6"
+                            android:textAlignment="center"
+                            android:textSize="8sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
 
-            <android.support.v7.widget.CardView
-                android:id="@+id/cv_palugada"
-                android:layout_height="0dp"
-                android:layout_width="0dp"
-                android:layout_columnWeight="1"
-                android:layout_rowWeight="1"
-                android:layout_marginBottom="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                app:cardElevation="2dp"
-                app:cardCornerRadius="8dp">
+                <!--baris 3-->
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_margin="16dp"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    >
+                <!--Palugada-->
 
-                    <ImageView
-                        android:src="@drawable/star"
-                        android:layout_width="75dp"
-                        android:layout_height="75dp"
-                        android:layout_gravity="center_horizontal"
-                        />
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cv_palugada"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="16dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="2dp">
 
-                    <TextView
-                        android:layout_gravity="center_horizontal"
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/garapan_7"
-                        android:textAlignment="center"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        android:layout_marginTop="8dp"
-                        />
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_margin="16dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/star" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="8dp"
+                            android:text="@string/garapan_7"
+                            android:textAlignment="center"
+                            android:textSize="8sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
 
 
-        </GridLayout>
+            </GridLayout>
 
-        <!--<Button-->
+            <!--<Button-->
             <!--android:id="@+id/btn_kategori1"-->
             <!--android:layout_width="wrap_content"-->
             <!--android:layout_height="wrap_content"-->
             <!--android:text="Pendidikan"/>-->
 
-        <!--<Button-->
+            <!--<Button-->
             <!--android:id="@+id/btn_kategori2"-->
             <!--android:layout_width="wrap_content"-->
             <!--android:layout_height="wrap_content"-->
             <!--android:text="Printing"/>-->
 
-        <!--<Button-->
+            <!--<Button-->
             <!--android:id="@+id/btn_kategori3"-->
             <!--android:layout_width="wrap_content"-->
             <!--android:layout_height="wrap_content"-->
             <!--android:text="Kuliner"/>-->
-        <!--<Button-->
+            <!--<Button-->
             <!--android:id="@+id/btn_kategori4"-->
             <!--android:layout_width="wrap_content"-->
             <!--android:layout_height="wrap_content"-->
             <!--android:text="Otomotif"/>-->
-        <!--<Button-->
+            <!--<Button-->
             <!--android:id="@+id/btn_kategori5"-->
             <!--android:layout_width="wrap_content"-->
             <!--android:layout_height="wrap_content"-->
             <!--android:text="Hiburan"/>-->
 
-        <!--<Button-->
+            <!--<Button-->
             <!--android:id="@+id/btn_kategori6"-->
             <!--android:layout_width="wrap_content"-->
             <!--android:layout_height="wrap_content"-->
             <!--android:text="Fotografi"/>-->
 
-        <!--<Button-->
+            <!--<Button-->
             <!--android:id="@+id/btn_kategori7"-->
             <!--android:layout_width="wrap_content"-->
             <!--android:layout_height="wrap_content"-->
             <!--android:text="Palugada"/>-->
 
-    </LinearLayout>
+        </LinearLayout>
+
+    </android.support.constraint.ConstraintLayout>
+
+
 
 </RelativeLayout>
