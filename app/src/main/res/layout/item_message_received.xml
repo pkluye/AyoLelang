@@ -10,7 +10,7 @@
         android:id="@+id/img_sender"
         android:layout_width="32dp"
         android:layout_height="32dp"
-        android:background="@drawable/edit_round"
+        android:background="@drawable/button_round_border"
         app:srcCompat="@drawable/ic_user_default"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginLeft="8dp"

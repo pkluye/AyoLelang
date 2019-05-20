@@ -30,7 +30,7 @@
             android:id="@+id/in_email"
             android:layout_width="250dp"
             android:layout_height="50dp"
-            android:background="@drawable/edit_round"
+            android:background="@drawable/button_round_border"
             android:ems="8"
             android:hint="Username"
             android:inputType="textEmailAddress" />
@@ -43,7 +43,7 @@
             android:id="@+id/in_password"
             android:layout_width="250dp"
             android:layout_height="50dp"
-            android:background="@drawable/edit_round"
+            android:background="@drawable/button_round_border"
             android:ems="8"
             android:hint="Password"
             android:inputType="textPassword" />
@@ -53,7 +53,7 @@
             android:layout_width="200dp"
             android:layout_height="40dp"
             android:layout_marginTop="25dp"
-            android:background="@drawable/button_round"
+            android:background="@drawable/button_round_green"
             android:onClick="login"
             android:text="Login"
             android:textColor="@color/white"

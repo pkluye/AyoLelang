@@ -3,8 +3,41 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="#ECEFF0"
     android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/layoutLinear1"
+        android:orientation="horizontal"
+        android:background="@color/bg"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:padding="16dp">
+
+        <ImageButton
+            android:id="@+id/btn_hamburger"
+            android:layout_gravity="left|center"
+            android:background="@android:color/transparent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_menu"
+            android:scaleX="1.5"
+            android:scaleY="1.5"
+            tools:ignore="VectorDrawableCompat" />
+
+        <TextView
+            android:layout_marginLeft="24dp"
+            android:id="@+id/txt_subTitle"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="start"
+            android:text="Profil Saya"
+            android:textColor="@color/white"
+            android:textSize="24sp" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -1,10 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/layoutLinear1"
+        android:orientation="horizontal"
+        android:background="@color/bg"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:padding="16dp">
+
+        <ImageButton
+            android:id="@+id/btn_Back"
+            android:layout_gravity="left|center"
+            android:background="@android:color/transparent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_arrow_back_black_24dp"
+            tools:ignore="VectorDrawableCompat" />
+
+        <TextView
+            android:id="@+id/txt_subTittle"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="Nama client"
+            android:textColor="@color/white"
+            android:textSize="24sp" />
+
+        <ImageButton
+            android:id="@+id/btn_More"
+            android:layout_gravity="right|center"
+            android:background="@android:color/transparent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_more"
+            tools:ignore="VectorDrawableCompat"
+            android:scaleY="1.5"
+            android:scaleX="1.5"/>
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/layout_messageBox"

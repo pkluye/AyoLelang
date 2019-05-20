@@ -137,7 +137,7 @@
                 android:onClick="register"
                 android:text="Register"
                 android:textColor="@color/white"
-                android:background="@drawable/button_round"/>
+                android:background="@drawable/button_round_green"/>
         </LinearLayout>
 
     </ScrollView>
