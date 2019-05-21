@@ -91,7 +91,7 @@ public class LoginActivity extends AppCompatActivity {
                 UserRespon loginResponse = response.body();
                 if (!loginResponse.isError()) {
                     User user=loginResponse.getData();
-                    //Log.d("print user", user.isUser_status()+"");
+                    //Log.d("test",user.toString());
                     if (user.isUser_status()){
                         SharedPrefManager.getInstance(LoginActivity.this)
                                 .saveUser(user);

@@ -3,7 +3,7 @@ package com.ags.ayolelang.Models;
 import java.util.ArrayList;
 
 public class Lelang {
-    private String lelang_deskripsi,lelang_tglmulai,lelang_tglselesai,lelang_judul,lelang_userid,lelang_pembayaran,lelang_alamat;
+    private String lelang_deskripsi,lelang_tglmulai,lelang_tglselesai,lelang_judul,lelang_userid,lelang_pembayaran,lelang_alamat,lelang_kotanama,lelang_provnama;
     private int lelang_id,lelang_kota,lelang_status;
     private long lelang_anggaran;
     private ArrayList<Pekerjaan> pekerjaan;
@@ -11,7 +11,7 @@ public class Lelang {
     public Lelang() {
     }
 
-    public Lelang(String lelang_deskripsi, String lelang_tglmulai, String lelang_tglselesai, String lelang_judul, String lelang_userid, String lelang_pembayaran, String lelang_alamat, int lelang_id, int lelang_kota, int lelang_status, long lelang_anggaran, ArrayList<Pekerjaan> pekerjaan) {
+    public Lelang(String lelang_deskripsi, String lelang_tglmulai, String lelang_tglselesai, String lelang_judul, String lelang_userid, String lelang_pembayaran, String lelang_alamat, String lelang_kotanama, String lelang_provnama, int lelang_id, int lelang_kota, int lelang_status, long lelang_anggaran, ArrayList<Pekerjaan> pekerjaan) {
         this.lelang_deskripsi = lelang_deskripsi;
         this.lelang_tglmulai = lelang_tglmulai;
         this.lelang_tglselesai = lelang_tglselesai;
@@ -19,6 +19,8 @@ public class Lelang {
         this.lelang_userid = lelang_userid;
         this.lelang_pembayaran = lelang_pembayaran;
         this.lelang_alamat = lelang_alamat;
+        this.lelang_kotanama = lelang_kotanama;
+        this.lelang_provnama = lelang_provnama;
         this.lelang_id = lelang_id;
         this.lelang_kota = lelang_kota;
         this.lelang_status = lelang_status;
@@ -122,6 +124,22 @@ public class Lelang {
         this.lelang_anggaran = lelang_anggaran;
     }
 
+    public String getLelang_kotanama() {
+        return lelang_kotanama;
+    }
+
+    public void setLelang_kotanama(String lelang_kotanama) {
+        this.lelang_kotanama = lelang_kotanama;
+    }
+
+    public String getLelang_provnama() {
+        return lelang_provnama;
+    }
+
+    public void setLelang_provnama(String lelang_provnama) {
+        this.lelang_provnama = lelang_provnama;
+    }
+
     @Override
     public String toString() {
         return "Lelang{" +
@@ -132,11 +150,13 @@ public class Lelang {
                 ", lelang_userid='" + lelang_userid + '\'' +
                 ", lelang_pembayaran='" + lelang_pembayaran + '\'' +
                 ", lelang_alamat='" + lelang_alamat + '\'' +
+                ", lelang_kotanama='" + lelang_kotanama + '\'' +
+                ", lelang_provnama='" + lelang_provnama + '\'' +
                 ", lelang_id=" + lelang_id +
                 ", lelang_kota=" + lelang_kota +
                 ", lelang_status=" + lelang_status +
                 ", lelang_anggaran=" + lelang_anggaran +
-                ", pekerjaan=" + pekerjaan.size() +
+                ", pekerjaan=" + pekerjaan +
                 '}';
     }
 }
