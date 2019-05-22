@@ -100,7 +100,7 @@
                 android:id="@+id/txt_file_attachment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="file_attachment"
+                android:text="file attachment"
                 android:layout_weight="0"/>
 
         </LinearLayout>

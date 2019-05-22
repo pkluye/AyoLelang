@@ -120,7 +120,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:visibility="invisible"
+                android:visibility="visible"
                 android:layout_marginLeft="16dp"
                 android:textColor="@android:color/black"
                 android:id="@+id/txt_namaFile"
@@ -129,7 +129,7 @@
                 android:text="NamaFile.xxx"/>
 
             <Button
-                android:visibility="invisible"
+                android:visibility="visible"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/uploadToserver"
@@ -137,12 +137,13 @@
                 android:text="upload"/>
 
             <Button
-                android:visibility="invisible"
+                android:visibility="visible"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/btn_clear"
                 android:onClick="clear"
                 android:text="clear"/>
+
         </LinearLayout>
 
 
