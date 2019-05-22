@@ -1,7 +1,5 @@
 package com.ags.ayolelang.API;
 
-import com.ags.ayolelang.Models.IntegerRespon;
-import com.ags.ayolelang.Models.KotaProvinsiRespon;
 import com.ags.ayolelang.Models.KotaResponArray;
 import com.ags.ayolelang.Models.LelangRespon;
 import com.ags.ayolelang.Models.ProvinsiResponArray;
@@ -9,14 +7,11 @@ import com.ags.ayolelang.Models.StringRespon;
 import com.ags.ayolelang.Models.UserRespon;
 import com.ags.ayolelang.Models.KategoriResponArray;
 
-import java.io.File;
-
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
@@ -123,9 +118,4 @@ public interface Api {
             @Field("secret_key") String secret_key,
             @Field("lelang_id") int lelang_id);
 
-    @FormUrlEncoded
-    @POST("c_indonesia/getkabupatenprovinsi")
-    Call<KotaProvinsiRespon> getkabupatenprovinsi(
-            @Field("secret_key") String secret_key,
-            @Field("lelang_id") int lelang_id);
 }
