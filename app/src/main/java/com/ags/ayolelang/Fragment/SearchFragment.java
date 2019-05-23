@@ -26,8 +26,7 @@ public class SearchFragment extends Fragment {
 
         mSearchTabAdapter = new SearchTabAdapter(getFragmentManager());
 
-        mViewPager = (ViewPager) view.findViewById(R.id.tab_pager);
-        setupViewPager(mViewPager);
+        mViewPager = view.findViewById(R.id.tab_pager);
 
         mSearchTabAdapter.addFragment(new SearchKategoriFragment(), "Kategori");
         mSearchTabAdapter.addFragment(new SearchEventFragment(), "Event");
@@ -35,9 +34,8 @@ public class SearchFragment extends Fragment {
 
         mViewPager.setAdapter(mSearchTabAdapter);
 
-        TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tab_layout);
+        TabLayout tabLayout = view.findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(mViewPager);
-
 
         tabLayout.getTabAt(0).setText("Kategori");
         tabLayout.getTabAt(1).setText("Event");
@@ -46,10 +44,11 @@ public class SearchFragment extends Fragment {
         return view;
     }
 
-    private void setupViewPager(ViewPager viewPager) {
-        SearchTabAdapter adapter = new SearchTabAdapter(getFragmentManager());
-        adapter.addFragment(new SearchKategoriFragment(), "Kategori");
-        adapter.addFragment(new SearchEventFragment(), "Event");
-        adapter.addFragment(new SearchMitraFragment(), "Mitra");
-    }
+
+//    private void setupViewPager(ViewPager viewPager) {
+//        SearchTabAdapter adapter = new SearchTabAdapter(getFragmentManager());
+//        adapter.addFragment(new SearchKategoriFragment(), "Kategori");
+//        adapter.addFragment(new SearchEventFragment(), "Event");
+//        adapter.addFragment(new SearchMitraFragment(), "Mitra");
+//    }
 }

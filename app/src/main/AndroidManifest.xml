@@ -14,9 +14,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
 
-        <activity android:name=".Activity.Preview"></activity>
+        <activity android:name=".Activity.Preview"/>
         <activity android:name=".Activity.Deskripsi" />
         <activity android:name=".Activity.Attachment" />
+        <activity android:name=".Activity.Message"/>
 
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"

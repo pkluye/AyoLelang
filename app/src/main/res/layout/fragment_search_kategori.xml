@@ -1,12 +1,223 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
 
-    <TextView
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center"
+        android:background="#E5E5E5"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <TextView
+            android:id="@+id/txt_subtext_kategori"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pencarian garapan berdasarkan Kategori:"
+            android:textColor="#4D4D4D"
+            android:textSize="16sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Kategori"/>
+        android:padding="16dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/btn_search_pendidikan"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:background="@drawable/button_rectangle_border"
+            android:padding="2dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_marginLeft="18dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pendidikan"
+                android:textSize="16sp"
+                android:textColor="#4D4D4D"
+                android:layout_weight="1"/>
+
+            <ImageView
+                app:srcCompat="@drawable/ic_navigation_next"
+                android:tint="@color/bg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="18dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_search_printing"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:background="@drawable/button_rectangle_border"
+            android:padding="2dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_marginLeft="18dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Printing"
+                android:textSize="16sp"
+                android:textColor="#4D4D4D"
+                android:layout_weight="1"/>
+
+            <ImageView
+                app:srcCompat="@drawable/ic_navigation_next"
+                android:tint="@color/bg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="18dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_search_kuliner"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:background="@drawable/button_rectangle_border"
+            android:padding="2dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_marginLeft="18dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kuliner"
+                android:textSize="16sp"
+                android:textColor="#4D4D4D"
+                android:layout_weight="1"/>
+
+            <ImageView
+                app:srcCompat="@drawable/ic_navigation_next"
+                android:tint="@color/bg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="18dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_search_otomotif"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:background="@drawable/button_rectangle_border"
+            android:padding="2dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_marginLeft="18dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Otomotif"
+                android:textSize="16sp"
+                android:textColor="#4D4D4D"
+                android:layout_weight="1"/>
+
+            <ImageView
+                app:srcCompat="@drawable/ic_navigation_next"
+                android:tint="@color/bg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="18dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_search_entertainment"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:background="@drawable/button_rectangle_border"
+            android:padding="2dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_marginLeft="18dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Entertainment"
+                android:textSize="16sp"
+                android:textColor="#4D4D4D"
+                android:layout_weight="1"/>
+
+            <ImageView
+                app:srcCompat="@drawable/ic_navigation_next"
+                android:tint="@color/bg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="18dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_search_fotografi"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:background="@drawable/button_rectangle_border"
+            android:padding="2dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_marginLeft="18dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fotografi"
+                android:textSize="16sp"
+                android:textColor="#4D4D4D"
+                android:layout_weight="1"/>
+
+            <ImageView
+                app:srcCompat="@drawable/ic_navigation_next"
+                android:tint="@color/bg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="18dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_search_palugada"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:background="@drawable/button_rectangle_border"
+            android:padding="2dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_marginLeft="18dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Palugada"
+                android:textSize="16sp"
+                android:textColor="#4D4D4D"
+                android:layout_weight="1"/>
+
+            <ImageView
+                app:srcCompat="@drawable/ic_navigation_next"
+                android:tint="@color/bg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="18dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </LinearLayout>
