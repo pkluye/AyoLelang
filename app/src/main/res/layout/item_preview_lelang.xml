@@ -3,10 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="139dp"
-    app:cardCornerRadius="10dp"
+    android:layout_height="96dp"
     android:id="@+id/item_preview_lelang"
-    android:layout_margin="10dp">
+    android:layout_marginTop="8dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,14 +14,14 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="28dp"
             android:orientation="horizontal"
             android:gravity="center_vertical">
 
             <View
                 android:layout_width="4dp"
                 android:layout_height="match_parent"
-                android:background="@color/bg"/>
+                android:background="@color/bg" />
 
             <TextView
                 android:id="@+id/txt_judul_item"
@@ -30,7 +29,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Judul Item Lelang"
-                android:textSize="18sp"
+                android:textSize="14sp"
                 android:textColor="@android:color/black"
                 android:layout_weight="1"/>
 
@@ -41,8 +40,8 @@
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/ic_close_circle"
                 android:background="@android:color/transparent"
-                android:scaleX="0.8"
-                android:scaleY="0.8"
+                android:scaleX="0.6"
+                android:scaleY="0.6"
                 android:layout_weight="0"/>
 
         </LinearLayout>
@@ -54,24 +53,27 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="25dp"
+            android:layout_height="18dp"
             android:orientation="horizontal"
             android:gravity="center_vertical">
 
             <TextView
-                android:layout_marginLeft="16dp"
+                android:layout_marginLeft="12sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Perkiraan Biaya"
+                android:textSize="12sp"
                 android:textColor="@color/colorlight"
                 android:layout_weight="1"/>
 
             <TextView
+                android:layout_marginLeft="12sp"
                 android:layout_marginRight="10dp"
                 android:id="@+id/txt_perkiraan_harga"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="biaya"
+                android:textSize="10sp"
                 android:layout_weight="0"/>
 
         </LinearLayout>
@@ -83,58 +85,61 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="25dp"
+            android:layout_height="18dp"
             android:orientation="horizontal"
             android:gravity="center_vertical">
 
             <TextView
-                android:layout_marginLeft="16dp"
+                android:layout_marginLeft="12sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="File Attachment"
+                android:textSize="12sp"
                 android:textColor="@color/colorlight"
                 android:layout_weight="1"/>
 
             <TextView
+                android:layout_marginLeft="12sp"
                 android:layout_marginRight="10dp"
                 android:id="@+id/txt_file_attachment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="file attachment"
+                android:textSize="10sp"
                 android:layout_weight="0"/>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="28dp"
             android:orientation="horizontal"
             android:background="@color/bgCerah"
             android:gravity="end|center_vertical">
 
             <Button
                 android:id="@+id/btn_editItemLelang"
-                android:layout_width="80dp"
-                android:layout_height="28dp"
+                android:layout_width="56dp"
+                android:layout_height="18dp"
                 android:background="@drawable/button_round_border"
                 android:backgroundTint="@color/bg"
                 android:text="Edit"
                 android:textAllCaps="false"
                 android:textColor="@color/bg"
-                android:textSize="16sp"/>
+                android:textSize="12sp"/>
 
             <Button
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="10dp"
                 android:id="@+id/btn_detailItemLelang"
-                android:layout_width="80dp"
-                android:layout_height="28dp"
+                android:layout_width="56dp"
+                android:layout_height="18dp"
                 android:background="@drawable/button_round_green"
                 android:backgroundTint="@color/bg"
                 android:text="Detail"
                 android:textAllCaps="false"
                 android:textColor="@android:color/white"
-                android:textSize="16sp"/>
+                android:textSize="10sp"/>
 
         </LinearLayout>
 

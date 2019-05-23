@@ -41,19 +41,22 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_gravity="center_vertical">
 
                 <TextView
-                    android:layout_width="235dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Nama Client"
-                    android:textColor="@android:color/black" />
+                    android:textColor="@android:color/black"
+                    android:layout_weight="1"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="10/10/2019"
-                    android:textSize="12sp"/>
+                    android:textSize="10sp"
+                    android:layout_weight="0"/>
 
             </LinearLayout>
 
@@ -61,7 +64,8 @@
                 android:layout_marginTop="2dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Lorem ipsum dolor sit amet, soluta regione urbanitas vis in, qui elit populo ut. Lorem ipsum dolor sit amet, soluta regione."/>
+                android:text="Lorem ipsum dolor sit amet, soluta regione urbanitas vis in, qui elit populo ut. Lorem ipsum dolor sit amet, soluta regione."
+                android:textSize="12sp"/>
 
         </LinearLayout>
 

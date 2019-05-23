@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_marginBottom="70dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginRight="8dp"
         android:scaleY="0.8"
         android:scaleX="0.8"
         app:srcCompat="@drawable/ic_cart"
@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_marginBottom="128dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginRight="8dp"
         android:scaleY="0.8"
         android:scaleX="0.8"
         app:srcCompat="@drawable/ic_edit"
@@ -277,7 +277,7 @@
 
                     <LinearLayout
                         android:id="@+id/linear_pekerjaan"
-                        android:visibility="visible"
+                        android:visibility="gone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
@@ -322,6 +322,13 @@
                                     android:text="Perkiraan Harga"
                                     />
 
+                                <TextView
+                                    android:id="@+id/txt_teks_catatan"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Catatan "
+                                    />
+
 
                             </LinearLayout>
 
@@ -331,6 +338,12 @@
                                 android:orientation="vertical"
                                 android:layout_marginLeft="12dp"
                                 android:layout_marginRight="8dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text=":"
+                                    />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -385,8 +398,14 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="asasasasasasasasasasasa"
+                                    android:text="perkiraan harga"
                                     android:id="@+id/txt_harga"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Ini merupakan catatan Item"
+                                    android:id="@+id/txt_catatan"/>
 
                             </LinearLayout>
 
@@ -448,10 +467,10 @@
                 </LinearLayout>
 
                 <android.support.v7.widget.RecyclerView
+                    android:visibility="visible"
                     android:layout_centerHorizontal="true"
                     android:layout_below="@id/layoutLinear_judul"
                     android:id="@+id/reyclerview_listItem_lelang"
-                    android:visibility="gone"
                     android:orientation="vertical"
                     tools:listitem="@layout/item_preview_lelang"
                     android:layout_width="300dp"
@@ -492,7 +511,7 @@
                         android:layout_marginLeft="12dp"
                         android:layout_width="wrap_content"
                         android:layout_height="34dp"
-                        android:background="@color/button"
+                        android:background="@drawable/button_rectangle"
                         android:text="Posting"
                         android:textColor="@color/white"
                         android:textAllCaps="false" />

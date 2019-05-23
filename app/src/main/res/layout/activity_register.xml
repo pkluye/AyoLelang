@@ -30,6 +30,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:layout_gravity="center"
+            android:gravity="start"
             android:layout_below="@id/logo"
             >
 
@@ -48,85 +50,90 @@
                 android:text="Buat akun-mu sekarang!"
                 android:textSize="12sp"/>
 
-            <TextView
+            <LinearLayout
                 android:layout_marginTop="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Username"
-                android:textSize="10sp"
-                android:paddingLeft="50dp"/>
-
-
-            <EditText
-                android:layout_gravity="center"
-                android:id="@+id/in_username"
                 android:layout_width="256dp"
                 android:layout_height="wrap_content"
-                android:ems="10" />
-
-            <TextView
-                android:layout_marginTop="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="E-Mail"
-                android:textSize="10sp"
-                android:paddingLeft="50dp"/>
-
-            <EditText
+                android:orientation="vertical"
                 android:layout_gravity="center"
-                android:id="@+id/in_email"
-                android:layout_width="256dp"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textEmailAddress" />
+                android:gravity="start">
 
-            <TextView
-                android:layout_marginTop="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="No Ponsel"
-                android:textSize="10sp"
-                android:paddingLeft="50dp" />
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Username"
+                    android:textSize="10sp"/>
 
-            <EditText
-                android:layout_gravity="center"
-                android:id="@+id/in_ponsel"
-                android:layout_width="256dp"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="number"/>
 
-            <TextView
-                android:layout_marginTop="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Password"
-                android:textSize="10sp"
-                android:paddingLeft="50dp"/>
+                <EditText
+                    android:layout_gravity="center"
+                    android:id="@+id/in_username"
+                    android:layout_width="256dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10" />
 
-            <EditText
-                android:layout_gravity="center"
-                android:id="@+id/in_password"
-                android:layout_width="256dp"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPassword" />
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="E-Mail"
+                    android:textSize="10sp"/>
 
-            <TextView
-                android:layout_marginTop="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Konfirmasi Password"
-                android:textSize="10sp"
-                android:paddingLeft="50dp"/>
+                <EditText
+                    android:layout_gravity="center"
+                    android:id="@+id/in_email"
+                    android:layout_width="256dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textEmailAddress" />
 
-            <EditText
-                android:layout_gravity="center"
-                android:id="@+id/in_repassword"
-                android:layout_width="256dp"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPassword" />
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No Ponsel"
+                    android:textSize="10sp" />
+
+                <EditText
+                    android:layout_gravity="center"
+                    android:id="@+id/in_ponsel"
+                    android:layout_width="256dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="number"/>
+
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Password"
+                    android:textSize="10sp"/>
+
+                <EditText
+                    android:layout_gravity="center"
+                    android:id="@+id/in_password"
+                    android:layout_width="256dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPassword" />
+
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Konfirmasi Password"
+                    android:textSize="10sp"/>
+
+                <EditText
+                    android:layout_gravity="center"
+                    android:id="@+id/in_repassword"
+                    android:layout_width="256dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPassword" />
+
+            </LinearLayout>
 
             <Button
                 android:id="@+id/btn_register"

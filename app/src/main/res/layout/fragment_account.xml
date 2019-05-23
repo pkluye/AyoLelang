@@ -64,15 +64,16 @@
 
         <LinearLayout
             android:layout_marginTop="8dp"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center">
 
             <LinearLayout
-                android:layout_width="260dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_weight="1">
 
                 <TextView
                     android:id="@+id/acc_Name"
@@ -100,14 +101,14 @@
 
             <Button
                 android:id="@+id/btn_editProfil"
-                android:layout_width="wrap_content"
+                android:layout_width="64dp"
                 android:layout_height="32dp"
-                android:background="#1F9ABF"
+                android:background="@drawable/button_rectangle"
                 android:text="Edit Profil"
                 android:textSize="10dp"
                 android:textColor="@color/white"
                 android:textAllCaps="false"
-                />
+                android:layout_weight="0"/>
 
         </LinearLayout>
 
