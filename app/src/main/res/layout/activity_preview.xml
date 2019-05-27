@@ -20,7 +20,7 @@
         android:elevation="5dp"/>
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/btn_edit_detail"
+        android:id="@+id/btn_edit_deskripsi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
@@ -47,7 +47,7 @@
             android:padding="16dp">
 
             <ImageButton
-                android:id="@+id/btn_Back"
+                android:id="@+id/btn_home"
                 android:layout_gravity="left|center"
                 android:background="@android:color/transparent"
                 android:layout_width="wrap_content"
@@ -279,7 +279,7 @@
 
                     <LinearLayout
                         android:id="@+id/linear_pekerjaan"
-                        android:visibility="gone"
+                        android:visibility="visible"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
@@ -469,14 +469,15 @@
                 </LinearLayout>
 
                 <android.support.v7.widget.RecyclerView
-                    android:visibility="visible"
+                    android:visibility="gone"
                     android:layout_centerHorizontal="true"
                     android:layout_below="@id/layoutLinear_judul"
                     android:id="@+id/reyclerview_listItem_lelang"
                     android:orientation="vertical"
                     tools:listitem="@layout/item_preview_lelang"
                     android:layout_width="300dp"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="60dp">
                 </android.support.v7.widget.RecyclerView>
 
                 <LinearLayout

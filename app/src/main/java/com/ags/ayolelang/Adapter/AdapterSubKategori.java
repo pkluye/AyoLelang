@@ -38,6 +38,7 @@ public class AdapterSubKategori extends RecyclerView.Adapter<AdapterSubKategori.
     private Context context;
     private ArrayList<Kategori> kategoris;
     private String tittle;
+    private int lelang_id=0;
 
     public AdapterSubKategori(Context context) {
         this.context = context;
@@ -65,7 +66,7 @@ public class AdapterSubKategori extends RecyclerView.Adapter<AdapterSubKategori.
 
         customViewHolder.txt_item.setText(kategori_nama);
         if (mode) {
-            loadDesc(kategori_id,customViewHolder.txt_ItemDesc);
+            loadDesc(kategori_id, customViewHolder.txt_ItemDesc);
             customViewHolder.layout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -73,8 +74,9 @@ public class AdapterSubKategori extends RecyclerView.Adapter<AdapterSubKategori.
                     Bundle bundle = new Bundle();
                     bundle.putInt("id", kategori_id);
                     bundle.putInt("mode", 2);
-                    bundle.putString("tittle",tittle);
-                    bundle.putString("kategori_nama",kategori_nama);
+                    bundle.putInt("lelang_id", lelang_id);
+                    bundle.putString("tittle", tittle);
+                    bundle.putString("kategori_nama", kategori_nama);
                     fragmentSubKategori.setArguments(bundle);
                     ((MainActivity) context)._loadFragment(fragmentSubKategori);
                 }
@@ -86,6 +88,7 @@ public class AdapterSubKategori extends RecyclerView.Adapter<AdapterSubKategori.
                 public void onClick(View v) {
                     Intent intent = new Intent(context, DetailSpesifikasi.class);
                     intent.putExtra("kategori_id", kategori_id);
+                    intent.putExtra("lelang_id",lelang_id);
                     context.startActivity(intent);
                 }
             });
@@ -114,22 +117,22 @@ public class AdapterSubKategori extends RecyclerView.Adapter<AdapterSubKategori.
                 KategoriResponArray kategoriResponArray = response.body();
                 if (!kategoriResponArray.isError()) {
                     ArrayList<Kategori> kategoris = kategoriResponArray.getData();
-                    Log.d("kategoris",kategoris.get(0).getKategori_nama());
-                    if(kategoris.size()>3){
-                        String s="";
-                        for (int i = 0; i < 3;i++){
-                            s+=kategoris.get(i).getKategori_nama()+", ";
+                    Log.d("kategoris", kategoris.get(0).getKategori_nama());
+                    if (kategoris.size() > 3) {
+                        String s = "";
+                        for (int i = 0; i < 3; i++) {
+                            s += kategoris.get(i).getKategori_nama() + ", ";
                         }
-                        s+="...";
-                        Log.d("desc",s);
+                        s += "...";
+                        Log.d("desc", s);
                         txt.setText(s);
-                    }else{
-                        String s=null;
-                        for (int i = 0; i < kategoris.size();i++){
-                            s+=kategoris.get(i).getKategori_nama()+", ";
+                    } else {
+                        String s = null;
+                        for (int i = 0; i < kategoris.size(); i++) {
+                            s += kategoris.get(i).getKategori_nama() + ", ";
                         }
-                        s+="...";
-                        Log.d("desc",s);
+                        s += "...";
+                        Log.d("desc", s);
                         txt.setText(s);
                     }
 
@@ -143,7 +146,7 @@ public class AdapterSubKategori extends RecyclerView.Adapter<AdapterSubKategori.
             public void onFailure(Call<KategoriResponArray> call, Throwable t) {
                 Log.d("error", t.getMessage());
                 progressDoalog.dismiss();
-                Toast.makeText(context,t.getMessage(),Toast.LENGTH_LONG).show();
+                Toast.makeText(context, t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -160,6 +163,10 @@ public class AdapterSubKategori extends RecyclerView.Adapter<AdapterSubKategori.
 
     public void setTittle(String tittle) {
         this.tittle = tittle;
+    }
+
+    public void setLelangid(int lelang_id) {
+        this.lelang_id = lelang_id;
     }
 
     public class CustomViewHolder extends RecyclerView.ViewHolder {

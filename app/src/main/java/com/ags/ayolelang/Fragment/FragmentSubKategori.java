@@ -35,7 +35,7 @@ public class FragmentSubKategori extends Fragment {
     private TextView txt_no_item, txt_subTittle, txt_subPenjelasan;
     private RecyclerView rv_subFragment;
     private ImageButton btn_back;
-    private int mode = 1, kategori_id = -1;
+    private int mode = 1, kategori_id = -1,lelang_id=0;
     private String tittle;
 
     @Nullable
@@ -51,9 +51,11 @@ public class FragmentSubKategori extends Fragment {
 
         //transfer data
         Bundle bundle = getArguments();
-        mode = bundle.getInt("mode");
+        mode = bundle.getInt("mode",1);
         kategori_id = bundle.getInt("id");
         tittle = bundle.getString("tittle");
+        lelang_id=bundle.getInt("lelang_id",0);
+
         String kategori_nama = bundle.getString("kategori_nama");
 
         //event
@@ -122,7 +124,7 @@ public class FragmentSubKategori extends Fragment {
     private void loadSubParentKategori() {
         Call<KategoriResponArray> call = RetrofitClient
                 .getInstance().getApi().kategori_getDataSubParentKategori(secret_key, kategori_id);
-
+        Log.d("kategori_id",kategori_id+"");
         // Set up progress before call
         final ProgressDialog progressDoalog;
         progressDoalog = new ProgressDialog(getActivity());
@@ -164,6 +166,8 @@ public class FragmentSubKategori extends Fragment {
         AdapterSubKategori adapterSubKategori = new AdapterSubKategori(getContext());
         adapterSubKategori.addItem(kategoris);
         adapterSubKategori.setTittle(tittle);
+        adapterSubKategori.setLelangid(lelang_id);
+
         rv_subFragment.setAdapter(adapterSubKategori);
     }
 

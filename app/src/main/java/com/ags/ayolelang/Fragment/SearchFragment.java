@@ -28,7 +28,7 @@ public class SearchFragment extends Fragment {
 
         mViewPager = view.findViewById(R.id.tab_pager);
 
-        mSearchTabAdapter.addFragment(new SearchKategoriFragment(), "Kategori");
+        mSearchTabAdapter.addFragment(new ContainerKategoriSearchFragment(), "Kategori");
         mSearchTabAdapter.addFragment(new SearchEventFragment(), "Event");
         mSearchTabAdapter.addFragment(new SearchMitraFragment(), "Mitra");
 
