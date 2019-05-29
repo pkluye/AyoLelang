@@ -73,15 +73,74 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Ukuran"/>
 
             <EditText
+                android:textColorHint="@color/colorlight"
+                android:editable="true"
+                android:hint="Pilih ukuran (dalam cm)"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/in_ukuran"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_vertical">
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Costum"
+                    android:textColor="@color/colorlight"/>
+
+                <LinearLayout
+                    android:visibility="visible"
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:textColorHint="@color/colorlight"
+                        android:padding="4dp"
+                        android:hint="x cm"
+                        android:editable="false"
+                        android:id="@+id/text_ukuranPanjang"
+                        android:textAlignment="center"
+                        android:layout_marginLeft="24dp"
+                        android:layout_width="48dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/button_round_border_grey"/>
+
+                    <TextView
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="X"
+                        android:textColor="@color/colorlight"
+                        android:gravity="center_vertical"/>
+
+                    <EditText
+                        android:textColorHint="@color/colorlight"
+                        android:padding="4dp"
+                        android:hint="x cm"
+                        android:editable="false"
+                        android:id="@+id/text_ukuranlebar"
+                        android:textAlignment="center"
+                        android:layout_width="48dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/button_round_border_grey"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -95,6 +154,8 @@
                 android:text="Bahan"/>
 
             <EditText
+                android:textColorHint="@color/colorlight"
+                android:hint="Pilih jenis bahan"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/in_bahan"/>
@@ -111,6 +172,8 @@
                 android:text="Quantity"/>
 
             <EditText
+                android:textColorHint="@color/colorlight"
+                android:hint="Tentukan jumlah barang"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:inputType="number"
@@ -125,9 +188,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Perkiraan Harga"/>
+                android:text="Budget Pekerjaan"/>
 
             <EditText
+                android:textColorHint="@color/colorlight"
+                android:hint="Berapa banyak budget"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:inputType="number"
@@ -146,6 +211,8 @@
                 android:text="Catatan Tambahan"/>
 
             <EditText
+                android:textColorHint="@color/colorlight"
+                android:hint="Berikan catatan tambahan"
                 android:inputType="textMultiLine"
                 android:minLines="1"
                 android:lines="8"

@@ -54,6 +54,7 @@
             android:orientation="vertical"
             tools:listitem="@layout/item_search_kategori">
         </android.support.v7.widget.RecyclerView>
+
     </android.support.v4.widget.SwipeRefreshLayout>
 
 </LinearLayout>

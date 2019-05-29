@@ -289,7 +289,7 @@
                 android:layout_height="wrap_content"
                 android:text="Privacy Policy"
                 android:layout_gravity="center_vertical"
-                android:textSize="16sp"
+                android:textSize="12sp"
                 android:textColor="@android:color/black"/>
 
 

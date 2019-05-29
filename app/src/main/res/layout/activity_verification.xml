@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Verifikasi Kode"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold"/>
 
 
@@ -38,7 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Kami telah mengirim kode One Time Passed (OTP)\nke alamat E-mail Anda. \nMasukkan kode yang sama dibawah ini"
-            android:textSize="14sp"
+            android:textSize="12sp"
             android:textAlignment="center"/>
 
 

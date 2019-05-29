@@ -80,6 +80,8 @@
                 android:text="Judul"/>
 
             <EditText
+                android:textColorHint="@color/colorlight"
+                android:hint="Masukkan nama pekerjaan"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/in_judul"/>
@@ -96,6 +98,8 @@
                 android:text="Deskripsi"/>
 
             <EditText
+                android:textColorHint="@color/colorlight"
+                android:hint="Jelaskan tentang pekerjaan"
                 android:id="@+id/in_deskripsi"
                 android:layout_width="300sp"
                 android:layout_height="wrap_content"
@@ -153,6 +157,8 @@
                 android:gravity="left">
 
                 <EditText
+                    android:textColorHint="@color/colorlight"
+                    android:hint="Pilih tanggal selesai"
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/in_Deadline"/>
@@ -212,6 +218,8 @@
                 android:text="Alamat Lengkap"/>
 
             <EditText
+                android:textColorHint="@color/colorlight"
+                android:hint="Masukkan alamat"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/in_alamat"/>
