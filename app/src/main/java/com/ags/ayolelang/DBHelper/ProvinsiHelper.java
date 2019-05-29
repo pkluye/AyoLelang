@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.ags.ayolelang.Models.Provinsi;
 
@@ -71,16 +72,37 @@ public class ProvinsiHelper {
         return db.insert(TABLE_PROVINSI, null, initialValues);
     }
 
+    public void bulk_insert(ArrayList<Provinsi> list) {
+        if (list != null && list.size() > 0) {
+            db.beginTransaction();
+            try {
+                for (Provinsi provinsi : list) {
+                    insert(provinsi);
+                }
+                db.setTransactionSuccessful();
+            } catch (SQLException e) {
+                Log.d("insert_error", e.getMessage());
+            } finally {
+                db.endTransaction();
+            }
+        }
+    }
+
     public Provinsi getProvinsibyname(String s) {
-        Cursor cursor = db.query(TABLE_PROVINSI, null, PROVINSI_NAMA+"=?", new String[]{s}, null, null, PROVINSI_NAMA + " ASC", null);
+        Cursor cursor = db.query(TABLE_PROVINSI, null, PROVINSI_NAMA + "=?", new String[]{s}, null, null, PROVINSI_NAMA + " ASC", null);
         cursor.moveToFirst();
-        Provinsi provinsi=new Provinsi();
-        if (cursor.getCount()>0){
+        Provinsi provinsi = new Provinsi();
+        if (cursor.getCount() > 0) {
             cursor.moveToPosition(0);
             provinsi.setId(cursor.getInt(cursor.getColumnIndexOrThrow(PROVINSI_ID)));
             provinsi.setNama(cursor.getString(cursor.getColumnIndexOrThrow(PROVINSI_NAMA)));
         }
         cursor.close();
         return provinsi;
+    }
+
+    public void truncate(){
+        db.execSQL("DELETE FROM "+TABLE_PROVINSI);
+        db.execSQL("VACUUM");
     }
 }

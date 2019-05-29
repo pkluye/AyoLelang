@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.ags.ayolelang.API.RetrofitClient;
 import com.ags.ayolelang.Adapter.AdapterSubKategori;
+import com.ags.ayolelang.DBHelper.KategoriHelper;
 import com.ags.ayolelang.Models.KategoriResponArray;
 import com.ags.ayolelang.Models.Kategori;
 import com.ags.ayolelang.R;
@@ -35,7 +36,7 @@ public class FragmentSubKategori extends Fragment {
     private TextView txt_no_item, txt_subTittle, txt_subPenjelasan;
     private RecyclerView rv_subFragment;
     private ImageButton btn_back;
-    private int mode = 1, kategori_id = -1,lelang_id=0;
+    private int mode = 1, kategori_id = -1, lelang_id = 0;
     private String tittle;
 
     @Nullable
@@ -51,10 +52,10 @@ public class FragmentSubKategori extends Fragment {
 
         //transfer data
         Bundle bundle = getArguments();
-        mode = bundle.getInt("mode",1);
+        mode = bundle.getInt("mode", 1);
         kategori_id = bundle.getInt("id");
         tittle = bundle.getString("tittle");
-        lelang_id=bundle.getInt("lelang_id",0);
+        lelang_id = bundle.getInt("lelang_id", 0);
 
         String kategori_nama = bundle.getString("kategori_nama");
 
@@ -68,7 +69,7 @@ public class FragmentSubKategori extends Fragment {
 
         //tampilkan data
         txt_subTittle.setText(tittle);
-        if(kategori_nama!=null){
+        if (kategori_nama != null) {
             txt_subPenjelasan.setText(kategori_nama);
         }
         loadData();
@@ -84,82 +85,32 @@ public class FragmentSubKategori extends Fragment {
     }
 
     private void loadKategori() {
-        Call<KategoriResponArray> call = RetrofitClient.getInstance().getApi()
-                .kategori_getDataKategori(secret_key, kategori_id);
+        KategoriHelper kategoriHelper = new KategoriHelper(getContext());
+        kategoriHelper.open();
+        ArrayList<Kategori> kategoris = kategoriHelper.getKategori(kategori_id);
+        kategoriHelper.close();
+        if (kategoris.size() > 0) {
+            isi_rv(kategoris);
+            txt_no_item.setVisibility(v.INVISIBLE);
+        } else {
+            txt_no_item.setVisibility(v.VISIBLE);
+            rv_subFragment.setVisibility(v.INVISIBLE);
+        }
 
-        // Set up progress before call
-        final ProgressDialog progressDoalog;
-        progressDoalog = new ProgressDialog(getActivity());
-        //progressDoalog.setMax(100);
-        //progressDoalog.setMessage("Loading....");
-        //progressDoalog.setTitle("ProgressDialog bar example");
-        progressDoalog.setCancelable(false);
-        progressDoalog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        // show it
-        progressDoalog.show();
-
-        call.enqueue(new Callback<KategoriResponArray>() {
-            @Override
-            public void onResponse(Call<KategoriResponArray> call, Response<KategoriResponArray> response) {
-                progressDoalog.dismiss();
-                KategoriResponArray kategoriResponArray = response.body();
-                if (!kategoriResponArray.isError()) {
-                    ArrayList<Kategori> kategoris = kategoriResponArray.getData();
-                    isi_rv(kategoris);
-                    txt_no_item.setVisibility(v.INVISIBLE);
-                } else {
-                    txt_no_item.setVisibility(v.VISIBLE);
-                    rv_subFragment.setVisibility(v.INVISIBLE);
-                    Log.d("error json", kategoriResponArray.getMessage());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<KategoriResponArray> call, Throwable t) {
-                Log.d("error", t.getMessage());
-            }
-        });
     }
 
     private void loadSubParentKategori() {
-        Call<KategoriResponArray> call = RetrofitClient
-                .getInstance().getApi().kategori_getDataSubParentKategori(secret_key, kategori_id);
-        Log.d("kategori_id",kategori_id+"");
-        // Set up progress before call
-        final ProgressDialog progressDoalog;
-        progressDoalog = new ProgressDialog(getActivity());
-        //progressDoalog.setMax(100);
-        progressDoalog.setMessage("Loading....");
-        //progressDoalog.setTitle("ProgressDialog bar example");
-        progressDoalog.setCancelable(false);
-        progressDoalog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        // show it
-        progressDoalog.show();
-
-        call.enqueue(new Callback<KategoriResponArray>() {
-            @Override
-            public void onResponse(Call<KategoriResponArray> call, Response<KategoriResponArray> response) {
-                progressDoalog.dismiss();
-                KategoriResponArray kategoriResponArray = response.body();
-                if (!kategoriResponArray.isError()) {
-                    ArrayList<Kategori> kategoris = kategoriResponArray.getData();
-                    isi_rv(kategoris);
-                    txt_no_item.setVisibility(v.INVISIBLE);
-                } else {
-                    txt_no_item.setVisibility(v.VISIBLE);
-                    rv_subFragment.setVisibility(v.INVISIBLE);
-                    Log.d("error json", kategoriResponArray.getMessage());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<KategoriResponArray> call, Throwable t) {
-                Log.d("error", t.getMessage());
-                progressDoalog.dismiss();
-                Toast.makeText(getContext(),t.getMessage(),Toast.LENGTH_LONG).show();
-            }
-        });
-
+        KategoriHelper kategoriHelper = new KategoriHelper(getContext());
+        kategoriHelper.open();
+        ArrayList<Kategori> kategoris = kategoriHelper.getKategori_SubParent(kategori_id);
+        kategoriHelper.close();
+        if (kategoris.size() > 0) {
+            isi_rv(kategoris);
+            txt_no_item.setVisibility(v.INVISIBLE);
+        } else {
+            txt_no_item.setVisibility(v.VISIBLE);
+            rv_subFragment.setVisibility(v.INVISIBLE);
+        }
     }
 
     private void isi_rv(ArrayList<Kategori> kategoris) {
@@ -167,7 +118,6 @@ public class FragmentSubKategori extends Fragment {
         adapterSubKategori.addItem(kategoris);
         adapterSubKategori.setTittle(tittle);
         adapterSubKategori.setLelangid(lelang_id);
-
         rv_subFragment.setAdapter(adapterSubKategori);
     }
 

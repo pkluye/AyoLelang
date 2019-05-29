@@ -1,11 +1,11 @@
 package com.ags.ayolelang.Models;
 
-public class FetchKotaProvRespon {
+public class FetchDBRespon {
     private boolean error;
     private String message;
-    private FetchKotaProv data;
+    private FetchDB data;
 
-    public FetchKotaProvRespon(boolean error, String message, FetchKotaProv data) {
+    public FetchDBRespon(boolean error, String message, FetchDB data) {
         this.error = error;
         this.message = message;
         this.data = data;
@@ -27,12 +27,20 @@ public class FetchKotaProvRespon {
         this.message = message;
     }
 
-    public FetchKotaProv getData() {
+    public FetchDB getData() {
         return data;
     }
 
-    public void setData(FetchKotaProv data) {
+    public void setData(FetchDB data) {
         this.data = data;
     }
 
+    @Override
+    public String toString() {
+        return "FetchDBRespon{" +
+                "error=" + error +
+                ", message='" + message + '\'' +
+                ", data=" + data.toString() +
+                '}';
+    }
 }

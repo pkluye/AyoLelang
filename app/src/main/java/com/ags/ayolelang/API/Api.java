@@ -1,6 +1,6 @@
 package com.ags.ayolelang.API;
 
-import com.ags.ayolelang.Models.FetchKotaProvRespon;
+import com.ags.ayolelang.Models.FetchDBRespon;
 import com.ags.ayolelang.Models.KotaResponArray;
 import com.ags.ayolelang.Models.LelangRespon;
 import com.ags.ayolelang.Models.ProvinsiResponArray;
@@ -153,6 +153,10 @@ public interface Api {
             @Field("user_id") String user_id);
 
     @FormUrlEncoded
-    @POST("c_indonesia/getAllProvKota")
-    Call<FetchKotaProvRespon> fetchKotaProv(@Field("secret_key") String secret_key);
+    @POST("c_fetchdata/fetchdata")
+    Call<FetchDBRespon> fetchKotaProv(
+            @Field("secret_key") String secret_key,
+            @Field("token_kategori") String s,
+            @Field("token_provinsi") String s1,
+            @Field("token_kota") String s2);
 }

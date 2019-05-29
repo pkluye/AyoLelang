@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.ags.ayolelang.API.RetrofitClient;
 import com.ags.ayolelang.Activity.DetailSpesifikasi;
 import com.ags.ayolelang.Activity.MainActivity;
+import com.ags.ayolelang.DBHelper.KategoriHelper;
 import com.ags.ayolelang.Fragment.FragmentSubKategori;
 import com.ags.ayolelang.Models.Kategori;
 import com.ags.ayolelang.Models.KategoriResponArray;
@@ -38,7 +39,7 @@ public class AdapterSubKategori extends RecyclerView.Adapter<AdapterSubKategori.
     private Context context;
     private ArrayList<Kategori> kategoris;
     private String tittle;
-    private int lelang_id=0;
+    private int lelang_id = 0;
 
     public AdapterSubKategori(Context context) {
         this.context = context;
@@ -88,7 +89,7 @@ public class AdapterSubKategori extends RecyclerView.Adapter<AdapterSubKategori.
                 public void onClick(View v) {
                     Intent intent = new Intent(context, DetailSpesifikasi.class);
                     intent.putExtra("kategori_id", kategori_id);
-                    intent.putExtra("lelang_id",lelang_id);
+                    intent.putExtra("lelang_id", lelang_id);
                     context.startActivity(intent);
                 }
             });
@@ -96,60 +97,34 @@ public class AdapterSubKategori extends RecyclerView.Adapter<AdapterSubKategori.
     }
 
     private void loadDesc(int kategori_id, final TextView txt) {
-        Call<KategoriResponArray> call = RetrofitClient.getInstance().getApi()
-                .kategori_getDataKategori(secret_key, kategori_id);
-
-        // Set up progress before call
-        final ProgressDialog progressDoalog;
-        progressDoalog = new ProgressDialog(context);
-        //progressDoalog.setMax(100);
-        //progressDoalog.setMessage("Loading....");
-        //progressDoalog.setTitle("ProgressDialog bar example");
-        progressDoalog.setCancelable(false);
-        progressDoalog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        // show it
-        progressDoalog.show();
-
-        call.enqueue(new Callback<KategoriResponArray>() {
-            @Override
-            public void onResponse(Call<KategoriResponArray> call, Response<KategoriResponArray> response) {
-                progressDoalog.dismiss();
-                KategoriResponArray kategoriResponArray = response.body();
-                if (!kategoriResponArray.isError()) {
-                    ArrayList<Kategori> kategoris = kategoriResponArray.getData();
-                    Log.d("kategoris", kategoris.get(0).getKategori_nama());
-                    if (kategoris.size() > 3) {
-                        String s = "";
-                        for (int i = 0; i < 3; i++) {
-                            s += kategoris.get(i).getKategori_nama() + ", ";
-                        }
-                        s += "...";
-                        Log.d("desc", s);
-                        txt.setText(s);
-                    } else {
-                        String s = null;
-                        for (int i = 0; i < kategoris.size(); i++) {
-                            s += kategoris.get(i).getKategori_nama() + ", ";
-                        }
-                        s += "...";
-                        Log.d("desc", s);
-                        txt.setText(s);
-                    }
-
-                } else {
-                    txt.setText("...");
-                    Log.d("error json", kategoriResponArray.getMessage());
+        KategoriHelper kategoriHelper = new KategoriHelper(context);
+        kategoriHelper.open();
+        ArrayList<Kategori> kategoris = kategoriHelper.getKategori(kategori_id);
+        kategoriHelper.close();
+        if (kategoris.size() > 0) {
+            if (kategoris.size() > 3) {
+                String s = "";
+                for (int i = 0; i < 3; i++) {
+                    s += kategoris.get(i).getKategori_nama() + ", ";
                 }
+                s += "...";
+                //Log.d("desc", s);
+                txt.setText(s);
+            } else {
+                String s = null;
+                for (int i = 0; i < kategoris.size(); i++) {
+                    s += kategoris.get(i).getKategori_nama() + ", ";
+                }
+                s += "...";
+                //Log.d("desc", s);
+                txt.setText(s);
             }
 
-            @Override
-            public void onFailure(Call<KategoriResponArray> call, Throwable t) {
-                Log.d("error", t.getMessage());
-                progressDoalog.dismiss();
-                Toast.makeText(context, t.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        });
+        } else {
+            txt.setText("...");
+        }
     }
+
 
     @Override
     public int getItemCount() {

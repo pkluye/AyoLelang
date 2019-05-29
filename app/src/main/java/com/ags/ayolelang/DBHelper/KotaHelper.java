@@ -38,10 +38,9 @@ public class KotaHelper {
     public ArrayList<Kota> getKotabyProvId(int prov_id) {
         db.beginTransaction();
         ArrayList<Kota> kotas = new ArrayList<>();
-        Cursor cursor = db.query(TABLE_KOTA, null, KOTA_PROVINSIID + "='"+prov_id+"'", null, null, null, KOTA_NAMA + " ASC", null);
+        Cursor cursor = db.query(TABLE_KOTA, null, KOTA_PROVINSIID + "='" + prov_id + "'", null, null, null, KOTA_NAMA + " ASC", null);
         cursor.moveToFirst();
         Kota kota;
-        Log.d("count",cursor.getCount()+"");
         if (cursor.getCount() > 0) {
             do {
                 kota = new Kota();
@@ -58,7 +57,6 @@ public class KotaHelper {
     }
 
     public Kota getKotabyname(String s) {
-        db.beginTransaction();
         Cursor cursor = db.query(TABLE_KOTA, null, KOTA_NAMA + "=?", new String[]{s}, null, null, KOTA_NAMA + " ASC", null);
         cursor.moveToFirst();
         Kota kota = kota = new Kota();
@@ -69,7 +67,6 @@ public class KotaHelper {
             kota.setProvinsi_id(cursor.getInt(cursor.getColumnIndexOrThrow(KOTA_PROVINSIID)));
         }
         cursor.close();
-        db.endTransaction();
         return kota;
     }
 
@@ -77,7 +74,6 @@ public class KotaHelper {
         Cursor cursor = db.query(TABLE_KOTA, null, null, null, null, null, null, null);
         int count = cursor.getCount();
         cursor.close();
-        Log.d("count", count + "");
         if (count == 0) {
             return true;
         }
@@ -90,5 +86,26 @@ public class KotaHelper {
         contentValues.put(KOTA_NAMA, kota.getNama());
         contentValues.put(KOTA_PROVINSIID, kota.getProvinsi_id());
         return db.insert(TABLE_KOTA, null, contentValues);
+    }
+
+    public void bulk_insert(ArrayList<Kota> list) {
+        if (list != null && list.size() > 0) {
+            db.beginTransaction();
+            try {
+                for (Kota kota : list) {
+                    insert(kota);
+                }
+                db.setTransactionSuccessful();
+            } catch (SQLException e) {
+                Log.d("insert_error", e.getMessage());
+            } finally {
+                db.endTransaction();
+            }
+        }
+    }
+
+    public void truncate(){
+        db.execSQL("DELETE FROM "+TABLE_KOTA);
+        db.execSQL("VACUUM");
     }
 }
