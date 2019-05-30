@@ -9,6 +9,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -19,7 +20,6 @@ import android.widget.Toast;
 
 import com.ags.ayolelang.API.RetrofitClient;
 import com.ags.ayolelang.Adapter.AdapterItemPekerjaan;
-import com.ags.ayolelang.Function.ExpandableTextView;
 import com.ags.ayolelang.Models.Lelang;
 import com.ags.ayolelang.Models.LelangRespon;
 import com.ags.ayolelang.Models.Pekerjaan;
@@ -42,12 +42,16 @@ public class Preview extends AppCompatActivity {
     private RecyclerView rv_lelang;
     private FloatingActionButton btn_tambah_keranjang, btn_edit_deskripsi;
     private Button btn_edit, btn_posting;
-    private ImageButton btn_home;
+//    private ImageButton btn_home;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preview);
+
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         txt_judul = findViewById(R.id.txt_judul);
         txt_alamat = findViewById(R.id.txt_alamat);
@@ -66,15 +70,14 @@ public class Preview extends AppCompatActivity {
         btn_edit_deskripsi = findViewById(R.id.btn_edit_deskripsi);
         btn_edit = findViewById(R.id.btn_edit);
         btn_posting = findViewById(R.id.btn_posting);
-        btn_home = findViewById(R.id.btn_home);
         txt_catatan = findViewById(R.id.txt_catatan);
-        btn_home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Preview.this, MainActivity.class));
-                finish();
-            }
-        });
+//        btn_home.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(Preview.this, MainActivity.class));
+//                finish();
+//            }
+//        });
         rv_lelang.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         Intent intent = getIntent();
         lelang_id = intent.getIntExtra("lelang_id", 0);

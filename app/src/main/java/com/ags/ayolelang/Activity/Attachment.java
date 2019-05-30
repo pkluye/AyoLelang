@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.content.CursorLoader;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -41,6 +42,7 @@ public class Attachment extends AppCompatActivity {
     private boolean edit = false,tambah_keranjang=false;
     private int lelang_id;
     private LinearLayout layout_file;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +52,7 @@ public class Attachment extends AppCompatActivity {
         this.setTitle("Attachment Brief");
         txt_namaFile = findViewById(R.id.txt_namaFile);
         uploadToserver = findViewById(R.id.uploadToserver);
-        txt_next = findViewById(R.id.txt_subNext);
+        txt_next = findViewById(R.id.btn_next);
         layout_file=findViewById(R.id.layout_file);
         String s = DetailSpesifikasi.req_pekerjaan.toString();
         Intent intent = getIntent();
@@ -68,6 +70,9 @@ public class Attachment extends AppCompatActivity {
                 layout_file.setVisibility(View.VISIBLE);
             }
         }
+
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         Log.d("testsst", s);
 

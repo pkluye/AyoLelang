@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.support.v7.widget.Toolbar;
 
 import com.ags.ayolelang.Models.Pekerjaan;
 import com.ags.ayolelang.R;
@@ -21,6 +22,7 @@ public class DetailSpesifikasi extends AppCompatActivity {
     private boolean edit = false;
     private boolean tambah_keranjang = false;
     private int lelang_id = 0;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +33,10 @@ public class DetailSpesifikasi extends AppCompatActivity {
         quantity = findViewById(R.id.in_quantity);
         harga = findViewById(R.id.in_harga);
         catatan = findViewById(R.id.in_catatan);
+
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         Intent intent = getIntent();
         edit = intent.getBooleanExtra("edit", false);
         lelang_id = intent.getIntExtra("lelang_id", 0);

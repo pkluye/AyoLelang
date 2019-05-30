@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -49,6 +50,7 @@ public class Deskripsi extends AppCompatActivity implements DatePickerDialog.OnD
 
     EditText judul, deskripsi, deadline, alamat;
     Spinner pembayaran_spinner, provinsi_spinner, kota_spinner;
+    private Toolbar toolbar;
 
     private static int temp_kotaid;
     private ImageView image_Kalender;
@@ -83,6 +85,9 @@ public class Deskripsi extends AppCompatActivity implements DatePickerDialog.OnD
             pembayaran_e = intent.getStringExtra("pembayaran");
             lelang_id_e = intent.getIntExtra("id", 0);
         }
+
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         loadprovinsi();
 
