@@ -3,14 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:layout_marginBottom="60dp">
+    android:layout_marginBottom="54dp">
 
     <LinearLayout
         android:id="@+id/layoutLinear1"
         android:orientation="vertical"
-        android:background="@color/bg"
+        android:background="@color/colorPrimaryDark"
         android:layout_width="match_parent"
         android:layout_height="120dp">
 
@@ -36,13 +35,13 @@
                 android:layout_marginLeft="8dp"
                 android:scaleY="0.9"
                 android:scaleX="0.9"
-                android:tint="#808080"/>
+                android:tint="@color/colorGrey2"/>
 
             <EditText
                 android:id="@+id/edittext_search_message"
                 android:hint="Search"
                 android:textSize="14sp"
-                android:textColor="@android:color/black"
+                android:textColor="@color/colorGrey2"
                 android:background="@android:color/transparent"
                 android:layout_gravity="center"
                 android:layout_marginLeft="8dp"
@@ -56,8 +55,8 @@
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:tabIndicatorColor="#FAED5E"
-            app:tabTextColor="@color/white" />
+            app:tabIndicatorColor="@color/colorAccent"
+            app:tabTextColor="@color/colorWhite" />
 
     </LinearLayout>
 

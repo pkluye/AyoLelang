@@ -1,72 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity.VerificationActivity">
 
-    <LinearLayout
-        android:id="@+id/layoutLinear1"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:orientation="horizontal"
-        android:background="@color/bg">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="180dp"
+        android:text="Verifikasi Kode"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
-    </LinearLayout>
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Kami telah mengirim kode One Time Passed (OTP)\nke alamat E-mail Anda. \nMasukkan kode yang sama dibawah ini"
+        android:textAlignment="center"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/pinview"
+        app:layout_constraintStart_toStartOf="@+id/pinview"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/layoutLinear1"
-        android:orientation="vertical"
-        android:gravity="center_horizontal">
+    <com.goodiebag.pinview.Pinview
+        android:id="@+id/pinview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        app:cursorVisible="false"
+        app:forceKeyboard="true"
+        app:hint="0"
+        app:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:password="false"
+        app:pinHeight="36dp"
+        app:pinLength="6"
+        app:pinWidth="36dp" />
 
-        <TextView
-            android:layout_marginTop="20dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Verifikasi Kode"
-            android:textSize="18sp"
-            android:textStyle="bold"/>
-
-
-        <TextView
-            android:layout_marginTop="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Kami telah mengirim kode One Time Passed (OTP)\nke alamat E-mail Anda. \nMasukkan kode yang sama dibawah ini"
-            android:textSize="14sp"
-            android:textAlignment="center"/>
-
-
-        <com.goodiebag.pinview.Pinview
-            android:layout_marginTop="30dp"
-            android:id="@+id/pinview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:pinWidth="36dp"
-            app:pinHeight="36dp"
-            app:pinLength="6"
-            app:cursorVisible="false"
-            app:forceKeyboard="true"
-            app:hint="0"
-            app:inputType="number"
-            app:password="false"/>
-
-        <Button
-            android:layout_marginTop="30dp"
-            android:background="@drawable/button_round_green"
-            android:layout_width="128dp"
-            android:layout_height="wrap_content"
-            android:text="Submit"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            android:onClick="verif"/>
-
-    </LinearLayout>
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/button_round"
+        android:onClick="verif"
+        android:text="Submit"
+        android:textColor="@color/colorWhite"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/pinview"
+        app:layout_constraintStart_toStartOf="@+id/pinview"
+        app:layout_constraintTop_toBottomOf="@+id/pinview" />
 
 
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>

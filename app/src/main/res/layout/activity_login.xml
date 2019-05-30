@@ -7,7 +7,7 @@
     tools:context=".Activity.LoginActivity"
     android:orientation="vertical"
     android:gravity="center_vertical"
-    android:background="@color/bg">
+    android:background="@color/colorPrimaryDark">
 
     <ImageView
         android:id="@+id/gambar_login"
@@ -25,8 +25,8 @@
 
         <EditText
             android:paddingLeft="30dp"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
+            android:textColor="@color/colorWhite"
+            android:textColorHint="@color/colorWhite"
             android:id="@+id/in_email"
             android:layout_width="250dp"
             android:layout_height="50dp"
@@ -37,8 +37,8 @@
 
         <EditText
             android:paddingLeft="30dp"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
+            android:textColor="@color/colorWhite"
+            android:textColorHint="@color/colorWhite"
             android:layout_marginTop="25dp"
             android:id="@+id/in_password"
             android:layout_width="250dp"
@@ -53,14 +53,14 @@
             android:layout_width="200dp"
             android:layout_height="40dp"
             android:layout_marginTop="25dp"
-            android:background="@drawable/button_round_green"
+            android:background="@drawable/button_round"
             android:onClick="login"
             android:text="Login"
-            android:textColor="@color/white"
+            android:textColor="@color/colorWhite"
             android:textStyle="bold" />
 
         <TextView
-            android:textColor="@color/white"
+            android:textColor="@color/colorWhite"
             android:layout_marginTop="25dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -69,7 +69,7 @@
             android:onClick="lupapassword"/>
 
         <TextView
-            android:textColor="@color/white"
+            android:textColor="@color/colorWhite"
             android:layout_marginTop="25dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -81,13 +81,14 @@
             android:layout_width="225dp"
             android:layout_height="40dp"
             android:layout_marginTop="25dp"
-            android:background="@drawable/button_roundgoogle"
+            android:background="@drawable/button_round"
+            android:backgroundTint="@color/colorWhite"
             android:drawableLeft="@drawable/google"
             android:onClick="login"
             android:paddingLeft="10dp"
             android:textAllCaps="false"
             android:text="Login with google"
-            android:textColor="@android:color/black"/>
+            android:textColor="@color/colorBlack"/>
 
     </LinearLayout>
 
@@ -97,14 +98,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center"
-        >
+        android:gravity="center">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Belum punya akun ?"
-            android:textColor="@color/white"
+            android:textColor="@color/colorWhite"
             />
 
         <TextView
@@ -114,7 +114,7 @@
             android:text="Daftar sekarang"
             android:clickable="true"
             android:onClick="register"
-            android:textColor="@color/white"
+            android:textColor="@color/colorWhite"
             android:textStyle="bold"/>
 
     </LinearLayout>

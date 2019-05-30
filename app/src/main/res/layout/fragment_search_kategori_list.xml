@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:gravity="center_vertical"
-        android:background="#E5E5E5"
+        android:background="@color/colorBackground"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
         android:orientation="horizontal">
@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Kategori"
-            android:textColor="#4D4D4D"
+            android:textColor="@color/colorBlack"
             android:textSize="16sp"/>
 
         <ImageView
@@ -35,18 +35,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="SubKategori"
-            android:textColor="#4D4D4D"
+            android:textColor="@color/colorBlack"
             android:textSize="16sp"/>
 
     </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:layout_marginTop="8dp"
-        android:layout_marginLeft="4dp"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:listitem="@layout/item_search_kategori">
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/item_search_kategori">
 
     </android.support.v7.widget.RecyclerView>
+
+</android.support.v4.widget.SwipeRefreshLayout>
 
 </LinearLayout>

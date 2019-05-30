@@ -5,47 +5,57 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:layout_marginBottom="60dp">
+    android:layout_marginBottom="54dp">
 
-    <LinearLayout
-        android:id="@+id/layoutLinear1"
-        android:orientation="horizontal"
-        android:background="@color/bg"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:padding="16dp">
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
+        app:titleTextColor="@color/colorWhite"
+        android:background="@color/colorPrimaryDark"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        android:elevation="4dp">
 
-        <ImageButton
-            android:id="@+id/btn_Back"
-            android:layout_gravity="left|center"
-            android:background="@android:color/transparent"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_arrow_back_black_24dp"
-            tools:ignore="VectorDrawableCompat" />
-
-        <TextView
-            android:id="@+id/txt_subTittle"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:gravity="center"
-            android:text="Nama client"
-            android:textColor="@color/white"
-            android:textSize="24sp" />
+            android:orientation="horizontal"
+            android:padding="16dp">
 
-        <ImageButton
-            android:id="@+id/btn_More"
-            android:layout_gravity="right|center"
-            android:background="@android:color/transparent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_more"
-            tools:ignore="VectorDrawableCompat"
-            android:scaleY="1.5"
-            android:scaleX="1.5"/>
+            <ImageButton
+                android:id="@+id/btn_Menu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                app:srcCompat="@drawable/ic_menu"/>
 
-    </LinearLayout>
+            <TextView
+                android:layout_marginLeft="16dp"
+                android:id="@+id/txt_Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kotak Masuk"
+                android:textSize="24sp"
+                android:textColor="@color/colorWhite"
+                android:layout_weight="0.9" />
+
+            <ImageButton
+                android:id="@+id/btn_newMessage"
+                android:background="@android:color/transparent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_new_message"
+                android:tint="@color/colorWhite"
+                tools:ignore="VectorDrawableCompat"
+                android:scaleY="1.2"
+                android:scaleX="1.2"/>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.Toolbar>
 
     <LinearLayout
         android:id="@+id/layout_messageBox"
@@ -63,17 +73,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/ic_search_black_24dp"
+            android:tint="@color/colorGrey2"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="8dp"
             android:scaleY="0.9"
-            android:scaleX="0.9"
-            android:tint="#808080"/>
+            android:scaleX="0.9"/>
 
         <EditText
             android:id="@+id/edittext_search_message"
             android:hint="Search"
             android:textSize="14sp"
-            android:textColor="@android:color/black"
+            android:textColor="@color/colorGrey1"
             android:background="@android:color/transparent"
             android:layout_gravity="center"
             android:layout_marginLeft="8dp"
@@ -87,6 +97,7 @@
         android:id="@+id/reyclerview_listItem_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        tools:listitem="@layout/item_inbox"
         >
     </android.support.v7.widget.RecyclerView>
 

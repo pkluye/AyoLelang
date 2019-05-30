@@ -12,7 +12,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:elevation="2dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -23,7 +24,7 @@
             <View
                 android:layout_width="4dp"
                 android:layout_height="match_parent"
-                android:background="@color/bg" />
+                android:background="@color/colorPrimaryDark" />
 
             <TextView
                 android:id="@+id/txt_judul_item"
@@ -65,7 +66,7 @@
                 android:layout_height="wrap_content"
                 android:text="Perkiraan Biaya"
                 android:textSize="12sp"
-                android:textColor="@color/colorlight"
+                android:textColor="@color/colorGrey2"
                 android:layout_weight="1"/>
 
             <TextView
@@ -97,7 +98,7 @@
                 android:layout_height="wrap_content"
                 android:text="File Attachment"
                 android:textSize="12sp"
-                android:textColor="@color/colorlight"
+                android:textColor="@color/colorGrey2"
                 android:layout_weight="1"/>
 
             <TextView
@@ -116,7 +117,7 @@
             android:layout_width="match_parent"
             android:layout_height="28dp"
             android:orientation="horizontal"
-            android:background="@color/bgCerah"
+            android:background="@color/colorBackgroundLight"
             android:gravity="end|center_vertical">
 
             <Button
@@ -124,10 +125,10 @@
                 android:layout_width="56dp"
                 android:layout_height="18dp"
                 android:background="@drawable/button_round_border"
-                android:backgroundTint="@color/bg"
+                android:backgroundTint="@color/colorPrimaryDark"
                 android:text="Edit"
                 android:textAllCaps="false"
-                android:textColor="@color/bg"
+                android:textColor="@color/colorPrimaryDark"
                 android:textSize="12sp"/>
 
             <Button
@@ -136,8 +137,8 @@
                 android:id="@+id/btn_detailItemLelang"
                 android:layout_width="56dp"
                 android:layout_height="18dp"
-                android:background="@drawable/button_round_green"
-                android:backgroundTint="@color/bg"
+                android:background="@drawable/button_round"
+                android:backgroundTint="@color/colorPrimaryDark"
                 android:text="Detail"
                 android:textAllCaps="false"
                 android:textColor="@android:color/white"

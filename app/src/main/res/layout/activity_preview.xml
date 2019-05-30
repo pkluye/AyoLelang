@@ -16,7 +16,7 @@
         android:scaleY="0.8"
         android:scaleX="0.8"
         app:srcCompat="@drawable/ic_cart"
-        app:backgroundTint="@color/button"
+        app:backgroundTint="@color/colorPrimary"
         android:elevation="5dp"/>
 
     <android.support.design.widget.FloatingActionButton
@@ -29,7 +29,7 @@
         android:scaleY="0.8"
         android:scaleX="0.8"
         app:srcCompat="@drawable/ic_edit"
-        app:backgroundTint="@color/button"
+        app:backgroundTint="@color/colorPrimary"
         android:elevation="5dp"/>
 
     <LinearLayout
@@ -37,48 +37,46 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/layoutLinear1"
-            android:orientation="horizontal"
-            android:background="@color/bg"
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:gravity="center"
-            android:padding="16dp">
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize"
+            app:titleTextColor="@color/colorWhite"
+            android:background="@color/colorPrimaryDark"
+            app:contentInsetLeft="0dp"
+            app:contentInsetStart="0dp"
+            android:elevation="4dp">
 
-            <ImageButton
-                android:id="@+id/btn_Back"
-                android:layout_gravity="left|center"
-                android:background="@android:color/transparent"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_home"
-                tools:ignore="VectorDrawableCompat"
-                android:scaleY="1.5"
-                android:scaleX="1.5"/>
-
-            <TextView
-                android:id="@+id/txt_subTittle"
-                android:layout_width="256dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:gravity="center"
-                android:text="Preview"
-                android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:orientation="horizontal"
+                android:padding="16dp">
 
-            <ImageButton
-                android:id="@+id/btn_More"
-                android:layout_gravity="right|center"
-                android:background="@android:color/transparent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_more"
-                tools:ignore="VectorDrawableCompat"
-                android:scaleY="1.5"
-                android:scaleX="1.5"/>
+                <TextView
+                    android:layout_marginLeft="34.8dp"
+                    android:id="@+id/txt_subTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Preview"
+                    android:textSize="24sp"
+                    android:textColor="@color/colorWhite"
+                    android:textAlignment="center"
+                    android:layout_weight="0.9" />
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/btn_selesai"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Done"
+                    android:textSize="18sp"
+                    android:textColor="@color/colorWhite" />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.Toolbar>
 
             <RelativeLayout
                 android:id="@+id/layoutRelative"
@@ -116,7 +114,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Judul"
-                            android:textColor="@android:color/black"
+                            android:textColor="@color/colorBlack"
                             android:textSize="18sp"/>
 
                         <View
@@ -144,7 +142,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Kota, Provinsi, Negara"
-                                android:textColor="@color/colorlight"
+                                android:textColor="@color/colorGrey2"
                                 android:textSize="14sp"
                                 android:layout_gravity="center_vertical"/>
                         </LinearLayout>
@@ -155,7 +153,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="25dp"
                             android:text="Alamat lengkap"
-                            android:textColor="@color/colorlight"
+                            android:textColor="@color/colorGrey2"
                             android:textSize="14sp"
                             android:layout_gravity="center_vertical"/>
 
@@ -166,20 +164,12 @@
                             android:layout_height="2dp"
                             android:background="#F0F0F0"/>
 
-                        <!--<com.ags.ayolelang.Function.ExpendableTextView-->
-                        <!--android:id="@+id/txt_deskripsi"-->
-                        <!--android:layout_marginTop="8dp"-->
-                        <!--android:layout_marginBottom="8dp"-->
-                        <!--android:layout_width="fill_parent"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:textColor="@android:color/black"-->
-                        <!--/>-->
-
                         <TextView
                             android:id="@+id/txt_deskripsi"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Deskripsi"
+                            android:textColor="@color/colorBlack"
                             android:textSize="16sp"
                             android:layout_gravity="center_vertical"/>
 
@@ -210,14 +200,14 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text="Deadline"
-                                        />
+                                        android:textColor="@color/colorGrey1"                                        />
 
                                     <TextView
                                         android:id="@+id/txt_teks_pembayaran"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text="Pembayaran"
-                                        />
+                                        android:textColor="@color/colorGrey1"/>
 
                                 </LinearLayout>
 
@@ -235,13 +225,13 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text=":"
-                                        />
+                                        android:textColor="@color/colorGrey1"/>
 
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text=":"
-                                        />
+                                        android:textColor="@color/colorGrey1"/>
 
                                 </LinearLayout>
 
@@ -254,13 +244,15 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text="deadline"
-                                        android:id="@+id/txt_deadline"/>
+                                        android:id="@+id/txt_deadline"
+                                        android:textColor="@color/colorGrey2"/>
 
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text="pembayaran"
-                                        android:id="@+id/txt_pembayaran"/>
+                                        android:id="@+id/txt_pembayaran"
+                                        android:textColor="@color/colorGrey2"/>
 
                                 </LinearLayout>
 
@@ -301,36 +293,35 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Ukuran"
-                                    />
+                                    android:textColor="@color/colorGrey1"/>
 
                                 <TextView
                                     android:id="@+id/txt_teks_bahan"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Bahan"
-                                    />
+                                    android:textColor="@color/colorGrey1"/>
 
                                 <TextView
                                     android:id="@+id/txt_teks_quantity"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Quantity"
-                                    />
+                                    android:textColor="@color/colorGrey1"/>
 
                                 <TextView
                                     android:id="@+id/txt_teks_harga"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Perkiraan Harga"
-                                    />
+                                    android:textColor="@color/colorGrey1"/>
 
                                 <TextView
                                     android:id="@+id/txt_teks_catatan"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Catatan "
-                                    />
-
+                                    android:textColor="@color/colorGrey1"/>
 
                             </LinearLayout>
 
@@ -345,31 +336,31 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text=":"
-                                    />
+                                    android:textColor="@color/colorGrey1"/>
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text=":"
-                                    />
+                                    android:textColor="@color/colorGrey1"/>
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text=":"
-                                    />
+                                    android:textColor="@color/colorGrey1"/>
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text=":"
-                                    />
+                                    android:textColor="@color/colorGrey1"/>
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text=":"
-                                    />
+                                    android:textColor="@color/colorGrey1"/>
 
                             </LinearLayout>
 
@@ -383,31 +374,35 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="ukuran"
-                                    />
+                                    android:textColor="@color/colorGrey2"/>
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="bahan"
-                                    android:id="@+id/txt_bahan"/>
+                                    android:id="@+id/txt_bahan"
+                                    android:textColor="@color/colorGrey2"/>
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="quantity"
-                                    android:id="@+id/txt_jumlah"/>
+                                    android:id="@+id/txt_jumlah"
+                                    android:textColor="@color/colorGrey2"/>
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="perkiraan harga"
-                                    android:id="@+id/txt_harga"/>
+                                    android:id="@+id/txt_harga"
+                                    android:textColor="@color/colorGrey2"/>
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Ini merupakan catatan Item"
-                                    android:id="@+id/txt_catatan"/>
+                                    android:id="@+id/txt_catatan"
+                                    android:textColor="@color/colorGrey2"/>
 
                             </LinearLayout>
 
@@ -435,7 +430,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="File Attachment"
-                                    />
+                                    android:textColor="@color/colorGrey1"/>
 
                                 <TextView
                                     android:layout_marginLeft="12dp"
@@ -443,13 +438,14 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text=":"
-                                    />
+                                    android:textColor="@color/colorGrey1"/>
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="attachment"
-                                    android:id="@+id/txt_attachment"/>
+                                    android:id="@+id/txt_attachment"
+                                    android:textColor="@color/colorGrey2"/>
 
                             </LinearLayout>
 
@@ -459,7 +455,7 @@
                                 android:layout_width="60dp"
                                 android:layout_height="30dp"
                                 android:text="Edit"
-                                android:textColor="@color/white"
+                                android:textColor="@color/colorWhite"
                                 android:background="@drawable/button_rectangle"/>
 
                         </LinearLayout>
@@ -485,7 +481,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:gravity="end|center_vertical"
-                    android:background="@color/bgCerah"
+                    android:background="@color/colorBackground"
                     android:padding="12dp"
                     android:layout_weight="0">
 
@@ -505,7 +501,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="harga"
-                            android:textColor="@android:color/holo_red_light"/>
+                            android:textColor="@color/colorRed"/>
                     </LinearLayout>
 
                     <Button
@@ -515,7 +511,7 @@
                         android:layout_height="34dp"
                         android:background="@drawable/button_rectangle"
                         android:text="Posting"
-                        android:textColor="@color/white"
+                        android:textColor="@color/colorWhite"
                         android:textAllCaps="false" />
 
                 </LinearLayout>

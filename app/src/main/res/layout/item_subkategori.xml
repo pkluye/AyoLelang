@@ -22,6 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Item A"
+            android:textColor="@color/colorGrey1"
             android:textSize="16sp"/>
 
         <TextView
@@ -30,6 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Item A, Item B, Item C"
+            android:textColor="@color/colorGrey2"
             android:textSize="10sp"/>
 
     </LinearLayout>
@@ -44,7 +46,10 @@
             android:id="@+id/btn_nextArrow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_keyboard_arrow_right_black_24dp"
+            app:srcCompat="@drawable/ic_navigation_next"
+            android:tint="@color/colorPrimaryDark"
+            android:scaleX="1.5"
+            android:scaleY="1.5"
             android:background="@android:color/transparent"/>
 
     </LinearLayout>

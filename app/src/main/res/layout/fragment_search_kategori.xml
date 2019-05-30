@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:gravity="center"
-        android:background="#E5E5E5"
+        android:background="@color/colorBackground"
         android:paddingLeft="16dp"
         android:paddingRight="16dp">
 
@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Pencarian garapan berdasarkan Kategori:"
-            android:textColor="#4D4D4D"
+            android:textColor="@color/colorBlack"
             android:textSize="16sp"/>
 
     </LinearLayout>
@@ -43,12 +43,12 @@
                 android:layout_height="wrap_content"
                 android:text="Pendidikan"
                 android:textSize="16sp"
-                android:textColor="#4D4D4D"
+                android:textColor="@color/colorGrey1"
                 android:layout_weight="1"/>
 
             <ImageView
                 app:srcCompat="@drawable/ic_navigation_next"
-                android:tint="@color/bg"
+                android:tint="@color/colorPrimaryDark"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -70,12 +70,12 @@
                 android:layout_height="wrap_content"
                 android:text="Printing"
                 android:textSize="16sp"
-                android:textColor="#4D4D4D"
+                android:textColor="@color/colorGrey1"
                 android:layout_weight="1"/>
 
             <ImageView
                 app:srcCompat="@drawable/ic_navigation_next"
-                android:tint="@color/bg"
+                android:tint="@color/colorPrimaryDark"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -97,12 +97,12 @@
                 android:layout_height="wrap_content"
                 android:text="Kuliner"
                 android:textSize="16sp"
-                android:textColor="#4D4D4D"
+                android:textColor="@color/colorGrey1"
                 android:layout_weight="1"/>
 
             <ImageView
                 app:srcCompat="@drawable/ic_navigation_next"
-                android:tint="@color/bg"
+                android:tint="@color/colorPrimaryDark"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -124,12 +124,12 @@
                 android:layout_height="wrap_content"
                 android:text="Otomotif"
                 android:textSize="16sp"
-                android:textColor="#4D4D4D"
+                android:textColor="@color/colorGrey1"
                 android:layout_weight="1"/>
 
             <ImageView
                 app:srcCompat="@drawable/ic_navigation_next"
-                android:tint="@color/bg"
+                android:tint="@color/colorPrimaryDark"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -151,12 +151,12 @@
                 android:layout_height="wrap_content"
                 android:text="Entertainment"
                 android:textSize="16sp"
-                android:textColor="#4D4D4D"
+                android:textColor="@color/colorGrey1"
                 android:layout_weight="1"/>
 
             <ImageView
                 app:srcCompat="@drawable/ic_navigation_next"
-                android:tint="@color/bg"
+                android:tint="@color/colorPrimaryDark"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -178,12 +178,12 @@
                 android:layout_height="wrap_content"
                 android:text="Fotografi"
                 android:textSize="16sp"
-                android:textColor="#4D4D4D"
+                android:textColor="@color/colorGrey1"
                 android:layout_weight="1"/>
 
             <ImageView
                 app:srcCompat="@drawable/ic_navigation_next"
-                android:tint="@color/bg"
+                android:tint="@color/colorPrimaryDark"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -205,12 +205,12 @@
                 android:layout_height="wrap_content"
                 android:text="Palugada"
                 android:textSize="16sp"
-                android:textColor="#4D4D4D"
+                android:textColor="@color/colorGrey1"
                 android:layout_weight="1"/>
 
             <ImageView
                 app:srcCompat="@drawable/ic_navigation_next"
-                android:tint="@color/bg"
+                android:tint="@color/colorPrimaryDark"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"

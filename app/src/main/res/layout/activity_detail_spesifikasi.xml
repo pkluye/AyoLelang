@@ -6,51 +6,60 @@
     android:layout_height="match_parent"
     tools:context=".Activity.DetailSpesifikasi">
 
-    <LinearLayout
-        android:id="@+id/layoutLinear1"
-        android:orientation="horizontal"
-        android:background="@color/bg"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:padding="16dp">
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
+        app:titleTextColor="@color/colorWhite"
+        android:background="@color/colorPrimaryDark"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        android:elevation="4dp">
 
-        <ImageButton
-            android:id="@+id/btn_Back"
-            android:layout_gravity="left|center"
-            android:background="@android:color/transparent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="back"
-            app:srcCompat="@drawable/ic_arrow_back_black_24dp"
-            tools:ignore="VectorDrawableCompat" />
-
-        <TextView
-            android:id="@+id/txt_subTittle"
-            android:layout_width="256dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="Detail Spesifikasi"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/txt_subNext"
-            android:gravity="center"
-            android:layout_gravity="center"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Next"
-            android:onClick="next"
-            android:textSize="14sp"
-            android:textColor="@color/white"
-            />
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="16dp">
 
-    </LinearLayout>
+            <ImageButton
+                android:id="@+id/btn_Menu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                app:srcCompat="@drawable/ic_arrow_back_black_24dp"
+                android:scaleY="1.2"
+                android:scaleX="1.2"/>
+
+            <TextView
+                android:layout_marginLeft="16dp"
+                android:id="@+id/txt_subTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Detail Spesifikasi"
+                android:textSize="24sp"
+                android:textColor="@color/colorWhite"
+                android:textAlignment="center"
+                android:layout_weight="0.9"/>
+
+            <TextView
+                android:id="@+id/btn_next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Next"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp"
+                android:onClick="next"/>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.Toolbar>
 
     <LinearLayout
         android:id="@id/layoutLinear2"
-        android:layout_below="@id/layoutLinear1"
+        android:layout_below="@id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -65,8 +74,7 @@
             android:layout_height="wrap_content"
             android:progress="30"
             style="@style/MyProgressBarTwo"
-            android:theme="@style/MyProgressBarTwo"
-            />
+            android:theme="@style/MyProgressBarTwo" />
 
         <LinearLayout
             android:layout_marginTop="24dp"
@@ -81,7 +89,63 @@
             <EditText
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/in_ukuran"/>
+                android:id="@+id/in_ukuran"
+                android:hint="Pilih ukuran (dalam cm)"
+                android:backgroundTint="@color/colorPrimaryDark"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_vertical">
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Costum"
+                    android:textColor="@color/colorGrey2"/>
+
+                <LinearLayout
+                    android:visibility="visible"
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:textColorHint="@color/colorGrey2"
+                        android:padding="4dp"
+                        android:hint="x cm"
+                        android:id="@+id/text_ukuranPanjang"
+                        android:textAlignment="center"
+                        android:layout_marginLeft="24dp"
+                        android:layout_width="48dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/button_round_border_grey"/>
+
+                    <TextView
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="X"
+                        android:textColor="@color/colorGrey2"
+                        android:gravity="center_vertical"/>
+
+                    <EditText
+                        android:textColorHint="@color/colorGrey2"
+                        android:padding="4dp"
+                        android:hint="x cm"
+                        android:id="@+id/text_ukuranlebar"
+                        android:textAlignment="center"
+                        android:layout_width="48dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/button_round_border_grey"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
@@ -97,7 +161,9 @@
             <EditText
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/in_bahan"/>
+                android:id="@+id/in_bahan"
+                android:hint="Pilih jenis bahan"
+                android:backgroundTint="@color/colorPrimaryDark"/>
         </LinearLayout>
 
         <LinearLayout
@@ -114,7 +180,9 @@
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:inputType="number"
-                android:id="@+id/in_quantity"/>
+                android:id="@+id/in_quantity"
+                android:hint="Tentukan jumlah barang"
+                android:backgroundTint="@color/colorPrimaryDark"/>
         </LinearLayout>
 
         <LinearLayout
@@ -125,13 +193,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Perkiraan Harga"/>
+                android:text="Budget Pekerjaan"/>
 
             <EditText
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:inputType="number"
-                android:id="@+id/in_harga"/>
+                android:id="@+id/in_harga"
+                android:hint="Berapa banyak budget"
+                android:backgroundTint="@color/colorPrimaryDark"/>
         </LinearLayout>
 
 
@@ -153,7 +223,9 @@
                 android:maxLines="10"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/in_catatan"/>
+                android:id="@+id/in_catatan"
+                android:hint="Berikan catatan tambahan"
+                android:backgroundTint="@color/colorPrimaryDark"/>
         </LinearLayout>
 
     </LinearLayout>

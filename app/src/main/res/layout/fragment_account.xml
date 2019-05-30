@@ -4,48 +4,55 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="#ECEFF0"
     android:orientation="vertical"
-    android:layout_marginBottom="60dp">
+    android:layout_marginBottom="54dp">
 
-    <LinearLayout
-        android:id="@+id/layoutLinear1"
-        android:orientation="horizontal"
-        android:background="@color/bg"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:padding="16dp">
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
+        app:titleTextColor="@color/colorWhite"
+        android:background="@color/colorPrimaryDark"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        android:elevation="4dp">
 
-        <ImageButton
-            android:id="@+id/btn_hamburger"
-            android:layout_gravity="left|center"
-            android:background="@android:color/transparent"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_menu"
-            android:scaleX="1.5"
-            android:scaleY="1.5"
-            tools:ignore="VectorDrawableCompat" />
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="16dp">
 
-        <TextView
-            android:layout_marginLeft="24dp"
-            android:id="@+id/txt_subTitle"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="start"
-            android:text="Profil Saya"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
+            <ImageButton
+                android:id="@+id/btn_Menu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                app:srcCompat="@drawable/ic_menu"/>
 
-    </LinearLayout>
+            <TextView
+                android:layout_marginLeft="16dp"
+                android:id="@+id/txt_Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Profil Saya"
+                android:textSize="24sp"
+                android:textColor="@color/colorWhite"
+                android:layout_weight="0.9" />
+
+        </LinearLayout>
+
+    </android.support.v7.widget.Toolbar>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@color/colorWhite"
         android:orientation="vertical"
         android:padding="20dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -55,9 +62,8 @@
                 android:id="@+id/image_user"
                 android:layout_width="86dp"
                 android:layout_height="86dp"
-                android:src="@drawable/ic_person_black_24dp"
-                tools:ignore="VectorDrawableCompat"
-                />
+                android:src="@drawable/ic_user_default"
+                tools:ignore="VectorDrawableCompat" />
 
         </LinearLayout>
 
@@ -106,7 +112,7 @@
                 android:background="@drawable/button_rectangle"
                 android:text="Edit Profil"
                 android:textSize="10dp"
-                android:textColor="@color/white"
+                android:textColor="@color/colorWhite"
                 android:textAllCaps="false"
                 android:layout_weight="0"/>
 
@@ -118,7 +124,7 @@
         android:layout_marginTop="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@color/colorWhite"
         android:orientation="vertical"
         android:padding="5dp">
 
@@ -132,29 +138,22 @@
 
             <TextView
                 android:id="@+id/txt_Point"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="0"
+                android:text="0 Points"
                 android:layout_gravity="center_vertical"
-                android:textSize="12sp"
-                android:textColor="@android:color/black"/>
-
-            <TextView
-                android:layout_marginLeft="3dp"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:text="Points"
-                android:layout_gravity="center_vertical"
-                android:textSize="12sp"
-                android:textColor="@android:color/black"/>
+                android:textSize="14sp"
+                android:textColor="@color/colorBlack"
+                android:layout_weight="0.9"/>
 
 
             <ImageView
+                android:layout_marginRight="8dp"
                 android:id="@+id/btn_Point"
                 app:srcCompat="@drawable/ic_navigation_next"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end|center_vertical"/>
+                android:layout_weight="0.1"/>
 
         </LinearLayout>
 
@@ -168,20 +167,22 @@
             android:background="@drawable/border_bottom">
 
             <TextView
-                android:layout_width="313dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="My Voucher"
                 android:layout_gravity="center_vertical"
-                android:textSize="12sp"
-                android:textColor="@android:color/black"/>
+                android:textSize="14sp"
+                android:textColor="@color/colorBlack"
+                android:layout_weight="0.9"/>
 
 
             <ImageView
+                android:layout_marginRight="8dp"
                 android:id="@+id/btn_Voucher"
                 app:srcCompat="@drawable/ic_navigation_next"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end|center_vertical"/>
+                android:layout_weight="0.1"/>
 
         </LinearLayout>
 
@@ -195,20 +196,22 @@
             android:background="@drawable/border_bottom">
 
             <TextView
-                android:layout_width="313dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Change Language"
                 android:layout_gravity="center_vertical"
-                android:textSize="12sp"
-                android:textColor="@android:color/black"/>
+                android:textSize="14sp"
+                android:textColor="@color/colorBlack"
+                android:layout_weight="0.9"/>
 
 
             <ImageView
+                android:layout_marginRight="8dp"
                 android:id="@+id/btn_Bahasa"
                 app:srcCompat="@drawable/ic_navigation_next"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end|center_vertical"/>
+                android:layout_weight="0.1"/>
 
         </LinearLayout>
 
@@ -218,7 +221,7 @@
         android:layout_marginTop="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@color/colorWhite"
         android:orientation="vertical"
         android:padding="5dp">
 
@@ -231,20 +234,22 @@
             android:background="@drawable/border_bottom">
 
             <TextView
-                android:layout_width="313dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Help &amp; Center"
                 android:layout_gravity="center_vertical"
-                android:textSize="12sp"
-                android:textColor="@android:color/black"/>
+                android:textSize="14sp"
+                android:textColor="@color/colorBlack"
+                android:layout_weight="0.9"/>
 
 
             <ImageView
+                android:layout_marginRight="8dp"
                 android:id="@+id/btn_Help"
                 app:srcCompat="@drawable/ic_navigation_next"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"/>
+                android:layout_weight="0.1"/>
 
         </LinearLayout>
 
@@ -258,20 +263,22 @@
             android:background="@drawable/border_bottom">
 
             <TextView
-                android:layout_width="313dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Term of Service"
                 android:layout_gravity="center_vertical"
-                android:textSize="12sp"
-                android:textColor="@android:color/black"/>
+                android:textSize="14sp"
+                android:textColor="@color/colorBlack"
+                android:layout_weight="0.9"/>
 
 
             <ImageView
+                android:layout_marginRight="8dp"
                 android:id="@+id/btn_ToS"
                 app:srcCompat="@drawable/ic_navigation_next"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"/>
+                android:layout_weight="0.1"/>
 
         </LinearLayout>
 
@@ -285,20 +292,22 @@
             android:background="@drawable/border_bottom">
 
             <TextView
-                android:layout_width="313dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Privacy Policy"
                 android:layout_gravity="center_vertical"
-                android:textSize="16sp"
-                android:textColor="@android:color/black"/>
+                android:textSize="14sp"
+                android:textColor="@color/colorBlack"
+                android:layout_weight="0.9"/>
 
 
             <ImageView
+                android:layout_marginRight="8dp"
                 android:id="@+id/btn_Privacy"
                 app:srcCompat="@drawable/ic_navigation_next"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"/>
+                android:layout_weight="0.1"/>
 
         </LinearLayout>
 
@@ -312,20 +321,22 @@
             android:background="@drawable/border_bottom">
 
             <TextView
-                android:layout_width="313dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Rate"
                 android:layout_gravity="center_vertical"
-                android:textSize="12sp"
-                android:textColor="@android:color/black"/>
+                android:textSize="14sp"
+                android:textColor="@color/colorBlack"
+                android:layout_weight="0.9"/>
 
 
             <ImageView
+                android:layout_marginRight="8dp"
                 android:id="@+id/btn_Rate"
                 app:srcCompat="@drawable/ic_navigation_next"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"/>
+                android:layout_weight="0.1"/>
 
         </LinearLayout>
 
@@ -335,7 +346,7 @@
         android:layout_marginTop="12sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@color/colorWhite"
         android:gravity="center"
         android:padding="10dp">
 
@@ -344,8 +355,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Logout"
-            android:textSize="12sp"
-            android:textColor="#F94F2D"/>
+            android:textSize="14sp"
+            android:textColor="@color/colorRed"/>
 
     </LinearLayout>
 

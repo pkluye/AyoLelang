@@ -10,6 +10,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Mitra"
-        android:textColor="@color/bg"/>
+        android:textColor="@color/colorPrimaryDark"/>
 
 </LinearLayout>

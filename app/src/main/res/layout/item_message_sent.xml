@@ -14,7 +14,8 @@
         android:maxWidth="240dp"
         android:padding="8dp"
         android:text="Lorem ipsum dolor sit amet, soluta regione"
-        android:textColor="@android:color/black"
+        android:textColor="@color/colorBlack"
+        android:elevation="2dp"
         android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -25,6 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="10sp"
+        android:textColor="@color/colorGrey2"
         android:layout_marginRight="4dp"
         app:layout_constraintBottom_toBottomOf="@+id/txt_message_body"
         app:layout_constraintRight_toLeftOf="@+id/txt_message_body" />

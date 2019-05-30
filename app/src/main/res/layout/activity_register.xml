@@ -10,7 +10,7 @@
         android:id="@+id/layoutLinear1"
         android:layout_width="match_parent"
         android:layout_height="128dp"
-        android:background="@color/bg"
+        android:background="@color/colorPrimaryDark"
         android:orientation="horizontal">
     </LinearLayout>
 
@@ -141,10 +141,10 @@
                 android:layout_height="32dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/button_round_green"
+                android:background="@drawable/button_round"
                 android:onClick="register"
                 android:text="Register"
-                android:textColor="@color/white" />
+                android:textColor="@color/colorWhite" />
         </LinearLayout>
 
     </ScrollView>

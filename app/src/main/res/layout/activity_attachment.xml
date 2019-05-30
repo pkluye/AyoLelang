@@ -6,51 +6,60 @@
     android:layout_height="match_parent"
     tools:context=".Activity.Attachment">
 
-    <LinearLayout
-        android:id="@+id/layoutLinear1"
-        android:orientation="horizontal"
-        android:background="@color/bg"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:padding="16dp">
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
+        app:titleTextColor="@color/colorWhite"
+        android:background="@color/colorPrimaryDark"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        android:elevation="4dp">
 
-        <ImageButton
-            android:id="@+id/btn_Back"
-            android:layout_gravity="left|center"
-            android:background="@android:color/transparent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="back"
-            app:srcCompat="@drawable/ic_arrow_back_black_24dp"
-            tools:ignore="VectorDrawableCompat" />
-
-        <TextView
-            android:id="@+id/txt_subTittle"
-            android:layout_width="256dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="Attachment"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/txt_subNext"
-            android:gravity="center"
-            android:layout_gravity="center"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Next"
-            android:onClick="next"
-            android:textSize="14sp"
-            android:textColor="@color/white"
-            />
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="16dp">
 
-    </LinearLayout>
+            <ImageButton
+                android:id="@+id/btn_Menu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                app:srcCompat="@drawable/ic_arrow_back_black_24dp"
+                android:scaleY="1.2"
+                android:scaleX="1.2"/>
+
+            <TextView
+                android:layout_marginLeft="16dp"
+                android:id="@+id/txt_subTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Attachment"
+                android:textSize="24sp"
+                android:textColor="@color/colorWhite"
+                android:textAlignment="center"
+                android:layout_weight="0.9"/>
+
+            <TextView
+                android:id="@+id/btn_next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Next"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp"
+                android:onClick="next"/>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.Toolbar>
 
     <LinearLayout
         android:id="@id/layoutLinear2"
-        android:layout_below="@id/layoutLinear1"
+        android:layout_below="@id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -75,7 +84,7 @@
             android:text="Apakah ada lampiran file yang dapat menggambarkan \npekerjaan lelang anda ?"
             android:textAlignment="center"
             android:textSize="12sp"
-            android:textColor="@android:color/black"/>
+            android:textColor="@color/colorBlack"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -89,7 +98,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="upload"
-                android:src="@drawable/ic_add_circle_outline_black_24dp"/>
+                app:srcCompat="@drawable/ic_add_circle_outline_black_24dp"/>
 
             <TextView
                 android:layout_marginLeft="8sp"
@@ -98,7 +107,7 @@
                 android:layout_height="wrap_content"
                 android:text="Upload File"
                 android:onClick="upload"
-                android:textColor="@color/bg"
+                android:textColor="@color/colorPrimaryDark"
                 android:textSize="16sp"/>
 
             <TextView
@@ -108,7 +117,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="(Max size file 5 mb)"
-                android:textColor="@android:color/darker_gray"
+                android:textColor="@color/colorGrey2"
                 android:textSize="10sp"/>
 
         </LinearLayout>
@@ -124,7 +133,7 @@
             android:gravity="center_horizontal">
 
             <TextView
-                android:textColor="@android:color/black"
+                android:textColor="@color/colorBlack"
                 android:id="@+id/txt_namaFile"
                 android:layout_width="256dp"
                 android:textAlignment="center"
@@ -146,8 +155,8 @@
                     android:onClick="uploadToserver"
                     android:text="upload"
                     android:textSize="12sp"
-                    android:textColor="@android:color/white"
-                    android:background="@drawable/button_round_green"/>
+                    android:textColor="@color/colorWhite"
+                    android:background="@drawable/button_round"/>
 
                 <Button
                     android:layout_marginLeft="8dp"
@@ -157,8 +166,9 @@
                     android:onClick="clear"
                     android:text="clear"
                     android:textSize="12sp"
-                    android:textColor="@android:color/white"
-                    android:background="@drawable/button_round_red"/>
+                    android:textColor="@color/colorWhite"
+                    android:background="@drawable/button_round"
+                    android:backgroundTint="@color/colorRed"/>
 
             </LinearLayout>
 
