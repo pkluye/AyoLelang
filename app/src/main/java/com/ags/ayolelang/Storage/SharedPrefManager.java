@@ -35,12 +35,30 @@ public class SharedPrefManager {
         editor.putString("img_url",user.getUser_imgurl());
 
         editor.apply();
+    }
 
+    public void saveToken(String[] s) {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("token_kategori", s[0]);
+        editor.putString("token_provinsi", s[1]);
+        editor.putString("token_kota", s[2]);
+
+        editor.apply();
     }
 
     public boolean isLoggedIn() {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         return sharedPreferences.getString("id", null) != null;
+    }
+
+    public String[] getToken() {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return new String []{
+                sharedPreferences.getString("token_kategori",null),
+                sharedPreferences.getString("token_provinsi",null),
+                sharedPreferences.getString("token_kota",null)
+        };
     }
 
     public User getUser() {

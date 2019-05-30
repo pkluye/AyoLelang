@@ -16,11 +16,11 @@
         android:scaleY="0.8"
         android:scaleX="0.8"
         app:srcCompat="@drawable/ic_cart"
-        app:backgroundTint="@color/colorPrimary"
+        app:backgroundTint="@color/button"
         android:elevation="5dp"/>
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/btn_edit_detail"
+        android:id="@+id/btn_edit_deskripsi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
@@ -29,234 +29,106 @@
         android:scaleY="0.8"
         android:scaleX="0.8"
         app:srcCompat="@drawable/ic_edit"
-        app:backgroundTint="@color/colorPrimary"
+        app:backgroundTint="@color/button"
         android:elevation="5dp"/>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="?attr/actionBarSize"
-            app:titleTextColor="@color/colorWhite"
-            android:background="@color/colorPrimaryDark"
-            app:contentInsetLeft="0dp"
-            app:contentInsetStart="0dp"
-            android:elevation="4dp">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
+                android:id="@+id/layoutLinear1"
                 android:orientation="horizontal"
+                android:background="@color/bg"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:gravity="center"
                 android:padding="16dp">
 
-                <TextView
-                    android:layout_marginLeft="34.8dp"
-                    android:id="@+id/txt_subTitle"
+                <ImageButton
+                    android:id="@+id/btn_home"
+                    android:layout_gravity="left|center"
+                    android:background="@android:color/transparent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Preview"
-                    android:textSize="24sp"
-                    android:textColor="@color/colorWhite"
-                    android:textAlignment="center"
-                    android:layout_weight="0.9" />
+                    app:srcCompat="@drawable/ic_home"
+                    tools:ignore="VectorDrawableCompat"
+                    android:scaleY="1.5"
+                    android:scaleX="1.5"/>
 
                 <TextView
-                    android:id="@+id/btn_selesai"
+                    android:id="@+id/txt_subTittle"
+                    android:layout_width="256dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="Preview"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <ImageButton
+                    android:id="@+id/btn_More"
+                    android:layout_gravity="right|center"
+                    android:background="@android:color/transparent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Done"
-                    android:textSize="18sp"
-                    android:textColor="@color/colorWhite" />
+                    app:srcCompat="@drawable/ic_more"
+                    tools:ignore="VectorDrawableCompat"
+                    android:scaleY="1.5"
+                    android:scaleX="1.5"/>
 
             </LinearLayout>
 
-        </android.support.v7.widget.Toolbar>
-
-            <RelativeLayout
-                android:id="@+id/layoutRelative"
+            <android.support.v4.widget.SwipeRefreshLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                >
+                android:layout_marginBottom="50dp"
+                android:id="@+id/layout_refresh">
 
-                <LinearLayout
-                    android:layout_centerHorizontal="true"
-                    android:id="@+id/layoutLinear_judul"
-                    android:layout_marginTop="12dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_weight="1">
-
-                    <ProgressBar
-                        android:id="@+id/determinateBar"
-                        android:layout_gravity="center"
-                        android:layout_width="300dp"
-                        android:layout_height="wrap_content"
-                        android:progress="100"
-                        style="@style/MyProgressBarTwo"
-                        android:theme="@style/MyProgressBarTwo"
-                        />
+                <RelativeLayout
+                    android:id="@+id/layoutRelative"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="50dp"
+                    >
 
                     <LinearLayout
-                        android:layout_width="300dp"
+                        android:layout_centerHorizontal="true"
+                        android:id="@+id/layoutLinear_judul"
+                        android:layout_marginTop="12dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:layout_marginTop="18dp">
+                        android:layout_weight="1">
 
-                        <TextView
-                            android:id="@+id/txt_judul"
-                            android:layout_width="wrap_content"
+                        <ProgressBar
+                            android:id="@+id/determinateBar"
+                            android:layout_gravity="center"
+                            android:layout_width="300dp"
                             android:layout_height="wrap_content"
-                            android:text="Judul"
-                            android:textColor="@color/colorBlack"
-                            android:textSize="18sp"/>
-
-                        <View
-                            android:layout_marginTop="4dp"
-                            android:layout_marginBottom="4dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="2dp"
-                            android:background="#F0F0F0"/>
+                            android:progress="100"
+                            style="@style/MyProgressBarTwo"
+                            android:theme="@style/MyProgressBarTwo"
+                            />
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="300dp"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                app:srcCompat="@drawable/ic_location"
-                                android:scaleX="0.8"
-                                android:scaleY="0.8"
-                                android:layout_gravity="center_vertical"/>
+                            android:orientation="vertical"
+                            android:layout_marginTop="18dp">
 
                             <TextView
-                                android:id="@+id/txt_alamat"
+                                android:id="@+id/txt_judul"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Kota, Provinsi, Negara"
-                                android:textColor="@color/colorGrey2"
-                                android:textSize="14sp"
-                                android:layout_gravity="center_vertical"/>
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/txt_alamatlengkap"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="25dp"
-                            android:text="Alamat lengkap"
-                            android:textColor="@color/colorGrey2"
-                            android:textSize="14sp"
-                            android:layout_gravity="center_vertical"/>
-
-                        <View
-                            android:layout_marginBottom="4dp"
-                            android:layout_marginTop="8dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="2dp"
-                            android:background="#F0F0F0"/>
-
-                        <TextView
-                            android:id="@+id/txt_deskripsi"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Deskripsi"
-                            android:textColor="@color/colorBlack"
-                            android:textSize="16sp"
-                            android:layout_gravity="center_vertical"/>
-
-                        <View
-                            android:layout_marginTop="4dp"
-                            android:layout_marginBottom="4dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="2dp"
-                            android:background="#F0F0F0"/>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-
-                                <LinearLayout
-                                    android:layout_width="100dp"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical">
-
-                                    <TextView
-                                        android:id="@+id/txt_teks_deadline"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Deadline"
-                                        android:textColor="@color/colorGrey1"                                        />
-
-                                    <TextView
-                                        android:id="@+id/txt_teks_pembayaran"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Pembayaran"
-                                        android:textColor="@color/colorGrey1"/>
-
-                                </LinearLayout>
-
-                                <!--titik dua-->
-
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical"
-                                    android:layout_marginLeft="12dp"
-                                    android:layout_marginRight="8dp">
-
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text=":"
-                                        android:textColor="@color/colorGrey1"/>
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text=":"
-                                        android:textColor="@color/colorGrey1"/>
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="deadline"
-                                        android:id="@+id/txt_deadline"
-                                        android:textColor="@color/colorGrey2"/>
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="pembayaran"
-                                        android:id="@+id/txt_pembayaran"
-                                        android:textColor="@color/colorGrey2"/>
-
-                                </LinearLayout>
-
-                            </LinearLayout>
+                                android:text="Judul"
+                                android:textColor="@android:color/black"
+                                android:textSize="18sp"/>
 
                             <View
                                 android:layout_marginTop="4dp"
@@ -265,260 +137,411 @@
                                 android:layout_height="2dp"
                                 android:background="#F0F0F0"/>
 
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    app:srcCompat="@drawable/ic_location"
+                                    android:scaleX="0.8"
+                                    android:scaleY="0.8"
+                                    android:layout_gravity="center_vertical"/>
+
+                                <TextView
+                                    android:id="@+id/txt_alamat"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Kota, Provinsi, Negara"
+                                    android:textColor="@color/colorlight"
+                                    android:textSize="14sp"
+                                    android:layout_gravity="center_vertical"/>
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/txt_alamatlengkap"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="25dp"
+                                android:text="Alamat lengkap"
+                                android:textColor="@color/colorlight"
+                                android:textSize="14sp"
+                                android:layout_gravity="center_vertical"/>
+
+                            <View
+                                android:layout_marginBottom="4dp"
+                                android:layout_marginTop="8dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:background="#F0F0F0"/>
+
+                            <!--<com.ags.ayolelang.Function.ExpendableTextView-->
+                            <!--android:id="@+id/txt_deskripsi"-->
+                            <!--android:layout_marginTop="8dp"-->
+                            <!--android:layout_marginBottom="8dp"-->
+                            <!--android:layout_width="fill_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:textColor="@android:color/black"-->
+                            <!--/>-->
+
+                            <TextView
+                                android:id="@+id/txt_deskripsi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Deskripsi"
+                                android:textSize="16sp"
+                                android:layout_gravity="center_vertical"/>
+
+                            <View
+                                android:layout_marginTop="4dp"
+                                android:layout_marginBottom="4dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:background="#F0F0F0"/>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <LinearLayout
+                                        android:layout_width="100dp"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:id="@+id/txt_teks_deadline"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="Deadline"
+                                            />
+
+                                        <TextView
+                                            android:id="@+id/txt_teks_pembayaran"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="Pembayaran"
+                                            />
+
+                                    </LinearLayout>
+
+                                    <!--titik dua-->
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:layout_marginLeft="12dp"
+                                        android:layout_marginRight="8dp">
+
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text=":"
+                                            />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text=":"
+                                            />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="deadline"
+                                            android:id="@+id/txt_deadline"/>
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="pembayaran"
+                                            android:id="@+id/txt_pembayaran"/>
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                                <View
+                                    android:layout_marginTop="4dp"
+                                    android:layout_marginBottom="4dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="2dp"
+                                    android:background="#F0F0F0"/>
+
+                            </LinearLayout>
+
                         </LinearLayout>
 
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/linear_pekerjaan"
-                        android:visibility="gone"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
                         <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:id="@+id/linear_pekerjaan"
                             android:visibility="visible"
-                            android:orientation="horizontal"
-                            android:layout_marginTop="8dp">
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:id="@+id/txt_teks_ukuran"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Ukuran"
-                                    android:textColor="@color/colorGrey1"/>
-
-                                <TextView
-                                    android:id="@+id/txt_teks_bahan"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Bahan"
-                                    android:textColor="@color/colorGrey1"/>
-
-                                <TextView
-                                    android:id="@+id/txt_teks_quantity"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Quantity"
-                                    android:textColor="@color/colorGrey1"/>
-
-                                <TextView
-                                    android:id="@+id/txt_teks_harga"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Perkiraan Harga"
-                                    android:textColor="@color/colorGrey1"/>
-
-                                <TextView
-                                    android:id="@+id/txt_teks_catatan"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Catatan "
-                                    android:textColor="@color/colorGrey1"/>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                android:layout_marginLeft="12dp"
-                                android:layout_marginRight="8dp">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text=":"
-                                    android:textColor="@color/colorGrey1"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text=":"
-                                    android:textColor="@color/colorGrey1"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text=":"
-                                    android:textColor="@color/colorGrey1"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text=":"
-                                    android:textColor="@color/colorGrey1"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text=":"
-                                    android:textColor="@color/colorGrey1"/>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:id="@+id/txt_ukuran"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="ukuran"
-                                    android:textColor="@color/colorGrey2"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="bahan"
-                                    android:id="@+id/txt_bahan"
-                                    android:textColor="@color/colorGrey2"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="quantity"
-                                    android:id="@+id/txt_jumlah"
-                                    android:textColor="@color/colorGrey2"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="perkiraan harga"
-                                    android:id="@+id/txt_harga"
-                                    android:textColor="@color/colorGrey2"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Ini merupakan catatan Item"
-                                    android:id="@+id/txt_catatan"
-                                    android:textColor="@color/colorGrey2"/>
-
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                        <View
-                            android:layout_marginTop="8dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="2dp"
-                            android:background="#F0F0F0"/>
-
-                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
 
                             <LinearLayout
-                                android:layout_marginTop="8dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal">
+                                android:visibility="visible"
+                                android:orientation="horizontal"
+                                android:layout_marginTop="8dp">
 
-                                <TextView
-                                    android:id="@+id/txt_teks_attachment"
+                                <LinearLayout
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="File Attachment"
-                                    android:textColor="@color/colorGrey1"/>
+                                    android:orientation="vertical">
 
-                                <TextView
+                                    <TextView
+                                        android:id="@+id/txt_teks_ukuran"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Ukuran"
+                                        />
+
+                                    <TextView
+                                        android:id="@+id/txt_teks_bahan"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Bahan"
+                                        />
+
+                                    <TextView
+                                        android:id="@+id/txt_teks_quantity"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Quantity"
+                                        />
+
+                                    <TextView
+                                        android:id="@+id/txt_teks_harga"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Perkiraan Harga"
+                                        />
+
+                                    <TextView
+                                        android:id="@+id/txt_teks_catatan"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Catatan "
+                                        />
+
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
                                     android:layout_marginLeft="12dp"
-                                    android:layout_marginRight="8dp"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text=":"
-                                    android:textColor="@color/colorGrey1"/>
+                                    android:layout_marginRight="8dp">
 
-                                <TextView
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text=":"
+                                        />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text=":"
+                                        />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text=":"
+                                        />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text=":"
+                                        />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text=":"
+                                        />
+
+                                </LinearLayout>
+
+                                <LinearLayout
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="attachment"
-                                    android:id="@+id/txt_attachment"
-                                    android:textColor="@color/colorGrey2"/>
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/txt_ukuran"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="ukuran"
+                                        />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="bahan"
+                                        android:id="@+id/txt_bahan"/>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="quantity"
+                                        android:id="@+id/txt_jumlah"/>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="perkiraan harga"
+                                        android:id="@+id/txt_harga"/>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Ini merupakan catatan Item"
+                                        android:id="@+id/txt_catatan"/>
+
+                                </LinearLayout>
 
                             </LinearLayout>
 
-                            <Button
-                                android:id="@+id/btn_edit"
+                            <View
                                 android:layout_marginTop="8dp"
-                                android:layout_width="60dp"
-                                android:layout_height="30dp"
-                                android:text="Edit"
-                                android:textColor="@color/colorWhite"
-                                android:background="@drawable/button_rectangle"/>
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:background="#F0F0F0"/>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_marginTop="8dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/txt_teks_attachment"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="File Attachment"
+                                        />
+
+                                    <TextView
+                                        android:layout_marginLeft="12dp"
+                                        android:layout_marginRight="8dp"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text=":"
+                                        />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="attachment"
+                                        android:id="@+id/txt_attachment"/>
+
+                                </LinearLayout>
+
+                                <Button
+                                    android:id="@+id/btn_edit"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_width="60dp"
+                                    android:layout_height="30dp"
+                                    android:text="Edit"
+                                    android:textColor="@color/white"
+                                    android:background="@drawable/button_rectangle"/>
+
+                            </LinearLayout>
 
                         </LinearLayout>
 
                     </LinearLayout>
 
-                </LinearLayout>
-
-                <android.support.v7.widget.RecyclerView
-                    android:visibility="visible"
-                    android:layout_centerHorizontal="true"
-                    android:layout_below="@id/layoutLinear_judul"
-                    android:id="@+id/reyclerview_listItem_lelang"
-                    android:orientation="vertical"
-                    tools:listitem="@layout/item_preview_lelang"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content">
-                </android.support.v7.widget.RecyclerView>
-
-                <LinearLayout
-                    android:layout_alignParentBottom="true"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="end|center_vertical"
-                    android:background="@color/colorBackground"
-                    android:padding="12dp"
-                    android:layout_weight="0">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                    <android.support.v7.widget.RecyclerView
+                        android:visibility="gone"
+                        android:layout_centerHorizontal="true"
+                        android:layout_below="@id/layoutLinear_judul"
+                        android:id="@+id/reyclerview_listItem_lelang"
                         android:orientation="vertical"
-                        android:gravity="end">
+                        tools:listitem="@layout/item_preview_lelang"
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="60dp">
+                    </android.support.v7.widget.RecyclerView>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Total Perkiraan Harga :"/>
+                </RelativeLayout>
+                '
 
-                        <TextView
-                            android:id="@+id/txt_perkiraan_totalHarga"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="harga"
-                            android:textColor="@color/colorRed"/>
-                    </LinearLayout>
+            </android.support.v4.widget.SwipeRefreshLayout>
 
-                    <Button
-                        android:id="@+id/btn_posting"
-                        android:layout_marginLeft="12dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="34dp"
-                        android:background="@drawable/button_rectangle"
-                        android:text="Posting"
-                        android:textColor="@color/colorWhite"
-                        android:textAllCaps="false" />
+        </LinearLayout>
 
-                </LinearLayout>
+        <LinearLayout
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="end|center_vertical"
+            android:background="@color/bgCerah"
+            android:padding="12dp"
+            android:layout_weight="0">
 
-            </RelativeLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="end">
 
-    </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total Perkiraan Harga :"/>
+
+                <TextView
+                    android:id="@+id/txt_perkiraan_totalHarga"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="harga"
+                    android:textColor="@android:color/holo_red_light"/>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_posting"
+                android:layout_marginLeft="12dp"
+                android:layout_width="wrap_content"
+                android:layout_height="34dp"
+                android:background="@drawable/button_rectangle"
+                android:text="Posting"
+                android:textColor="@color/white"
+                android:textAllCaps="false" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
 
 
 

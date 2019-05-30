@@ -13,10 +13,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.ags.ayolelang.API.RetrofitClient;
+import com.ags.ayolelang.DBHelper.KotaHelper;
+import com.ags.ayolelang.DBHelper.ProvinsiHelper;
 import com.ags.ayolelang.Fragment.DatePickerFragmentDialog;
 import com.ags.ayolelang.Models.IntegerRespon;
 import com.ags.ayolelang.Models.Kota;
@@ -29,6 +32,7 @@ import com.ags.ayolelang.R;
 import com.ags.ayolelang.Storage.SharedPrefManager;
 
 import java.io.IOException;
+import java.security.cert.Extension;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -43,12 +47,16 @@ import static com.ags.ayolelang.API.RetrofitClient.secret_key;
 
 public class Deskripsi extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
-    private static ArrayList<Provinsi> provs = new ArrayList<>();
-    private static ArrayList<Kota> kotas = new ArrayList<>();
     EditText judul, deskripsi, deadline, alamat;
     Spinner pembayaran_spinner, provinsi_spinner, kota_spinner;
 
     private static int temp_kotaid;
+    private ImageView image_Kalender;
+
+    ///edit variable
+    private String judul_e, deskripsi_e, deadline_e, alamat_e, prov_e, kota_e, pembayaran_e;
+    private int lelang_id_e;
+    private boolean edit = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +70,19 @@ public class Deskripsi extends AppCompatActivity implements DatePickerDialog.OnD
         deskripsi = findViewById(R.id.in_deskripsi);
         deadline = findViewById(R.id.in_Deadline);
         alamat = findViewById(R.id.in_alamat);
+        image_Kalender = findViewById(R.id.image_Kalender);
+        Intent intent = getIntent();
+        if (intent != null) {
+            edit = intent.getBooleanExtra("edit", false);
+            judul_e = intent.getStringExtra("judul");
+            deskripsi_e = intent.getStringExtra("deskripsi");
+            deadline_e = intent.getStringExtra("deadline");
+            alamat_e = intent.getStringExtra("alamatlengkap");
+            prov_e = intent.getStringExtra("provnama");
+            kota_e = intent.getStringExtra("kotanama");
+            pembayaran_e = intent.getStringExtra("pembayaran");
+            lelang_id_e = intent.getIntExtra("id", 0);
+        }
 
         loadprovinsi();
 
@@ -74,6 +95,14 @@ public class Deskripsi extends AppCompatActivity implements DatePickerDialog.OnD
         ArrayAdapter<String> pembayaranadapter = new ArrayAdapter<>(getApplicationContext(), R.layout.support_simple_spinner_dropdown_item, getResources().getStringArray(R.array.metode_bayar));
         pembayaranadapter.notifyDataSetChanged();
         pembayaran_spinner.setAdapter(pembayaranadapter);
+        if (edit) {
+            judul.setText(judul_e);
+            deskripsi.setText(deskripsi_e);
+            deadline.setText(deadline_e.substring(0, 10));
+            int postion = pembayaranadapter.getPosition(pembayaran_e);
+            pembayaran_spinner.setSelection(postion);
+            alamat.setText(alamat_e);
+        }
 
         provinsi_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -101,7 +130,7 @@ public class Deskripsi extends AppCompatActivity implements DatePickerDialog.OnD
             }
         });
 
-        deadline.setOnClickListener(new View.OnClickListener() {
+        image_Kalender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DialogFragment datePicker = new DatePickerFragmentDialog();
@@ -111,107 +140,63 @@ public class Deskripsi extends AppCompatActivity implements DatePickerDialog.OnD
     }
 
     private int getProvid(String s) {
-        int i = 0;
-        for (Provinsi provinsi : provs) {
-            if (provinsi.getNama().equalsIgnoreCase(s)) {
-                i = provinsi.getId();
-            }
-        }
+        ProvinsiHelper provinsiHelper=new ProvinsiHelper(getApplicationContext());
+        provinsiHelper.open();
+        Provinsi provinsi=provinsiHelper.getProvinsibyname(s);
+        provinsiHelper.close();
+        int i = i = provinsi.getId();
         return i;
     }
 
     private int getKotaid(String s) {
-        int i = 0;
-        for (Kota kota : kotas) {
-            if (kota.getNama().equalsIgnoreCase(s)) {
-                i = kota.getId();
-            }
-        }
+        KotaHelper kotaHelper = new KotaHelper(getApplicationContext());
+        kotaHelper.open();
+        Kota kota = kotaHelper.getKotabyname(s);
+        kotaHelper.close();
+        int i = kota.getId();
         return i;
     }
 
 
     private void loadkota(int i) {
-        Call<KotaResponArray> call = RetrofitClient
-                .getInstance().getApi().getkabupaten(secret_key, i);
-        // Set up progress before call
-        final ProgressDialog progressDoalog;
-        progressDoalog = new ProgressDialog(Deskripsi.this);
-        //progressDoalog.setMax(100);
-        progressDoalog.setMessage("Loading....");
-        //progressDoalog.setTitle("ProgressDialog bar example");
-        progressDoalog.setCancelable(false);
-        progressDoalog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        // show it
-        progressDoalog.show();
-        call.enqueue(new Callback<KotaResponArray>() {
-            @Override
-            public void onResponse(Call<KotaResponArray> call, Response<KotaResponArray> response) {
-                progressDoalog.dismiss();
-                KotaResponArray kotaResponArray = response.body();
-                ArrayList<String> kota_s = new ArrayList<>();
-                if (!kotaResponArray.isError()) {
-                    kotas.clear();
-                    for (Kota kota : kotaResponArray.getData()) {
-                        kotas.add(kota);
-                        kota_s.add(kota.getNama());
-                    }
-                    ArrayAdapter<String> kotaadapter = new ArrayAdapter<>(getApplicationContext(), R.layout.support_simple_spinner_dropdown_item, kota_s);
-                    kotaadapter.notifyDataSetChanged();
-                    kota_spinner.setAdapter(kotaadapter);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<KotaResponArray> call, Throwable t) {
-                progressDoalog.dismiss();
-                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        });
-
+        KotaHelper kotaHelper = new KotaHelper(getApplicationContext());
+        kotaHelper.open();
+        ArrayList<Kota> kotas = kotaHelper.getKotabyProvId(i);
+        kotaHelper.close();
+        ArrayList<String> kota_s = new ArrayList<>();
+        for (Kota kota : kotas) {
+            kota_s.add(kota.getNama());
+        }
+        ArrayAdapter<String> kotaadapter = new ArrayAdapter<>(getApplicationContext(), R.layout.support_simple_spinner_dropdown_item, kota_s);
+        kotaadapter.notifyDataSetChanged();
+        kota_spinner.setAdapter(kotaadapter);
     }
 
     private void loadprovinsi() {
-        Call<ProvinsiResponArray> call = RetrofitClient
-                .getInstance().getApi().getprovinsi(secret_key);
-        // Set up progress before call
-        final ProgressDialog progressDoalog;
-        progressDoalog = new ProgressDialog(Deskripsi.this);
-        //progressDoalog.setMax(100);
-        progressDoalog.setMessage("Loading....");
-        //progressDoalog.setTitle("ProgressDialog bar example");
-        progressDoalog.setCancelable(false);
-        progressDoalog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        // show it
-        progressDoalog.show();
-        call.enqueue(new Callback<ProvinsiResponArray>() {
-            @Override
-            public void onResponse(Call<ProvinsiResponArray> call, Response<ProvinsiResponArray> response) {
-                progressDoalog.dismiss();
-                ProvinsiResponArray provinsiResponArray = response.body();
-                //Log.d("Log provinsi",provinsiResponArray.toString());
-                ArrayList<String> prov_s = new ArrayList<>();
-                if (!provinsiResponArray.isError()) {
-                    provs.clear();
-                    for (Provinsi provinsi : provinsiResponArray.getData()) {
-                        provs.add(provinsi);
-                        prov_s.add(provinsi.getNama());
-                    }
-                    ArrayAdapter<String> provinsiadapter = new ArrayAdapter<>(getApplicationContext(), R.layout.support_simple_spinner_dropdown_item, prov_s);
-                    provinsiadapter.notifyDataSetChanged();
-                    provinsi_spinner.setAdapter(provinsiadapter);
-                }
-            }
+        ProvinsiHelper provinsiHelper = new ProvinsiHelper(getApplicationContext());
+        provinsiHelper.open();
+        ArrayList<Provinsi> provs = provinsiHelper.getAllData();
+        provinsiHelper.close();
+        ArrayList<String> prov_s = new ArrayList<>();
+        for (Provinsi provinsi : provs) {
+            prov_s.add(provinsi.getNama());
+        }
 
-            @Override
-            public void onFailure(Call<ProvinsiResponArray> call, Throwable t) {
-                progressDoalog.dismiss();
-                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        });
+        ArrayAdapter<String> provinsiadapter = new ArrayAdapter<>(getApplicationContext(), R.layout.support_simple_spinner_dropdown_item, prov_s);
+        provinsiadapter.notifyDataSetChanged();
+        provinsi_spinner.setAdapter(provinsiadapter);
     }
 
     public void next(View view) {
+        if (edit) {
+            editLelang();
+        } else {
+            buatLelang();
+        }
+
+    }
+
+    private void buatLelang() {
         String provinsi = this.provinsi_spinner.getSelectedItem().toString(),
                 kota = this.kota_spinner.getSelectedItem().toString(),
                 judul = this.judul.getText().toString(),
@@ -223,7 +208,7 @@ public class Deskripsi extends AppCompatActivity implements DatePickerDialog.OnD
         String s = DetailSpesifikasi.req_pekerjaan.toString();
 
         Log.d("testsst", s);
-        if(DetailSpesifikasi.req_pekerjaan.getPekerjaan_fileurl()== null){
+        if (DetailSpesifikasi.req_pekerjaan.getPekerjaan_fileurl() == null) {
             DetailSpesifikasi.req_pekerjaan.setPekerjaan_fileurl("-");
         }
 
@@ -245,17 +230,32 @@ public class Deskripsi extends AppCompatActivity implements DatePickerDialog.OnD
                         DetailSpesifikasi.req_pekerjaan.getPekerjaan_fileurl(),
                         DetailSpesifikasi.req_pekerjaan.getPekerjaan_catatan()
                 );
+
+        // Set up progress before call
+        final ProgressDialog progressDoalog;
+        progressDoalog = new ProgressDialog(Deskripsi.this);
+        //progressDoalog.setMax(100);
+        progressDoalog.setMessage("Loading....");
+        //progressDoalog.setTitle("ProgressDialog bar example");
+        progressDoalog.setCancelable(false);
+        progressDoalog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        // show it
+        progressDoalog.show();
+
         call.enqueue(new Callback<StringRespon>() {
             @Override
             public void onResponse(Call<StringRespon> call, Response<StringRespon> response) {
-                if (response.isSuccessful()){
-                    if (!response.body().isError()){
+                progressDoalog.dismiss();
+                if (response.isSuccessful()) {
+                    if (!response.body().isError()) {
                         Log.d("insert lelang", response.body().toString());
                         Intent intent = new Intent(Deskripsi.this, Preview.class);
-                        intent.putExtra("lelang_id",Integer.parseInt(response.body().getData()));
+                        intent.putExtra("lelang_id", Integer.parseInt(response.body().getData()));
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
+                        finish();
                     }
-                }else {
+                } else {
                     Log.d("insert lelang", response.toString());
 //                    try {
 //                        longLog(response.errorBody().string());
@@ -267,10 +267,73 @@ public class Deskripsi extends AppCompatActivity implements DatePickerDialog.OnD
 
             @Override
             public void onFailure(Call<StringRespon> call, Throwable t) {
+                progressDoalog.dismiss();
                 Log.d("ERROR REQUEST", t.getMessage().toString());
             }
         });
+    }
 
+    private void editLelang() {
+        String provinsi = this.provinsi_spinner.getSelectedItem().toString(),
+                kota = this.kota_spinner.getSelectedItem().toString(),
+                judul = this.judul.getText().toString(),
+                deskripsi = this.deskripsi.getText().toString(),
+                deadline = this.deadline.getText().toString(),
+                alamat = this.alamat.getText().toString();
+        int pembayaran = this.pembayaran_spinner.getSelectedItemPosition();
+
+        Call<StringRespon> call = RetrofitClient
+                .getInstance().getApi().lelang_edit(
+                        secret_key,
+                        lelang_id_e,
+                        SharedPrefManager.getInstance(getApplicationContext()).getUser().getUser_id(),
+                        deskripsi,
+                        deadline,
+                        judul,
+                        pembayaran,
+                        alamat,
+                        getKotaid(kota)
+                );
+
+        // Set up progress before call
+        final ProgressDialog progressDoalog;
+        progressDoalog = new ProgressDialog(Deskripsi.this);
+        //progressDoalog.setMax(100);
+        progressDoalog.setMessage("Loading....");
+        //progressDoalog.setTitle("ProgressDialog bar example");
+        progressDoalog.setCancelable(false);
+        progressDoalog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        // show it
+        progressDoalog.show();
+
+        call.enqueue(new Callback<StringRespon>() {
+            @Override
+            public void onResponse(Call<StringRespon> call, Response<StringRespon> response) {
+                progressDoalog.dismiss();
+                if (response.isSuccessful()) {
+                    if (!response.body().isError()) {
+                        Intent intent = new Intent(Deskripsi.this, Preview.class);
+                        intent.putExtra("lelang_id", lelang_id_e);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                        finish();
+                    }
+                } else {
+                    Log.d("insert lelang", response.toString());
+//                    try {
+//                        longLog(response.errorBody().string());
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<StringRespon> call, Throwable t) {
+                progressDoalog.dismiss();
+                Log.d("ERROR REQUEST", t.getMessage().toString());
+            }
+        });
     }
 
 

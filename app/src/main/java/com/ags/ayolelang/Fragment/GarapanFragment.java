@@ -50,8 +50,8 @@ public class GarapanFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        Fragment fragment = fragment = new FragmentSubKategori();
-        ;
+        Fragment fragment = new FragmentSubKategori();
+
         Bundle bundle = new Bundle();
         bundle.putInt("mode", 1);
         switch (v.getId()) {

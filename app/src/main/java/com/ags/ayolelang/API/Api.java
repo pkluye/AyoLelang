@@ -1,5 +1,6 @@
 package com.ags.ayolelang.API;
 
+import com.ags.ayolelang.Models.FetchDBRespon;
 import com.ags.ayolelang.Models.KotaResponArray;
 import com.ags.ayolelang.Models.LelangRespon;
 import com.ags.ayolelang.Models.ProvinsiResponArray;
@@ -46,13 +47,13 @@ public interface Api {
     @POST("c_kategori/kategori_getDataKategori")
     Call<KategoriResponArray> kategori_getDataKategori(
             @Field("secret_key") String secret_key,
-            @Field("id")int kategori_id);
+            @Field("id") int kategori_id);
 
     @FormUrlEncoded
     @POST("c_kategori/kategori_getDataSubParentKategori")
     Call<KategoriResponArray> kategori_getDataSubParentKategori(
             @Field("secret_key") String secret_key,
-            @Field("id")int kategori_id);
+            @Field("id") int kategori_id);
 
     @Multipart
     @POST("c_upload/do_upload")
@@ -65,7 +66,7 @@ public interface Api {
     @POST("c_indonesia/getkabupaten")
     Call<KotaResponArray> getkabupaten(
             @Field("secret_key") String secret_key,
-            @Field("provinsi_id")int provinsi_id);
+            @Field("provinsi_id") int provinsi_id);
 
     @FormUrlEncoded
     @POST("c_indonesia/getprovinsi")
@@ -102,12 +103,11 @@ public interface Api {
             @Field("lelang_judul") String judul,
             @Field("lelang_pembayaran") int pembayaran,
             @Field("lelang_alamat") String alamat,
-            @Field("lelang_kota") int kotaid,
-            @Field("lelang_anggaran") long pekerjaan_harga);
+            @Field("lelang_kota") int kotaid);
 
     @FormUrlEncoded
     @POST("c_lelang/lelang_posting")
-    Call<LelangRespon> lelang_posting(
+    Call<StringRespon> lelang_posting(
             @Field("secret_key") String secret_key,
             @Field("lelang_id") int lelang_id,
             @Field("lelang_userid") String user_id);
@@ -118,4 +118,45 @@ public interface Api {
             @Field("secret_key") String secret_key,
             @Field("lelang_id") int lelang_id);
 
+    @FormUrlEncoded
+    @POST("c_pekerjaan/pekerjaan_edit")
+    Call<StringRespon> pekerjaan_edit(
+            @Field("secret_key") String secret_key,
+            @Field("pekerjaan_id") int pekerjaan_id,
+            @Field("pekerjaan_ukuran") String pekerjaan_ukuran,
+            @Field("pekerjaan_bahan") String pekerjaan_bahan,
+            @Field("pekerjaan_jumlah") int pekerjaan_jumlah,
+            @Field("pekerjaan_harga") long pekerjaan_harga,
+            @Field("pekerjaan_fileurl") String pekerjaan_fileurl,
+            @Field("pekerjaan_catatan") String pekerjaan_catatan,
+            @Field("user_id") String user_id);
+
+    @FormUrlEncoded
+    @POST("c_pekerjaan/pekerjaan_delete")
+    Call<StringRespon> pekerjaan_delete(
+            @Field("secret_key") String secret_key,
+            @Field("pekerjaan_id") int pekerjaan_id,
+            @Field("user_id") String user_id);
+
+    @FormUrlEncoded
+    @POST("c_pekerjaan/pekerjaan_buat")
+    Call<StringRespon> pekerjaan_buat(
+            @Field("secret_key") String secret_key,
+            @Field("pekerjaan_lelangid") int pekerjaan_id,
+            @Field("pekerjaan_ukuran") String pekerjaan_ukuran,
+            @Field("pekerjaan_bahan") String pekerjaan_bahan,
+            @Field("pekerjaan_jumlah") int pekerjaan_jumlah,
+            @Field("pekerjaan_harga") long pekerjaan_harga,
+            @Field("pekerjaan_fileurl") String pekerjaan_fileurl,
+            @Field("pekerjaan_catatan") String pekerjaan_catatan,
+            @Field("pekerjaan_kategoriid") int pekerjaan_kategoriid,
+            @Field("user_id") String user_id);
+
+    @FormUrlEncoded
+    @POST("c_fetchdata/fetchdata")
+    Call<FetchDBRespon> fetchKotaProv(
+            @Field("secret_key") String secret_key,
+            @Field("token_kategori") String s,
+            @Field("token_provinsi") String s1,
+            @Field("token_kota") String s2);
 }
