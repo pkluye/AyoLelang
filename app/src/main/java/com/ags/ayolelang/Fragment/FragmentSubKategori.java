@@ -1,41 +1,31 @@
 package com.ags.ayolelang.Fragment;
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.ags.ayolelang.API.RetrofitClient;
 import com.ags.ayolelang.Adapter.AdapterSubKategori;
 import com.ags.ayolelang.DBHelper.KategoriHelper;
-import com.ags.ayolelang.Models.KategoriResponArray;
 import com.ags.ayolelang.Models.Kategori;
 import com.ags.ayolelang.R;
 
 import java.util.ArrayList;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
-import static com.ags.ayolelang.API.RetrofitClient.secret_key;
 
 public class FragmentSubKategori extends Fragment {
 
     private View v;
     private TextView txt_no_item, txt_subTittle, txt_subPenjelasan;
     private RecyclerView rv_subFragment;
-    private ImageButton btn_back;
+    private ImageView btn_back;
     private int mode = 1, kategori_id = -1, lelang_id = 0;
     private String tittle;
 

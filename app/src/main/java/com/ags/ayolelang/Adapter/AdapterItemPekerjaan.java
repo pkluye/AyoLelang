@@ -54,17 +54,17 @@ public class AdapterItemPekerjaan extends RecyclerView.Adapter<AdapterItemPekerj
 
     @Override
     public void onBindViewHolder(@NonNull CustomHolderView customHolderView, final int i) {
-        final Pekerjaan pekerjaan=pekerjaanArrayList.get(i);
+        final Pekerjaan pekerjaan = pekerjaanArrayList.get(i);
 
         customHolderView.txt_judul_item.setText(pekerjaan.getPekerjaan_kategorinama());
-        customHolderView.txt_perkiraan_harga.setText(pekerjaan.getPekerjaan_harga()+"");
-        if(pekerjaan.getPekerjaan_fileurl().length()>1){
-            String filename="";
-            int posOfSubstr = pekerjaan.getPekerjaan_fileurl().lastIndexOf("/")+12;
-            if(pekerjaan.getPekerjaan_fileurl().length()>79){
-                filename=pekerjaan.getPekerjaan_fileurl().substring(posOfSubstr, 17) + "...";
-            }else{
-                filename=pekerjaan.getPekerjaan_fileurl().substring(posOfSubstr);
+        customHolderView.txt_perkiraan_harga.setText(pekerjaan.getPekerjaan_harga() + "");
+        if (pekerjaan.getPekerjaan_fileurl().length() > 1) {
+            String filename = "";
+            int posOfSubstr = pekerjaan.getPekerjaan_fileurl().lastIndexOf("/") + 12;
+            if (pekerjaan.getPekerjaan_fileurl().length() > 79) {
+                filename = pekerjaan.getPekerjaan_fileurl().substring(posOfSubstr, 17) + "...";
+            } else {
+                filename = pekerjaan.getPekerjaan_fileurl().substring(posOfSubstr);
             }
             customHolderView.txt_file_attachment.setText(filename);
             customHolderView.txt_file_attachment.setTextColor(Color.parseColor("#0000ff"));
@@ -77,18 +77,24 @@ public class AdapterItemPekerjaan extends RecyclerView.Adapter<AdapterItemPekerj
                     context.startActivity(i);
                 }
             });
-        }else{
+        } else {
             customHolderView.txt_file_attachment.setText("-");
         }
         customHolderView.btn_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                deleteItem(pekerjaan.getPekerjaan_id());
-                pekerjaanArrayList.remove(i);
-                notifyDataSetChanged();
+                if (pekerjaanArrayList.size() <= 1) {
+                    Toast.makeText(context, "Anda tidak dapat menghapus pekerjaan lagi, minimal harus ada 1 pekerjaan yang dilelang",
+                            Toast.LENGTH_LONG).show();
+                } else {
+                    deleteItem(pekerjaan.getPekerjaan_id());
+                    pekerjaanArrayList.remove(i);
+                    notifyDataSetChanged();
+                }
+
             }
         });
-        
+
         customHolderView.btn_detailItemLelang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,17 +104,17 @@ public class AdapterItemPekerjaan extends RecyclerView.Adapter<AdapterItemPekerj
         customHolderView.btn_editItemLelang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(context, DetailSpesifikasi.class);
-                intent.putExtra("edit",true);
-                intent.putExtra("ukuran",pekerjaan.getPekerjaan_ukuran());
-                intent.putExtra("bahan",pekerjaan.getPekerjaan_bahan());
-                intent.putExtra("jumlah",pekerjaan.getPekerjaan_jumlah());
-                intent.putExtra("harga",pekerjaan.getPekerjaan_harga());
-                intent.putExtra("catatan",pekerjaan.getPekerjaan_catatan());
-                intent.putExtra("fileurl",pekerjaan.getPekerjaan_fileurl());
-                intent.putExtra("lelang_id",pekerjaan.getPekerjaan_lelangid());
-                intent.putExtra("pekerjaan_id",pekerjaan.getPekerjaan_id());
-                intent.putExtra("kategori_id",pekerjaan.getPekerjaan_kategoriid());
+                Intent intent = new Intent(context, DetailSpesifikasi.class);
+                intent.putExtra("edit", true);
+                intent.putExtra("ukuran", pekerjaan.getPekerjaan_ukuran());
+                intent.putExtra("bahan", pekerjaan.getPekerjaan_bahan());
+                intent.putExtra("jumlah", pekerjaan.getPekerjaan_jumlah());
+                intent.putExtra("harga", pekerjaan.getPekerjaan_harga());
+                intent.putExtra("catatan", pekerjaan.getPekerjaan_catatan());
+                intent.putExtra("fileurl", pekerjaan.getPekerjaan_fileurl());
+                intent.putExtra("lelang_id", pekerjaan.getPekerjaan_lelangid());
+                intent.putExtra("pekerjaan_id", pekerjaan.getPekerjaan_id());
+                intent.putExtra("kategori_id", pekerjaan.getPekerjaan_kategoriid());
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
             }
@@ -127,16 +133,16 @@ public class AdapterItemPekerjaan extends RecyclerView.Adapter<AdapterItemPekerj
 
         txt_ukuran.setText(pekerjaan.getPekerjaan_ukuran());
         txt_bahan.setText(pekerjaan.getPekerjaan_bahan());
-        txt_jumlah.setText(pekerjaan.getPekerjaan_jumlah()+"");
-        txt_harga.setText(pekerjaan.getPekerjaan_harga()+"");
+        txt_jumlah.setText(pekerjaan.getPekerjaan_jumlah() + "");
+        txt_harga.setText(pekerjaan.getPekerjaan_harga() + "");
         txt_catatan.setText(pekerjaan.getPekerjaan_catatan());
-        if(pekerjaan.getPekerjaan_fileurl().length()>1){
-            String filename="";
-            int posOfSubstr = pekerjaan.getPekerjaan_fileurl().lastIndexOf("/")+12;
-            if(pekerjaan.getPekerjaan_fileurl().length()>79){
-                filename=pekerjaan.getPekerjaan_fileurl().substring(posOfSubstr, 17) + "...";
-            }else{
-                filename=pekerjaan.getPekerjaan_fileurl().substring(posOfSubstr);
+        if (pekerjaan.getPekerjaan_fileurl().length() > 1) {
+            String filename = "";
+            int posOfSubstr = pekerjaan.getPekerjaan_fileurl().lastIndexOf("/") + 12;
+            if (pekerjaan.getPekerjaan_fileurl().length() > 79) {
+                filename = pekerjaan.getPekerjaan_fileurl().substring(posOfSubstr, 17) + "...";
+            } else {
+                filename = pekerjaan.getPekerjaan_fileurl().substring(posOfSubstr);
             }
             txt_attachment.setText(filename);
             txt_attachment.setTextColor(Color.parseColor("#0000ff"));
@@ -149,7 +155,7 @@ public class AdapterItemPekerjaan extends RecyclerView.Adapter<AdapterItemPekerj
                     context.startActivity(i);
                 }
             });
-        }else{
+        } else {
             txt_attachment.setText("-");
         }
 
@@ -173,7 +179,7 @@ public class AdapterItemPekerjaan extends RecyclerView.Adapter<AdapterItemPekerj
     }
 
     public void deleteItem(int id) {
-        Call<StringRespon> call= RetrofitClient.getInstance()
+        Call<StringRespon> call = RetrofitClient.getInstance()
                 .getApi().pekerjaan_delete(
                         secret_key,
                         id,
@@ -181,10 +187,10 @@ public class AdapterItemPekerjaan extends RecyclerView.Adapter<AdapterItemPekerj
         call.enqueue(new Callback<StringRespon>() {
             @Override
             public void onResponse(Call<StringRespon> call, Response<StringRespon> response) {
-                if (response.isSuccessful()){
-                    Toast.makeText(context,response.body().getMessage(),Toast.LENGTH_LONG).show();
-                }else {
-                    Toast.makeText(context,response.message(),Toast.LENGTH_LONG).show();
+                if (response.isSuccessful()) {
+                    Toast.makeText(context, response.body().getMessage(), Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(context, response.message(), Toast.LENGTH_LONG).show();
                 }
             }
 

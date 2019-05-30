@@ -88,12 +88,10 @@
                 android:text="Judul"/>
 
             <EditText
-                android:textColorHint="@color/colorlight"
                 android:hint="Masukkan nama pekerjaan"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/in_judul"
-                android:hint="Masukkan nama pekerjaan" />
+                android:id="@+id/in_judul"/>
         </LinearLayout>
 
         <LinearLayout
@@ -107,7 +105,6 @@
                 android:text="Deskripsi"/>
 
             <EditText
-                android:textColorHint="@color/colorlight"
                 android:hint="Jelaskan tentang pekerjaan"
                 android:id="@+id/in_deskripsi"
                 android:layout_width="300sp"
@@ -117,8 +114,7 @@
                 android:minLines="1"
                 android:gravity="top|left"
                 android:maxLines="10"
-                android:scrollbars="vertical"
-                android:hint="Jelaskan tentang pekerjaan"/>
+                android:scrollbars="vertical" />
 
         </LinearLayout>
 
@@ -167,12 +163,10 @@
                 android:gravity="left">
 
                 <EditText
-                    android:textColorHint="@color/colorlight"
                     android:hint="Pilih tanggal selesai"
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/in_Deadline"
-                    android:hint="Pilih tanggal selesai"/>
+                    android:id="@+id/in_Deadline" />
 
                 <ImageView
                     android:id="@+id/image_Kalender"
@@ -229,12 +223,10 @@
                 android:text="Alamat Lengkap"/>
 
             <EditText
-                android:textColorHint="@color/colorlight"
                 android:hint="Masukkan alamat"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/in_alamat"
-                android:hint="Masukkan alamat"/>
+                android:id="@+id/in_alamat" />
         </LinearLayout>
 
     </LinearLayout>

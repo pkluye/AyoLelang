@@ -7,18 +7,31 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.ags.ayolelang.Adapter.AdapterListlelang;
+import com.ags.ayolelang.DBHelper.KategoriHelper;
+import com.ags.ayolelang.DBHelper.LelangHelper;
+import com.ags.ayolelang.DBHelper.PekerjaanHelper;
+import com.ags.ayolelang.Models.Kategori;
+import com.ags.ayolelang.Models.Lelang;
+import com.ags.ayolelang.Models.Pekerjaan;
 import com.ags.ayolelang.R;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class ListLelangFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
     View v;
     TextView txt_subtext_kategori_dipilih;
     RecyclerView rv_search_lelang;
     int kategori_id;
+    ArrayList<Integer>listidkategori=new ArrayList<>();
     private SwipeRefreshLayout swipe_container;
 
     @Nullable
@@ -33,6 +46,14 @@ public class ListLelangFragment extends Fragment implements SwipeRefreshLayout.O
         Bundle bundle=getArguments();
         txt_subtext_kategori_dipilih.setText(bundle.getString("tittle"));
         kategori_id=bundle.getInt("id");
+        KategoriHelper kategoriHelper=new KategoriHelper(getContext());
+        kategoriHelper.open();
+        ArrayList<Kategori>kategoris=kategoriHelper.getKategoribyParent(kategori_id);
+        kategoriHelper.close();
+        for (Kategori kategori:kategoris){
+            listidkategori.add(kategori.getKategori_id());
+        }
+        //Log.d("listidkategori",listidkategori.toString());
         loadData();
 
         swipe_container.setOnRefreshListener(this);
@@ -40,7 +61,35 @@ public class ListLelangFragment extends Fragment implements SwipeRefreshLayout.O
     }
 
     private void loadData() {
-
+        LelangHelper lelangHelper = new LelangHelper(getContext());
+        lelangHelper.open();
+        ArrayList<Lelang> lelangs=lelangHelper.getAllLelang();
+        lelangHelper.close();
+        //Log.d("lelang size",lelangs.size()+"");
+        PekerjaanHelper pekerjaanHelper=new PekerjaanHelper(getContext());
+        ArrayList<Lelang> lelangs1=new ArrayList<>();
+        if (lelangs.size()>0){
+            for (Lelang lelang:lelangs){
+                pekerjaanHelper.open();
+                ArrayList<Pekerjaan> pekerjaan=pekerjaanHelper.getPekerjaan(lelang.getLelang_id());
+                pekerjaanHelper.close();
+                //Log.d("Pekerjaan size",pekerjaan.size()+"");
+                if (pekerjaan.size()>0){
+                    int id=pekerjaan.get(0).getPekerjaan_kategoriid();
+                    //Log.d("kategori",id+"");
+                    //Set<String> set = new HashSet<String>(listidkategori);
+                    Log.d("list",listidkategori.toString());
+                    if (listidkategori.contains(id)){
+                        //Log.d("jebol","masuk gan");
+                        lelangs1.add(lelang);
+                    }
+                }
+            }
+        }
+        AdapterListlelang adapterListlelang=new AdapterListlelang(getContext());
+        adapterListlelang.addItem(lelangs1);
+        rv_search_lelang.setAdapter(adapterListlelang);
+        swipe_container.setRefreshing(false);
     }
 
 

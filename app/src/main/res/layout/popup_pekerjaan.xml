@@ -182,7 +182,7 @@
             android:layout_height="30dp"
             android:text="Tutup"
             android:textAllCaps="false"
-            android:textColor="@color/white"
+            android:textColor="@color/colorWhite"
             android:background="@drawable/button_rectangle"
             android:backgroundTint="@android:color/holo_red_light"
             android:layout_gravity="end"/>

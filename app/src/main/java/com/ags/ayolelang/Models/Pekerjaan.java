@@ -4,12 +4,12 @@ public class Pekerjaan {
     private String pekerjaan_ukuran, pekerjaan_bahan, pekerjaan_catatan, pekerjaan_fileurl,pekerjaan_kategorinama;
     private int pekerjaan_id, pekerjaan_lelangid,pekerjaan_jumlah,pekerjaan_kategoriid;
     private long pekerjaan_harga;
-    private boolean pekerjaan_status;
+    private int pekerjaan_status;
 
     public Pekerjaan() {
     }
 
-    public Pekerjaan(String pekerjaan_ukuran, String pekerjaan_bahan, String pekerjaan_catatan, String pekerjaan_fileurl, String pekerjaan_kategorinama, int pekerjaan_id, int pekerjaan_lelangid, int pekerjaan_jumlah, int pekerjaan_kategoriid, long pekerjaan_harga, boolean pekerjaan_status) {
+    public Pekerjaan(String pekerjaan_ukuran, String pekerjaan_bahan, String pekerjaan_catatan, String pekerjaan_fileurl, String pekerjaan_kategorinama, int pekerjaan_id, int pekerjaan_lelangid, int pekerjaan_jumlah, int pekerjaan_kategoriid, long pekerjaan_harga, int pekerjaan_status) {
         this.pekerjaan_ukuran = pekerjaan_ukuran;
         this.pekerjaan_bahan = pekerjaan_bahan;
         this.pekerjaan_catatan = pekerjaan_catatan;
@@ -31,11 +31,11 @@ public class Pekerjaan {
         this.pekerjaan_kategorinama = pekerjaan_kategorinama;
     }
 
-    public boolean isPekerjaan_status() {
+    public int getPekerjaan_status() {
         return pekerjaan_status;
     }
 
-    public void setPekerjaan_status(boolean pekerjaan_status) {
+    public void setPekerjaan_status(int pekerjaan_status) {
         this.pekerjaan_status = pekerjaan_status;
     }
 

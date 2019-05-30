@@ -13,6 +13,8 @@ import android.view.MenuItem;
 import com.ags.ayolelang.API.RetrofitClient;
 import com.ags.ayolelang.DBHelper.KategoriHelper;
 import com.ags.ayolelang.DBHelper.KotaHelper;
+import com.ags.ayolelang.DBHelper.LelangHelper;
+import com.ags.ayolelang.DBHelper.PekerjaanHelper;
 import com.ags.ayolelang.DBHelper.ProvinsiHelper;
 import com.ags.ayolelang.Fragment.AccountFragment;
 import com.ags.ayolelang.Fragment.FragmentSubKategori;
@@ -24,6 +26,8 @@ import com.ags.ayolelang.Models.FetchDB;
 import com.ags.ayolelang.Models.FetchDBRespon;
 import com.ags.ayolelang.Models.Kategori;
 import com.ags.ayolelang.Models.Kota;
+import com.ags.ayolelang.Models.Lelang;
+import com.ags.ayolelang.Models.Pekerjaan;
 import com.ags.ayolelang.Models.Provinsi;
 import com.ags.ayolelang.R;
 import com.ags.ayolelang.Storage.SharedPrefManager;
@@ -50,6 +54,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     KotaHelper kotaHelper = new KotaHelper(this);
     ProvinsiHelper provinsiHelper = new ProvinsiHelper(this);
     KategoriHelper kategoriHelper = new KategoriHelper(this);
+    LelangHelper lelangHelper = new LelangHelper(this);
+    PekerjaanHelper pekerjaanHelper = new PekerjaanHelper(this);
     Disposable disposable;
 
     @Override
@@ -86,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     }
 
     private void fetchdata() {
-        disposable = Observable.interval(0,10,
+        disposable = Observable.interval(0, 10,
                 TimeUnit.SECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<Long>() {
@@ -103,20 +109,30 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                         provinsiHelper.open();
                         final boolean provinsi_isempty = provinsiHelper.isEmpty();
                         provinsiHelper.close();
-                        if (kategori_isempty == true && kota_isempty == true && provinsi_isempty == true) {
+
+                        lelangHelper.open();
+                        final boolean lelang_ismpty = lelangHelper.isempty();
+                        lelangHelper.close();
+
+                        pekerjaanHelper.open();
+                        final boolean pekerjaan_ismpty = pekerjaanHelper.isempty();
+                        pekerjaanHelper.close();
+
+                        if (kategori_isempty == true && kota_isempty == true &&
+                                provinsi_isempty == true && lelang_ismpty == true &&
+                                pekerjaan_ismpty == true) {
                             loadToServer(0);
                         } else {
                             loadToServer(1);
                         }
                     }
-
                 });
     }
 
     private void loadToServer(final int i) {
         String[] token = SharedPrefManager.getInstance(getApplicationContext()).getToken();
         Call<FetchDBRespon> call = RetrofitClient.getInstance()
-                .getApi().fetchKotaProv(
+                .getApi().fetchDB(
                         secret_key,
                         token[0],
                         token[1],
@@ -152,7 +168,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                             ArrayList<Kota> kotas = fetchDB.getKotas();
                             insert_kota(kotas);
                             newtoken[2] = fetchDB.getToken_kota();
-                            Log.d("token kota",newtoken[2]+"");
+                            //Log.d("token kota",newtoken[2]+"");
                         }
                         if (fetchDBRespon.getMessage().contains("2")) {
                             ArrayList<Provinsi> provinsis = fetchDB.getProvinsis();
@@ -164,6 +180,19 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                             insert_kategori(kategoris);
                             newtoken[0] = fetchDB.getToken_kategori();
                         }
+
+                        if (fetchDBRespon.getMessage().contains("4")) {
+                            ArrayList<Lelang> lelangs = fetchDB.getLelangs();
+                            insert_lelang(lelangs);
+                            newtoken[3] = fetchDB.getToken_lelang();
+                        }
+
+                        if (fetchDBRespon.getMessage().contains("5")) {
+                            ArrayList<Pekerjaan> pekerjaans = fetchDB.getPekerjaans();
+                            insert_pekerjaan(pekerjaans);
+                            newtoken[4] = fetchDB.getToken_lelang();
+                        }
+
                         SharedPrefManager.getInstance(getApplicationContext()).saveToken(newtoken);
                     }
                 } else {
@@ -179,6 +208,20 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 Log.d("failure", t.getMessage());
             }
         });
+    }
+
+    private void insert_pekerjaan(ArrayList<Pekerjaan> pekerjaans) {
+        pekerjaanHelper.open();
+        pekerjaanHelper.truncate();
+        pekerjaanHelper.bulk_insert(pekerjaans);
+        pekerjaanHelper.close();
+    }
+
+    private void insert_lelang(ArrayList<Lelang> lelangs) {
+        lelangHelper.open();
+        lelangHelper.truncate();
+        lelangHelper.bulk_insert(lelangs);
+        lelangHelper.close();
     }
 
     private void insert_kota(ArrayList<Kota> kotas) {
@@ -254,28 +297,28 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d("state","onresume");
+        Log.d("state", "onresume");
         if (disposable.isDisposed()) fetchdata();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        Log.d("state","onpause");
+        Log.d("state", "onpause");
         if (!disposable.isDisposed()) disposable.dispose();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        Log.d("state","onstop");
+        Log.d("state", "onstop");
         if (!disposable.isDisposed()) disposable.dispose();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Log.d("state","ondestroy");
+        Log.d("state", "ondestroy");
         if (!disposable.isDisposed()) disposable.dispose();
     }
 }

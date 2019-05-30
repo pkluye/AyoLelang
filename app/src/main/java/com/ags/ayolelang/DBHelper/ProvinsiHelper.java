@@ -101,8 +101,21 @@ public class ProvinsiHelper {
         return provinsi;
     }
 
-    public void truncate(){
-        db.execSQL("DELETE FROM "+TABLE_PROVINSI);
+    public Provinsi getProvinsibyProvid(int i) {
+        Cursor cursor = db.query(TABLE_PROVINSI, null, PROVINSI_ID + "='" + i + "'", null, null, null, PROVINSI_NAMA + " ASC", null);
+        cursor.moveToFirst();
+        Provinsi provinsi = new Provinsi();
+        if (cursor.getCount() > 0) {
+            cursor.moveToPosition(0);
+            provinsi.setId(cursor.getInt(cursor.getColumnIndexOrThrow(PROVINSI_ID)));
+            provinsi.setNama(cursor.getString(cursor.getColumnIndexOrThrow(PROVINSI_NAMA)));
+        }
+        cursor.close();
+        return provinsi;
+    }
+
+    public void truncate() {
+        db.execSQL("DELETE FROM " + TABLE_PROVINSI);
         db.execSQL("VACUUM");
     }
 }

@@ -16,24 +16,17 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.ags.ayolelang.API.RetrofitClient;
 import com.ags.ayolelang.DBHelper.KotaHelper;
 import com.ags.ayolelang.DBHelper.ProvinsiHelper;
 import com.ags.ayolelang.Fragment.DatePickerFragmentDialog;
-import com.ags.ayolelang.Models.IntegerRespon;
 import com.ags.ayolelang.Models.Kota;
-import com.ags.ayolelang.Models.KotaResponArray;
-import com.ags.ayolelang.Models.LelangRespon;
 import com.ags.ayolelang.Models.Provinsi;
-import com.ags.ayolelang.Models.ProvinsiResponArray;
 import com.ags.ayolelang.Models.StringRespon;
 import com.ags.ayolelang.R;
 import com.ags.ayolelang.Storage.SharedPrefManager;
 
-import java.io.IOException;
-import java.security.cert.Extension;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -92,7 +85,7 @@ public class Deskripsi extends AppCompatActivity implements DatePickerDialog.OnD
         loadprovinsi();
 
         @SuppressLint("SimpleDateFormat") DateFormat dateFormat = new
-                SimpleDateFormat("yyyy-MM-dd");
+                SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String currentDateString = dateFormat.format(Calendar.getInstance().getTime());
 
         deadline.setText(currentDateString);
@@ -361,9 +354,12 @@ public class Deskripsi extends AppCompatActivity implements DatePickerDialog.OnD
         calendar.set(Calendar.YEAR, year);
         calendar.set(Calendar.MONTH, month);
         calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+        calendar.set(Calendar.HOUR,23);
+        calendar.set(Calendar.MINUTE,59);
+        calendar.set(Calendar.SECOND,59);
 
         @SuppressLint("SimpleDateFormat") DateFormat dateFormat = new
-                SimpleDateFormat("yyyy-MM-dd");
+                SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String currentDateString = dateFormat.format(calendar.getTime());
 
         deadline.setText(currentDateString);

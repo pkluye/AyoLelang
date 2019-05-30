@@ -1,12 +1,9 @@
 package com.ags.ayolelang.API;
 
 import com.ags.ayolelang.Models.FetchDBRespon;
-import com.ags.ayolelang.Models.KotaResponArray;
 import com.ags.ayolelang.Models.LelangRespon;
-import com.ags.ayolelang.Models.ProvinsiResponArray;
 import com.ags.ayolelang.Models.StringRespon;
 import com.ags.ayolelang.Models.UserRespon;
-import com.ags.ayolelang.Models.KategoriResponArray;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -43,17 +40,17 @@ public interface Api {
             @Field("user_id") String user_id,
             @Field("code") String code);
 
-    @FormUrlEncoded
-    @POST("c_kategori/kategori_getDataKategori")
-    Call<KategoriResponArray> kategori_getDataKategori(
-            @Field("secret_key") String secret_key,
-            @Field("id") int kategori_id);
+//    @FormUrlEncoded
+//    @POST("c_kategori/kategori_getDataKategori")
+//    Call<KategoriResponArray> kategori_getDataKategori(
+//            @Field("secret_key") String secret_key,
+//            @Field("id") int kategori_id);
 
-    @FormUrlEncoded
-    @POST("c_kategori/kategori_getDataSubParentKategori")
-    Call<KategoriResponArray> kategori_getDataSubParentKategori(
-            @Field("secret_key") String secret_key,
-            @Field("id") int kategori_id);
+//    @FormUrlEncoded
+//    @POST("c_kategori/kategori_getDataSubParentKategori")
+//    Call<KategoriResponArray> kategori_getDataSubParentKategori(
+//            @Field("secret_key") String secret_key,
+//            @Field("id") int kategori_id);
 
     @Multipart
     @POST("c_upload/do_upload")
@@ -62,16 +59,16 @@ public interface Api {
             @Part MultipartBody.Part userfile
     );
 
-    @FormUrlEncoded
-    @POST("c_indonesia/getkabupaten")
-    Call<KotaResponArray> getkabupaten(
-            @Field("secret_key") String secret_key,
-            @Field("provinsi_id") int provinsi_id);
-
-    @FormUrlEncoded
-    @POST("c_indonesia/getprovinsi")
-    Call<ProvinsiResponArray> getprovinsi(
-            @Field("secret_key") String secret_key);
+//    @FormUrlEncoded
+//    @POST("c_indonesia/getkabupaten")
+//    Call<KotaResponArray> getkabupaten(
+//            @Field("secret_key") String secret_key,
+//            @Field("provinsi_id") int provinsi_id);
+//
+//    @FormUrlEncoded
+//    @POST("c_indonesia/getprovinsi")
+//    Call<ProvinsiResponArray> getprovinsi(
+//            @Field("secret_key") String secret_key);
 
     @FormUrlEncoded
     @POST("c_lelang/lelang_buat_plus_pekerjaan")
@@ -154,7 +151,7 @@ public interface Api {
 
     @FormUrlEncoded
     @POST("c_fetchdata/fetchdata")
-    Call<FetchDBRespon> fetchKotaProv(
+    Call<FetchDBRespon> fetchDB(
             @Field("secret_key") String secret_key,
             @Field("token_kategori") String s,
             @Field("token_provinsi") String s1,

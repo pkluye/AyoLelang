@@ -56,6 +56,20 @@ public class KotaHelper {
         return kotas;
     }
 
+    public Kota getKotabyidKota(int i) {
+        Cursor cursor = db.query(TABLE_KOTA, null, KOTA_ID + "='" + i + "'", null, null, null, KOTA_NAMA + " ASC", null);
+        cursor.moveToFirst();
+        Kota kota = kota = new Kota();
+        if (cursor.getCount() > 0) {
+            cursor.moveToPosition(0);
+            kota.setId(cursor.getInt(cursor.getColumnIndexOrThrow(KOTA_ID)));
+            kota.setNama(cursor.getString(cursor.getColumnIndexOrThrow(KOTA_NAMA)));
+            kota.setProvinsi_id(cursor.getInt(cursor.getColumnIndexOrThrow(KOTA_PROVINSIID)));
+        }
+        cursor.close();
+        return kota;
+    }
+
     public Kota getKotabyname(String s) {
         Cursor cursor = db.query(TABLE_KOTA, null, KOTA_NAMA + "=?", new String[]{s}, null, null, KOTA_NAMA + " ASC", null);
         cursor.moveToFirst();
@@ -104,8 +118,8 @@ public class KotaHelper {
         }
     }
 
-    public void truncate(){
-        db.execSQL("DELETE FROM "+TABLE_KOTA);
+    public void truncate() {
+        db.execSQL("DELETE FROM " + TABLE_KOTA);
         db.execSQL("VACUUM");
     }
 }

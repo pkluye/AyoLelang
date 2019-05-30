@@ -80,6 +80,28 @@ public class KategoriHelper {
         return kategoris;
     }
 
+    public ArrayList<Kategori> getKategoribyParent(int id) {
+        db.beginTransaction();
+        ArrayList<Kategori> kategoris = new ArrayList<>();
+        Cursor cursor = db.query(TABLE_KATEGORI, null, KATEGORI_PARENTID + "='" + id + "'", null, null, null, KATEGORI_NAMA + " ASC", null);
+        cursor.moveToFirst();
+        Kategori kategori;
+        if (cursor.getCount()>0){
+            do{
+                kategori=new Kategori();
+                kategori.setKategori_id(cursor.getInt(cursor.getColumnIndexOrThrow(KATEGORI_ID)));
+                kategori.setKategori_nama(cursor.getString(cursor.getColumnIndexOrThrow(KATEGORI_NAMA)));
+                kategori.setKategori_parentid(cursor.getInt(cursor.getColumnIndexOrThrow(KATEGORI_PARENTID)));
+                kategori.setKategori_subparentid(cursor.getInt(cursor.getColumnIndexOrThrow(KATEGORI_SUBPARENTID)));
+                kategoris.add(kategori);
+                cursor.moveToNext();
+            }while (!cursor.isAfterLast());
+        }
+        cursor.close();
+        db.endTransaction();
+        return kategoris;
+    }
+
 
 
     public long insert(Kategori kategori){

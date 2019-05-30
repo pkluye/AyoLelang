@@ -102,6 +102,7 @@ public class Preview extends AppCompatActivity {
             public void onResponse(Call<StringRespon> call, Response<StringRespon> response) {
                 if (response.isSuccessful()){
                     Toast.makeText(getApplicationContext(),response.body().getMessage(),Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(Preview.this,MainActivity.class));
                 }else {
                     Toast.makeText(getApplicationContext(),response.message(),Toast.LENGTH_LONG).show();
                 }
@@ -144,7 +145,7 @@ public class Preview extends AppCompatActivity {
                         txt_deadline.setText(lelang.getLelang_tglselesai());
                         txt_deskripsi.setText(lelang.getLelang_deskripsi());
                         txt_perkiraan_totalHarga.setText("Rp. " + lelang.getLelang_anggaran());
-                        txt_pembayaran.setText(getResources().getStringArray(R.array.metode_bayar)[Integer.parseInt(lelang.getLelang_pembayaran())]);
+                        txt_pembayaran.setText(getResources().getStringArray(R.array.metode_bayar)[lelang.getLelang_pembayaran()]);
                         if (lelang.getPekerjaan().size() == 1) {
                             final Pekerjaan pekerjaan = lelang.getPekerjaan().get(0);
                             txt_ukuran.setText(pekerjaan.getPekerjaan_ukuran());
