@@ -49,24 +49,24 @@ public class AdapterListlelang extends RecyclerView.Adapter<AdapterListlelang.Cu
         cvh.txt_judulgarapan.setText(lelang.getLelang_judul());
         cvh.txt_harga.setText("Rp. " + lelang.getLelang_anggaran());
         cvh.txt_waktu.setText(getTime(lelang.getLelang_tglmulai()));
-        cvh.txt_tenggatWaktu.setText(lelang.getLelang_tglmulai().substring(0,11)+" ~ "+lelang.getLelang_tglselesai().substring(0,11));
-        cvh.txt_eta.setText("("+getTime(lelang.getLelang_tglmulai(),lelang.getLelang_tglselesai())+")");
+        cvh.txt_tenggatWaktu.setText(lelang.getLelang_tglmulai().substring(0, 11) + " ~ " + lelang.getLelang_tglselesai().substring(0, 11));
+        cvh.txt_eta.setText("(" + getEta(lelang.getLelang_tglselesai()) + ")");
         cvh.txt_alamat.setText(getKotaProv(lelang.getLelang_kota()));
-        Log.d("getkotaProv",getKotaProv(lelang.getLelang_kota()));
+        Log.d("getkotaProv", getKotaProv(lelang.getLelang_kota()));
         cvh.txt_jumlahmitra.setText("0");
     }
 
-    private String getKotaProv(int i){
-        String s="";
+    private String getKotaProv(int i) {
+        String s = "";
         KotaHelper kotaHelper = new KotaHelper(context);
         kotaHelper.open();
-        Kota kota=kotaHelper.getKotabyidKota(i);
+        Kota kota = kotaHelper.getKotabyidKota(i);
         kotaHelper.close();
-        ProvinsiHelper provinsiHelper=new ProvinsiHelper(context);
+        ProvinsiHelper provinsiHelper = new ProvinsiHelper(context);
         provinsiHelper.open();
-        Provinsi provinsi=provinsiHelper.getProvinsibyProvid(kota.getProvinsi_id());
+        Provinsi provinsi = provinsiHelper.getProvinsibyProvid(kota.getProvinsi_id());
         provinsiHelper.close();
-        return kota.getNama()+","+provinsi.getNama();
+        return kota.getNama() + "," + provinsi.getNama();
     }
 
     private String getTime(String lelang_tglmulai) {
@@ -84,50 +84,57 @@ public class AdapterListlelang extends RecyclerView.Adapter<AdapterListlelang.Cu
 
         long diff = now.getTime() - createLelang.getTime();
         //Log.d("time", now.getTime() + " " + createLelang.getTime());
-        return diff(diff)+" yang lalu";
+        return diff(diff) + " yang lalu";
     }
 
-    private String getTime(String lelang_tglmulai,String lelang_tglselesai) {
+    private String getEta(String lelang_tglselesai) {
         @SuppressLint("SimpleDateFormat") DateFormat dateFormat = new
                 SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String s = dateFormat.format(Calendar.getInstance().getTime());
+        Date now = null;
         Date deadline = null;
-        Date createLelang = null;
         try {
+            deadline = dateFormat.parse(s);
             deadline = dateFormat.parse(lelang_tglselesai);
-            createLelang = dateFormat.parse(lelang_tglmulai);
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
-        long diff = deadline.getTime() - createLelang.getTime();
+        long diff = deadline.getTime() - now.getTime();
         //Log.d("time", now.getTime() + " " + createLelang.getTime());
-        return diff(diff)+" lagi";
+        if (!diff(diff).equalsIgnoreCase("e")){
+            return diff(diff)+" lagi";
+        }
+        return "expired";
     }
 
     private String diff(long diff) {
-        if (diff / (1000 * 60) > 0) {
-            if (diff / (1000 * 60 * 60) > 0) {
-                if (diff / (1000 * 60 * 60 * 24) > 0) {
-                    if (diff / (1000 * 60 * 60 * 24 * 30) > 0) {
-                        if (diff / (1000 * 60 * 60 * 24 * 365) > 0) {
-                            int selisih = Integer.parseInt(diff / (1000 * 60 * 60 * 24 * 365) + "");
-                            return selisih + " tahun";
+        if (diff/1000%60 >0){
+            if (diff / (1000 * 60) > 0) {
+                if (diff / (1000 * 60 * 60) > 0) {
+                    if (diff / (1000 * 60 * 60 * 24) > 0) {
+                        if (diff / (1000 * 60 * 60 * 24 * 30) > 0) {
+                            if (diff / (1000 * 60 * 60 * 24 * 365) > 0) {
+                                int selisih = Integer.parseInt(diff / (1000 * 60 * 60 * 24 * 365) + "");
+                                return selisih + " tahun";
+                            }
+                            int selisih = Integer.parseInt(diff / (1000 * 60 * 60 * 24 * 30) + "");
+                            return selisih + " bulan";
                         }
-                        int selisih = Integer.parseInt(diff / (1000 * 60 * 60 * 24 * 30) + "");
-                        return selisih + " bulan";
+                        int selisih = Integer.parseInt(diff / (1000 * 60 * 60 * 24) + "");
+                        return selisih + " hari";
                     }
-                    int selisih = Integer.parseInt(diff / (1000 * 60 * 60 * 24) + "");
-                    return selisih + " hari";
+                    int selisih = Integer.parseInt(diff / (1000 * 60 * 60) + "");
+                    return selisih + " jam";
                 }
-                int selisih = Integer.parseInt(diff / (1000 * 60 * 60) + "");
-                return selisih + " jam";
+                int selisih = Integer.parseInt(diff / 1000 * 60 + "");
+                return selisih + " menit";
             }
-            int selisih = Integer.parseInt(diff / 1000 * 60 + "");
-            return selisih + " menit";
+            //return diff / 1000 % 60 + " detik yang lalu";
+            int selisih = Integer.parseInt(diff / 1000 % 60 + "");
+            return selisih + " detik";
         }
-        //return diff / 1000 % 60 + " detik yang lalu";
-        int selisih = Integer.parseInt(diff / 1000 % 60 + "");
-        return selisih + " detik yang lalu";
+        return "e";
     }
 
     @Override
