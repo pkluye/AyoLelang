@@ -1,5 +1,6 @@
 package com.ags.ayolelang.Activity;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -162,12 +163,6 @@ public class Preview extends AppCompatActivity {
                     StringRespon stringRespon = response.body();
                     if (!stringRespon.isError()) {
                         Toast.makeText(Preview.this, stringRespon.getMessage(), Toast.LENGTH_SHORT).show();
-                        reqPekerjaanHelper.open();
-                        reqPekerjaanHelper.truncate();
-                        reqPekerjaanHelper.close();
-                        lelangHelper.open();
-                        lelangHelper.truncate();
-                        lelangHelper.close();
                         startActivity(new Intent(Preview.this, MainActivity.class));
                         finish();
                     } else {
@@ -189,6 +184,19 @@ public class Preview extends AppCompatActivity {
                 Toast.makeText(Preview.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        REQLelangHelper reqLelangHelper = new REQLelangHelper(this);
+        reqLelangHelper.open();
+        reqLelangHelper.truncate();
+        reqLelangHelper.close();
+        REQPekerjaanHelper reqPekerjaanHelper = new REQPekerjaanHelper(this);
+        reqPekerjaanHelper.open();
+        reqPekerjaanHelper.truncate();
+        reqPekerjaanHelper.close();
     }
 
     public void longLog(String str) {
@@ -318,19 +326,41 @@ public class Preview extends AppCompatActivity {
     }
 
     public void cancel(View view) {
-        REQLelangHelper reqLelangHelper = new REQLelangHelper(this);
-        reqLelangHelper.open();
-        reqLelangHelper.truncate();
-        reqLelangHelper.close();
-        REQPekerjaanHelper reqPekerjaanHelper = new REQPekerjaanHelper(this);
-        reqPekerjaanHelper.open();
-        reqPekerjaanHelper.truncate();
-        reqPekerjaanHelper.close();
-        startActivity(new Intent(this, MainActivity.class));
-        finish();
+        onBackPressed();
     }
 
-    public void EditLelang(View view) {
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadDataLelang();
+    }
+
+    @Override
+    public void onBackPressed() {
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.popup_progress);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setCancelable(false);
+        Button btn_OK = (Button) dialog.findViewById(R.id.btn_OK);
+        Button btn_batal=(Button) dialog.findViewById(R.id.btn_batal);
+        btn_OK.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                Intent intent=new Intent(Preview.this,MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        btn_batal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
     }
 }
 

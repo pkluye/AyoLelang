@@ -1,14 +1,17 @@
 package com.ags.ayolelang.Activity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
 
 import com.ags.ayolelang.Adapter.AdapterItemPekerjaan;
 import com.ags.ayolelang.DBHelper.KategoriHelper;
+import com.ags.ayolelang.DBHelper.REQLelangHelper;
 import com.ags.ayolelang.DBHelper.REQPekerjaanHelper;
 import com.ags.ayolelang.Models.Kategori;
 import com.ags.ayolelang.Models.Pekerjaan;
@@ -66,5 +69,41 @@ public class ListPekerjaan extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         loadData();
+    }
+
+    @Override
+    public void onBackPressed() {
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.popup_progress);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setCancelable(false);
+        Button btn_OK = (Button) dialog.findViewById(R.id.btn_OK);
+        Button btn_batal=(Button) dialog.findViewById(R.id.btn_batal);
+        btn_OK.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                REQLelangHelper reqLelangHelper = new REQLelangHelper(ListPekerjaan.this);
+                reqLelangHelper.open();
+                reqLelangHelper.truncate();
+                reqLelangHelper.close();
+                REQPekerjaanHelper reqPekerjaanHelper = new REQPekerjaanHelper(ListPekerjaan.this);
+                reqPekerjaanHelper.open();
+                reqPekerjaanHelper.truncate();
+                reqPekerjaanHelper.close();
+                Intent intent=new Intent(ListPekerjaan.this,MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        btn_batal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
     }
 }
