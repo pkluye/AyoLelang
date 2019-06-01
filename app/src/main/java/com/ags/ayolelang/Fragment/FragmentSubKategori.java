@@ -107,7 +107,6 @@ public class FragmentSubKategori extends Fragment {
         AdapterSubKategori adapterSubKategori = new AdapterSubKategori(getContext());
         adapterSubKategori.addItem(kategoris);
         adapterSubKategori.setTittle(tittle);
-        adapterSubKategori.setLelangid(lelang_id);
         rv_subFragment.setAdapter(adapterSubKategori);
     }
 

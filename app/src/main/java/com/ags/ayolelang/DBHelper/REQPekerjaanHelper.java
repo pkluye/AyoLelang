@@ -20,18 +20,18 @@ import static com.ags.ayolelang.DBHelper.DBContract.PEKERJAAN.PEKERJAAN_KATEGORI
 import static com.ags.ayolelang.DBHelper.DBContract.PEKERJAAN.PEKERJAAN_LELANGID;
 import static com.ags.ayolelang.DBHelper.DBContract.PEKERJAAN.PEKERJAAN_STATUS;
 import static com.ags.ayolelang.DBHelper.DBContract.PEKERJAAN.PEKERJAAN_UKURAN;
-import static com.ags.ayolelang.DBHelper.DBContract.TABLE_PEKERJAAN;
+import static com.ags.ayolelang.DBHelper.DBContract.TABLE_REQ_PEKERJAAN;
 
-public class PekerjaanHelper {
+public class REQPekerjaanHelper {
     private Context context;
     private DBHelper dbHelper;
     private SQLiteDatabase db;
 
-    public PekerjaanHelper(Context context) {
+    public REQPekerjaanHelper(Context context) {
         this.context = context;
     }
 
-    public PekerjaanHelper open() throws SQLException {
+    public REQPekerjaanHelper open() throws SQLException {
         dbHelper = new DBHelper(context);
         db = dbHelper.getWritableDatabase();
         return this;
@@ -41,27 +41,25 @@ public class PekerjaanHelper {
         dbHelper.close();
     }
 
-    public ArrayList<Pekerjaan> getPekerjaan(int id){
+    public ArrayList<Pekerjaan> getPekerjaan() {
         db.beginTransaction();
-        ArrayList<Pekerjaan> pekerjaans=new ArrayList<>();
-        Cursor cursor = db.query(TABLE_PEKERJAAN, null, PEKERJAAN_LELANGID+"='"+id+"'", null, null, null, null, null);
+        ArrayList<Pekerjaan> pekerjaans = new ArrayList<>();
+        Cursor cursor = db.query(TABLE_REQ_PEKERJAAN, null, null, null, null, null, null, null);
         cursor.moveToFirst();
         Pekerjaan pekerjaan;
-        if (cursor.getCount()>0){
-            do{
-                pekerjaan=new Pekerjaan();
+        if (cursor.getCount() > 0) {
+            do {
+                pekerjaan = new Pekerjaan();
                 pekerjaan.setPekerjaan_id(cursor.getInt(cursor.getColumnIndexOrThrow(PEKERJAAN_ID)));
                 pekerjaan.setPekerjaan_kategoriid(cursor.getInt(cursor.getColumnIndexOrThrow(PEKERJAAN_KATEGORIID)));
-                pekerjaan.setPekerjaan_lelangid(cursor.getInt(cursor.getColumnIndexOrThrow(PEKERJAAN_LELANGID)));
                 pekerjaan.setPekerjaan_ukuran(cursor.getString(cursor.getColumnIndexOrThrow(PEKERJAAN_UKURAN)));
                 pekerjaan.setPekerjaan_bahan(cursor.getString(cursor.getColumnIndexOrThrow(PEKERJAAN_BAHAN)));
                 pekerjaan.setPekerjaan_harga(cursor.getLong(cursor.getColumnIndexOrThrow(PEKERJAAN_HARGA)));
                 pekerjaan.setPekerjaan_jumlah(cursor.getInt(cursor.getColumnIndexOrThrow(PEKERJAAN_JUMLAH)));
                 pekerjaan.setPekerjaan_catatan(cursor.getString(cursor.getColumnIndexOrThrow(PEKERJAAN_CATATAN)));
-                pekerjaan.setPekerjaan_status(cursor.getInt(cursor.getColumnIndexOrThrow(PEKERJAAN_STATUS)));
                 pekerjaans.add(pekerjaan);
                 cursor.moveToNext();
-            }while (!cursor.isAfterLast());
+            } while (!cursor.isAfterLast());
         }
         cursor.close();
         db.endTransaction();
@@ -69,7 +67,7 @@ public class PekerjaanHelper {
     }
 
     public boolean isempty() {
-        Cursor cursor = db.query(TABLE_PEKERJAAN, null, null, null, null, null, null, null);
+        Cursor cursor = db.query(TABLE_REQ_PEKERJAAN, null, null, null, null, null, null, null);
         int count = cursor.getCount();
         cursor.close();
         if (count == 0) {
@@ -78,8 +76,8 @@ public class PekerjaanHelper {
         return false;
     }
 
-    public void truncate(){
-        db.execSQL("DELETE FROM "+TABLE_PEKERJAAN);
+    public void truncate() {
+        db.execSQL("DELETE FROM " + TABLE_REQ_PEKERJAAN);
         db.execSQL("VACUUM");
     }
 
@@ -99,17 +97,29 @@ public class PekerjaanHelper {
         }
     }
 
-    private long insert(Pekerjaan pekerjaan) {
-        ContentValues contentValue= new ContentValues();
-        contentValue.put(PEKERJAAN_ID,pekerjaan.getPekerjaan_id());
-        contentValue.put(PEKERJAAN_KATEGORIID,pekerjaan.getPekerjaan_kategoriid());
-        contentValue.put(PEKERJAAN_LELANGID,pekerjaan.getPekerjaan_lelangid());
-        contentValue.put(PEKERJAAN_CATATAN,pekerjaan.getPekerjaan_catatan());
-        contentValue.put(PEKERJAAN_JUMLAH,pekerjaan.getPekerjaan_jumlah());
-        contentValue.put(PEKERJAAN_HARGA,pekerjaan.getPekerjaan_harga());
-        contentValue.put(PEKERJAAN_UKURAN,pekerjaan.getPekerjaan_ukuran());
-        contentValue.put(PEKERJAAN_BAHAN,pekerjaan.getPekerjaan_bahan());
-        contentValue.put(PEKERJAAN_STATUS,pekerjaan.getPekerjaan_status());
-        return db.insert(TABLE_PEKERJAAN,null,contentValue);
+    public long insert(Pekerjaan pekerjaan) {
+        ContentValues contentValue = new ContentValues();
+        contentValue.put(PEKERJAAN_KATEGORIID, pekerjaan.getPekerjaan_kategoriid());
+        contentValue.put(PEKERJAAN_CATATAN, pekerjaan.getPekerjaan_catatan());
+        contentValue.put(PEKERJAAN_JUMLAH, pekerjaan.getPekerjaan_jumlah());
+        contentValue.put(PEKERJAAN_HARGA, pekerjaan.getPekerjaan_harga());
+        contentValue.put(PEKERJAAN_UKURAN, pekerjaan.getPekerjaan_ukuran());
+        contentValue.put(PEKERJAAN_BAHAN, pekerjaan.getPekerjaan_bahan());
+        return db.insert(TABLE_REQ_PEKERJAAN, null, contentValue);
+    }
+
+    public long delete(int id) {
+        return db.delete(TABLE_REQ_PEKERJAAN, PEKERJAAN_ID + "=" + id, null);
+    }
+
+    public long update(Pekerjaan pekerjaan) {
+        ContentValues contentValue = new ContentValues();
+        contentValue.put(PEKERJAAN_KATEGORIID, pekerjaan.getPekerjaan_kategoriid());
+        contentValue.put(PEKERJAAN_CATATAN, pekerjaan.getPekerjaan_catatan());
+        contentValue.put(PEKERJAAN_JUMLAH, pekerjaan.getPekerjaan_jumlah());
+        contentValue.put(PEKERJAAN_HARGA, pekerjaan.getPekerjaan_harga());
+        contentValue.put(PEKERJAAN_UKURAN, pekerjaan.getPekerjaan_ukuran());
+        contentValue.put(PEKERJAAN_BAHAN, pekerjaan.getPekerjaan_bahan());
+        return db.update(TABLE_REQ_PEKERJAAN, contentValue, PEKERJAAN_ID + "='" + pekerjaan.getPekerjaan_id() + "'", null);
     }
 }

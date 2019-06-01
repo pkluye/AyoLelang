@@ -14,6 +14,7 @@ import static com.ags.ayolelang.DBHelper.DBContract.KOTA.KOTA_PROVINSIID;
 import static com.ags.ayolelang.DBHelper.DBContract.LELANG.LELANG_ALAMAT;
 import static com.ags.ayolelang.DBHelper.DBContract.LELANG.LELANG_ANGGARAN;
 import static com.ags.ayolelang.DBHelper.DBContract.LELANG.LELANG_DESKRIPSI;
+import static com.ags.ayolelang.DBHelper.DBContract.LELANG.LELANG_FILEURL;
 import static com.ags.ayolelang.DBHelper.DBContract.LELANG.LELANG_ID;
 import static com.ags.ayolelang.DBHelper.DBContract.LELANG.LELANG_JUDUL;
 import static com.ags.ayolelang.DBHelper.DBContract.LELANG.LELANG_KOTA;
@@ -24,7 +25,6 @@ import static com.ags.ayolelang.DBHelper.DBContract.LELANG.LELANG_TGLSELESAI;
 import static com.ags.ayolelang.DBHelper.DBContract.LELANG.LELANG_USERID;
 import static com.ags.ayolelang.DBHelper.DBContract.PEKERJAAN.PEKERJAAN_BAHAN;
 import static com.ags.ayolelang.DBHelper.DBContract.PEKERJAAN.PEKERJAAN_CATATAN;
-import static com.ags.ayolelang.DBHelper.DBContract.PEKERJAAN.PEKERJAAN_FILEURL;
 import static com.ags.ayolelang.DBHelper.DBContract.PEKERJAAN.PEKERJAAN_HARGA;
 import static com.ags.ayolelang.DBHelper.DBContract.PEKERJAAN.PEKERJAAN_ID;
 import static com.ags.ayolelang.DBHelper.DBContract.PEKERJAAN.PEKERJAAN_JUMLAH;
@@ -39,6 +39,8 @@ import static com.ags.ayolelang.DBHelper.DBContract.TABLE_KOTA;
 import static com.ags.ayolelang.DBHelper.DBContract.TABLE_LELANG;
 import static com.ags.ayolelang.DBHelper.DBContract.TABLE_PEKERJAAN;
 import static com.ags.ayolelang.DBHelper.DBContract.TABLE_PROVINSI;
+import static com.ags.ayolelang.DBHelper.DBContract.TABLE_REQ_LELANG;
+import static com.ags.ayolelang.DBHelper.DBContract.TABLE_REQ_PEKERJAAN;
 
 public class DBHelper extends SQLiteOpenHelper {
 
@@ -70,20 +72,41 @@ public class DBHelper extends SQLiteOpenHelper {
                     LELANG_KOTA + " INTEGER NOT NULL, " +
                     LELANG_PEMBAYARAN + " INTEGER NOT NULL, " +
                     LELANG_STATUS + " INTEGER NOT NULL, " +
-                    LELANG_TGLMULAI + " DATETIME, " +
-                    LELANG_TGLSELESAI + " DATETIME, " +
+                    LELANG_FILEURL + " TEKS NOT NULL, " +
+                    LELANG_TGLMULAI + " TEKS NOT NULL, " +
+                    LELANG_TGLSELESAI + " TEKS NOT NULL, " +
                     LELANG_USERID + " TEXT NOT NULL)";
     public static String CREATE_TABLE_PEKERJAAN =
             "CREATE TABLE " + TABLE_PEKERJAAN + " (" +
                     PEKERJAAN_ID + " INTEGER PRIMARY KEY, " +
                     PEKERJAAN_BAHAN + " TEKS NOT NULL, " +
                     PEKERJAAN_CATATAN + " TEKS NOT NULL, " +
-                    PEKERJAAN_FILEURL + " TEKS NOT NULL, " +
                     PEKERJAAN_HARGA + " INTEGER NOT NULL, " +
                     PEKERJAAN_JUMLAH + " INTEGER NOT NULL, " +
                     PEKERJAAN_KATEGORIID + " INTEGER NOT NULL, " +
                     PEKERJAAN_LELANGID + " INTEGER NOT NULL, " +
                     PEKERJAAN_STATUS + " INTEGER NOT NULL, " +
+                    PEKERJAAN_UKURAN + " TEKS NOT NULL)";
+    public static String CREATE_TABLE_REQ_LELANG =
+            "CREATE TABLE " + TABLE_REQ_LELANG + " (" +
+                    LELANG_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    LELANG_ALAMAT + " TEXT NOT NULL, " +
+                    LELANG_ANGGARAN + " BIGINT NOT NULL, " +
+                    LELANG_DESKRIPSI + " TEXT NOT NULL, " +
+                    LELANG_JUDUL + " TEXT NOT NULL, " +
+                    LELANG_KOTA + " INTEGER NOT NULL, " +
+                    LELANG_PEMBAYARAN + " INTEGER NOT NULL, " +
+                    LELANG_FILEURL + " TEKS NOT NULL, " +
+                    LELANG_TGLSELESAI + " TEKS NOT NULL, " +
+                    LELANG_USERID + " TEXT NOT NULL)";
+    public static String CREATE_TABLE_REQ_PEKERJAAN =
+            "CREATE TABLE " + TABLE_REQ_PEKERJAAN + " (" +
+                    PEKERJAAN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    PEKERJAAN_BAHAN + " TEKS NOT NULL, " +
+                    PEKERJAAN_CATATAN + " TEKS NOT NULL, " +
+                    PEKERJAAN_HARGA + " INTEGER NOT NULL, " +
+                    PEKERJAAN_JUMLAH + " INTEGER NOT NULL, " +
+                    PEKERJAAN_KATEGORIID + " INTEGER NOT NULL, " +
                     PEKERJAAN_UKURAN + " TEKS NOT NULL)";
 
     public DBHelper(Context context) {
@@ -97,6 +120,8 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_KATEGORI);
         db.execSQL(CREATE_TABLE_LELANG);
         db.execSQL(CREATE_TABLE_PEKERJAAN);
+        db.execSQL(CREATE_TABLE_REQ_LELANG);
+        db.execSQL(CREATE_TABLE_REQ_PEKERJAAN);
     }
 
     @Override
@@ -106,6 +131,8 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_KATEGORI);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_LELANG);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PEKERJAAN);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_REQ_LELANG);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_REQ_PEKERJAAN);
         onCreate(db);
     }
 

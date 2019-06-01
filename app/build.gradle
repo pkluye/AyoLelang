@@ -39,6 +39,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-scalars:2.3.0'
     implementation 'com.github.GoodieBag:Pinview:v1.3'
 
 //    implementation 'android.arch.work:work-runtime:1.0.0-beta01'

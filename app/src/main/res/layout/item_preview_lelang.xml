@@ -96,7 +96,7 @@
                 android:layout_marginLeft="12sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="File Attachment"
+                android:text="Jumlah"
                 android:textSize="12sp"
                 android:textColor="@color/colorGrey2"
                 android:layout_weight="1"/>
@@ -104,10 +104,10 @@
             <TextView
                 android:layout_marginLeft="12sp"
                 android:layout_marginRight="10dp"
-                android:id="@+id/txt_file_attachment"
+                android:id="@+id/txt_jumlah"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="file attachment"
+                android:text="3x"
                 android:textSize="10sp"
                 android:layout_weight="0"/>
 

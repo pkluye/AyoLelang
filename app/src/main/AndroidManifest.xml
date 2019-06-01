@@ -15,7 +15,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".Activity.ListLelang"></activity>
+        <activity android:name=".Activity.ListPekerjaan"></activity>
         <activity android:name=".Activity.Preview" />
         <activity android:name=".Activity.Deskripsi" />
         <activity android:name=".Activity.Attachment" />

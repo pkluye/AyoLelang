@@ -9,67 +9,43 @@ public class Lelang {
             lelang_judul,
             lelang_userid,
             lelang_alamat,
-            lelang_kotanama,
-            lelang_provnama,
-            lelang_kategoriparentnama;
-    private int lelang_id, lelang_kota, lelang_status, lelang_kategoriparentid,tawaran,lelang_pembayaran;
+            lelang_fileurl;
+    private int lelang_id, lelang_kota, lelang_status, lelang_pembayaran;
     private long lelang_anggaran;
-    private ArrayList<Pekerjaan> pekerjaan;
 
     public Lelang() {
     }
 
-    public Lelang(String lelang_deskripsi, String lelang_tglmulai, String lelang_tglselesai, String lelang_judul, String lelang_userid, int lelang_pembayaran, String lelang_alamat, String lelang_kotanama, String lelang_provnama, String lelang_kategoriparentnama, int lelang_id, int lelang_kota, int lelang_status, int lelang_kategoriparentid, int tawaran, long lelang_anggaran, ArrayList<Pekerjaan> pekerjaan) {
+    public Lelang(String lelang_deskripsi, String lelang_tglselesai, String lelang_judul, String lelang_userid, String lelang_alamat, String lelang_fileurl, int lelang_kota, int lelang_pembayaran, long lelang_anggaran) {
+        this.lelang_deskripsi = lelang_deskripsi;
+        this.lelang_tglselesai = lelang_tglselesai;
+        this.lelang_judul = lelang_judul;
+        this.lelang_userid = lelang_userid;
+        this.lelang_alamat = lelang_alamat;
+        this.lelang_fileurl = lelang_fileurl;
+        this.lelang_kota = lelang_kota;
+        this.lelang_pembayaran = lelang_pembayaran;
+        this.lelang_anggaran = lelang_anggaran;
+    }
+
+    public Lelang(String lelang_deskripsi, String lelang_tglmulai, String lelang_tglselesai, String lelang_judul, String lelang_userid, String lelang_alamat, String lelang_fileurl, int lelang_id, int lelang_kota, int lelang_status, int lelang_pembayaran, long lelang_anggaran) {
         this.lelang_deskripsi = lelang_deskripsi;
         this.lelang_tglmulai = lelang_tglmulai;
         this.lelang_tglselesai = lelang_tglselesai;
         this.lelang_judul = lelang_judul;
         this.lelang_userid = lelang_userid;
-        this.lelang_pembayaran = lelang_pembayaran;
         this.lelang_alamat = lelang_alamat;
-        this.lelang_kotanama = lelang_kotanama;
-        this.lelang_provnama = lelang_provnama;
-        this.lelang_kategoriparentnama = lelang_kategoriparentnama;
+        this.lelang_fileurl = lelang_fileurl;
         this.lelang_id = lelang_id;
         this.lelang_kota = lelang_kota;
         this.lelang_status = lelang_status;
-        this.lelang_kategoriparentid = lelang_kategoriparentid;
-        this.tawaran = tawaran;
+        this.lelang_pembayaran = lelang_pembayaran;
         this.lelang_anggaran = lelang_anggaran;
-        this.pekerjaan = pekerjaan;
     }
 
-    public int getTawaran() {
-        return tawaran;
+    public Lelang(String deskripsi, int lelang_id_e, String deadline, String judul, String user_id, String alamat, String txt_url, int kotaid, int pembayaran, long totalharga) {
     }
 
-    public void setTawaran(int tawaran) {
-        this.tawaran = tawaran;
-    }
-
-    public String getLelang_kategoriparentnama() {
-        return lelang_kategoriparentnama;
-    }
-
-    public void setLelang_kategoriparentnama(String lelang_kategoriparentnama) {
-        this.lelang_kategoriparentnama = lelang_kategoriparentnama;
-    }
-
-    public int getLelang_kategoriparentid() {
-        return lelang_kategoriparentid;
-    }
-
-    public void setLelang_kategoriparentid(int lelang_kategoriparentid) {
-        this.lelang_kategoriparentid = lelang_kategoriparentid;
-    }
-
-    public ArrayList<Pekerjaan> getPekerjaan() {
-        return pekerjaan;
-    }
-
-    public void setPekerjaan(ArrayList<Pekerjaan> pekerjaan) {
-        this.pekerjaan = pekerjaan;
-    }
 
     public int getLelang_status() {
         return lelang_status;
@@ -159,20 +135,12 @@ public class Lelang {
         this.lelang_anggaran = lelang_anggaran;
     }
 
-    public String getLelang_kotanama() {
-        return lelang_kotanama;
+    public String getLelang_fileurl() {
+        return lelang_fileurl;
     }
 
-    public void setLelang_kotanama(String lelang_kotanama) {
-        this.lelang_kotanama = lelang_kotanama;
-    }
-
-    public String getLelang_provnama() {
-        return lelang_provnama;
-    }
-
-    public void setLelang_provnama(String lelang_provnama) {
-        this.lelang_provnama = lelang_provnama;
+    public void setLelang_fileurl(String lelang_fileurl) {
+        this.lelang_fileurl = lelang_fileurl;
     }
 
     @Override
@@ -183,18 +151,13 @@ public class Lelang {
                 ", lelang_tglselesai='" + lelang_tglselesai + '\'' +
                 ", lelang_judul='" + lelang_judul + '\'' +
                 ", lelang_userid='" + lelang_userid + '\'' +
-                ", lelang_pembayaran='" + lelang_pembayaran + '\'' +
                 ", lelang_alamat='" + lelang_alamat + '\'' +
-                ", lelang_kotanama='" + lelang_kotanama + '\'' +
-                ", lelang_provnama='" + lelang_provnama + '\'' +
-                ", lelang_kategoriparentnama='" + lelang_kategoriparentnama + '\'' +
+                ", lelang_fileurl='" + lelang_fileurl + '\'' +
                 ", lelang_id=" + lelang_id +
                 ", lelang_kota=" + lelang_kota +
                 ", lelang_status=" + lelang_status +
-                ", lelang_kategoriparentid=" + lelang_kategoriparentid +
-                ", tawaran=" + tawaran +
+                ", lelang_pembayaran=" + lelang_pembayaran +
                 ", lelang_anggaran=" + lelang_anggaran +
-                ", pekerjaan=" + pekerjaan.size() +
                 '}';
     }
 }

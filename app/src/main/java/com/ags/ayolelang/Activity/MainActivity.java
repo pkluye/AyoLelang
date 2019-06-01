@@ -73,10 +73,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             }
             Intent intent = getIntent();
             if (intent != null) {
-                if (intent.getBooleanExtra("tambah_keranjang", false)) {
+                if (intent.getBooleanExtra("tambah_pekerjaan", false)) {
                     FragmentSubKategori fragmentSubKategori = new FragmentSubKategori();
                     Bundle bundle = new Bundle();
-                    bundle.putInt("lelang_id", intent.getIntExtra("lelang_id", 0));
                     bundle.putInt("id", intent.getIntExtra("id", 0));
                     bundle.putString("tittle", intent.getStringExtra("tittle"));
                     fragmentSubKategori.setArguments(bundle);
@@ -140,7 +139,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 );
         //Log.d("token",token[0]+" "+token[1]+" "+token[2]+" ");
         // Set up progress before call
-        Log.d("Update data", "yesss");
         final ProgressDialog progressDoalog;
         progressDoalog = new ProgressDialog(MainActivity.this);
         //progressDoalog.setMax(100);
@@ -160,6 +158,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                     progressDoalog.dismiss();
                 }
                 if (response.isSuccessful()) {
+                    Log.d("Update data", "yesss");
                     FetchDBRespon fetchDBRespon = response.body();
                     if (!fetchDBRespon.isError()) {
                         FetchDB fetchDB = fetchDBRespon.getData();

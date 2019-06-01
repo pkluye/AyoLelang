@@ -1,7 +1,7 @@
 package com.ags.ayolelang.Models;
 
 public class Pekerjaan {
-    private String pekerjaan_ukuran, pekerjaan_bahan, pekerjaan_catatan, pekerjaan_fileurl,pekerjaan_kategorinama;
+    private String pekerjaan_ukuran, pekerjaan_bahan, pekerjaan_catatan;
     private int pekerjaan_id, pekerjaan_lelangid,pekerjaan_jumlah,pekerjaan_kategoriid;
     private long pekerjaan_harga;
     private int pekerjaan_status;
@@ -9,26 +9,35 @@ public class Pekerjaan {
     public Pekerjaan() {
     }
 
-    public Pekerjaan(String pekerjaan_ukuran, String pekerjaan_bahan, String pekerjaan_catatan, String pekerjaan_fileurl, String pekerjaan_kategorinama, int pekerjaan_id, int pekerjaan_lelangid, int pekerjaan_jumlah, int pekerjaan_kategoriid, long pekerjaan_harga, int pekerjaan_status) {
+    public Pekerjaan(String pekerjaan_ukuran, String pekerjaan_bahan, String pekerjaan_catatan, int pekerjaan_jumlah, int pekerjaan_kategoriid, long pekerjaan_harga) {
         this.pekerjaan_ukuran = pekerjaan_ukuran;
         this.pekerjaan_bahan = pekerjaan_bahan;
         this.pekerjaan_catatan = pekerjaan_catatan;
-        this.pekerjaan_fileurl = pekerjaan_fileurl;
-        this.pekerjaan_kategorinama = pekerjaan_kategorinama;
+        this.pekerjaan_jumlah = pekerjaan_jumlah;
+        this.pekerjaan_kategoriid = pekerjaan_kategoriid;
+        this.pekerjaan_harga = pekerjaan_harga;
+    }
+
+    public Pekerjaan(String pekerjaan_ukuran, String pekerjaan_bahan, String pekerjaan_catatan, int pekerjaan_id, int pekerjaan_jumlah, int pekerjaan_kategoriid, long pekerjaan_harga) {
+        this.pekerjaan_ukuran = pekerjaan_ukuran;
+        this.pekerjaan_bahan = pekerjaan_bahan;
+        this.pekerjaan_catatan = pekerjaan_catatan;
+        this.pekerjaan_id = pekerjaan_id;
+        this.pekerjaan_jumlah = pekerjaan_jumlah;
+        this.pekerjaan_kategoriid = pekerjaan_kategoriid;
+        this.pekerjaan_harga = pekerjaan_harga;
+    }
+
+    public Pekerjaan(String pekerjaan_ukuran, String pekerjaan_bahan, String pekerjaan_catatan, int pekerjaan_id, int pekerjaan_lelangid, int pekerjaan_jumlah, int pekerjaan_kategoriid, long pekerjaan_harga, int pekerjaan_status) {
+        this.pekerjaan_ukuran = pekerjaan_ukuran;
+        this.pekerjaan_bahan = pekerjaan_bahan;
+        this.pekerjaan_catatan = pekerjaan_catatan;
         this.pekerjaan_id = pekerjaan_id;
         this.pekerjaan_lelangid = pekerjaan_lelangid;
         this.pekerjaan_jumlah = pekerjaan_jumlah;
         this.pekerjaan_kategoriid = pekerjaan_kategoriid;
         this.pekerjaan_harga = pekerjaan_harga;
         this.pekerjaan_status = pekerjaan_status;
-    }
-
-    public String getPekerjaan_kategorinama() {
-        return pekerjaan_kategorinama;
-    }
-
-    public void setPekerjaan_kategorinama(String pekerjaan_kategorinama) {
-        this.pekerjaan_kategorinama = pekerjaan_kategorinama;
     }
 
     public int getPekerjaan_status() {
@@ -71,14 +80,6 @@ public class Pekerjaan {
         this.pekerjaan_catatan = pekerjaan_catatan;
     }
 
-    public String getPekerjaan_fileurl() {
-        return pekerjaan_fileurl;
-    }
-
-    public void setPekerjaan_fileurl(String pekerjaan_fileurl) {
-        this.pekerjaan_fileurl = pekerjaan_fileurl;
-    }
-
     public int getPekerjaan_id() {
         return pekerjaan_id;
     }
@@ -117,8 +118,6 @@ public class Pekerjaan {
                 "pekerjaan_ukuran='" + pekerjaan_ukuran + '\'' +
                 ", pekerjaan_bahan='" + pekerjaan_bahan + '\'' +
                 ", pekerjaan_catatan='" + pekerjaan_catatan + '\'' +
-                ", pekerjaan_fileurl='" + pekerjaan_fileurl + '\'' +
-                ", pekerjaan_kategorinama='" + pekerjaan_kategorinama + '\'' +
                 ", pekerjaan_id=" + pekerjaan_id +
                 ", pekerjaan_lelangid=" + pekerjaan_lelangid +
                 ", pekerjaan_jumlah=" + pekerjaan_jumlah +

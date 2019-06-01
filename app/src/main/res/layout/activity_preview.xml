@@ -26,6 +26,7 @@
         android:layout_gravity="bottom|end"
         android:layout_marginBottom="128dp"
         android:layout_marginRight="8dp"
+        android:onClick="EditLelang"
         android:scaleY="0.8"
         android:scaleX="0.8"
         app:srcCompat="@drawable/ic_edit"
@@ -71,6 +72,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Cancel"
+                    android:onClick="cancel"
                     android:textSize="18sp"
                     android:textColor="@color/colorWhite" />
 
@@ -78,54 +80,53 @@
 
         </android.support.v7.widget.Toolbar>
 
-        <LinearLayout
-            android:layout_below="@+id/toolbar"
-            android:id="@+id/tag_halaman"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:gravity="center_vertical"
-            android:background="@color/colorBackground"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:orientation="horizontal">
+        <!--<LinearLayout-->
+            <!--android:layout_below="@+id/toolbar"-->
+            <!--android:id="@+id/tag_halaman"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="48dp"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:background="@color/colorBackground"-->
+            <!--android:paddingLeft="16dp"-->
+            <!--android:paddingRight="16dp"-->
+            <!--android:orientation="horizontal">-->
 
-            <TextView
-                android:id="@+id/txt_subtext_kategori"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Kategori"
-                android:textColor="@color/colorBlack"
-                android:textSize="14sp"/>
+            <!--<TextView-->
+                <!--android:id="@+id/txt_subtext_kategori"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="Kategori"-->
+                <!--android:textColor="@color/colorBlack"-->
+                <!--android:textSize="14sp"/>-->
 
-            <ImageView
-                app:srcCompat="@drawable/ic_navigation_next"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:scaleY="0.8"
-                android:scaleX="0.8"/>
+            <!--<ImageView-->
+                <!--app:srcCompat="@drawable/ic_navigation_next"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:scaleY="0.8"-->
+                <!--android:scaleX="0.8"/>-->
 
-            <TextView
-                android:id="@+id/txt_subtext_kategori_dipilih"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="List Pekerjaan"
-                android:textColor="@color/colorBlack"
-                android:textSize="14sp"/>
+            <!--<TextView-->
+                <!--android:id="@+id/txt_subtext_kategori_dipilih"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="List Pekerjaan"-->
+                <!--android:textColor="@color/colorBlack"-->
+                <!--android:textSize="14sp"/>-->
 
-        </LinearLayout>
+        <!--</LinearLayout>-->
 
 
-        <android.support.v4.widget.SwipeRefreshLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="50dp"
-            android:id="@+id/layout_refresh">
+        <!--<android.support.v4.widget.SwipeRefreshLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_marginBottom="50dp"-->
+            <!--android:id="@+id/layout_refresh">-->
 
             <RelativeLayout
             android:id="@+id/layoutRelative"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_centerHorizontal="true"
@@ -251,6 +252,12 @@
                                     android:layout_height="wrap_content"
                                     android:text="Pembayaran"
                                     android:textColor="@color/colorGrey1"/>
+                                <TextView
+                                    android:id="@+id/txt_teks_attachment"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Attachment"
+                                    android:textColor="@color/colorGrey1"/>
 
                             </LinearLayout>
 
@@ -263,6 +270,12 @@
                                 android:layout_marginLeft="12dp"
                                 android:layout_marginRight="8dp">
 
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text=":"
+                                    android:textColor="@color/colorGrey1"/>
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -296,6 +309,12 @@
                                     android:text="pembayaran"
                                     android:id="@+id/txt_pembayaran"
                                     android:textColor="@color/colorGrey2"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="attachment"
+                                    android:id="@+id/txt_attachment"
+                                    android:textColor="@color/colorGrey2"/>
 
                             </LinearLayout>
 
@@ -314,7 +333,7 @@
 
                 <LinearLayout
                     android:id="@+id/linear_pekerjaan"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
@@ -462,36 +481,6 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
-                        <LinearLayout
-                            android:layout_marginTop="8dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/txt_teks_attachment"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="File Attachment"
-                                android:textColor="@color/colorGrey1"/>
-
-                            <TextView
-                                android:layout_marginLeft="12dp"
-                                android:layout_marginRight="8dp"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text=":"
-                                android:textColor="@color/colorGrey1"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="attachment"
-                                android:id="@+id/txt_attachment"
-                                android:textColor="@color/colorGrey2"/>
-
-                        </LinearLayout>
-
                         <Button
                             android:id="@+id/btn_edit"
                             android:layout_marginTop="8dp"
@@ -508,7 +497,7 @@
             </LinearLayout>
 
             <android.support.v7.widget.RecyclerView
-                android:visibility="visible"
+                android:visibility="gone"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@id/layoutLinear_judul"
                 android:id="@+id/reyclerview_listItem_lelang"
@@ -554,6 +543,7 @@
                     android:layout_height="34dp"
                     android:background="@drawable/button_rectangle"
                     android:text="Posting"
+                    android:onClick="postingLelang"
                     android:textColor="@color/colorWhite"
                     android:textAllCaps="false" />
 
@@ -561,7 +551,7 @@
 
         </RelativeLayout>
 
-        </android.support.v4.widget.SwipeRefreshLayout>
+        <!--</android.support.v4.widget.SwipeRefreshLayout>-->
 
     </LinearLayout>
 

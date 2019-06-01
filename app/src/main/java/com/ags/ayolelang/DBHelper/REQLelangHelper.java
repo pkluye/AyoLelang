@@ -19,22 +19,20 @@ import static com.ags.ayolelang.DBHelper.DBContract.LELANG.LELANG_ID;
 import static com.ags.ayolelang.DBHelper.DBContract.LELANG.LELANG_JUDUL;
 import static com.ags.ayolelang.DBHelper.DBContract.LELANG.LELANG_KOTA;
 import static com.ags.ayolelang.DBHelper.DBContract.LELANG.LELANG_PEMBAYARAN;
-import static com.ags.ayolelang.DBHelper.DBContract.LELANG.LELANG_STATUS;
-import static com.ags.ayolelang.DBHelper.DBContract.LELANG.LELANG_TGLMULAI;
 import static com.ags.ayolelang.DBHelper.DBContract.LELANG.LELANG_TGLSELESAI;
 import static com.ags.ayolelang.DBHelper.DBContract.LELANG.LELANG_USERID;
-import static com.ags.ayolelang.DBHelper.DBContract.TABLE_LELANG;
+import static com.ags.ayolelang.DBHelper.DBContract.TABLE_REQ_LELANG;
 
-public class LelangHelper {
+public class REQLelangHelper {
     private Context context;
     private DBHelper dbHelper;
     private SQLiteDatabase db;
 
-    public LelangHelper(Context context) {
+    public REQLelangHelper(Context context) {
         this.context = context;
     }
 
-    public LelangHelper open() throws SQLException {
+    public REQLelangHelper open() throws SQLException {
         dbHelper = new DBHelper(context);
         db = dbHelper.getWritableDatabase();
         return this;
@@ -44,52 +42,55 @@ public class LelangHelper {
         dbHelper.close();
     }
 
-    public ArrayList<Lelang> getAllLelang() {
+    public Lelang getLelang() {
         db.beginTransaction();
-        ArrayList<Lelang> lelangs = new ArrayList<>();
-        Cursor cursor = db.query(TABLE_LELANG, null,null, null, null, null, null, null);
-        //Cursor cursor = db.query(TABLE_LELANG, null,null, null, null, null, null, String.valueOf(limit));
+        Cursor cursor = db.query(TABLE_REQ_LELANG, null, null, null, null, null, null, null);
         cursor.moveToFirst();
-        Lelang lelang;
+        Lelang lelang = new Lelang();
         if (cursor.getCount() > 0) {
-            do {
-                lelang=new Lelang();
-                lelang.setLelang_id(cursor.getInt(cursor.getColumnIndexOrThrow(LELANG_ID)));
-                lelang.setLelang_judul(cursor.getString(cursor.getColumnIndexOrThrow(LELANG_JUDUL)));
-                lelang.setLelang_alamat(cursor.getString(cursor.getColumnIndexOrThrow(LELANG_ALAMAT)));
-                lelang.setLelang_anggaran(cursor.getLong(cursor.getColumnIndexOrThrow(LELANG_ANGGARAN)));
-                lelang.setLelang_status(cursor.getInt(cursor.getColumnIndexOrThrow(LELANG_STATUS)));
-                lelang.setLelang_fileurl(cursor.getString(cursor.getColumnIndexOrThrow(LELANG_FILEURL)));
-                lelang.setLelang_kota(cursor.getInt(cursor.getColumnIndexOrThrow(LELANG_KOTA)));
-                lelang.setLelang_deskripsi(cursor.getString(cursor.getColumnIndexOrThrow(LELANG_DESKRIPSI)));
-                lelang.setLelang_pembayaran(cursor.getInt(cursor.getColumnIndexOrThrow(LELANG_PEMBAYARAN)));
-                lelang.setLelang_tglmulai(cursor.getString(cursor.getColumnIndexOrThrow(LELANG_TGLMULAI)));
-                lelang.setLelang_tglselesai(cursor.getString(cursor.getColumnIndexOrThrow(LELANG_TGLSELESAI)));
-                lelang.setLelang_userid(cursor.getString(cursor.getColumnIndexOrThrow(LELANG_USERID)));
-                lelangs.add(lelang);
-                cursor.moveToNext();
-            } while (!cursor.isAfterLast());
+            cursor.moveToPosition(0);
+            lelang.setLelang_id(cursor.getInt(cursor.getColumnIndexOrThrow(LELANG_ID)));
+            lelang.setLelang_judul(cursor.getString(cursor.getColumnIndexOrThrow(LELANG_JUDUL)));
+            lelang.setLelang_alamat(cursor.getString(cursor.getColumnIndexOrThrow(LELANG_ALAMAT)));
+            lelang.setLelang_anggaran(cursor.getLong(cursor.getColumnIndexOrThrow(LELANG_ANGGARAN)));
+            lelang.setLelang_fileurl(cursor.getString(cursor.getColumnIndexOrThrow(LELANG_FILEURL)));
+            lelang.setLelang_kota(cursor.getInt(cursor.getColumnIndexOrThrow(LELANG_KOTA)));
+            lelang.setLelang_deskripsi(cursor.getString(cursor.getColumnIndexOrThrow(LELANG_DESKRIPSI)));
+            lelang.setLelang_pembayaran(cursor.getInt(cursor.getColumnIndexOrThrow(LELANG_PEMBAYARAN)));
+            lelang.setLelang_tglselesai(cursor.getString(cursor.getColumnIndexOrThrow(LELANG_TGLSELESAI)));
+            lelang.setLelang_userid(cursor.getString(cursor.getColumnIndexOrThrow(LELANG_USERID)));
         }
         cursor.close();
         db.endTransaction();
-        return lelangs;
+        return lelang;
+    }
+
+    public long update(Lelang lelang){
+        ContentValues contentValues=new ContentValues();
+        contentValues.put(LELANG_JUDUL, lelang.getLelang_judul());
+        contentValues.put(LELANG_ALAMAT, lelang.getLelang_alamat());
+        contentValues.put(LELANG_ANGGARAN, lelang.getLelang_anggaran());
+        contentValues.put(LELANG_FILEURL, lelang.getLelang_fileurl());
+        contentValues.put(LELANG_DESKRIPSI, lelang.getLelang_deskripsi());
+        contentValues.put(LELANG_KOTA, lelang.getLelang_kota());
+        contentValues.put(LELANG_PEMBAYARAN, lelang.getLelang_pembayaran());
+        contentValues.put(LELANG_TGLSELESAI, lelang.getLelang_tglselesai());
+        contentValues.put(LELANG_USERID, lelang.getLelang_userid());
+        return db.update(TABLE_REQ_LELANG,contentValues,LELANG_ID+"='"+lelang.getLelang_id()+"'",null);
     }
 
     public long insert(Lelang lelang) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(LELANG_ID, lelang.getLelang_id());
         contentValues.put(LELANG_JUDUL, lelang.getLelang_judul());
         contentValues.put(LELANG_ALAMAT, lelang.getLelang_alamat());
         contentValues.put(LELANG_ANGGARAN, lelang.getLelang_anggaran());
-        contentValues.put(LELANG_FILEURL,lelang.getLelang_fileurl());
+        contentValues.put(LELANG_FILEURL, lelang.getLelang_fileurl());
         contentValues.put(LELANG_DESKRIPSI, lelang.getLelang_deskripsi());
         contentValues.put(LELANG_KOTA, lelang.getLelang_kota());
         contentValues.put(LELANG_PEMBAYARAN, lelang.getLelang_pembayaran());
-        contentValues.put(LELANG_TGLMULAI, lelang.getLelang_tglmulai());
         contentValues.put(LELANG_TGLSELESAI, lelang.getLelang_tglselesai());
-        contentValues.put(LELANG_STATUS, lelang.getLelang_status());
         contentValues.put(LELANG_USERID, lelang.getLelang_userid());
-        return db.insert(TABLE_LELANG, null, contentValues);
+        return db.insert(TABLE_REQ_LELANG, null, contentValues);
     }
 
     public void bulk_insert(ArrayList<Lelang> list) {
@@ -109,7 +110,7 @@ public class LelangHelper {
     }
 
     public boolean isempty() {
-        Cursor cursor = db.query(TABLE_LELANG, null, null, null, null, null, null, null);
+        Cursor cursor = db.query(TABLE_REQ_LELANG, null, null, null, null, null, null, null);
         int count = cursor.getCount();
         cursor.close();
         if (count == 0) {
@@ -118,8 +119,8 @@ public class LelangHelper {
         return false;
     }
 
-    public void truncate(){
-        db.execSQL("DELETE FROM "+TABLE_LELANG);
+    public void truncate() {
+        db.execSQL("DELETE FROM " + TABLE_REQ_LELANG);
         db.execSQL("VACUUM");
     }
 }

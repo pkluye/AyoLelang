@@ -30,6 +30,7 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 app:srcCompat="@drawable/ic_arrow_back_black_24dp"
+                android:onClick="back"
                 android:scaleY="1.2"
                 android:scaleX="1.2"/>
 
@@ -88,7 +89,7 @@
             android:id="@+id/txt_subtext_kategori_dipilih"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="List Pekerjaan"
+            android:text=""
             android:textColor="@color/colorBlack"
             android:textSize="14sp"/>
 

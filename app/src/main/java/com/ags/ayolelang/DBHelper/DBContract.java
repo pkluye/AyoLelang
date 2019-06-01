@@ -9,6 +9,8 @@ public class DBContract {
     static String TABLE_KATEGORI = "TABLE_KATEGORI";
     static String TABLE_LELANG = "TABLE_LELANG";
     static String TABLE_PEKERJAAN = "TABLE_PEKERJAAN";
+    static String TABLE_REQ_LELANG = "TABLE_REQ_LELANG";
+    static String TABLE_REQ_PEKERJAAN = "TABLE_REQ_PEKERJAAN";
 
     static final class PROVINSI implements BaseColumns {
         static String PROVINSI_ID = "provinsi_id";
@@ -40,6 +42,7 @@ public class DBContract {
         static String LELANG_KOTA = "lelang_kota";
         static String LELANG_ALAMAT = "lelang_alamat";
         static String LELANG_STATUS = "lelang_status";
+        static String LELANG_FILEURL = "lelang_fileurl";
     }
 
     static final class PEKERJAAN implements BaseColumns {
@@ -50,7 +53,6 @@ public class DBContract {
         static String PEKERJAAN_JUMLAH = "pekerjaan_jumlah";
         static String PEKERJAAN_HARGA = "pekerjaan_harga";
         static String PEKERJAAN_CATATAN = "pekerjaan_catatan";
-        static String PEKERJAAN_FILEURL = "pekerjaan_fileurl";
         static String PEKERJAAN_KATEGORIID = "pekerjaan_kategoriid";
         static String PEKERJAAN_STATUS = "pekerjaan_status";
     }

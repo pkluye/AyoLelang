@@ -26,7 +26,6 @@ public class AdapterSubKategori extends RecyclerView.Adapter<AdapterSubKategori.
     private Context context;
     private ArrayList<Kategori> kategoris;
     private String tittle;
-    private int lelang_id = 0;
 
     public AdapterSubKategori(Context context) {
         this.context = context;
@@ -62,7 +61,6 @@ public class AdapterSubKategori extends RecyclerView.Adapter<AdapterSubKategori.
                     Bundle bundle = new Bundle();
                     bundle.putInt("id", kategori_id);
                     bundle.putInt("mode", 2);
-                    bundle.putInt("lelang_id", lelang_id);
                     bundle.putString("tittle", tittle);
                     bundle.putString("kategori_nama", kategori_nama);
                     fragmentSubKategori.setArguments(bundle);
@@ -70,13 +68,13 @@ public class AdapterSubKategori extends RecyclerView.Adapter<AdapterSubKategori.
                 }
             });
         } else {
-            customViewHolder.txt_ItemDesc.setVisibility(View.INVISIBLE);
+            customViewHolder.txt_ItemDesc.setVisibility(View.GONE);
             customViewHolder.layout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, DetailSpesifikasi.class);
                     intent.putExtra("kategori_id", kategori_id);
-                    intent.putExtra("lelang_id", lelang_id);
+                    intent.putExtra("kategori_nama", kategori_nama);
                     context.startActivity(intent);
                 }
             });
@@ -125,10 +123,6 @@ public class AdapterSubKategori extends RecyclerView.Adapter<AdapterSubKategori.
 
     public void setTittle(String tittle) {
         this.tittle = tittle;
-    }
-
-    public void setLelangid(int lelang_id) {
-        this.lelang_id = lelang_id;
     }
 
     public class CustomViewHolder extends RecyclerView.ViewHolder {

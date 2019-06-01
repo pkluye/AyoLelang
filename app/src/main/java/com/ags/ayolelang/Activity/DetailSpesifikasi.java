@@ -3,26 +3,26 @@ package com.ags.ayolelang.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.support.v7.widget.Toolbar;
+import android.widget.TextView;
 
+import com.ags.ayolelang.DBHelper.REQLelangHelper;
+import com.ags.ayolelang.DBHelper.REQPekerjaanHelper;
+import com.ags.ayolelang.Models.Lelang;
 import com.ags.ayolelang.Models.Pekerjaan;
 import com.ags.ayolelang.R;
 
 public class DetailSpesifikasi extends AppCompatActivity {
 
-    public static Pekerjaan req_pekerjaan = new Pekerjaan();
-
     private int kategori_id;
     private EditText ukuran, bahan, quantity, harga, catatan;
-    private ImageButton btn_back;
-    private boolean edit = false;
-    private boolean tambah_keranjang = false;
-    private int lelang_id = 0;
     private Toolbar toolbar;
+    private TextView txt_subtext_kategori_dipilih;
+    private boolean edit;
+    private int pekerjaan_id;
+    private long lastharga;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,39 +33,30 @@ public class DetailSpesifikasi extends AppCompatActivity {
         quantity = findViewById(R.id.in_quantity);
         harga = findViewById(R.id.in_harga);
         catatan = findViewById(R.id.in_catatan);
+        txt_subtext_kategori_dipilih = findViewById(R.id.txt_subtext_kategori_dipilih);
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         Intent intent = getIntent();
-        edit = intent.getBooleanExtra("edit", false);
-        lelang_id = intent.getIntExtra("lelang_id", 0);
         kategori_id = intent.getIntExtra("kategori_id", 0);
-        req_pekerjaan.setPekerjaan_lelangid(lelang_id);
-        if (edit == true && lelang_id != 0) {
-            String ukuran_ = intent.getStringExtra("ukuran");
-            String bahan_ = intent.getStringExtra("bahan");
-            int jumlah_ = intent.getIntExtra("jumlah", 0);
-            long harga_ = intent.getLongExtra("harga", 0);
-            String catatan_ = intent.getStringExtra("catatan");
-            String fileurl = intent.getStringExtra("fileurl");
-            int kategori_id = intent.getIntExtra("kategori_id", 0);
-            int pekerjaan_id = intent.getIntExtra("pekerjaan_id", 0);
-            req_pekerjaan.setPekerjaan_fileurl(fileurl);
-            req_pekerjaan.setPekerjaan_id(pekerjaan_id);
-
-            //set tampilan
-            ukuran.setText(ukuran_);
-            bahan.setText(bahan_);
-            quantity.setText(jumlah_ + "");
-            harga.setText(harga_ + "");
-            catatan.setText(catatan_ + "");
+        String kategori_nama = intent.getStringExtra("kategori_nama");
+        edit = intent.getBooleanExtra("edit", false);
+        txt_subtext_kategori_dipilih.setText(kategori_nama);
+        if (edit) {
+            pekerjaan_id = intent.getIntExtra("id", 0);
+            String ukuran_e= intent.getStringExtra("ukuran");
+            ukuran.setText(ukuran_e);
+            String bahan_e=intent.getStringExtra("bahan");
+            bahan.setText(bahan_e);
+            int jumlah=intent.getIntExtra("jumlah", 0);
+            quantity.setText(jumlah+"");
+            long harga_e=intent.getLongExtra("harga", 0);
+            harga.setText(harga_e+"");
+            String catatan_e=intent.getStringExtra("catatan");
+            catatan.setText(catatan_e);
+            lastharga=intent.getLongExtra("harga", 0);
         }
-        Log.d("lelang_id",lelang_id+"");
-        if (edit == false && lelang_id != 0) {
-            tambah_keranjang = true;
-        }
-        //Log.d("id_category",""+id_category);
     }
 
     public void next(View view) {
@@ -105,20 +96,37 @@ public class DetailSpesifikasi extends AppCompatActivity {
             return;
         }
 
-        req_pekerjaan.setPekerjaan_kategoriid(kategori_id);
-        req_pekerjaan.setPekerjaan_bahan(bahan);
-        req_pekerjaan.setPekerjaan_catatan(catatan);
-        req_pekerjaan.setPekerjaan_harga(Long.parseLong(harga));
-        req_pekerjaan.setPekerjaan_ukuran(ukuran);
-        req_pekerjaan.setPekerjaan_jumlah(Integer.parseInt(quantity));
-        Intent intent = new Intent(this, Attachment.class);
+        REQPekerjaanHelper reqPekerjaanHelper = new REQPekerjaanHelper(this);
+        reqPekerjaanHelper.open();
+        Intent intent;
+        REQLelangHelper reqLelangHelper = new REQLelangHelper(this);
+        reqLelangHelper.open();
+        boolean lelang_isempty=reqLelangHelper.isempty();
+        Lelang lelang = reqLelangHelper.getLelang();
         if (edit) {
-            intent.putExtra("edit", true);
+            intent = new Intent(this, Preview.class);
+            reqPekerjaanHelper.update(new Pekerjaan(ukuran, bahan, catatan, pekerjaan_id, Integer.parseInt(quantity), kategori_id, Long.parseLong(harga)));
+            if (!lelang_isempty) {
+                lelang.setLelang_anggaran(lelang.getLelang_anggaran() + Long.parseLong(harga) - lastharga);
+                reqLelangHelper.update(lelang);
+            }
+        } else {
+            if (!lelang_isempty) {
+                lelang.setLelang_anggaran(lelang.getLelang_anggaran() + Long.parseLong(harga));
+                reqLelangHelper.update(lelang);
+                intent = new Intent(this, Preview.class);
+            }else{
+                intent = new Intent(this, ListPekerjaan.class);
+            }
+            intent.putExtra("kategori_id", kategori_id);
+            reqPekerjaanHelper.insert(new Pekerjaan(ukuran, bahan, catatan, Integer.parseInt(quantity), kategori_id, Long.parseLong(harga)));
+
         }
-        if (tambah_keranjang) {
-            intent.putExtra("tambah_keranjang", true);
-        }
+        reqLelangHelper.close();
+        reqPekerjaanHelper.close();
+
         startActivity(intent);
+        finish();
     }
 
     public void back(View view) {

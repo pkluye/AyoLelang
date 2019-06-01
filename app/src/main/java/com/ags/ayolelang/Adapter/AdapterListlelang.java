@@ -94,7 +94,7 @@ public class AdapterListlelang extends RecyclerView.Adapter<AdapterListlelang.Cu
         Date now = null;
         Date deadline = null;
         try {
-            deadline = dateFormat.parse(s);
+            now = dateFormat.parse(s);
             deadline = dateFormat.parse(lelang_tglselesai);
         } catch (ParseException e) {
             e.printStackTrace();

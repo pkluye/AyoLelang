@@ -42,16 +42,16 @@ public class KategoriHelper {
         Cursor cursor = db.query(TABLE_KATEGORI, null, KATEGORI_SUBPARENTID + "='" + id + "'", null, null, null, KATEGORI_NAMA + " ASC", null);
         cursor.moveToFirst();
         Kategori kategori;
-        if (cursor.getCount()>0){
-            do{
-                kategori=new Kategori();
+        if (cursor.getCount() > 0) {
+            do {
+                kategori = new Kategori();
                 kategori.setKategori_id(cursor.getInt(cursor.getColumnIndexOrThrow(KATEGORI_ID)));
                 kategori.setKategori_nama(cursor.getString(cursor.getColumnIndexOrThrow(KATEGORI_NAMA)));
                 kategori.setKategori_parentid(cursor.getInt(cursor.getColumnIndexOrThrow(KATEGORI_PARENTID)));
                 kategori.setKategori_subparentid(cursor.getInt(cursor.getColumnIndexOrThrow(KATEGORI_SUBPARENTID)));
                 kategoris.add(kategori);
                 cursor.moveToNext();
-            }while (!cursor.isAfterLast());
+            } while (!cursor.isAfterLast());
         }
         cursor.close();
         db.endTransaction();
@@ -61,19 +61,19 @@ public class KategoriHelper {
     public ArrayList<Kategori> getKategori_SubParent(int id) {
         db.beginTransaction();
         ArrayList<Kategori> kategoris = new ArrayList<>();
-        Cursor cursor = db.query(TABLE_KATEGORI, null, KATEGORI_PARENTID + "='" + id + "' AND "+KATEGORI_SUBPARENTID+" = 0", null, null, null, KATEGORI_NAMA + " ASC", null);
+        Cursor cursor = db.query(TABLE_KATEGORI, null, KATEGORI_PARENTID + "='" + id + "' AND " + KATEGORI_SUBPARENTID + " = 0", null, null, null, KATEGORI_NAMA + " ASC", null);
         cursor.moveToFirst();
         Kategori kategori;
-        if (cursor.getCount()>0){
-            do{
-                kategori=new Kategori();
+        if (cursor.getCount() > 0) {
+            do {
+                kategori = new Kategori();
                 kategori.setKategori_id(cursor.getInt(cursor.getColumnIndexOrThrow(KATEGORI_ID)));
                 kategori.setKategori_nama(cursor.getString(cursor.getColumnIndexOrThrow(KATEGORI_NAMA)));
                 kategori.setKategori_parentid(cursor.getInt(cursor.getColumnIndexOrThrow(KATEGORI_PARENTID)));
                 kategori.setKategori_subparentid(cursor.getInt(cursor.getColumnIndexOrThrow(KATEGORI_SUBPARENTID)));
                 kategoris.add(kategori);
                 cursor.moveToNext();
-            }while (!cursor.isAfterLast());
+            } while (!cursor.isAfterLast());
         }
         cursor.close();
         db.endTransaction();
@@ -86,31 +86,46 @@ public class KategoriHelper {
         Cursor cursor = db.query(TABLE_KATEGORI, null, KATEGORI_PARENTID + "='" + id + "'", null, null, null, KATEGORI_NAMA + " ASC", null);
         cursor.moveToFirst();
         Kategori kategori;
-        if (cursor.getCount()>0){
-            do{
-                kategori=new Kategori();
+        if (cursor.getCount() > 0) {
+            do {
+                kategori = new Kategori();
                 kategori.setKategori_id(cursor.getInt(cursor.getColumnIndexOrThrow(KATEGORI_ID)));
                 kategori.setKategori_nama(cursor.getString(cursor.getColumnIndexOrThrow(KATEGORI_NAMA)));
                 kategori.setKategori_parentid(cursor.getInt(cursor.getColumnIndexOrThrow(KATEGORI_PARENTID)));
                 kategori.setKategori_subparentid(cursor.getInt(cursor.getColumnIndexOrThrow(KATEGORI_SUBPARENTID)));
                 kategoris.add(kategori);
                 cursor.moveToNext();
-            }while (!cursor.isAfterLast());
+            } while (!cursor.isAfterLast());
         }
         cursor.close();
         db.endTransaction();
         return kategoris;
     }
 
+    public Kategori getSingleKategori(int id) {
+        db.beginTransaction();
+        Cursor cursor = db.query(TABLE_KATEGORI, null, KATEGORI_ID + "='" + id + "'", null, null, null, null, null);
+        cursor.moveToFirst();
+        Kategori kategori = new Kategori();
+        if (cursor.getCount() > 0) {
+            cursor.moveToPosition(0);
+            kategori.setKategori_id(cursor.getInt(cursor.getColumnIndexOrThrow(KATEGORI_ID)));
+            kategori.setKategori_nama(cursor.getString(cursor.getColumnIndexOrThrow(KATEGORI_NAMA)));
+            kategori.setKategori_parentid(cursor.getInt(cursor.getColumnIndexOrThrow(KATEGORI_PARENTID)));
+            kategori.setKategori_subparentid(cursor.getInt(cursor.getColumnIndexOrThrow(KATEGORI_SUBPARENTID)));
+        }
+        cursor.close();
+        db.endTransaction();
+        return kategori;
+    }
 
-
-    public long insert(Kategori kategori){
-        ContentValues contentValues=new ContentValues();
-        contentValues.put(KATEGORI_ID,kategori.getKategori_id());
-        contentValues.put(KATEGORI_NAMA,kategori.getKategori_nama());
-        contentValues.put(KATEGORI_PARENTID,kategori.getKategori_parentid());
-        contentValues.put(KATEGORI_SUBPARENTID,kategori.getKategori_subparentid());
-        return db.insert(TABLE_KATEGORI,null,contentValues);
+    public long insert(Kategori kategori) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(KATEGORI_ID, kategori.getKategori_id());
+        contentValues.put(KATEGORI_NAMA, kategori.getKategori_nama());
+        contentValues.put(KATEGORI_PARENTID, kategori.getKategori_parentid());
+        contentValues.put(KATEGORI_SUBPARENTID, kategori.getKategori_subparentid());
+        return db.insert(TABLE_KATEGORI, null, contentValues);
     }
 
     public void bulk_insert(ArrayList<Kategori> list) {
@@ -139,8 +154,8 @@ public class KategoriHelper {
         return false;
     }
 
-    public void truncate(){
-        db.execSQL("DELETE FROM "+TABLE_KATEGORI);
+    public void truncate() {
+        db.execSQL("DELETE FROM " + TABLE_KATEGORI);
         db.execSQL("VACUUM");
     }
 }
