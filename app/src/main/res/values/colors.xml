@@ -8,6 +8,7 @@
     <color name="colorRed">#FF3232</color>
     <color name="colorGrey1">#4B4B4B</color>
     <color name="colorGrey2">#AAAAAA</color>
+    <color name="colorGrey3">#ECEFF0</color>
     <color name="colorBackground">#F0F4F4</color>
     <color name="colorBackgroundLight">#F8F8F8</color>
 </resources>

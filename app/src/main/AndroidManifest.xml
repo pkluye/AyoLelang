@@ -4,24 +4,22 @@
     package="com.ags.ayolelang">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
+        android:hardwareAccelerated="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:largeHeap="true"
-        android:hardwareAccelerated="false"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.NoActionBar"
-        >
-
-        <activity android:name=".Activity.Preview"/>
+        android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".Activity.ListLelang"></activity>
+        <activity android:name=".Activity.Preview" />
         <activity android:name=".Activity.Deskripsi" />
         <activity android:name=".Activity.Attachment" />
-        <activity android:name=".Activity.Message"/>
+        <activity android:name=".Activity.Message" />
 
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
@@ -39,7 +37,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>
