@@ -153,5 +153,7 @@ public interface Api {
             @Field("secret_key") String secret_key,
             @Field("token_kategori") String s,
             @Field("token_provinsi") String s1,
-            @Field("token_kota") String s2);
+            @Field("token_kota") String s2,
+            @Field("token_lelang") String s3,
+            @Field("token_pekerjaan") String s4);
 }

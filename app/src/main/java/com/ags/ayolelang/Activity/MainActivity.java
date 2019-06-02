@@ -135,7 +135,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                         secret_key,
                         token[0],
                         token[1],
-                        token[2]
+                        token[2],
+                        token[3],
+                        token[4]
                 );
         //Log.d("token",token[0]+" "+token[1]+" "+token[2]+" ");
         // Set up progress before call
@@ -158,10 +160,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                     progressDoalog.dismiss();
                 }
                 if (response.isSuccessful()) {
-                    Log.d("Update data", "yesss");
                     FetchDBRespon fetchDBRespon = response.body();
                     if (!fetchDBRespon.isError()) {
                         FetchDB fetchDB = fetchDBRespon.getData();
+                        Log.d("Update data", "yes "+fetchDBRespon.getMessage());
                         String[] newtoken = SharedPrefManager.getInstance(getApplicationContext()).getToken();
                         if (fetchDBRespon.getMessage().contains("3")) {
                             ArrayList<Kota> kotas = fetchDB.getKotas();
@@ -189,10 +191,12 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                         if (fetchDBRespon.getMessage().contains("5")) {
                             ArrayList<Pekerjaan> pekerjaans = fetchDB.getPekerjaans();
                             insert_pekerjaan(pekerjaans);
-                            newtoken[4] = fetchDB.getToken_lelang();
+                            newtoken[4] = fetchDB.getToken_pekerjaan();
                         }
 
                         SharedPrefManager.getInstance(getApplicationContext()).saveToken(newtoken);
+                    }else {
+                        Log.d("Update data", "no "+fetchDBRespon.getMessage());
                     }
                 } else {
                     Log.d("error ambil data", response.message());

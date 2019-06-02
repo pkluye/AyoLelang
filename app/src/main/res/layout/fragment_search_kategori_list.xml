@@ -11,6 +11,7 @@
         android:layout_height="48dp"
         android:gravity="center_vertical"
         android:background="@color/colorBackground"
+        android:id="@+id/navigatorr"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
         android:orientation="horizontal">
@@ -43,7 +44,8 @@
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipe_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="60dp">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_search_lelang"

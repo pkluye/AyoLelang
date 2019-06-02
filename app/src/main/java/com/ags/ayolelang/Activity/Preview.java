@@ -254,7 +254,7 @@ public class Preview extends AppCompatActivity {
             }
             txt_attachment.setText(filename);
         } else {
-            txt_attachment.setText(lelang.getLelang_fileurl());
+            txt_attachment.setText("-");
         }
         REQPekerjaanHelper reqPekerjaanHelper = new REQPekerjaanHelper(this);
         reqPekerjaanHelper.open();
@@ -293,7 +293,7 @@ public class Preview extends AppCompatActivity {
         } else {
             rv_lelang.setVisibility(View.VISIBLE);
             findViewById(R.id.linear_pekerjaan).setVisibility(View.GONE);
-            AdapterItemPekerjaan adapterItemPekerjaan = new AdapterItemPekerjaan(getApplicationContext());
+            AdapterItemPekerjaan adapterItemPekerjaan = new AdapterItemPekerjaan(this);
             adapterItemPekerjaan.addItem(pekerjaans);
             rv_lelang.setAdapter(adapterItemPekerjaan);
         }

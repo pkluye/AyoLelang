@@ -2,16 +2,21 @@ package com.ags.ayolelang.Adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.ags.ayolelang.Activity.MainActivity;
 import com.ags.ayolelang.DBHelper.KotaHelper;
 import com.ags.ayolelang.DBHelper.ProvinsiHelper;
+import com.ags.ayolelang.Fragment.FragmentDetailLelang_s;
 import com.ags.ayolelang.Models.Kota;
 import com.ags.ayolelang.Models.Lelang;
 import com.ags.ayolelang.Models.Provinsi;
@@ -45,15 +50,42 @@ public class AdapterListlelang extends RecyclerView.Adapter<AdapterListlelang.Cu
 
     @Override
     public void onBindViewHolder(@NonNull CustomHolderView cvh, int i) {
-        Lelang lelang = lelangs.get(i);
+        final Lelang lelang = lelangs.get(i);
         cvh.txt_judulgarapan.setText(lelang.getLelang_judul());
         cvh.txt_harga.setText("Rp. " + lelang.getLelang_anggaran());
         cvh.txt_waktu.setText(getTime(lelang.getLelang_tglmulai()));
-        cvh.txt_tenggatWaktu.setText(lelang.getLelang_tglmulai().substring(0, 11) + " ~ " + lelang.getLelang_tglselesai().substring(0, 11));
-        cvh.txt_eta.setText("(" + getEta(lelang.getLelang_tglselesai()) + ")");
-        cvh.txt_alamat.setText(getKotaProv(lelang.getLelang_kota()));
-        Log.d("getkotaProv", getKotaProv(lelang.getLelang_kota()));
-        cvh.txt_jumlahmitra.setText("0");
+        final String tenggat_waktu=lelang.getLelang_tglmulai().substring(0, 11) + " ~ " + lelang.getLelang_tglselesai().substring(0, 11);
+        cvh.txt_tenggatWaktu.setText(tenggat_waktu);
+        final String eta=getEta(lelang.getLelang_tglselesai());
+        cvh.txt_eta.setText("(" + eta + ")");
+        final String alamat=getKotaProv(lelang.getLelang_kota());
+        cvh.txt_alamat.setText(alamat);
+        //Log.d("getkotaProv", getKotaProv(lelang.getLelang_kota()));
+        final int count_mitra=0;
+        cvh.txt_jumlahmitra.setText(count_mitra +" Mitra Bersedia");
+        cvh.item_search_kategori.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle=new Bundle();
+                bundle.putString("eta",eta);
+                bundle.putString("alamat",alamat);
+                bundle.putInt("lelang_id",lelang.getLelang_id());
+                bundle.putString("tenggat_waktu",tenggat_waktu);
+                bundle.putInt("count mitra",count_mitra);
+                Fragment fragment = new FragmentDetailLelang_s();
+                fragment.setArguments(bundle);
+                ReplaceFragment(fragment);
+            }
+        });
+    }
+
+    public void ReplaceFragment(Fragment fragment){
+        if (fragment != null)
+            ((MainActivity)context).getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.ContainerFragmentSearch, fragment)
+                    .addToBackStack(null)
+                    .commit();
     }
 
     private String getKotaProv(int i) {
@@ -83,7 +115,7 @@ public class AdapterListlelang extends RecyclerView.Adapter<AdapterListlelang.Cu
         }
 
         long diff = now.getTime() - createLelang.getTime();
-        //Log.d("time", now.getTime() + " " + createLelang.getTime());
+        //Log.d("time", now.getTime() + " - " + createLelang.getTime()+"="+diff);
         return diff(diff) + " yang lalu";
     }
 
@@ -102,15 +134,15 @@ public class AdapterListlelang extends RecyclerView.Adapter<AdapterListlelang.Cu
 
         long diff = deadline.getTime() - now.getTime();
         //Log.d("time", now.getTime() + " " + createLelang.getTime());
-        if (!diff(diff).equalsIgnoreCase("e")){
-            return diff(diff)+" lagi";
+        if (!diff(diff).equalsIgnoreCase("e")) {
+            return diff(diff) + " lagi";
         }
         return "expired";
     }
 
     private String diff(long diff) {
-        if (diff/1000%60 >0){
-            if (diff / (1000 * 60) > 0) {
+        if (diff / 1000 % 60 > 0) {
+            if (diff / (1000 * 60) % 60 > 0) {
                 if (diff / (1000 * 60 * 60) > 0) {
                     if (diff / (1000 * 60 * 60 * 24) > 0) {
                         if (diff / (1000 * 60 * 60 * 24 * 30) > 0) {
@@ -127,7 +159,7 @@ public class AdapterListlelang extends RecyclerView.Adapter<AdapterListlelang.Cu
                     int selisih = Integer.parseInt(diff / (1000 * 60 * 60) + "");
                     return selisih + " jam";
                 }
-                int selisih = Integer.parseInt(diff / 1000 * 60 + "");
+                int selisih = Integer.parseInt(diff / (1000 * 60) % 60 + "");
                 return selisih + " menit";
             }
             //return diff / 1000 % 60 + " detik yang lalu";
@@ -149,6 +181,7 @@ public class AdapterListlelang extends RecyclerView.Adapter<AdapterListlelang.Cu
 
     public class CustomHolderView extends RecyclerView.ViewHolder {
         TextView txt_judulgarapan, txt_waktu, txt_alamat, txt_harga, txt_tenggatWaktu, txt_eta, txt_jumlahmitra;
+        LinearLayout item_search_kategori;
 
         public CustomHolderView(@NonNull View itemView) {
             super(itemView);
@@ -159,6 +192,7 @@ public class AdapterListlelang extends RecyclerView.Adapter<AdapterListlelang.Cu
             txt_tenggatWaktu = itemView.findViewById(R.id.txt_tenggatWaktu);
             txt_eta = itemView.findViewById(R.id.txt_eta);
             txt_jumlahmitra = itemView.findViewById(R.id.txt_jumlahmitra);
+            item_search_kategori=itemView.findViewById(R.id.item_search_kategori);
         }
     }
 }
