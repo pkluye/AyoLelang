@@ -116,6 +116,7 @@ public class Deskripsi extends AppCompatActivity implements DatePickerDialog.OnD
             kota_e = intent.getStringExtra("kotanama");
             pembayaran_e = intent.getIntExtra("pembayaran",0);
             lelang_id_e = intent.getIntExtra("id", 0);
+            Log.d("id lelang",lelang_id_e+"");
             txt_url_e = intent.getStringExtra("fileurl");
         }
 
@@ -141,8 +142,13 @@ public class Deskripsi extends AppCompatActivity implements DatePickerDialog.OnD
             alamat.setText(alamat_e);
             txt_url.setText(txt_url_e);
             if (txt_url_e.length() > 1) {
-                int posOfSubstr = txt_url_e.lastIndexOf("/") + 12;
-                String filename = txt_url_e.substring(posOfSubstr);
+                String filename="";
+                if (txt_url_e.length()>79){
+                    int posOfSubstr = txt_url_e.lastIndexOf("/") + 12;
+                    filename = txt_url_e.substring(posOfSubstr);
+                }else{
+                    filename = txt_url_e;
+                }
                 txt_namaFile.setText(filename);
                 layout_file.setVisibility(View.VISIBLE);
                 uploadToserver.setEnabled(false);
@@ -252,18 +258,20 @@ public class Deskripsi extends AppCompatActivity implements DatePickerDialog.OnD
         REQLelangHelper reqLelangHelper = new REQLelangHelper(this);
         reqLelangHelper.open();
         if (edit) {
-            reqLelangHelper.update(
-                    new Lelang(deskripsi,
-                            lelang_id_e,
-                            deadline,
-                            judul,
-                            SharedPrefManager.getInstance(this).getUser().getUser_id(),
-                            alamat,
-                            txt_url,
-                            getKotaid(kota),
-                            pembayaran,
-                            totalharga)
-            );
+            Log.d("deskripsi",deadline);
+            Lelang lelang=new Lelang(deskripsi,
+                    lelang_id_e,
+                    deadline,
+                    judul,
+                    SharedPrefManager.getInstance(this).getUser().getUser_id(),
+                    alamat,
+                    txt_url,
+                    getKotaid(kota),
+                    pembayaran,
+                    totalharga);
+            Log.d("lelang",lelang.toString());
+            reqLelangHelper.update(lelang);
+            reqLelangHelper.close();
         } else {
             reqLelangHelper.insert(new Lelang(deskripsi,
                     deadline,
@@ -274,14 +282,16 @@ public class Deskripsi extends AppCompatActivity implements DatePickerDialog.OnD
                     getKotaid(kota),
                     pembayaran,
                     totalharga));
+            reqLelangHelper.close();
+            Intent intent=new Intent(this, Preview.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
         }
-        reqLelangHelper.close();
-        startActivity(new Intent(this, Preview.class));
         finish();
     }
 
     public void back(View view) {
-        onBackPressed();
+        finish();
     }
 
     //cek error html

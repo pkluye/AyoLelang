@@ -76,6 +76,7 @@ public class REQLelangHelper {
         contentValues.put(LELANG_PEMBAYARAN, lelang.getLelang_pembayaran());
         contentValues.put(LELANG_TGLSELESAI, lelang.getLelang_tglselesai());
         contentValues.put(LELANG_USERID, lelang.getLelang_userid());
+        Log.d("lelang log",lelang.toString());
         return db.update(TABLE_REQ_LELANG,contentValues,LELANG_ID+"='"+lelang.getLelang_id()+"'",null);
     }
 

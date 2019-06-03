@@ -59,6 +59,8 @@ public class Preview extends AppCompatActivity {
     private Button btn_edit, btn_posting;
     //    private ImageButton btn_home;
     private Toolbar toolbar;
+    private boolean edit;
+    private String[] pekerjaanid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,17 +90,131 @@ public class Preview extends AppCompatActivity {
         txt_catatan = findViewById(R.id.txt_catatan);
         rv_lelang.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         Intent intent = getIntent();
-        lelang_id = intent.getIntExtra("lelang_id", 0);
+        edit = intent.getBooleanExtra("edit", false);
+        if (edit) {
+            lelang_id = intent.getIntExtra("lelang_id", 0);
+            pekerjaanid = intent.getStringExtra("pekerjaanid").split(" ");
+            btn_posting.setText("Simpan");
+        }
+        btn_posting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (edit) {
+                    edit();
+                } else {
+                    postingLelang();
+                }
+            }
+        });
 
         loadDataLelang();
     }
 
-    public void postingLelang(View view) {
+    private void edit() {
         JSONObject lelang = new JSONObject();
         final REQLelangHelper lelangHelper = new REQLelangHelper(this);
         lelangHelper.open();
         Lelang lelang_data = lelangHelper.getLelang();
         lelangHelper.close();
+
+        try {
+            lelang.put("lelang_id", lelang_id);
+            lelang.put("lelang_judul", lelang_data.getLelang_judul());
+            lelang.put("lelang_anggaran", lelang_data.getLelang_anggaran());
+            lelang.put("lelang_deskripsi", lelang_data.getLelang_deskripsi());
+            lelang.put("lelang_tglselesai", lelang_data.getLelang_tglselesai());
+            lelang.put("lelang_userid", lelang_data.getLelang_userid());
+            lelang.put("lelang_pembayaran", lelang_data.getLelang_pembayaran());
+            lelang.put("lelang_kota", lelang_data.getLelang_kota());
+            lelang.put("lelang_alamat", lelang_data.getLelang_alamat());
+            lelang.put("lelang_fileurl", lelang_data.getLelang_fileurl());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JSONArray pekerjaans = new JSONArray();
+        final REQPekerjaanHelper reqPekerjaanHelper = new REQPekerjaanHelper(this);
+        reqPekerjaanHelper.open();
+        ArrayList<Pekerjaan> pekerjaans_data = reqPekerjaanHelper.getPekerjaan();
+        reqPekerjaanHelper.close();
+        int count = 0;
+        for (Pekerjaan pekerjaan : pekerjaans_data) {
+            JSONObject jsonObject = new JSONObject();
+            try {
+                jsonObject.put("pekerjaan_id", pekerjaanid[count]);
+                count++;
+                jsonObject.put("pekerjaan_ukuran", pekerjaan.getPekerjaan_ukuran());
+                jsonObject.put("pekerjaan_harga", pekerjaan.getPekerjaan_harga());
+                jsonObject.put("pekerjaan_bahan", pekerjaan.getPekerjaan_bahan());
+                jsonObject.put("pekerjaan_jumlah", pekerjaan.getPekerjaan_jumlah());
+                jsonObject.put("pekerjaan_catatan", pekerjaan.getPekerjaan_catatan());
+                jsonObject.put("pekerjaan_kategoriid", pekerjaan.getPekerjaan_kategoriid());
+                pekerjaans.put(jsonObject);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        final JSONObject req = new JSONObject();
+        try {
+            req.put("secret_key", secret_key);
+            req.put("lelang", lelang);
+            req.put("pekerjaan", pekerjaans);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        Log.d("req edit",req.toString());
+        Call<StringRespon> call = RetrofitClient.getInstance()
+                .getApi().editLelang(req.toString());
+
+        final ProgressDialog progressDoalog;
+        progressDoalog = new ProgressDialog(Preview.this);
+        //progressDoalog.setMax(100);
+        progressDoalog.setMessage("Loading....");
+        //progressDoalog.setTitle("ProgressDialog bar example");
+        progressDoalog.setCancelable(false);
+        progressDoalog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        // show it
+        progressDoalog.show();
+
+        call.enqueue(new Callback<StringRespon>() {
+            @Override
+            public void onResponse(Call<StringRespon> call, Response<StringRespon> response) {
+                progressDoalog.dismiss();
+                if (response.isSuccessful()) {
+                    StringRespon stringRespon = response.body();
+                    if (!stringRespon.isError()) {
+                        Toast.makeText(Preview.this, stringRespon.getMessage(), Toast.LENGTH_SHORT).show();
+                        finish();
+                    } else {
+                        Toast.makeText(Preview.this, stringRespon.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(Preview.this, response.message(), Toast.LENGTH_SHORT).show();
+                    try {
+                        longLog(response.errorBody().string());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<StringRespon> call, Throwable t) {
+                progressDoalog.dismiss();
+                Toast.makeText(Preview.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.d("aaaa",t.getMessage());
+            }
+        });
+    }
+
+    public void postingLelang() {
+        JSONObject lelang = new JSONObject();
+        final REQLelangHelper lelangHelper = new REQLelangHelper(this);
+        lelangHelper.open();
+        Lelang lelang_data = lelangHelper.getLelang();
+        lelangHelper.close();
+
         try {
             lelang.put("lelang_judul", lelang_data.getLelang_judul());
             lelang.put("lelang_anggaran", lelang_data.getLelang_anggaran());
@@ -162,9 +278,11 @@ public class Preview extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     StringRespon stringRespon = response.body();
                     if (!stringRespon.isError()) {
-                        Toast.makeText(Preview.this, stringRespon.getMessage(), Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(Preview.this, MainActivity.class));
+                        Intent intent = new Intent(Preview.this, MainActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
                         finish();
+                        Toast.makeText(Preview.this, stringRespon.getMessage(), Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(Preview.this, stringRespon.getMessage(), Toast.LENGTH_SHORT).show();
                     }
@@ -184,19 +302,6 @@ public class Preview extends AppCompatActivity {
                 Toast.makeText(Preview.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        REQLelangHelper reqLelangHelper = new REQLelangHelper(this);
-        reqLelangHelper.open();
-        reqLelangHelper.truncate();
-        reqLelangHelper.close();
-        REQPekerjaanHelper reqPekerjaanHelper = new REQPekerjaanHelper(this);
-        reqPekerjaanHelper.open();
-        reqPekerjaanHelper.truncate();
-        reqPekerjaanHelper.close();
     }
 
     public void longLog(String str) {
@@ -243,14 +348,14 @@ public class Preview extends AppCompatActivity {
         txt_deskripsi.setText(lelang.getLelang_deskripsi());
         txt_perkiraan_totalHarga.setText("Rp. " + lelang.getLelang_anggaran());
         txt_pembayaran.setText(getResources().getStringArray(R.array.metode_bayar)[lelang.getLelang_pembayaran()]);
-        if (lelang.getLelang_fileurl().length() > 1) {
+        if (lelang.getLelang_fileurl() != null) {
             Log.d("url", lelang.getLelang_fileurl());
             int posOfSubstr = lelang.getLelang_fileurl().lastIndexOf("/") + 12;
             String filename = "";
             if (lelang.getLelang_fileurl().length() > 79) {
                 filename = lelang.getLelang_fileurl().substring(posOfSubstr, 17) + "...";
             } else {
-                filename = lelang.getLelang_fileurl().substring(posOfSubstr);
+                filename = lelang.getLelang_fileurl();
             }
             txt_attachment.setText(filename);
         } else {
@@ -342,13 +447,22 @@ public class Preview extends AppCompatActivity {
         dialog.setCanceledOnTouchOutside(false);
         dialog.setCancelable(false);
         Button btn_OK = (Button) dialog.findViewById(R.id.btn_OK);
-        Button btn_batal=(Button) dialog.findViewById(R.id.btn_batal);
+        Button btn_batal = (Button) dialog.findViewById(R.id.btn_batal);
         btn_OK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                Intent intent=new Intent(Preview.this,MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                //Preview.super.onBackPressed();
+                REQLelangHelper reqLelangHelper = new REQLelangHelper(Preview.this);
+                reqLelangHelper.open();
+                reqLelangHelper.truncate();
+                reqLelangHelper.close();
+                REQPekerjaanHelper reqPekerjaanHelper = new REQPekerjaanHelper(Preview.this);
+                reqPekerjaanHelper.open();
+                reqPekerjaanHelper.truncate();
+                reqPekerjaanHelper.close();
+                Intent intent=new Intent(Preview.this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 finish();
             }

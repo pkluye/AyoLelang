@@ -543,7 +543,6 @@
                     android:layout_height="34dp"
                     android:background="@drawable/button_rectangle"
                     android:text="Posting"
-                    android:onClick="postingLelang"
                     android:textColor="@color/colorWhite"
                     android:textAllCaps="false" />
 

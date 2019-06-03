@@ -120,6 +120,7 @@ public class REQPekerjaanHelper {
         contentValue.put(PEKERJAAN_HARGA, pekerjaan.getPekerjaan_harga());
         contentValue.put(PEKERJAAN_UKURAN, pekerjaan.getPekerjaan_ukuran());
         contentValue.put(PEKERJAAN_BAHAN, pekerjaan.getPekerjaan_bahan());
+        Log.d("pekerjaan",pekerjaan.toString());
         return db.update(TABLE_REQ_PEKERJAAN, contentValue, PEKERJAAN_ID + "='" + pekerjaan.getPekerjaan_id() + "'", null);
     }
 }

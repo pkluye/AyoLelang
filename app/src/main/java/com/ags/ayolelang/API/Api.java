@@ -156,4 +156,8 @@ public interface Api {
             @Field("token_kota") String s2,
             @Field("token_lelang") String s3,
             @Field("token_pekerjaan") String s4);
+
+    @Headers("Content-Type: application/json")
+    @POST("c_lelang/lelang_edit")
+    Call<StringRespon> editLelang(@Body String toString);
 }

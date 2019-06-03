@@ -16,6 +16,8 @@ import com.ags.ayolelang.DBHelper.KotaHelper;
 import com.ags.ayolelang.DBHelper.LelangHelper;
 import com.ags.ayolelang.DBHelper.PekerjaanHelper;
 import com.ags.ayolelang.DBHelper.ProvinsiHelper;
+import com.ags.ayolelang.DBHelper.REQLelangHelper;
+import com.ags.ayolelang.DBHelper.REQPekerjaanHelper;
 import com.ags.ayolelang.Fragment.AccountFragment;
 import com.ags.ayolelang.Fragment.FragmentSubKategori;
 import com.ags.ayolelang.Fragment.GarapanFragment;
@@ -80,7 +82,29 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                     bundle.putString("tittle", intent.getStringExtra("tittle"));
                     fragmentSubKategori.setArguments(bundle);
                     loadFragment(fragmentSubKategori);
+                }else{
+                    REQPekerjaanHelper reqPekerjaanHelper=new REQPekerjaanHelper(this);
+                    REQLelangHelper reqLelangHelper=new REQLelangHelper(this);
+
+                    reqLelangHelper.open();
+                    reqLelangHelper.truncate();
+                    reqLelangHelper.close();
+
+                    reqPekerjaanHelper.open();
+                    reqPekerjaanHelper.truncate();
+                    reqPekerjaanHelper.close();
                 }
+            }else{
+                REQPekerjaanHelper reqPekerjaanHelper=new REQPekerjaanHelper(this);
+                REQLelangHelper reqLelangHelper=new REQLelangHelper(this);
+
+                reqLelangHelper.open();
+                reqLelangHelper.truncate();
+                reqLelangHelper.close();
+
+                reqPekerjaanHelper.open();
+                reqPekerjaanHelper.truncate();
+                reqPekerjaanHelper.close();
             }
 
         } else {

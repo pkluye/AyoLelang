@@ -44,7 +44,7 @@ public class DetailSpesifikasi extends AppCompatActivity {
         edit = intent.getBooleanExtra("edit", false);
         txt_subtext_kategori_dipilih.setText(kategori_nama);
         if (edit) {
-            pekerjaan_id = intent.getIntExtra("id", 0);
+            pekerjaan_id = intent.getIntExtra("pekerjaan_id", 0);
             String ukuran_e= intent.getStringExtra("ukuran");
             ukuran.setText(ukuran_e);
             String bahan_e=intent.getStringExtra("bahan");
@@ -104,7 +104,6 @@ public class DetailSpesifikasi extends AppCompatActivity {
         boolean lelang_isempty=reqLelangHelper.isempty();
         Lelang lelang = reqLelangHelper.getLelang();
         if (edit) {
-            intent = new Intent(this, Preview.class);
             reqPekerjaanHelper.update(new Pekerjaan(ukuran, bahan, catatan, pekerjaan_id, Integer.parseInt(quantity), kategori_id, Long.parseLong(harga)));
             if (!lelang_isempty) {
                 lelang.setLelang_anggaran(lelang.getLelang_anggaran() + Long.parseLong(harga) - lastharga);
@@ -120,16 +119,16 @@ public class DetailSpesifikasi extends AppCompatActivity {
             }
             intent.putExtra("kategori_id", kategori_id);
             reqPekerjaanHelper.insert(new Pekerjaan(ukuran, bahan, catatan, Integer.parseInt(quantity), kategori_id, Long.parseLong(harga)));
+            startActivity(intent);
 
         }
         reqLelangHelper.close();
         reqPekerjaanHelper.close();
 
-        startActivity(intent);
         finish();
     }
 
     public void back(View view) {
-        onBackPressed();
+        finish();
     }
 }

@@ -44,6 +44,16 @@ public class Lelang {
     }
 
     public Lelang(String deskripsi, int lelang_id_e, String deadline, String judul, String user_id, String alamat, String txt_url, int kotaid, int pembayaran, long totalharga) {
+        this.lelang_deskripsi=deskripsi;
+        this.lelang_id=lelang_id_e;
+        this.lelang_tglselesai=deadline;
+        this.lelang_judul=judul;
+        this.lelang_userid=user_id;
+        this.lelang_alamat=alamat;
+        this.lelang_fileurl=txt_url;
+        this.lelang_kota=kotaid;
+        this.lelang_pembayaran=pembayaran;
+        this.lelang_anggaran=totalharga;
     }
 
 

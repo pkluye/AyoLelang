@@ -71,10 +71,12 @@
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_progress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:orientation="vertical"
         tools:layout_editor_absoluteX="0dp"
         tools:listitem="@layout/item_progress"
         app:layout_constraintTop_toBottomOf="@+id/layoutLinear2"/>

@@ -91,9 +91,10 @@ public class ListPekerjaan extends AppCompatActivity {
                 reqPekerjaanHelper.open();
                 reqPekerjaanHelper.truncate();
                 reqPekerjaanHelper.close();
-                Intent intent=new Intent(ListPekerjaan.this,MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
+//                Intent intent=new Intent(ListPekerjaan.this,MainActivity.class);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                startActivity(intent);
+                //ListPekerjaan.super.onBackPressed();
                 finish();
             }
         });
