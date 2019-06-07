@@ -57,6 +57,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:layout_marginTop="1dp"
             android:id="@+id/btn_search_printing"
             android:layout_width="match_parent"
             android:layout_height="42dp"
@@ -84,6 +85,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:layout_marginTop="1dp"
             android:id="@+id/btn_search_kuliner"
             android:layout_width="match_parent"
             android:layout_height="42dp"
@@ -111,6 +113,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:layout_marginTop="1dp"
             android:id="@+id/btn_search_otomotif"
             android:layout_width="match_parent"
             android:layout_height="42dp"
@@ -138,6 +141,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:layout_marginTop="1dp"
             android:id="@+id/btn_search_Hiburan"
             android:layout_width="match_parent"
             android:layout_height="42dp"
@@ -165,6 +169,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:layout_marginTop="1dp"
             android:id="@+id/btn_search_fotografi"
             android:layout_width="match_parent"
             android:layout_height="42dp"
@@ -192,6 +197,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:layout_marginTop="1dp"
             android:id="@+id/btn_search_palugada"
             android:layout_width="match_parent"
             android:layout_height="42dp"

@@ -100,19 +100,13 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <LinearLayout
                 android:id="@id/layoutLinear2"
                 android:layout_below="@id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="16dp"
                 android:gravity="center_horizontal">
-
 
                 <ProgressBar
                     android:id="@+id/determinateBar"
@@ -121,17 +115,16 @@
                     android:layout_height="wrap_content"
                     android:progress="75"
                     style="@style/MyProgressBarTwo"
-                    android:theme="@style/MyProgressBarTwo"
-                    />
+                    android:theme="@style/MyProgressBarTwo"/>
 
                 <LinearLayout
                     android:layout_marginTop="24dp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Judul"
                         android:textSize="12sp"/>
@@ -139,19 +132,20 @@
                     <EditText
                         android:textSize="16sp"
                         android:hint="Masukkan nama pekerjaan"
-                        android:layout_width="300dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/in_judul"/>
+                        android:id="@+id/in_judul"
+                        android:backgroundTint="@color/colorPrimaryDark"/>
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_marginTop="4dp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Deskripsi"
                         android:textSize="12sp"/>
@@ -160,49 +154,45 @@
                         android:textSize="16sp"
                         android:hint="Jelaskan tentang pekerjaan"
                         android:id="@+id/in_deskripsi"
-                        android:layout_width="300sp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textMultiLine"
                         android:lines="8"
                         android:minLines="1"
                         android:gravity="top|left"
                         android:maxLines="10"
-                        android:scrollbars="vertical" />
+                        android:scrollbars="vertical"
+                        android:backgroundTint="@color/colorPrimaryDark" />
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_marginTop="4dp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Metode Pembayaran"
                         android:textSize="12sp"/>
 
                     <Spinner
-                        android:layout_marginTop="4dp"
                         android:id="@+id/spinner_pembayaran"
-                        android:layout_width="300dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:entries="@array/metode_bayar">
+                        android:entries="@array/metode_bayar"/>
 
-                    </Spinner>
+
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_marginTop="4dp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -210,10 +200,8 @@
                             android:text="Deadline"
                             android:textSize="12sp"/>
 
-                    </LinearLayout>
-
                     <LinearLayout
-                        android:layout_width="300dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:gravity="left">
@@ -223,7 +211,8 @@
                             android:hint="Pilih tanggal selesai"
                             android:layout_width="250dp"
                             android:layout_height="wrap_content"
-                            android:id="@+id/in_Deadline" />
+                            android:id="@+id/in_Deadline"
+                            android:backgroundTint="@color/colorPrimaryDark" />
 
                         <ImageView
                             android:id="@+id/image_Kalender"
@@ -241,53 +230,48 @@
 
                 <LinearLayout
                     android:layout_marginTop="4dp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <TextView
                         android:textSize="12sp"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Pilih Lokasi Anda"/>
 
                     <Spinner
                         android:layout_marginTop="4dp"
-                        android:layout_width="300dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:id="@+id/provinsi"
-                        android:paddingLeft="10dp"
-                        android:paddingBottom="5dp"
-                        android:paddingTop="5dp"/>
+                        android:id="@+id/provinsi"/>
 
                     <Spinner
                         android:layout_marginTop="8dp"
-                        android:layout_width="300dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:id="@+id/kota"
-                        android:entries="@array/metode_bayar"/>
+                        android:id="@+id/kota"/>
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_marginTop="4dp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
                     <TextView
                         android:textSize="12sp"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Alamat Lengkap"/>
 
                     <EditText
                         android:textSize="14sp"
                         android:hint="Masukkan alamat"
-                        android:layout_width="300dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/in_alamat" />
+                        android:id="@+id/in_alamat"
+                        android:backgroundTint="@color/colorPrimaryDark" />
 
                 </LinearLayout>
 
@@ -295,7 +279,8 @@
                 <LinearLayout
                     android:layout_marginTop="4dp"
                     android:layout_width="300dp"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
                     <TextView
                         android:textSize="12sp"
@@ -303,43 +288,41 @@
                         android:layout_height="wrap_content"
                         android:text="Upload File"/>
 
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:padding="8dp"
-                    android:layout_marginLeft="16dp"
-                    android:onClick="upload"
-                    android:layout_gravity="center_vertical"
-                    android:gravity="center_vertical">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_marginTop="4dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:onClick="upload"
-                        app:srcCompat="@drawable/ic_add_circle_outline_black_24dp"/>
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center_vertical">
 
-                    <TextView
-                        android:layout_marginLeft="8sp"
-                        android:id="@+id/txt_Upload"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Upload File"
-                        android:onClick="upload"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textSize="16sp"/>
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="upload"
+                            app:srcCompat="@drawable/ic_add_circle_outline_black_24dp"/>
 
-                    <TextView
-                        android:layout_marginLeft="4dp"
-                        android:layout_marginTop="2dp"
-                        android:id="@+id/txt_Hint"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="(Max size file 5 mb)"
-                        android:textColor="@color/colorGrey2"
-                        android:textSize="10sp"/>
+                        <TextView
+                            android:layout_marginLeft="8sp"
+                            android:id="@+id/txt_Upload"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Upload File"
+                            android:onClick="upload"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="16sp"/>
+
+                        <TextView
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginTop="2dp"
+                            android:id="@+id/txt_Hint"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="(Max size file 5 mb)"
+                            android:textColor="@color/colorGrey2"
+                            android:textSize="10sp"/>
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -402,15 +385,9 @@
 
                     </LinearLayout>
 
-
                 </LinearLayout>
 
             </LinearLayout>
-
-        </LinearLayout>
-
-
-
 
     </ScrollView>
 

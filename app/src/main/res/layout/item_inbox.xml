@@ -26,7 +26,8 @@
                 android:layout_marginTop="15dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_user_default"
+                app:srcCompat="@drawable/ic_user"
+                android:tint="@color/colorPrimaryDark"
                 android:scaleX="2"
                 android:scaleY="2"
                 android:layout_gravity="center"/>

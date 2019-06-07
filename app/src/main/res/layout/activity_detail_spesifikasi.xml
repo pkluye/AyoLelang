@@ -128,6 +128,7 @@
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/in_ukuran"
+                android:inputType="number"
                 android:hint="Pilih ukuran (dalam cm)"
                 android:backgroundTint="@color/colorPrimaryDark"/>
 
@@ -155,6 +156,7 @@
                         android:padding="4dp"
                         android:hint="x cm"
                         android:id="@+id/text_ukuranPanjang"
+                        android:inputType="number"
                         android:textAlignment="center"
                         android:layout_marginLeft="24dp"
                         android:layout_width="48dp"
@@ -175,6 +177,7 @@
                         android:padding="4dp"
                         android:hint="x cm"
                         android:id="@+id/text_ukuranlebar"
+                        android:inputType="number"
                         android:textAlignment="center"
                         android:layout_width="48dp"
                         android:layout_height="match_parent"

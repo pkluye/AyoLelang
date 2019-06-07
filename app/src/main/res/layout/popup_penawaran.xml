@@ -27,24 +27,36 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Perhatian"
+            android:text="Ajukan Penawaran"
             android:textColor="@color/colorBlack"
             android:textSize="18sp" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <LinearLayout
             android:layout_marginTop="8dp"
-            android:layout_weight="1"
-            android:text="Apakah Anda yakin untuk membatalkan"
-            android:textColor="@color/colorGrey1" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rp."
+                android:textSize="16sp"
+                android:textColor="@color/colorBlack"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Masukkan penawaran"
+                android:inputType="number"
+                android:textSize="16sp"/>
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_marginTop="20dp"
-            android:layout_weight="0"
             android:orientation="horizontal">
 
             <Button
@@ -52,17 +64,17 @@
                 android:layout_width="80dp"
                 android:layout_height="40dp"
                 android:background="@drawable/button_rectangle_border_green"
-                android:text="Kembali"
+                android:text="Batal"
                 android:textAllCaps="false"
                 android:textColor="@color/colorPrimaryDark" />
 
             <Button
-                android:id="@+id/btn_OK"
+                android:id="@+id/btn_setuju"
                 android:layout_width="80dp"
                 android:layout_height="40dp"
                 android:layout_marginLeft="8dp"
                 android:background="@drawable/button_rectangle"
-                android:text="OK"
+                android:text="Setuju"
                 android:textAllCaps="false"
                 android:textColor="@color/colorWhite" />
 

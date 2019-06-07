@@ -131,9 +131,10 @@ public class Deskripsi extends AppCompatActivity implements DatePickerDialog.OnD
 
         deadline.setText(currentDateString);
 
-        ArrayAdapter<String> pembayaranadapter = new ArrayAdapter<>(getApplicationContext(), R.layout.support_simple_spinner_dropdown_item, getResources().getStringArray(R.array.metode_bayar));
+        ArrayAdapter<String> pembayaranadapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, getResources().getStringArray(R.array.metode_bayar));
         pembayaranadapter.notifyDataSetChanged();
         pembayaran_spinner.setAdapter(pembayaranadapter);
+
         if (edit) {
             judul.setText(judul_e);
             deskripsi.setText(deskripsi_e);
@@ -218,7 +219,8 @@ public class Deskripsi extends AppCompatActivity implements DatePickerDialog.OnD
         for (Kota kota : kotas) {
             kota_s.add(kota.getNama());
         }
-        ArrayAdapter<String> kotaadapter = new ArrayAdapter<>(getApplicationContext(), R.layout.support_simple_spinner_dropdown_item, kota_s);
+
+        ArrayAdapter<String> kotaadapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, kota_s);
         kotaadapter.notifyDataSetChanged();
         kota_spinner.setAdapter(kotaadapter);
     }
@@ -233,7 +235,7 @@ public class Deskripsi extends AppCompatActivity implements DatePickerDialog.OnD
             prov_s.add(provinsi.getNama());
         }
 
-        ArrayAdapter<String> provinsiadapter = new ArrayAdapter<>(getApplicationContext(), R.layout.support_simple_spinner_dropdown_item, prov_s);
+        ArrayAdapter<String> provinsiadapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, prov_s);
         provinsiadapter.notifyDataSetChanged();
         provinsi_spinner.setAdapter(provinsiadapter);
     }

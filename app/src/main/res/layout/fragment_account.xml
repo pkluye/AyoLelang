@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:layout_marginBottom="54dp"
+    android:layout_marginBottom="56dp"
     android:background="@color/colorGrey3">
 
     <android.support.v7.widget.Toolbar
@@ -63,7 +63,7 @@
                 android:id="@+id/image_user"
                 android:layout_width="86dp"
                 android:layout_height="86dp"
-                android:src="@drawable/ic_user_default"
+                android:src="@drawable/ic_user_big"
                 tools:ignore="VectorDrawableCompat" />
 
         </LinearLayout>

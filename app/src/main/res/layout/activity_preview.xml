@@ -26,7 +26,6 @@
         android:layout_gravity="bottom|end"
         android:layout_marginBottom="128dp"
         android:layout_marginRight="8dp"
-        android:onClick="EditLelang"
         android:scaleY="0.8"
         android:scaleX="0.8"
         app:srcCompat="@drawable/ic_edit"
@@ -68,7 +67,7 @@
                     android:layout_weight="0.9" />
 
                 <TextView
-                    android:id="@+id/btn_selesai"
+                    android:id="@+id/btn_cancel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Cancel"
@@ -124,9 +123,9 @@
             <!--android:id="@+id/layout_refresh">-->
 
             <RelativeLayout
-            android:id="@+id/layoutRelative"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+                android:id="@+id/layoutRelative"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_centerHorizontal="true"
@@ -299,20 +298,20 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="deadline"
+                                    android:text="-"
                                     android:id="@+id/txt_deadline"
                                     android:textColor="@color/colorGrey2"/>
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="pembayaran"
+                                    android:text="-"
                                     android:id="@+id/txt_pembayaran"
                                     android:textColor="@color/colorGrey2"/>
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="attachment"
+                                    android:text="-"
                                     android:id="@+id/txt_attachment"
                                     android:textColor="@color/colorGrey2"/>
 
@@ -375,7 +374,7 @@
                                 android:id="@+id/txt_teks_harga"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Perkiraan Harga"
+                                android:text="Budget"
                                 android:textColor="@color/colorGrey1"/>
 
                             <TextView
@@ -435,34 +434,34 @@
                                 android:id="@+id/txt_ukuran"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="ukuran"
+                                android:text="-"
                                 android:textColor="@color/colorGrey2"/>
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="bahan"
+                                android:text="-"
                                 android:id="@+id/txt_bahan"
                                 android:textColor="@color/colorGrey2"/>
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="quantity"
+                                android:text="-"
                                 android:id="@+id/txt_jumlah"
                                 android:textColor="@color/colorGrey2"/>
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="perkiraan harga"
+                                android:text="-"
                                 android:id="@+id/txt_harga"
                                 android:textColor="@color/colorGrey2"/>
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Ini merupakan catatan Item"
+                                android:text="-"
                                 android:id="@+id/txt_catatan"
                                 android:textColor="@color/colorGrey2"/>
 
@@ -504,7 +503,8 @@
                 android:orientation="vertical"
                 tools:listitem="@layout/item_preview_lelang"
                 android:layout_width="300dp"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="60dp">
             </android.support.v7.widget.RecyclerView>
 
             <LinearLayout

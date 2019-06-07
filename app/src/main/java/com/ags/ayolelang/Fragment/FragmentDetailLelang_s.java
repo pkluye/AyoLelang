@@ -33,7 +33,7 @@ public class FragmentDetailLelang_s extends Fragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        v = inflater.inflate(R.layout.lelang_detail, container, false);
+        v = inflater.inflate(R.layout.detail_lelang, container, false);
         txt_judulgarapan = v.findViewById(R.id.txt_judulgarapan);
         txt_alamat = v.findViewById(R.id.txt_alamat);
         txt_tenggatWaktu = v.findViewById(R.id.txt_tenggatWaktu);

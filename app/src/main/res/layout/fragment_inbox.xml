@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:layout_marginBottom="54dp">
+    android:layout_marginBottom="56dp">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -83,7 +83,9 @@
             android:id="@+id/edittext_search_message"
             android:hint="Search"
             android:textSize="14sp"
-            android:textColor="@color/colorGrey1"
+            android:textColorHint="@color/colorGrey2"
+            android:textColor="@color/colorBlack"
+            android:maxLines="1"
             android:background="@android:color/transparent"
             android:layout_gravity="center"
             android:layout_marginLeft="8dp"
