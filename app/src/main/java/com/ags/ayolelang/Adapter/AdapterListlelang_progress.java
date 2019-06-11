@@ -77,6 +77,7 @@ public class AdapterListlelang_progress extends RecyclerView.Adapter<AdapterList
                     @Override
                     public void onClick(View v) {
                         dialog.dismiss();
+
                         Toast.makeText(context,"belum buat api hehe...",Toast.LENGTH_SHORT).show();
                     }
                 });

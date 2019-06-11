@@ -16,10 +16,12 @@ import android.widget.TextView;
 import com.ags.ayolelang.Activity.MainActivity;
 import com.ags.ayolelang.DBHelper.KotaHelper;
 import com.ags.ayolelang.DBHelper.ProvinsiHelper;
+import com.ags.ayolelang.DBHelper.TawaranHelper;
 import com.ags.ayolelang.Fragment.FragmentDetailLelang_s;
 import com.ags.ayolelang.Models.Kota;
 import com.ags.ayolelang.Models.Lelang;
 import com.ags.ayolelang.Models.Provinsi;
+import com.ags.ayolelang.Models.Tawaran;
 import com.ags.ayolelang.R;
 
 import java.text.DateFormat;
@@ -61,7 +63,10 @@ public class AdapterListlelang extends RecyclerView.Adapter<AdapterListlelang.Cu
         final String alamat=getKotaProv(lelang.getLelang_kota());
         cvh.txt_alamat.setText(alamat);
         //Log.d("getkotaProv", getKotaProv(lelang.getLelang_kota()));
-        final int count_mitra=0;
+        TawaranHelper tawaranHelper=new TawaranHelper(context);
+        tawaranHelper.open();
+        final int count_mitra=tawaranHelper.getlisttawaran(lelang.getLelang_id()).size();
+        tawaranHelper.close();
         cvh.txt_jumlahmitra.setText(count_mitra +" Mitra Bersedia");
         cvh.item_search_kategori.setOnClickListener(new View.OnClickListener() {
             @Override

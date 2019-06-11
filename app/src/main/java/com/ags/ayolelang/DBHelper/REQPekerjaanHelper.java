@@ -57,6 +57,7 @@ public class REQPekerjaanHelper {
                 pekerjaan.setPekerjaan_harga(cursor.getLong(cursor.getColumnIndexOrThrow(PEKERJAAN_HARGA)));
                 pekerjaan.setPekerjaan_jumlah(cursor.getInt(cursor.getColumnIndexOrThrow(PEKERJAAN_JUMLAH)));
                 pekerjaan.setPekerjaan_catatan(cursor.getString(cursor.getColumnIndexOrThrow(PEKERJAAN_CATATAN)));
+                pekerjaan.setPekerjaan_status(cursor.getInt(cursor.getColumnIndexOrThrow(PEKERJAAN_STATUS)));
                 pekerjaans.add(pekerjaan);
                 cursor.moveToNext();
             } while (!cursor.isAfterLast());
@@ -97,6 +98,22 @@ public class REQPekerjaanHelper {
         }
     }
 
+    public void bulk_edit(ArrayList<Pekerjaan> list) {
+        if (list != null && list.size() > 0) {
+            db.beginTransaction();
+            try {
+                for (Pekerjaan pekerjaan : list) {
+                    insert2(pekerjaan);
+                }
+                db.setTransactionSuccessful();
+            } catch (SQLException e) {
+                Log.d("insert_error", e.getMessage());
+            } finally {
+                db.endTransaction();
+            }
+        }
+    }
+
     public long insert(Pekerjaan pekerjaan) {
         ContentValues contentValue = new ContentValues();
         contentValue.put(PEKERJAAN_KATEGORIID, pekerjaan.getPekerjaan_kategoriid());
@@ -105,6 +122,19 @@ public class REQPekerjaanHelper {
         contentValue.put(PEKERJAAN_HARGA, pekerjaan.getPekerjaan_harga());
         contentValue.put(PEKERJAAN_UKURAN, pekerjaan.getPekerjaan_ukuran());
         contentValue.put(PEKERJAAN_BAHAN, pekerjaan.getPekerjaan_bahan());
+        return db.insert(TABLE_REQ_PEKERJAAN, null, contentValue);
+    }
+
+    public long insert2(Pekerjaan pekerjaan) {
+        ContentValues contentValue = new ContentValues();
+        contentValue.put(PEKERJAAN_ID, pekerjaan.getPekerjaan_id());
+        contentValue.put(PEKERJAAN_KATEGORIID, pekerjaan.getPekerjaan_kategoriid());
+        contentValue.put(PEKERJAAN_CATATAN, pekerjaan.getPekerjaan_catatan());
+        contentValue.put(PEKERJAAN_JUMLAH, pekerjaan.getPekerjaan_jumlah());
+        contentValue.put(PEKERJAAN_HARGA, pekerjaan.getPekerjaan_harga());
+        contentValue.put(PEKERJAAN_UKURAN, pekerjaan.getPekerjaan_ukuran());
+        contentValue.put(PEKERJAAN_BAHAN, pekerjaan.getPekerjaan_bahan());
+        contentValue.put(PEKERJAAN_STATUS, pekerjaan.getPekerjaan_status());
         return db.insert(TABLE_REQ_PEKERJAAN, null, contentValue);
     }
 
@@ -120,7 +150,14 @@ public class REQPekerjaanHelper {
         contentValue.put(PEKERJAAN_HARGA, pekerjaan.getPekerjaan_harga());
         contentValue.put(PEKERJAAN_UKURAN, pekerjaan.getPekerjaan_ukuran());
         contentValue.put(PEKERJAAN_BAHAN, pekerjaan.getPekerjaan_bahan());
-        Log.d("pekerjaan",pekerjaan.toString());
+        Log.d("pekerjaan", pekerjaan.toString());
         return db.update(TABLE_REQ_PEKERJAAN, contentValue, PEKERJAAN_ID + "='" + pekerjaan.getPekerjaan_id() + "'", null);
     }
+
+    public long updateStatusto1(int id) {
+        ContentValues contentValue = new ContentValues();
+        contentValue.put(PEKERJAAN_STATUS, 1);
+        return db.update(TABLE_REQ_PEKERJAAN, contentValue, PEKERJAAN_ID + "='" + id + "'", null);
+    }
+
 }

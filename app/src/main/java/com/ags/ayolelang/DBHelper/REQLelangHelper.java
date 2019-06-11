@@ -19,6 +19,7 @@ import static com.ags.ayolelang.DBHelper.DBContract.LELANG.LELANG_ID;
 import static com.ags.ayolelang.DBHelper.DBContract.LELANG.LELANG_JUDUL;
 import static com.ags.ayolelang.DBHelper.DBContract.LELANG.LELANG_KOTA;
 import static com.ags.ayolelang.DBHelper.DBContract.LELANG.LELANG_PEMBAYARAN;
+import static com.ags.ayolelang.DBHelper.DBContract.LELANG.LELANG_STATUS;
 import static com.ags.ayolelang.DBHelper.DBContract.LELANG.LELANG_TGLSELESAI;
 import static com.ags.ayolelang.DBHelper.DBContract.LELANG.LELANG_USERID;
 import static com.ags.ayolelang.DBHelper.DBContract.TABLE_REQ_LELANG;
@@ -59,6 +60,7 @@ public class REQLelangHelper {
             lelang.setLelang_pembayaran(cursor.getInt(cursor.getColumnIndexOrThrow(LELANG_PEMBAYARAN)));
             lelang.setLelang_tglselesai(cursor.getString(cursor.getColumnIndexOrThrow(LELANG_TGLSELESAI)));
             lelang.setLelang_userid(cursor.getString(cursor.getColumnIndexOrThrow(LELANG_USERID)));
+            lelang.setLelang_status(cursor.getInt(cursor.getColumnIndexOrThrow(LELANG_STATUS)));
         }
         cursor.close();
         db.endTransaction();
@@ -91,6 +93,22 @@ public class REQLelangHelper {
         contentValues.put(LELANG_PEMBAYARAN, lelang.getLelang_pembayaran());
         contentValues.put(LELANG_TGLSELESAI, lelang.getLelang_tglselesai());
         contentValues.put(LELANG_USERID, lelang.getLelang_userid());
+        return db.insert(TABLE_REQ_LELANG, null, contentValues);
+    }
+
+    public long insert2(Lelang lelang) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(LELANG_ID,lelang.getLelang_id());
+        contentValues.put(LELANG_JUDUL, lelang.getLelang_judul());
+        contentValues.put(LELANG_ALAMAT, lelang.getLelang_alamat());
+        contentValues.put(LELANG_ANGGARAN, lelang.getLelang_anggaran());
+        contentValues.put(LELANG_FILEURL, lelang.getLelang_fileurl());
+        contentValues.put(LELANG_DESKRIPSI, lelang.getLelang_deskripsi());
+        contentValues.put(LELANG_KOTA, lelang.getLelang_kota());
+        contentValues.put(LELANG_PEMBAYARAN, lelang.getLelang_pembayaran());
+        contentValues.put(LELANG_TGLSELESAI, lelang.getLelang_tglselesai());
+        contentValues.put(LELANG_USERID, lelang.getLelang_userid());
+        contentValues.put(LELANG_STATUS,lelang.getLelang_status());
         return db.insert(TABLE_REQ_LELANG, null, contentValues);
     }
 

@@ -114,6 +114,9 @@ public class DetailSpesifikasi extends AppCompatActivity {
                 lelang.setLelang_anggaran(lelang.getLelang_anggaran() + Long.parseLong(harga));
                 reqLelangHelper.update(lelang);
                 intent = new Intent(this, Preview.class);
+                if (lelang.getLelang_status()!=0){
+                    intent.putExtra("edit",true);
+                }
             }else{
                 intent = new Intent(this, ListPekerjaan.class);
             }

@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +32,6 @@ public class AdapterItemPekerjaan extends RecyclerView.Adapter<AdapterItemPekerj
     private LayoutInflater mInflater;
     private Context context;
     private ArrayList<Pekerjaan> pekerjaanArrayList;
-    private static String nama;
 
     public AdapterItemPekerjaan(Context context) {
         this.context = context;
@@ -62,15 +62,15 @@ public class AdapterItemPekerjaan extends RecyclerView.Adapter<AdapterItemPekerj
         customHolderView.btn_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (pekerjaanArrayList.size() <= 1) {
-                    Toast.makeText(context, "Anda tidak dapat menghapus pekerjaan lagi, minimal harus ada 1 pekerjaan yang dilelang",
-                            Toast.LENGTH_LONG).show();
-                } else {
-                    deleteItem(pekerjaan.getPekerjaan_id());
+                    if (pekerjaan.getPekerjaan_status()==0){
+                        Log.d("delete","ya");
+                        deleteItem(pekerjaan.getPekerjaan_id());
+                    }else{
+                        Log.d("update status","ya");
+                        updatestatus(pekerjaan.getPekerjaan_id());
+                    }
                     pekerjaanArrayList.remove(i);
                     notifyDataSetChanged();
-                }
-
             }
         });
 
@@ -98,6 +98,13 @@ public class AdapterItemPekerjaan extends RecyclerView.Adapter<AdapterItemPekerj
                 context.startActivity(intent);
             }
         });
+    }
+
+    private void updatestatus(int id) {
+        REQPekerjaanHelper reqPekerjaanHelper=new REQPekerjaanHelper(context);
+        reqPekerjaanHelper.open();
+        reqPekerjaanHelper.updateStatusto1(id);
+        reqPekerjaanHelper.close();
     }
 
     private void detailItem(final Pekerjaan pekerjaan) {

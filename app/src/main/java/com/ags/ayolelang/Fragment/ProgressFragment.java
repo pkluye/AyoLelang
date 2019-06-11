@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.ags.ayolelang.Adapter.AdapterListlelang_progress;
 import com.ags.ayolelang.DBHelper.LelangHelper;
@@ -24,6 +25,7 @@ import java.util.ArrayList;
 public class ProgressFragment extends Fragment {
 
     RecyclerView rv_search_lelang;
+    LinearLayout default_layout;
 
     @Nullable
     @Override
@@ -32,7 +34,7 @@ public class ProgressFragment extends Fragment {
 
         Toolbar toolbar = view.findViewById(R.id.toolbar);
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-
+        default_layout=view.findViewById(R.id.default_layout);
         rv_search_lelang = view.findViewById(R.id.rv_progress);
         rv_search_lelang.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -46,10 +48,27 @@ public class ProgressFragment extends Fragment {
         lelangHelper.open();
         ArrayList<Lelang> lelangs = lelangHelper.getLelangbyUser(SharedPrefManager.getInstance(getContext()).getUser().getUser_id());
         lelangHelper.close();
-        Log.d("size ", lelangs.size() + "");
+        //Log.d("size ", lelangs.size() + "");
         AdapterListlelang_progress adapterListlelang = new AdapterListlelang_progress(getContext());
         adapterListlelang.addItem(lelangs);
+        if (adapterListlelang.getItemCount()>0){
+            default_layout.setVisibility(View.GONE);
+            rv_search_lelang.setVisibility(View.VISIBLE);
+        }
         rv_search_lelang.setAdapter(adapterListlelang);
+        rv_search_lelang.addOnChildAttachStateChangeListener(new RecyclerView.OnChildAttachStateChangeListener() {
+            @Override
+            public void onChildViewAttachedToWindow(@NonNull View view) {
+            }
+
+            @Override
+            public void onChildViewDetachedFromWindow(@NonNull View view) {
+                if (rv_search_lelang.getAdapter().getItemCount()<1){
+                    default_layout.setVisibility(View.VISIBLE);
+                    rv_search_lelang.setVisibility(View.GONE);
+                }
+            }
+        });
     }
 
     @Override

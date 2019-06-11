@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import com.ags.ayolelang.API.RetrofitClient;
+import com.ags.ayolelang.DBHelper.HistoriTawaranHelper;
 import com.ags.ayolelang.DBHelper.KategoriHelper;
 import com.ags.ayolelang.DBHelper.KotaHelper;
 import com.ags.ayolelang.DBHelper.LelangHelper;
@@ -18,6 +19,8 @@ import com.ags.ayolelang.DBHelper.PekerjaanHelper;
 import com.ags.ayolelang.DBHelper.ProvinsiHelper;
 import com.ags.ayolelang.DBHelper.REQLelangHelper;
 import com.ags.ayolelang.DBHelper.REQPekerjaanHelper;
+import com.ags.ayolelang.DBHelper.TawaranHelper;
+import com.ags.ayolelang.DBHelper.UserHelper;
 import com.ags.ayolelang.Fragment.AccountFragment;
 import com.ags.ayolelang.Fragment.FragmentSubKategori;
 import com.ags.ayolelang.Fragment.GarapanFragment;
@@ -31,6 +34,8 @@ import com.ags.ayolelang.Models.Kota;
 import com.ags.ayolelang.Models.Lelang;
 import com.ags.ayolelang.Models.Pekerjaan;
 import com.ags.ayolelang.Models.Provinsi;
+import com.ags.ayolelang.Models.Tawaran;
+import com.ags.ayolelang.Models.User;
 import com.ags.ayolelang.R;
 import com.ags.ayolelang.Storage.SharedPrefManager;
 
@@ -59,6 +64,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     LelangHelper lelangHelper = new LelangHelper(this);
     PekerjaanHelper pekerjaanHelper = new PekerjaanHelper(this);
     Disposable disposable;
+    private UserHelper userHelper = new UserHelper(this);
+    private TawaranHelper tawaranHelper=new TawaranHelper(this);
+    private HistoriTawaranHelper historiTawaranHelper=new HistoriTawaranHelper(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,9 +90,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                     bundle.putString("tittle", intent.getStringExtra("tittle"));
                     fragmentSubKategori.setArguments(bundle);
                     loadFragment(fragmentSubKategori);
-                }else{
-                    REQPekerjaanHelper reqPekerjaanHelper=new REQPekerjaanHelper(this);
-                    REQLelangHelper reqLelangHelper=new REQLelangHelper(this);
+                } else {
+                    REQPekerjaanHelper reqPekerjaanHelper = new REQPekerjaanHelper(this);
+                    REQLelangHelper reqLelangHelper = new REQLelangHelper(this);
 
                     reqLelangHelper.open();
                     reqLelangHelper.truncate();
@@ -94,9 +102,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                     reqPekerjaanHelper.truncate();
                     reqPekerjaanHelper.close();
                 }
-            }else{
-                REQPekerjaanHelper reqPekerjaanHelper=new REQPekerjaanHelper(this);
-                REQLelangHelper reqLelangHelper=new REQLelangHelper(this);
+            } else {
+                REQPekerjaanHelper reqPekerjaanHelper = new REQPekerjaanHelper(this);
+                REQLelangHelper reqLelangHelper = new REQLelangHelper(this);
 
                 reqLelangHelper.open();
                 reqLelangHelper.truncate();
@@ -133,17 +141,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                         final boolean provinsi_isempty = provinsiHelper.isEmpty();
                         provinsiHelper.close();
 
-                        lelangHelper.open();
-                        final boolean lelang_ismpty = lelangHelper.isempty();
-                        lelangHelper.close();
 
-                        pekerjaanHelper.open();
-                        final boolean pekerjaan_ismpty = pekerjaanHelper.isempty();
-                        pekerjaanHelper.close();
 
                         if (kategori_isempty == true && kota_isempty == true &&
-                                provinsi_isempty == true && lelang_ismpty == true &&
-                                pekerjaan_ismpty == true) {
+                                provinsi_isempty == true) {
                             loadToServer(0);
                         } else {
                             loadToServer(1);
@@ -161,7 +162,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                         token[1],
                         token[2],
                         token[3],
-                        token[4]
+                        token[4],
+                        token[5],
+                        token[6]
                 );
         //Log.d("token",token[0]+" "+token[1]+" "+token[2]+" ");
         // Set up progress before call
@@ -187,7 +190,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                     FetchDBRespon fetchDBRespon = response.body();
                     if (!fetchDBRespon.isError()) {
                         FetchDB fetchDB = fetchDBRespon.getData();
-                        Log.d("Update data", "yes "+fetchDBRespon.getMessage());
+                        Log.d("Update data", "yes " + fetchDBRespon.getMessage());
                         String[] newtoken = SharedPrefManager.getInstance(getApplicationContext()).getToken();
                         if (fetchDBRespon.getMessage().contains("3")) {
                             ArrayList<Kota> kotas = fetchDB.getKotas();
@@ -218,9 +221,25 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                             newtoken[4] = fetchDB.getToken_pekerjaan();
                         }
 
+                        if (fetchDBRespon.getMessage().contains("6")) {
+                            ArrayList<User> users = fetchDB.getUsers();
+                            insert_user(users);
+                            newtoken[5] = fetchDB.getToken_user();
+                        }
+
+                        if (fetchDBRespon.getMessage().contains("7")) {
+                            ArrayList<Tawaran> tawarans = fetchDB.getTawarans();
+                            insert_tawaran(tawarans);
+
+                            ArrayList<Tawaran> historitawaran=fetchDB.getHistoritawarans();
+                            insert_historitawaran(historitawaran);
+
+                            newtoken[6] = fetchDB.getToken_tawaran();
+                        }
+
                         SharedPrefManager.getInstance(getApplicationContext()).saveToken(newtoken);
-                    }else {
-                        Log.d("Update data", "no "+fetchDBRespon.getMessage());
+                    } else {
+                        Log.d("Update data", "no " + fetchDBRespon.getMessage());
                     }
                 } else {
                     Log.d("error ambil data", response.message());
@@ -235,6 +254,20 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 Log.d("failure", t.getMessage());
             }
         });
+    }
+
+    private void insert_historitawaran(ArrayList<Tawaran> historitawaran) {
+        historiTawaranHelper.open();
+        historiTawaranHelper.truncate();
+        historiTawaranHelper.bulk_insert(historitawaran);
+        historiTawaranHelper.close();
+    }
+
+    private void insert_tawaran(ArrayList<Tawaran> tawarans) {
+        tawaranHelper.open();
+        tawaranHelper.truncate();
+        tawaranHelper.bulk_insert(tawarans);
+        tawaranHelper.close();
     }
 
     private void insert_pekerjaan(ArrayList<Pekerjaan> pekerjaans) {
@@ -270,6 +303,13 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         kategoriHelper.truncate();
         kategoriHelper.bulk_insert(kategoris);
         kategoriHelper.close();
+    }
+
+    private void insert_user(ArrayList<User> users) {
+        userHelper.open();
+        userHelper.truncate();
+        userHelper.bulk_insert(users);
+        userHelper.close();
     }
 
     @Override

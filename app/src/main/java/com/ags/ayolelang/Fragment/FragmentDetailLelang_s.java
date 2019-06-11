@@ -18,8 +18,10 @@ import com.ags.ayolelang.DBHelper.LelangHelper;
 import com.ags.ayolelang.DBHelper.PekerjaanHelper;
 import com.ags.ayolelang.DBHelper.REQLelangHelper;
 import com.ags.ayolelang.DBHelper.REQPekerjaanHelper;
+import com.ags.ayolelang.DBHelper.UserHelper;
 import com.ags.ayolelang.Models.Lelang;
 import com.ags.ayolelang.Models.Pekerjaan;
+import com.ags.ayolelang.Models.User;
 import com.ags.ayolelang.R;
 import com.ags.ayolelang.Storage.SharedPrefManager;
 
@@ -56,10 +58,10 @@ public class FragmentDetailLelang_s extends Fragment {
         txt_alamat.setText(bundle.getString("alamat"));
         txt_eta.setText(bundle.getString("eta"));
         txt_tenggatWaktu.setText(bundle.getString("tenggat_waktu"));
-        txt_jumlahmitra.setText(bundle.getInt("count_mitra") + "");
+        txt_jumlahmitra.setText(bundle.getInt("count_mitra") + " ");
         txt_pembayaran.setText(getResources().getStringArray(R.array.metode_bayar)[lelang.getLelang_pembayaran()]);
         txt_harga.setText("Rp. " + lelang.getLelang_anggaran());
-        Log.d("test",SharedPrefManager.getInstance(getContext()).getUser().getUser_id()+" - "+lelang.getLelang_userid());
+        //Log.d("test",SharedPrefManager.getInstance(getContext()).getUser().getUser_id()+" - "+lelang.getLelang_userid());
         if (SharedPrefManager.getInstance(getContext()).getUser().getUser_id().equalsIgnoreCase(lelang.getLelang_userid())) {
             btn_ajukanPenawaran.setText("Edit");
         }
@@ -93,7 +95,7 @@ public class FragmentDetailLelang_s extends Fragment {
     private void edit(Lelang lelang) {
         REQLelangHelper reqLelangHelper = new REQLelangHelper(getContext());
         reqLelangHelper.open();
-        reqLelangHelper.insert(lelang);
+        reqLelangHelper.insert2(lelang);
         reqLelangHelper.close();
 
         PekerjaanHelper pekerjaanHelper = new PekerjaanHelper(getContext());
@@ -103,17 +105,15 @@ public class FragmentDetailLelang_s extends Fragment {
 
         REQPekerjaanHelper reqPekerjaanHelper = new REQPekerjaanHelper(getContext());
         reqPekerjaanHelper.open();
-        reqPekerjaanHelper.bulk_insert(pekerjaans);
+        reqPekerjaanHelper.bulk_edit(pekerjaans);
+        ArrayList<Pekerjaan> pekerjaanArrayList=reqPekerjaanHelper.getPekerjaan();
         reqPekerjaanHelper.close();
 
-        String pekerjaanid="";
-        for(Pekerjaan pekerjaan:pekerjaans){
-            pekerjaanid+=pekerjaan.getPekerjaan_id()+" ";
+        for (Pekerjaan pekerjaan:pekerjaanArrayList){
+            Log.d("testtt",pekerjaan.toString());
         }
 
         Intent intent = new Intent(getContext(), Preview.class);
-        intent.putExtra("lelang_id", lelang.getLelang_id());
-        intent.putExtra("pekerjaanid",pekerjaanid);
         intent.putExtra("edit", true);
         startActivity(intent);
     }
@@ -130,6 +130,11 @@ public class FragmentDetailLelang_s extends Fragment {
     private String getNama(String lelang_userid) {
         String nama = "belum di set";
         //user helper
+        UserHelper userHelper=new UserHelper(getActivity());
+        userHelper.open();
+        User user=userHelper.getSingleUser(lelang_userid);
+        userHelper.close();
+        nama=user.getUser_nama();
         return nama;
     }
 
