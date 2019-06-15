@@ -315,12 +315,13 @@
         android:layout_gravity="end"/>
     <Button
         android:id="@+id/btn_batalkan"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingHorizontal="16dp"
-        android:background="#FF1300"
-        android:visibility="gone"
+        android:background="@drawable/button_rectangle"
+        android:backgroundTint="@color/colorRed"
+        android:visibility="visible"
         android:text="Batalkan"
         android:textColor="@color/colorWhite"
         android:textAllCaps="false"
