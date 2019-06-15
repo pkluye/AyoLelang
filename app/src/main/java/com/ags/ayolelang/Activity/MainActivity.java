@@ -69,11 +69,14 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     private TawaranHelper tawaranHelper=new TawaranHelper(this);
     private HistoriTawaranHelper historiTawaranHelper=new HistoriTawaranHelper(this);
 
+    ProgressDialog progressDoalog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         bottomNavigation = findViewById(R.id.navigation);
+        progressDoalog = new ProgressDialog(this);
 
         fetchdata();
 
@@ -169,8 +172,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 );
         //Log.d("token",token[0]+" "+token[1]+" "+token[2]+" ");
         // Set up progress before call
-        final ProgressDialog progressDoalog;
-        progressDoalog = new ProgressDialog(MainActivity.this);
         //progressDoalog.setMax(100);
         progressDoalog.setMessage("Loading....");
         //progressDoalog.setTitle("ProgressDialog bar example");
@@ -380,6 +381,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     @Override
     protected void onPause() {
         super.onPause();
+        progressDoalog.dismiss();
         Log.d("state", "onpause");
         if (!disposable.isDisposed()) disposable.dispose();
     }
@@ -387,6 +389,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     @Override
     protected void onStop() {
         super.onStop();
+        progressDoalog.dismiss();
         Log.d("state", "onstop");
         if (!disposable.isDisposed()) disposable.dispose();
     }
@@ -394,6 +397,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        progressDoalog.dismiss();
         Log.d("state", "ondestroy");
         if (!disposable.isDisposed()) disposable.dispose();
     }

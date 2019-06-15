@@ -18,12 +18,11 @@
         <activity android:name=".Activity.ListPekerjaan"></activity>
         <activity android:name=".Activity.Preview" />
         <activity android:name=".Activity.Deskripsi" />
-        <activity android:name=".Activity.Attachment" />
         <activity android:name=".Activity.Message" />
 
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
-            android:value=".Activity.MainActivity" />
+            android:value=".Activity.LoginActivity" />
 
         <activity android:name=".Activity.DetailSpesifikasi" />
         <activity android:name=".Activity.LupaPasswordActivity" />
