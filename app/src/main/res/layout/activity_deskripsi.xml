@@ -58,6 +58,42 @@
 
     </android.support.v7.widget.Toolbar>
 
+    <LinearLayout
+        android:layout_below="@+id/toolbar"
+        android:id="@+id/tag_halaman"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center_vertical"
+        android:background="@color/colorBackground"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/txt_subtext_kategori"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kategori"
+            android:textColor="@color/colorBlack"
+            android:textSize="14sp"/>
+
+        <ImageView
+            app:srcCompat="@drawable/ic_navigation_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleY="0.8"
+            android:scaleX="0.8"/>
+
+        <TextView
+            android:id="@+id/txt_subtext_kategori_dipilih"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/colorBlack"
+            android:textSize="14sp"/>
+
+    </LinearLayout>
+
     <!--<LinearLayout-->
         <!--android:layout_below="@+id/toolbar"-->
         <!--android:id="@+id/tag_halaman"-->
@@ -95,7 +131,7 @@
     <!--</LinearLayout>-->
 
     <ScrollView
-        android:layout_below="@id/toolbar"
+        android:layout_below="@id/tag_halaman"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

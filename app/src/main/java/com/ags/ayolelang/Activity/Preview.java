@@ -55,8 +55,8 @@ public class Preview extends AppCompatActivity {
 
     private TextView txt_judul, txt_alamat, txt_alamatlengkap, txt_deskripsi, txt_ukuran, txt_bahan, txt_jumlah, txt_harga, txt_deadline, txt_pembayaran, txt_attachment, txt_perkiraan_totalHarga, txt_catatan;
     private RecyclerView rv_lelang;
-    private FloatingActionButton btn_tambah_keranjang, btn_edit_deskripsi;
-    private Button btn_edit, btn_posting;
+    private FloatingActionButton btn_tambah_keranjang;
+    private Button btn_edit, btn_posting, btn_edit_deskripsi;
     //    private ImageButton btn_home;
     private Toolbar toolbar;
     private boolean edit;
