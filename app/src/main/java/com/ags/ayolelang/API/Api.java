@@ -162,4 +162,27 @@ public interface Api {
     @Headers("Content-Type: application/json")
     @POST("c_lelang/lelang_edit")
     Call<StringRespon> editLelang(@Body String toString);
+
+    @FormUrlEncoded
+    @POST("c_tawaran/tawaran_buat")
+    Call<StringRespon> buatTawaran(
+            @Field("secret_key") String secret_key,
+            @Field("user_id") String userid,
+            @Field("lelang_id") int lelang_id,
+            @Field("anggaran") long penawaran);
+
+    @FormUrlEncoded
+    @POST("c_tawaran/tawaran_edit")
+    Call<StringRespon> editTawaran(
+            @Field("secret_key") String secret_key,
+            @Field("user_id") String userid,
+            @Field("tawaran_id") int tawaran_id,
+            @Field("anggaran") long penawaran);
+
+    @FormUrlEncoded
+    @POST("c_tawaran/tawaran_delete")
+    Call<StringRespon> deleteTawaran(
+            @Field("secret_key") String secret_key,
+            @Field("user_id") String userid,
+            @Field("tawaran_id") int tawaran_id);
 }

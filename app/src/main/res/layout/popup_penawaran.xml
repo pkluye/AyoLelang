@@ -25,6 +25,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            android:id="@+id/tv_tittle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Ajukan Penawaran"
@@ -32,7 +33,28 @@
             android:textSize="18sp" />
 
         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Top bid : "
+                android:textColor="@color/colorBlack"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/tv_topbid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" - "
+                android:textColor="@color/colorBlack"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -44,9 +66,10 @@
                 android:textColor="@color/colorBlack"/>
 
             <EditText
+                android:id="@+id/et_penawaran"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Masukkan penawaran"
+                android:hint="Tawar lebih murah"
                 android:inputType="number"
                 android:textSize="16sp"/>
 

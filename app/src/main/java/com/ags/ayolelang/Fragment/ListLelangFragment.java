@@ -50,10 +50,10 @@ public class ListLelangFragment extends Fragment implements SwipeRefreshLayout.O
         kategoriHelper.open();
         ArrayList<Kategori>kategoris=kategoriHelper.getKategoribyParent(kategori_id);
         kategoriHelper.close();
+        listidkategori.clear();
         for (Kategori kategori:kategoris){
             listidkategori.add(kategori.getKategori_id());
         }
-        //Log.d("listidkategori",listidkategori.toString());
         loadData();
 
         swipe_container.setOnRefreshListener(this);
@@ -73,14 +73,9 @@ public class ListLelangFragment extends Fragment implements SwipeRefreshLayout.O
                 pekerjaanHelper.open();
                 ArrayList<Pekerjaan> pekerjaan=pekerjaanHelper.getPekerjaan(lelang.getLelang_id());
                 pekerjaanHelper.close();
-                //Log.d("Pekerjaan size",pekerjaan.size()+"");
                 if (pekerjaan.size()>0){
                     int id=pekerjaan.get(0).getPekerjaan_kategoriid();
-                    //Log.d("kategori",id+"");
-                    //Set<String> set = new HashSet<String>(listidkategori);
-                    Log.d("list",listidkategori.toString());
                     if (listidkategori.contains(id)){
-                        //Log.d("jebol","masuk gan");
                         lelangs1.add(lelang);
                     }
                 }

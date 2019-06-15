@@ -31,6 +31,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import static com.ags.ayolelang.Fragment.SearchFragment.et_fm_search;
+
 public class AdapterListlelang extends RecyclerView.Adapter<AdapterListlelang.CustomHolderView> {
     private LayoutInflater mInflater;
     Context context;
@@ -71,12 +73,13 @@ public class AdapterListlelang extends RecyclerView.Adapter<AdapterListlelang.Cu
         cvh.item_search_kategori.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                et_fm_search.setText(null);
                 Bundle bundle=new Bundle();
                 bundle.putString("eta",eta);
                 bundle.putString("alamat",alamat);
                 bundle.putInt("lelang_id",lelang.getLelang_id());
                 bundle.putString("tenggat_waktu",tenggat_waktu);
-                bundle.putInt("count mitra",count_mitra);
+                bundle.putInt("count_mitra",count_mitra);
                 Fragment fragment = new FragmentDetailLelang_s();
                 fragment.setArguments(bundle);
                 ReplaceFragment(fragment);

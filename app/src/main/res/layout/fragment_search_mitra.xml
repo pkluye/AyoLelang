@@ -5,10 +5,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:gravity="center_horizontal">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_mitra"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/not_found"
+        android:visibility="gone"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_vertical"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/item_search_mitra"/>
+        android:text="Hasil tidak ditemukan"
+        android:textColor="@color/colorBlack"/>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/srl_mitra_dataseacrh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_search_mitra_datasearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:orientation="vertical"
+            android:layout_marginTop="8dp"
+            tools:listitem="@layout/item_search_mitra">
+
+        </android.support.v7.widget.RecyclerView>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </LinearLayout>

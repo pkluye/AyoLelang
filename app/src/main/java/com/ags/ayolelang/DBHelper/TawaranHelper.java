@@ -39,17 +39,19 @@ public class TawaranHelper {
     public ArrayList<Tawaran> getlisttawaran(int id) {
         ArrayList<Tawaran> tawarans=new ArrayList<>();
         db.beginTransaction();
-        Cursor cursor = db.query(TABLE_TAWARAN, null, TAWARAN_LELANGID + "='" + id + "'", null, null, null, null, null);
+        Cursor cursor = db.query(TABLE_TAWARAN, null, TAWARAN_LELANGID + "='" + id + "'", null, null, null, TAWARAN_ANGGARAN+" ASC", null);
         cursor.moveToFirst();
         Tawaran tawaran;
         if (cursor.getCount() > 0) {
-            tawaran=new Tawaran();
-            tawaran.setTawaran_id(cursor.getInt(cursor.getColumnIndexOrThrow(TAWARAN_ID)));
-            tawaran.setTawaran_lelangid(cursor.getInt(cursor.getColumnIndexOrThrow(TAWARAN_LELANGID)));
-            tawaran.setTawaran_userid(cursor.getString(cursor.getColumnIndexOrThrow(TAWARAN_USERID)));
-            tawaran.setTawaran_anggaran(cursor.getLong(cursor.getColumnIndexOrThrow(TAWARAN_ANGGARAN)));
-            tawarans.add(tawaran);
-            cursor.moveToNext();
+            do{
+                tawaran=new Tawaran();
+                tawaran.setTawaran_id(cursor.getInt(cursor.getColumnIndexOrThrow(TAWARAN_ID)));
+                tawaran.setTawaran_lelangid(cursor.getInt(cursor.getColumnIndexOrThrow(TAWARAN_LELANGID)));
+                tawaran.setTawaran_userid(cursor.getString(cursor.getColumnIndexOrThrow(TAWARAN_USERID)));
+                tawaran.setTawaran_anggaran(cursor.getLong(cursor.getColumnIndexOrThrow(TAWARAN_ANGGARAN)));
+                tawarans.add(tawaran);
+                cursor.moveToNext();
+            }while (!cursor.isAfterLast());
         }
         cursor.close();
         db.endTransaction();
@@ -63,6 +65,10 @@ public class TawaranHelper {
         contentValues.put(TAWARAN_USERID,tawaran.getTawaran_userid());
         contentValues.put(TAWARAN_ANGGARAN,tawaran.getTawaran_anggaran());
         return db.insert(TABLE_TAWARAN, null, contentValues);
+    }
+
+    public long delete(int id) {
+        return db.delete(TABLE_TAWARAN, TAWARAN_ID+"='"+id+"'",null);
     }
 
     public void bulk_insert(ArrayList<Tawaran> list) {
@@ -79,6 +85,31 @@ public class TawaranHelper {
                 db.endTransaction();
             }
         }
+    }
+
+    public boolean isAlreadyBid(String userid,int lelang_id) {
+        Cursor cursor = db.query(TABLE_TAWARAN, null, TAWARAN_USERID+"=? AND "+TAWARAN_LELANGID+"=?", new String[]{userid,lelang_id+""}, null, null, null, null);
+        int count = cursor.getCount();
+        cursor.close();
+        if (count > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public Tawaran SingleTawaran(String userid,int lelang_id) {
+        Cursor cursor = db.query(TABLE_TAWARAN, null, TAWARAN_USERID+"=? AND "+TAWARAN_LELANGID+"=?", new String[]{userid,lelang_id+""}, null, null, null, null);
+        Tawaran tawaran=new Tawaran();
+        cursor.moveToFirst();
+        if (cursor.getCount()>0){
+            cursor.moveToPosition(0);
+            tawaran.setTawaran_id(cursor.getInt(cursor.getColumnIndexOrThrow(TAWARAN_ID)));
+            tawaran.setTawaran_lelangid(cursor.getInt(cursor.getColumnIndexOrThrow(TAWARAN_LELANGID)));
+            tawaran.setTawaran_userid(cursor.getString(cursor.getColumnIndexOrThrow(TAWARAN_USERID)));
+            tawaran.setTawaran_anggaran(cursor.getLong(cursor.getColumnIndexOrThrow(TAWARAN_ANGGARAN)));
+        }
+        cursor.close();
+        return tawaran;
     }
 
     public void truncate() {

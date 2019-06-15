@@ -41,6 +41,7 @@ import com.ags.ayolelang.Storage.SharedPrefManager;
 
 import org.reactivestreams.Subscription;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
@@ -255,6 +256,14 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             }
         });
     }
+
+//    public void longLog(String str) {
+//        if (str.length() > 4000) {
+//            Log.e("HTML ERROR", str.substring(0, 4000));
+//            longLog(str.substring(4000));
+//        } else
+//            Log.e("HTML ERROR", str);
+//    }
 
     private void insert_historitawaran(ArrayList<Tawaran> historitawaran) {
         historiTawaranHelper.open();

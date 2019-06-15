@@ -88,4 +88,53 @@ public class UserHelper {
         db.execSQL("DELETE FROM " + TABLE_USER);
         db.execSQL("VACUUM");
     }
+
+    public ArrayList<User> getUserbyName(String s) {
+        db.beginTransaction();
+        ArrayList<User> users=new ArrayList<>();
+        Cursor cursor = db.query(TABLE_USER, null, USER_NAMA + " LIKE '%" + s + "%'", null, null, null, USER_NAMA+" ASC", null);
+        cursor.moveToFirst();
+        User user;
+        if (cursor.getCount() > 0) {
+            do {
+                user=new User();
+                user.setUser_id(cursor.getString(cursor.getColumnIndexOrThrow(USER_ID)));
+                user.setUser_nama(cursor.getString(cursor.getColumnIndexOrThrow(USER_NAMA)));
+                user.setUser_email(cursor.getString(cursor.getColumnIndexOrThrow(USER_EMAIL)));
+                user.setUser_telpon(cursor.getString(cursor.getColumnIndexOrThrow(USER_TELPON)));
+                user.setUser_alamat(cursor.getString(cursor.getColumnIndexOrThrow(USER_ALAMAT)));
+                user.setUser_imgurl(cursor.getString(cursor.getColumnIndexOrThrow(USER_IMGURL)));
+                users.add(user);
+                cursor.moveToNext();
+            }while (!cursor.isAfterLast());
+        }
+        cursor.close();
+        db.endTransaction();
+        return users;
+    }
+
+    public ArrayList<User> getUser() {
+        db.beginTransaction();
+        ArrayList<User> users=new ArrayList<>();
+        Cursor cursor = db.query(TABLE_USER, null, null, null, null, null, USER_NAMA+" ASC", null);
+        cursor.moveToFirst();
+        User user;
+        if (cursor.getCount() > 0) {
+            do {
+                user=new User();
+                user.setUser_id(cursor.getString(cursor.getColumnIndexOrThrow(USER_ID)));
+                user.setUser_nama(cursor.getString(cursor.getColumnIndexOrThrow(USER_NAMA)));
+                user.setUser_email(cursor.getString(cursor.getColumnIndexOrThrow(USER_EMAIL)));
+                user.setUser_telpon(cursor.getString(cursor.getColumnIndexOrThrow(USER_TELPON)));
+                user.setUser_alamat(cursor.getString(cursor.getColumnIndexOrThrow(USER_ALAMAT)));
+                user.setUser_imgurl(cursor.getString(cursor.getColumnIndexOrThrow(USER_IMGURL)));
+                users.add(user);
+                Log.d("useer",user.toString());
+                cursor.moveToNext();
+            }while (!cursor.isAfterLast());
+        }
+        cursor.close();
+        db.endTransaction();
+        return users;
+    }
 }

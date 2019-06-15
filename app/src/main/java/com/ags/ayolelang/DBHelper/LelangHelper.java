@@ -179,4 +179,35 @@ public class LelangHelper {
         db.execSQL("DELETE FROM " + TABLE_LELANG);
         db.execSQL("VACUUM");
     }
+
+    public ArrayList<Lelang> getlelangbyjudul(String s) {
+        db.beginTransaction();
+        ArrayList<Lelang> lelangs = new ArrayList<>();
+        Cursor cursor = db.query(TABLE_LELANG, null, LELANG_JUDUL+" LIKE '%"+s+"%'", null, null, null, null, null);
+        //Cursor cursor = db.query(TABLE_LELANG, null,null, null, null, null, null, String.valueOf(limit));
+        cursor.moveToFirst();
+        Lelang lelang;
+        if (cursor.getCount() > 0) {
+            do {
+                lelang = new Lelang();
+                lelang.setLelang_id(cursor.getInt(cursor.getColumnIndexOrThrow(LELANG_ID)));
+                lelang.setLelang_judul(cursor.getString(cursor.getColumnIndexOrThrow(LELANG_JUDUL)));
+                lelang.setLelang_alamat(cursor.getString(cursor.getColumnIndexOrThrow(LELANG_ALAMAT)));
+                lelang.setLelang_anggaran(cursor.getLong(cursor.getColumnIndexOrThrow(LELANG_ANGGARAN)));
+                lelang.setLelang_status(cursor.getInt(cursor.getColumnIndexOrThrow(LELANG_STATUS)));
+                lelang.setLelang_fileurl(cursor.getString(cursor.getColumnIndexOrThrow(LELANG_FILEURL)));
+                lelang.setLelang_kota(cursor.getInt(cursor.getColumnIndexOrThrow(LELANG_KOTA)));
+                lelang.setLelang_deskripsi(cursor.getString(cursor.getColumnIndexOrThrow(LELANG_DESKRIPSI)));
+                lelang.setLelang_pembayaran(cursor.getInt(cursor.getColumnIndexOrThrow(LELANG_PEMBAYARAN)));
+                lelang.setLelang_tglmulai(cursor.getString(cursor.getColumnIndexOrThrow(LELANG_TGLMULAI)));
+                lelang.setLelang_tglselesai(cursor.getString(cursor.getColumnIndexOrThrow(LELANG_TGLSELESAI)));
+                lelang.setLelang_userid(cursor.getString(cursor.getColumnIndexOrThrow(LELANG_USERID)));
+                lelangs.add(lelang);
+                cursor.moveToNext();
+            } while (!cursor.isAfterLast());
+        }
+        cursor.close();
+        db.endTransaction();
+        return lelangs;
+    }
 }
