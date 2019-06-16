@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_kategori"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:weightSum="5"
+    android:padding="8dp"
+    android:background="@drawable/border_all_transparent">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/img_Mitra"
+            android:src="@mipmap/ic_launcher"
+            android:layout_width="32dp"
+            android:layout_height="32dp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:layout_marginLeft="16dp"
+            android:id="@+id/txt_namaMitra"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mr. P"
+            android:textColor="@color/colorGrey1"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:layout_marginLeft="16dp"
+            android:id="@+id/txt_tawaranBiaya"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Rp. 1212121212"
+            android:textColor="@color/colorPrimary"
+            android:textSize="12sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center">
+
+        <ImageButton
+            android:id="@+id/btn_nextArrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_navigation_next"
+            android:tint="@color/colorPrimaryDark"
+            android:background="@android:color/transparent"/>
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

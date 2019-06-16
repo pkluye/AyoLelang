@@ -19,6 +19,7 @@ import com.ags.ayolelang.DBHelper.LelangHelper;
 import com.ags.ayolelang.Models.Lelang;
 import com.ags.ayolelang.R;
 import com.ags.ayolelang.Storage.SharedPrefManager;
+import com.shuhart.stepview.StepView;
 
 import java.util.ArrayList;
 
@@ -26,6 +27,8 @@ public class ProgressFragment extends Fragment {
 
     RecyclerView rv_search_lelang;
     LinearLayout default_layout;
+    StepView stepView;
+    private int currentStep = 0;
 
     @Nullable
     @Override
@@ -35,11 +38,34 @@ public class ProgressFragment extends Fragment {
         Toolbar toolbar = view.findViewById(R.id.toolbar);
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
         default_layout=view.findViewById(R.id.default_layout);
-        rv_search_lelang = view.findViewById(R.id.rv_progress);
+//        rv_search_lelang = view.findViewById(R.id.rv_progress);
         rv_search_lelang.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        loadData();
+        stepView = view.findViewById(R.id.step_view);
 
+//        view.findViewById(R.id.next).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (currentStep < stepView.getStepCount() - 1) {
+//                    currentStep++;
+//                    stepView.go(currentStep, true);
+//                } else {
+//                    stepView.done(true);
+//                }
+//            }
+//        });
+//
+//        view.findViewById(R.id.back).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (currentStep > 0) {
+//                    currentStep--;
+//                }
+//                stepView.done(false);
+//                stepView.go(currentStep, true);
+//            }
+//        });
+        loadData();
         return view;
     }
 

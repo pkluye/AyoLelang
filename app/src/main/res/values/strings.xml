@@ -13,6 +13,16 @@
         <item>Hutang</item>
     </string-array>
 
+    <string-array name="progress_garapan">
+        <item>Lelang Garapan</item>
+        <item>Pemilihan Mitra</item>
+        <item>Pengerjaan</item>
+        <item>Proses Bayar</item>
+        <item>Penyerahan Garapan</item>
+    </string-array>
+
+
+
     <string name="garapan_1">Pendidikan</string>
     <string name="garapan_2">Percetakan</string>
     <string name="garapan_3">Kuliner</string>
