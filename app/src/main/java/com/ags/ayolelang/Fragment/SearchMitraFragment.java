@@ -14,7 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.ags.ayolelang.Adapter.AdapterListUser;
+import com.ags.ayolelang.Adapter.AdapterListMitra;
 import com.ags.ayolelang.DBHelper.UserHelper;
 import com.ags.ayolelang.Models.User;
 import com.ags.ayolelang.R;
@@ -29,7 +29,7 @@ public class SearchMitraFragment extends Fragment implements SwipeRefreshLayout.
     private RecyclerView rv_datasearch;
     private SwipeRefreshLayout srl_datasearch;
     private TextView tv_not_found;
-    AdapterListUser adapterListUser;
+    AdapterListMitra adapterListUser;
     UserHelper userHelper;
 
     @Nullable
@@ -42,7 +42,7 @@ public class SearchMitraFragment extends Fragment implements SwipeRefreshLayout.
         tv_not_found=v.findViewById(R.id.not_found);
 
         userHelper=new UserHelper(getActivity());
-        adapterListUser=new AdapterListUser(getActivity());
+        adapterListUser=new AdapterListMitra(getActivity());
 
         rv_datasearch.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -85,6 +85,7 @@ public class SearchMitraFragment extends Fragment implements SwipeRefreshLayout.
         }
         adapterListUser.addItem(arrayList);
         rv_datasearch.setAdapter(adapterListUser);
+        srl_datasearch.setRefreshing(false);
     }
 
     private void loadDataSearch(String s) {
@@ -98,6 +99,7 @@ public class SearchMitraFragment extends Fragment implements SwipeRefreshLayout.
         }
         adapterListUser.addItem(arrayList);
         rv_datasearch.setAdapter(adapterListUser);
+        srl_datasearch.setRefreshing(false);
     }
 
     @Override

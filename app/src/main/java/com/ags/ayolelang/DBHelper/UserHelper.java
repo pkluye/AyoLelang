@@ -52,6 +52,7 @@ public class UserHelper {
             user.setUser_alamat(cursor.getString(cursor.getColumnIndexOrThrow(USER_ALAMAT)));
             user.setUser_imgurl(cursor.getString(cursor.getColumnIndexOrThrow(USER_IMGURL)));
         }
+        Log.d("useer",user.toString());
         cursor.close();
         db.endTransaction();
         return user;
@@ -77,7 +78,7 @@ public class UserHelper {
                 }
                 db.setTransactionSuccessful();
             } catch (SQLException e) {
-                Log.d("insert_error", e.getMessage());
+                Log.e("insert_error", e.getMessage());
             } finally {
                 db.endTransaction();
             }
@@ -129,7 +130,6 @@ public class UserHelper {
                 user.setUser_alamat(cursor.getString(cursor.getColumnIndexOrThrow(USER_ALAMAT)));
                 user.setUser_imgurl(cursor.getString(cursor.getColumnIndexOrThrow(USER_IMGURL)));
                 users.add(user);
-                Log.d("useer",user.toString());
                 cursor.moveToNext();
             }while (!cursor.isAfterLast());
         }

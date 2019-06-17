@@ -21,7 +21,6 @@
         android:background="@color/colorBackground"
         app:itemIconTint="@drawable/bottom_navbar_selector"
         app:itemTextColor="@drawable/bottom_navbar_selector"
-        app:menu="@menu/bottom_nav_menu"
-        app:labelVisibilityMode="labeled"/>
+        app:menu="@menu/bottom_nav_menu" />
 
 </RelativeLayout>

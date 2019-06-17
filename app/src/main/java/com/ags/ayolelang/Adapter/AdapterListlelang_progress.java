@@ -23,6 +23,7 @@ import com.ags.ayolelang.DBHelper.ProvinsiHelper;
 import com.ags.ayolelang.DBHelper.REQLelangHelper;
 import com.ags.ayolelang.DBHelper.REQPekerjaanHelper;
 import com.ags.ayolelang.Fragment.FragmentDetailLelang_s;
+import com.ags.ayolelang.Fragment.FragmentstatusProgress;
 import com.ags.ayolelang.Models.Kota;
 import com.ags.ayolelang.Models.Lelang;
 import com.ags.ayolelang.Models.Provinsi;
@@ -91,13 +92,23 @@ public class AdapterListlelang_progress extends RecyclerView.Adapter<AdapterList
                 dialog.show();
             }
         });
+        cvh.btn_status.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment=new FragmentstatusProgress();
+                Bundle bundle=new Bundle();
+                bundle.putInt("lelang_id",lelang.getLelang_id());
+                fragment.setArguments(bundle);
+                ReplaceFragment(fragment);
+            }
+        });
     }
 
     public void ReplaceFragment(Fragment fragment){
         if (fragment != null)
             ((MainActivity)context).getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.ContainerFragmentSearch, fragment)
+                    .replace(R.id.ContainerFragmentProgress, fragment)
                     .addToBackStack(null)
                     .commit();
     }
@@ -126,7 +137,7 @@ public class AdapterListlelang_progress extends RecyclerView.Adapter<AdapterList
     }
 
     public class CustomHolderView extends RecyclerView.ViewHolder {
-        private Button btn_batal;
+        private Button btn_batal,btn_status;
         TextView txt_judulgarapan, txt_alamat, txt_harga, txt_tenggatWaktu;
 
         public CustomHolderView(@NonNull View itemView) {
@@ -136,6 +147,7 @@ public class AdapterListlelang_progress extends RecyclerView.Adapter<AdapterList
             txt_harga = itemView.findViewById(R.id.txt_harga);
             txt_tenggatWaktu = itemView.findViewById(R.id.txt_tenggatWaktu);
             btn_batal=itemView.findViewById(R.id.btn_batal);
+            btn_status=itemView.findViewById(R.id.btn_status);
         }
     }
 }

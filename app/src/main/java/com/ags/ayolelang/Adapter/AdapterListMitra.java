@@ -13,12 +13,12 @@ import com.ags.ayolelang.R;
 
 import java.util.ArrayList;
 
-public class AdapterListUser extends RecyclerView.Adapter<AdapterListUser.CustomHolderView>{
+public class AdapterListMitra extends RecyclerView.Adapter<AdapterListMitra.CustomHolderView>{
     ArrayList<User>users;
     Context context;
     private LayoutInflater mInflater;
 
-    public AdapterListUser(Context context) {
+    public AdapterListMitra(Context context) {
         this.context = context;
         this.mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -28,14 +28,14 @@ public class AdapterListUser extends RecyclerView.Adapter<AdapterListUser.Custom
     public CustomHolderView onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
         View v = inflater.inflate(R.layout.item_search_mitra, viewGroup, false);
-        AdapterListUser.CustomHolderView vh = new AdapterListUser.CustomHolderView(v);
+        AdapterListMitra.CustomHolderView vh = new AdapterListMitra.CustomHolderView(v);
         return vh;
     }
 
     @Override
     public void onBindViewHolder(@NonNull CustomHolderView customHolderView, int i) {
         User user=users.get(i);
-        customHolderView.txt_nama.setText(user.getUser_nama().toUpperCase());
+        customHolderView.txt_nama.setText(user.getUser_nama());
     }
 
     @Override

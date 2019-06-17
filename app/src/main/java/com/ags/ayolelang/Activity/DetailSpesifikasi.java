@@ -3,9 +3,13 @@ package com.ags.ayolelang.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.support.v7.widget.Toolbar;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.ags.ayolelang.DBHelper.REQLelangHelper;
@@ -13,6 +17,15 @@ import com.ags.ayolelang.DBHelper.REQPekerjaanHelper;
 import com.ags.ayolelang.Models.Lelang;
 import com.ags.ayolelang.Models.Pekerjaan;
 import com.ags.ayolelang.R;
+import com.google.gson.JsonArray;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
 
 public class DetailSpesifikasi extends AppCompatActivity {
 
@@ -23,6 +36,7 @@ public class DetailSpesifikasi extends AppCompatActivity {
     private boolean edit;
     private int pekerjaan_id;
     private long lastharga;
+    private Spinner ukuransp,bahansp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +44,8 @@ public class DetailSpesifikasi extends AppCompatActivity {
         setContentView(R.layout.activity_detail_spesifikasi);
         ukuran = findViewById(R.id.in_ukuran);
         bahan = findViewById(R.id.in_bahan);
+        ukuransp = findViewById(R.id.ukuran_sp);
+        bahansp = findViewById(R.id.bahan_sp);
         quantity = findViewById(R.id.in_quantity);
         harga = findViewById(R.id.in_harga);
         catatan = findViewById(R.id.in_catatan);
@@ -57,25 +73,39 @@ public class DetailSpesifikasi extends AppCompatActivity {
             catatan.setText(catatan_e);
             lastharga=intent.getLongExtra("harga", 0);
         }
+        loadbahan();
+        loadukuran();
     }
+
+
 
     public void next(View view) {
         String ukuran = this.ukuran.getText().toString().trim(),
+                ukuransp=this.ukuransp.getSelectedItem().toString().trim(),
                 bahan = this.bahan.getText().toString().trim(),
+                bahansp=this.bahansp.getSelectedItem().toString().trim(),
                 quantity = this.quantity.getText().toString().trim(),
                 harga = this.harga.getText().toString().trim(),
                 catatan = this.catatan.getText().toString().trim();
 
-        if (ukuran.isEmpty()) {
-            this.ukuran.setError("harap lengkapi form ini");
-            this.ukuran.requestFocus();
-            return;
+        if (ukuransp.equalsIgnoreCase("lainnya")) {
+            if(ukuran.isEmpty()){
+                this.ukuran.setError("harap lengkapi form ini");
+                this.ukuran.requestFocus();
+                return;
+            }
+        }else{
+            ukuran=ukuransp;
         }
 
-        if (bahan.isEmpty()) {
-            this.bahan.setError("harap lengkapi form ini");
-            this.bahan.requestFocus();
-            return;
+        if (bahansp.equalsIgnoreCase("lainnya")){
+            if (bahan.isEmpty()) {
+                this.bahan.setError("harap lengkapi form ini");
+                this.bahan.requestFocus();
+                return;
+            }
+        }else{
+            bahan=bahansp;
         }
 
         if (quantity.isEmpty()) {
@@ -131,7 +161,111 @@ public class DetailSpesifikasi extends AppCompatActivity {
         finish();
     }
 
+    private void loadbahan() {
+        ArrayList<String>listbahan=new ArrayList<>();
+        try {
+            JSONObject datajson = new JSONObject(loadJSONFromAsset());
+            JSONArray databahan=datajson.getJSONArray("bahan");
+            for (int i=0;i<databahan.length();i++){
+                JSONObject bahan=databahan.getJSONObject(i);
+                ArrayList<Integer>listid=new ArrayList<>();
+                JSONArray list_id=bahan.getJSONArray("group_id");
+                JSONArray list_bahan=bahan.getJSONArray("list_bahan");
+                for (int j=0;j<list_id.length();j++){
+                    listid.add(list_id.getInt(j));
+                }
+                if (listid.contains(kategori_id)){
+                    for (int j=0;j<list_bahan.length();j++){
+                        listbahan.add(list_bahan.getString(j));
+                    }
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        ArrayAdapter<String> spadapter = new ArrayAdapter<>(getApplicationContext(), R.layout.support_simple_spinner_dropdown_item, listbahan);
+        spadapter.notifyDataSetChanged();
+        bahansp.setAdapter(spadapter);
+        bahansp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectitem = bahansp.getSelectedItem().toString();
+                bahan.setVisibility(View.GONE);
+                if (selectitem.equalsIgnoreCase("lainnya")){
+                    Log.d("testt","oke");
+                    bahan.setVisibility(View.VISIBLE);
+                    bahan.requestFocus();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
+    private void loadukuran() {
+        ArrayList<String>listukuran=new ArrayList<>();
+        try {
+            JSONObject datajson = new JSONObject(loadJSONFromAsset());
+            JSONArray databahan=datajson.getJSONArray("ukuran");
+            for (int i=0;i<databahan.length();i++){
+                JSONObject bahan=databahan.getJSONObject(i);
+                ArrayList<Integer>listid=new ArrayList<>();
+                JSONArray list_id=bahan.getJSONArray("group_id");
+                JSONArray list_bahan=bahan.getJSONArray("list_ukuran");
+                for (int j=0;j<list_id.length();j++){
+                    listid.add(list_id.getInt(j));
+                }
+                if (listid.contains(kategori_id)){
+                    for (int j=0;j<list_bahan.length();j++){
+                        listukuran.add(list_bahan.getString(j));
+                        Log.d("testt","oke");
+                    }
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        ArrayAdapter<String> spadapter = new ArrayAdapter<>(getApplicationContext(), R.layout.support_simple_spinner_dropdown_item, listukuran);
+        spadapter.notifyDataSetChanged();
+        ukuransp.setAdapter(spadapter);
+        ukuransp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectitem = ukuransp.getSelectedItem().toString();
+                ukuran.setVisibility(View.GONE);
+                if (selectitem.equalsIgnoreCase("lainnya")){
+                    ukuran.setVisibility(View.VISIBLE);
+                    ukuran.requestFocus();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
     public void back(View view) {
         finish();
+    }
+
+    public String loadJSONFromAsset() {
+        String json = null;
+        try {
+            InputStream is = getAssets().open("databahanukuran.json");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            json = new String(buffer, "UTF-8");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+        return json;
     }
 }

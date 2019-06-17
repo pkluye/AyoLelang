@@ -56,4 +56,15 @@ public class Tawaran {
     public void setTawaran_anggaran(long tawaran_anggaran) {
         this.tawaran_anggaran = tawaran_anggaran;
     }
+
+    @Override
+    public String toString() {
+        return "Tawaran{" +
+                "tawaran_id=" + tawaran_id +
+                ", tawaran_historiid=" + tawaran_historiid +
+                ", tawaran_lelangid=" + tawaran_lelangid +
+                ", tawaran_userid='" + tawaran_userid + '\'' +
+                ", tawaran_anggaran=" + tawaran_anggaran +
+                '}';
+    }
 }
