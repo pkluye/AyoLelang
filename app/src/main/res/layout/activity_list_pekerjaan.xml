@@ -29,18 +29,8 @@
                 android:orientation="horizontal"
                 android:padding="16dp">
 
-                <ImageButton
-                    android:id="@+id/btn_Menu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"
-                    app:srcCompat="@drawable/ic_arrow_back_black_24dp"
-                    android:onClick="back"
-                    android:scaleY="1.2"
-                    android:scaleX="1.2"/>
-
                 <TextView
-                    android:layout_marginLeft="16dp"
+                    android:layout_marginLeft="38.8dp"
                     android:id="@+id/txt_subTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -63,8 +53,13 @@
 
         </android.support.v7.widget.Toolbar>
 
-        <!--<LinearLayout-->
-            <!--android:layout_below="@+id/toolbar"-->
+        <RelativeLayout
+            android:id="@+id/layoutRelative"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <!--<LinearLayout-->
             <!--android:id="@+id/tag_halaman"-->
             <!--android:layout_width="match_parent"-->
             <!--android:layout_height="48dp"-->
@@ -75,343 +70,303 @@
             <!--android:orientation="horizontal">-->
 
             <!--<TextView-->
-                <!--android:id="@+id/txt_subtext_kategori"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="Kategori"-->
-                <!--android:textColor="@color/colorBlack"-->
-                <!--android:textSize="14sp"/>-->
+            <!--android:id="@+id/txt_subtext_kategori"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Kategori"-->
+            <!--android:textColor="@color/colorBlack"-->
+            <!--android:textSize="14sp"/>-->
 
             <!--<ImageView-->
-                <!--app:srcCompat="@drawable/ic_navigation_next"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:scaleY="0.8"-->
-                <!--android:scaleX="0.8"/>-->
+            <!--app:srcCompat="@drawable/ic_navigation_next"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:scaleY="0.8"-->
+            <!--android:scaleX="0.8"/>-->
 
             <!--<TextView-->
-                <!--android:id="@+id/txt_subtext_kategori_dipilih"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text=""-->
-                <!--android:textColor="@color/colorBlack"-->
-                <!--android:textSize="14sp"/>-->
+            <!--android:id="@+id/txt_subtext_kategori_dipilih"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="List Pekerjaan"-->
+            <!--android:textColor="@color/colorBlack"-->
+            <!--android:textSize="14sp"/>-->
+            <!---->
 
-        <!--</LinearLayout>-->
+            <!--</LinearLayout>-->
 
-            <RelativeLayout
-                android:id="@+id/layoutRelative"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                >
+            <LinearLayout
+                android:layout_below="@+id/tag_halaman"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/layoutLinear_judul"
+                android:layout_marginTop="12dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
 
-                <!--<LinearLayout-->
-                    <!--android:id="@+id/tag_halaman"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="48dp"-->
-                    <!--android:gravity="center_vertical"-->
-                    <!--android:background="@color/colorBackground"-->
-                    <!--android:paddingLeft="16dp"-->
-                    <!--android:paddingRight="16dp"-->
-                    <!--android:orientation="horizontal">-->
-
-                    <!--<TextView-->
-                        <!--android:id="@+id/txt_subtext_kategori"-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:text="Kategori"-->
-                        <!--android:textColor="@color/colorBlack"-->
-                        <!--android:textSize="14sp"/>-->
-
-                    <!--<ImageView-->
-                        <!--app:srcCompat="@drawable/ic_navigation_next"-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:scaleY="0.8"-->
-                        <!--android:scaleX="0.8"/>-->
-
-                    <!--<TextView-->
-                        <!--android:id="@+id/txt_subtext_kategori_dipilih"-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:text="List Pekerjaan"-->
-                        <!--android:textColor="@color/colorBlack"-->
-                        <!--android:textSize="14sp"/>-->
-                    <!---->
-
-                <!--</LinearLayout>-->
+                <ProgressBar
+                    android:id="@+id/determinateBar"
+                    android:layout_gravity="center"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:progress="50"
+                    style="@style/MyProgressBarTwo"
+                    android:theme="@style/MyProgressBarTwo"
+                    />
 
                 <LinearLayout
-                    android:layout_below="@+id/tag_halaman"
-                    android:layout_centerHorizontal="true"
-                    android:id="@+id/layoutLinear_judul"
-                    android:layout_marginTop="12dp"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/linear_pekerjaan"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_weight="1">
-
-                    <ProgressBar
-                        android:id="@+id/determinateBar"
-                        android:layout_gravity="center"
-                        android:layout_width="300dp"
-                        android:layout_height="wrap_content"
-                        android:progress="50"
-                        style="@style/MyProgressBarTwo"
-                        android:theme="@style/MyProgressBarTwo"
-                        />
+                    android:orientation="vertical">
 
                     <LinearLayout
-                        android:id="@+id/linear_pekerjaan"
-                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="visible"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/txt_teks_ukuran"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Ukuran"
+                                android:textColor="@color/colorGrey1"/>
+
+                            <TextView
+                                android:id="@+id/txt_teks_bahan"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Bahan"
+                                android:textColor="@color/colorGrey1"/>
+
+                            <TextView
+                                android:id="@+id/txt_teks_quantity"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Quantity"
+                                android:textColor="@color/colorGrey1"/>
+
+                            <TextView
+                                android:id="@+id/txt_teks_harga"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Perkiraan Harga"
+                                android:textColor="@color/colorGrey1"/>
+
+                            <TextView
+                                android:id="@+id/txt_teks_catatan"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Catatan "
+                                android:textColor="@color/colorGrey1"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginRight="8dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=":"
+                                android:textColor="@color/colorGrey1"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=":"
+                                android:textColor="@color/colorGrey1"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=":"
+                                android:textColor="@color/colorGrey1"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=":"
+                                android:textColor="@color/colorGrey1"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=":"
+                                android:textColor="@color/colorGrey1"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/txt_ukuran"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="ukuran"
+                                android:textColor="@color/colorGrey2"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="bahan"
+                                android:id="@+id/txt_bahan"
+                                android:textColor="@color/colorGrey2"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="quantity"
+                                android:id="@+id/txt_jumlah"
+                                android:textColor="@color/colorGrey2"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="perkiraan harga"
+                                android:id="@+id/txt_harga"
+                                android:textColor="@color/colorGrey2"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Ini merupakan catatan Item"
+                                android:id="@+id/txt_catatan"
+                                android:textColor="@color/colorGrey2"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_marginTop="8dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="#F0F0F0"/>
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
                         <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:visibility="visible"
-                            android:orientation="horizontal"
-                            android:layout_marginTop="8dp">
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:id="@+id/txt_teks_ukuran"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Ukuran"
-                                    android:textColor="@color/colorGrey1"/>
-
-                                <TextView
-                                    android:id="@+id/txt_teks_bahan"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Bahan"
-                                    android:textColor="@color/colorGrey1"/>
-
-                                <TextView
-                                    android:id="@+id/txt_teks_quantity"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Quantity"
-                                    android:textColor="@color/colorGrey1"/>
-
-                                <TextView
-                                    android:id="@+id/txt_teks_harga"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Perkiraan Harga"
-                                    android:textColor="@color/colorGrey1"/>
-
-                                <TextView
-                                    android:id="@+id/txt_teks_catatan"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Catatan "
-                                    android:textColor="@color/colorGrey1"/>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                android:layout_marginLeft="12dp"
-                                android:layout_marginRight="8dp">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text=":"
-                                    android:textColor="@color/colorGrey1"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text=":"
-                                    android:textColor="@color/colorGrey1"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text=":"
-                                    android:textColor="@color/colorGrey1"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text=":"
-                                    android:textColor="@color/colorGrey1"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text=":"
-                                    android:textColor="@color/colorGrey1"/>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:id="@+id/txt_ukuran"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="ukuran"
-                                    android:textColor="@color/colorGrey2"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="bahan"
-                                    android:id="@+id/txt_bahan"
-                                    android:textColor="@color/colorGrey2"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="quantity"
-                                    android:id="@+id/txt_jumlah"
-                                    android:textColor="@color/colorGrey2"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="perkiraan harga"
-                                    android:id="@+id/txt_harga"
-                                    android:textColor="@color/colorGrey2"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Ini merupakan catatan Item"
-                                    android:id="@+id/txt_catatan"
-                                    android:textColor="@color/colorGrey2"/>
-
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                        <View
                             android:layout_marginTop="8dp"
                             android:layout_width="match_parent"
-                            android:layout_height="2dp"
-                            android:background="#F0F0F0"/>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                            android:orientation="horizontal">
 
-                            <LinearLayout
-                                android:layout_marginTop="8dp"
-                                android:layout_width="match_parent"
+                            <TextView
+                                android:id="@+id/txt_teks_attachment"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal">
+                                android:text="File Attachment"
+                                android:textColor="@color/colorGrey1"/>
 
-                                <TextView
-                                    android:id="@+id/txt_teks_attachment"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="File Attachment"
-                                    android:textColor="@color/colorGrey1"/>
+                            <TextView
+                                android:layout_marginLeft="12dp"
+                                android:layout_marginRight="8dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=":"
+                                android:textColor="@color/colorGrey1"/>
 
-                                <TextView
-                                    android:layout_marginLeft="12dp"
-                                    android:layout_marginRight="8dp"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text=":"
-                                    android:textColor="@color/colorGrey1"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="attachment"
-                                    android:id="@+id/txt_attachment"
-                                    android:textColor="@color/colorGrey2"/>
-
-                            </LinearLayout>
-
-                            <Button
-                                android:id="@+id/btn_edit"
-                                android:layout_marginTop="8dp"
-                                android:layout_width="60dp"
-                                android:layout_height="30dp"
-                                android:text="Edit"
-                                android:textColor="@color/colorWhite"
-                                android:background="@drawable/button_rectangle"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="attachment"
+                                android:id="@+id/txt_attachment"
+                                android:textColor="@color/colorGrey2"/>
 
                         </LinearLayout>
 
+                        <Button
+                            android:id="@+id/btn_edit"
+                            android:layout_marginTop="8dp"
+                            android:layout_width="60dp"
+                            android:layout_height="30dp"
+                            android:text="Edit"
+                            android:textColor="@color/colorWhite"
+                            android:background="@drawable/button_rectangle"/>
+
                     </LinearLayout>
 
                 </LinearLayout>
 
-                <android.support.v7.widget.RecyclerView
-                    android:visibility="visible"
-                    android:layout_centerHorizontal="true"
-                    android:layout_below="@id/layoutLinear_judul"
-                    android:id="@+id/reyclerview_listItem_pekerjaan"
-                    android:orientation="vertical"
-                    tools:listitem="@layout/item_preview_lelang"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content">
-                </android.support.v7.widget.RecyclerView>
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:visibility="visible"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/layoutLinear_judul"
+                android:id="@+id/reyclerview_listItem_pekerjaan"
+                android:orientation="vertical"
+                tools:listitem="@layout/item_preview_lelang"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="60dp"/>
+
+            <LinearLayout
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="end|center_vertical"
+                android:background="@color/colorBackground"
+                android:padding="12dp"
+                android:layout_weight="0">
 
                 <LinearLayout
-                    android:layout_alignParentBottom="true"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="end|center_vertical"
-                    android:background="@color/colorBackground"
-                    android:padding="12dp"
-                    android:layout_weight="0">
+                    android:orientation="vertical"
+                    android:gravity="end">
 
-                    <LinearLayout
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:gravity="end">
+                        android:text="Anda ingin menambah pekerjaan ?"/>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Anda ingin menambah pekerjaan ?"/>
-
-                        <TextView
-                            android:id="@+id/txt_perkiraan_totalHarga"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="klik tombol untuk menambah pekerjaan"
-                            android:textStyle="italic"
-                            android:textSize="10sp"
-                            android:textColor="@color/colorGrey2"/>
-                    </LinearLayout>
-
-                    <Button
-                        android:id="@+id/btn_posting"
-                        android:layout_marginLeft="12dp"
+                    <TextView
+                        android:id="@+id/txt_perkiraan_totalHarga"
                         android:layout_width="wrap_content"
-                        android:layout_height="34dp"
-                        android:background="@drawable/button_rectangle"
-                        android:onClick="tambah"
-                        android:text="Tambah"
-                        android:textColor="@color/colorWhite"
-                        android:textAllCaps="false" />
-
+                        android:layout_height="wrap_content"
+                        android:text="klik tombol untuk menambah pekerjaan"
+                        android:textStyle="italic"
+                        android:textSize="10sp"
+                        android:textColor="@color/colorGrey2"/>
                 </LinearLayout>
 
-            </RelativeLayout>
+                <Button
+                    android:id="@+id/btn_posting"
+                    android:layout_marginLeft="12dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="34dp"
+                    android:background="@drawable/button_rectangle"
+                    android:onClick="tambah"
+                    android:text="Tambah"
+                    android:textColor="@color/colorWhite"
+                    android:textAllCaps="false" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
 
     </LinearLayout>
 

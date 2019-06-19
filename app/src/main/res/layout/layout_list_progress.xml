@@ -9,8 +9,8 @@
         android:id="@+id/layoutLinear2"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:background="@color/colorBackground"
         android:gravity="center"
+        android:background="@color/colorBackground"
         android:paddingLeft="16dp"
         android:paddingRight="16dp">
 
@@ -20,24 +20,24 @@
             android:layout_height="wrap_content"
             android:text="Lelang Yang Sedang Berlangsung"
             android:textColor="@color/colorBlack"
-            android:textSize="16sp" />
+            android:textSize="16sp"/>
 
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/default_layout"
+        android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:orientation="vertical"
-        android:visibility="visible">
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Tidak ada lelang yang berlangsung"
-            android:textAlignment="center"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:textAlignment="center" />
 
         <Button
             android:id="@+id/btn_buatLelang"
@@ -53,10 +53,10 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_progress"
-        tools:listitem="@layout/item_progress"
+        android:visibility="gone"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginBottom="60dp"
-        android:visibility="gone" />
+        tools:listitem="@layout/item_progress"/>
 
 </LinearLayout>

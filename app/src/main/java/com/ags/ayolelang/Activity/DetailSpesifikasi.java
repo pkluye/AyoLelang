@@ -183,7 +183,7 @@ public class DetailSpesifikasi extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        ArrayAdapter<String> spadapter = new ArrayAdapter<>(getApplicationContext(), R.layout.support_simple_spinner_dropdown_item, listbahan);
+        ArrayAdapter<String> spadapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, listbahan);
         spadapter.notifyDataSetChanged();
         bahansp.setAdapter(spadapter);
         bahansp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -228,7 +228,7 @@ public class DetailSpesifikasi extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        ArrayAdapter<String> spadapter = new ArrayAdapter<>(getApplicationContext(), R.layout.support_simple_spinner_dropdown_item, listukuran);
+        ArrayAdapter<String> spadapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, listukuran);
         spadapter.notifyDataSetChanged();
         ukuransp.setAdapter(spadapter);
         ukuransp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

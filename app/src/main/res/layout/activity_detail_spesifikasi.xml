@@ -95,142 +95,147 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@id/layoutLinear2"
+    <ScrollView
         android:layout_below="@id/tag_halaman"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="16dp"
-        android:gravity="center_horizontal">
-
-
-        <ProgressBar
-            android:id="@+id/determinateBar"
-            android:layout_gravity="center"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:progress="30"
-            style="@style/MyProgressBarTwo"
-            android:theme="@style/MyProgressBarTwo" />
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:layout_marginTop="24dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Ukuran"/>
+            android:id="@id/layoutLinear2"
+            android:layout_below="@id/tag_halaman"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:gravity="center_horizontal">
 
-            <Spinner
+
+            <ProgressBar
+                android:id="@+id/determinateBar"
+                android:layout_gravity="center"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:progress="30"
+                style="@style/MyProgressBarTwo"
+                android:theme="@style/MyProgressBarTwo" />
+
+            <LinearLayout
+                android:layout_marginTop="24dp"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ukuran"/>
+
+                <Spinner
+                    android:layout_marginTop="4dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/ukuran_sp"/>
+
+                <EditText
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/in_ukuran"
+                    android:hint="masukan jenis bahan"
+                    android:backgroundTint="@color/colorPrimaryDark"/>
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_marginTop="4dp"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:id="@+id/ukuran_sp"
-                android:backgroundTint="@color/colorPrimaryDark"/>
-
-            <EditText
-                android:visibility="gone"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/in_ukuran"
-                android:hint="masukan jenis bahan"
-                android:backgroundTint="@color/colorPrimaryDark"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_marginTop="4dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Bahan"/>
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bahan"/>
 
-            <Spinner
+                <Spinner
+                    android:layout_marginTop="4dp"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:id="@+id/bahan_sp"
+                    android:backgroundTint="@color/colorPrimaryDark"/>
+
+                <EditText
+                    android:visibility="gone"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/in_bahan"
+                    android:hint="masukan jenis bahan"
+                    android:backgroundTint="@color/colorPrimaryDark"/>
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_marginTop="4dp"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:id="@+id/bahan_sp"
-                android:backgroundTint="@color/colorPrimaryDark"/>
-
-            <EditText
-                android:visibility="gone"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/in_bahan"
-                android:hint="masukan jenis bahan"
-                android:backgroundTint="@color/colorPrimaryDark"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_marginTop="4dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Quantity"/>
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Quantity"/>
 
-            <EditText
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:inputType="number"
-                android:id="@+id/in_quantity"
-                android:hint="Tentukan jumlah barang"
-                android:backgroundTint="@color/colorPrimaryDark"/>
-        </LinearLayout>
+                <EditText
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:id="@+id/in_quantity"
+                    android:hint="Tentukan jumlah barang"
+                    android:backgroundTint="@color/colorPrimaryDark"/>
+            </LinearLayout>
 
-        <LinearLayout
-            android:layout_marginTop="4dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView
+            <LinearLayout
+                android:layout_marginTop="4dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Budget Pekerjaan"/>
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Budget Pekerjaan"/>
 
-            <EditText
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:inputType="number"
-                android:id="@+id/in_harga"
-                android:hint="Berapa banyak budget"
-                android:backgroundTint="@color/colorPrimaryDark"/>
-        </LinearLayout>
+                <EditText
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:id="@+id/in_harga"
+                    android:hint="Berapa banyak budget"
+                    android:backgroundTint="@color/colorPrimaryDark"/>
+            </LinearLayout>
 
 
-        <LinearLayout
-            android:layout_marginTop="4dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView
+            <LinearLayout
+                android:layout_marginTop="4dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Catatan Tambahan"/>
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Catatan Tambahan"/>
 
-            <EditText
-                android:inputType="textMultiLine"
-                android:minLines="1"
-                android:lines="8"
-                android:gravity="top|left"
-                android:maxLines="10"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/in_catatan"
-                android:hint="Berikan catatan tambahan"
-                android:backgroundTint="@color/colorPrimaryDark"/>
+                <EditText
+                    android:inputType="textMultiLine"
+                    android:minLines="1"
+                    android:lines="8"
+                    android:gravity="top|left"
+                    android:maxLines="10"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/in_catatan"
+                    android:hint="Berikan catatan tambahan"
+                    android:backgroundTint="@color/colorPrimaryDark"/>
+            </LinearLayout>
+
         </LinearLayout>
 
-    </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>

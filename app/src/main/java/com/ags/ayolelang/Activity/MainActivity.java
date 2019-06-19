@@ -38,6 +38,7 @@ import com.ags.ayolelang.Models.Tawaran;
 import com.ags.ayolelang.Models.User;
 import com.ags.ayolelang.R;
 import com.ags.ayolelang.Storage.SharedPrefManager;
+import com.ags.ayolelang.BottomNavigationHelper;
 
 import org.reactivestreams.Subscription;
 
@@ -76,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         bottomNavigation = findViewById(R.id.navigation);
+        BottomNavigationHelper.disableShiftMode(bottomNavigation);
         progressDoalog = new ProgressDialog(this);
 
         fetchdata();
