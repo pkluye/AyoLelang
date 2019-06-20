@@ -83,7 +83,9 @@ public class AdapterItemPesan extends RecyclerView.Adapter<RecyclerView.ViewHold
 
                 SentMessageHolder smh = (SentMessageHolder) holder;
                 smh.txt_message_body.setText(pesan_s.getPesan_isi());
-                smh.txt_message_time.setText(pesan_s.getTanggal().substring(11,16));
+                if (pesan_s.getTanggal()!=null){
+                    smh.txt_message_time.setText(pesan_s.getTanggal().substring(11,16));
+                }
 
                 break;
 
@@ -92,7 +94,9 @@ public class AdapterItemPesan extends RecyclerView.Adapter<RecyclerView.ViewHold
 
                 ReceiveMessageHolder rmh = (ReceiveMessageHolder) holder;
                 rmh.txt_message_body.setText(pesan_r.getPesan_isi());
-                rmh.txt_message_time.setText(pesan_r.getTanggal().substring(11,16));
+                if (pesan_r.getTanggal()!=null){
+                    rmh.txt_message_time.setText(pesan_r.getTanggal().substring(11,16));
+                }
                 //Glide picture
                 break;
         }
@@ -120,6 +124,11 @@ public class AdapterItemPesan extends RecyclerView.Adapter<RecyclerView.ViewHold
                 return TYPE_RECEIVEMESSAGE;
             }
         }
+    }
+
+    public void addPesan(Pesan pesan) {
+        mPesan.add(pesan);
+        notifyDataSetChanged();
     }
 
     private class TanggalPesanHolder extends RecyclerView.ViewHolder {

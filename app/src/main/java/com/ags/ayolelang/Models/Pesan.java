@@ -8,6 +8,11 @@ public class Pesan implements InterfacePesan {
     String pesan_userid;
     String pesan_cdate;
 
+    public Pesan(String pesan_isi, String pesan_userid) {
+        this.pesan_isi = pesan_isi;
+        this.pesan_userid = pesan_userid;
+    }
+
     public Pesan(int pesan_id, int pesan_roomid, String pesan_isi, String pesan_userid, String pesan_cdate) {
         this.pesan_id = pesan_id;
         this.pesan_roomid = pesan_roomid;

@@ -56,7 +56,6 @@ public class MessageActivity extends AppCompatActivity {
         String userid2=intent.getStringExtra("userid2");
         recyclerView = findViewById(R.id.reyclerview_listItem_message);
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        linearLayoutManager.setReverseLayout(true);
         recyclerView.setLayoutManager(linearLayoutManager);
         sender_name=findViewById(R.id.sender_name);
         btn_back=findViewById(R.id.btn_back);
@@ -119,12 +118,9 @@ public class MessageActivity extends AppCompatActivity {
                                 iPesan.add(pesan);
                             }
                         }
-                        ArrayList<InterfacePesan>reverse=new ArrayList<>();
-                        for (int i=iPesan.size()-1;i>=0;i--){
-                            reverse.add(iPesan.get(i));
-                        }
-                        adapterItemPesan.addItem(reverse);
+                        adapterItemPesan.addItem(iPesan);
                         recyclerView.setAdapter(adapterItemPesan);
+                        recyclerView.scrollToPosition(iPesan.size() - 1);
                     }
 
                     @Override
@@ -149,6 +145,8 @@ public class MessageActivity extends AppCompatActivity {
         responSingle.subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe();
+        AdapterItemPesan adapterItemPesan= (AdapterItemPesan) recyclerView.getAdapter();
+        adapterItemPesan.addPesan(new Pesan(edittext_messagebox.getText().toString(),SharedPrefManager.getInstance(this).getUser().getUser_id()));
         edittext_messagebox.setText("");
     }
 }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,17 +48,24 @@ public class AdapterListRoom extends RecyclerView.Adapter<AdapterListRoom.Custom
         String userid = SharedPrefManager.getInstance(context).getUser().getUser_id();
         UserHelper userHelper = new UserHelper(context);
         userHelper.open();
-        final User user = userHelper.getSingleUser(roomPesan.getRoom_user1() != userid ? roomPesan.getRoom_user1() : roomPesan.getRoom_user2());
+        //final User user = userHelper.getSingleUser(roomPesan.getRoom_user1() != userid ? roomPesan.getRoom_user1() : roomPesan.getRoom_user2());
+        final User user;
+        if (userid.equalsIgnoreCase(roomPesan.getRoom_user1())) {
+            user = userHelper.getSingleUser(roomPesan.getRoom_user2());
+        } else {
+            user = userHelper.getSingleUser(roomPesan.getRoom_user1());
+        }
+        //Log.d("user", user.toString());
         userHelper.close();
         cvh.txt_nama.setText(user.getUser_nama());
-        cvh.txt_tanggal.setText(roomPesan.getRoom_tanggalpesan().substring(0,10));
+        cvh.txt_tanggal.setText(roomPesan.getRoom_tanggalpesan().substring(0, 10));
         cvh.txt_preview.setText(roomPesan.getRoom_toppesan());
         cvh.layout_r_pesan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(context, MessageActivity.class);
-                intent.putExtra("room_id",roomPesan.getRoom_id());
-                intent.putExtra("userid2",user.getUser_id());
+                Intent intent = new Intent(context, MessageActivity.class);
+                intent.putExtra("room_id", roomPesan.getRoom_id());
+                intent.putExtra("userid2", user.getUser_id());
                 context.startActivity(intent);
             }
         });
@@ -84,7 +92,7 @@ public class AdapterListRoom extends RecyclerView.Adapter<AdapterListRoom.Custom
             txt_nama = itemView.findViewById(R.id.txt_nama);
             txt_tanggal = itemView.findViewById(R.id.txt_tanggal);
             txt_preview = itemView.findViewById(R.id.txt_preview);
-            layout_r_pesan=itemView.findViewById(R.id.layout_r_pesan);
+            layout_r_pesan = itemView.findViewById(R.id.layout_r_pesan);
         }
     }
 }
