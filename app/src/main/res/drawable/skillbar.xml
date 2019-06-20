@@ -3,10 +3,9 @@
     <item android:id="@android:id/background"
         android:gravity="center_vertical|fill_horizontal">
         <shape android:shape="rectangle"
-            android:tint="@color/colorBackground">
-            <corners android:radius="8dp"/>
-            <size android:height="10dp" />
-            <solid android:color="@color/colorBackground" />
+            android:tint="@color/colorBackgroundLight">
+            <size android:height="24dp" />
+            <solid android:color="@color/colorBackgroundLight" />
         </shape>
     </item>
     <item android:id="@android:id/progress"
@@ -14,8 +13,7 @@
         <scale android:scaleWidth="100%">
             <shape android:shape="rectangle"
                 android:tint="?attr/colorControlActivated">
-                <corners android:radius="8dp"/>
-                <size android:height="10dp" />
+                <size android:height="24dp" />
                 <solid android:color="@color/colorPrimaryDark" />
             </shape>
         </scale>

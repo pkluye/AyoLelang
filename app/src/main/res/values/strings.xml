@@ -22,7 +22,6 @@
     </string-array>
 
 
-
     <string name="garapan_1">Pendidikan</string>
     <string name="garapan_2">Percetakan</string>
     <string name="garapan_3">Kuliner</string>
@@ -30,4 +29,6 @@
     <string name="garapan_5">Hiburan</string>
     <string name="garapan_6">Fotografi</string>
     <string name="garapan_7">Palugada</string>
+
+    <string name="lorem">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s</string>
 </resources>

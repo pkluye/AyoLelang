@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.Profile">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize"
+            app:titleTextColor="@color/colorWhite"
+            android:background="@color/colorPrimaryDark"
+            app:contentInsetLeft="0dp"
+            app:contentInsetStart="0dp"
+            android:elevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
+                <ImageButton
+                    android:id="@+id/btn_Menu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    app:srcCompat="@drawable/ic_arrow_back_black_24dp"
+                    android:onClick="back"
+                    android:scaleY="1.2"
+                    android:scaleX="1.2"/>
+
+                <TextView
+                    android:layout_marginLeft="16dp"
+                    android:id="@+id/txt_subTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Profile"
+                    android:textSize="24sp"
+                    android:textColor="@color/colorWhite"
+                    android:textAlignment="center"
+                    android:layout_weight="0.9" />
+
+                <ImageButton
+                    android:id="@+id/btn_More"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    app:srcCompat="@drawable/ic_more"
+                    android:scaleY="1.2"
+                    android:scaleX="1.2"/>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.Toolbar>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="128dp"
+            android:id="@+id/layout_Constraint"
+            android:background="@drawable/bg">
+
+            <ImageView
+                android:id="@+id/img_Mitra"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:background="@drawable/button_rectangle_border"
+                android:src="@mipmap/ic_launcher"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="12dp"/>
+
+            <TextView
+                android:id="@+id/txt_namaMitra"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nama User"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="@color/colorWhite"
+                android:layout_below="@+id/img_Mitra"
+                android:layout_centerInParent="true"/>
+
+            <TextView
+                android:layout_marginTop="2dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorWhite"
+                android:text="Alamat user"
+                android:layout_below="@+id/txt_namaMitra"
+                android:layout_centerInParent="true"/>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:orientation="horizontal"
+            android:weightSum="4"
+            android:background="@drawable/border_bottom_transparent">
+
+            <!--OnBudget-->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="On Budget"
+                    android:textSize="12sp"/>
+
+                <TextView
+                    android:id="@+id/text_onBudget"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="97%"
+                    android:textSize="18sp"
+                    />
+
+            </LinearLayout>
+
+            <!--Completed-->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Completed"
+                    android:textSize="12sp"/>
+
+                <TextView
+                    android:id="@+id/text_Completed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="50%"
+                    android:textSize="18sp"
+                    />
+
+            </LinearLayout>
+
+            <!--OnTime-->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="On Time"
+                    android:textSize="12sp"/>
+
+                <TextView
+                    android:id="@+id/text_onTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="75%"
+                    android:textSize="18sp"
+                    />
+
+            </LinearLayout>
+
+            <!--HireMe!-->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                >
+
+                <Button
+                    android:id="@+id/btn_Hire"
+                    android:layout_marginRight="4dp"
+                    android:layout_width="64dp"
+                    android:layout_height="24dp"
+                    android:textSize="12sp"
+                    android:text="Hire Me !"
+                    android:textAllCaps="false"
+                    android:background="@drawable/button_round"
+                    android:textColor="@color/colorWhite"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/layout_linearAbout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="32dp"
+                    android:layout_marginLeft="32dp"
+                    >
+
+                    <LinearLayout
+                        android:background="@color/colorPrimaryLittleDark"
+                        android:layout_width="match_parent"
+                        android:layout_height="32dp"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_marginLeft="8dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:text="About"
+                            android:textColor="@color/colorWhite"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:textSize="12sp"
+                        android:padding="8dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lorem"
+                        android:background="@drawable/border_all_transparent"/>
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_linearSkill"
+                    android:layout_width="match_parent"
+                    android:layout_height="128dp"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="32dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="32dp"
+                        android:background="@color/colorPrimaryLittleDark"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:text="Skill"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        tools:listitem="@layout/item_skill"
+                        android:background="@drawable/border_all_transparent">
+
+                    </android.support.v7.widget.RecyclerView>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginRight="32dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:background="@color/colorPrimaryLittleDark"
+                        android:layout_width="match_parent"
+                        android:layout_height="32dp"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_marginLeft="8dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:text="Portofolio"
+                            android:textColor="@color/colorWhite"/>
+
+                    </LinearLayout>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recycle_portofolio"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        tools:listitem="@layout/item_portofolio"
+                        android:background="@drawable/border_all_transparent">
+
+
+                    </android.support.v7.widget.RecyclerView>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>
