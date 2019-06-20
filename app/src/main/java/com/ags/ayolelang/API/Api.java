@@ -2,11 +2,15 @@ package com.ags.ayolelang.API;
 
 import com.ags.ayolelang.Models.FetchDBRespon;
 import com.ags.ayolelang.Models.LelangRespon;
+import com.ags.ayolelang.Models.Pesan;
+import com.ags.ayolelang.Models.RoomRespon;
 import com.ags.ayolelang.Models.StringRespon;
 import com.ags.ayolelang.Models.UserRespon;
 
 import org.json.JSONObject;
 
+import io.reactivex.Observable;
+import io.reactivex.Single;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -185,4 +189,25 @@ public interface Api {
             @Field("secret_key") String secret_key,
             @Field("user_id") String userid,
             @Field("tawaran_id") int tawaran_id);
+
+    @FormUrlEncoded
+    @POST("c_pesan/pesan_getroom")
+    Observable<RoomRespon> getRoom(
+            @Field("secret_key") String secret_key,
+            @Field("user_id") String user_id);
+
+    @FormUrlEncoded
+    @POST("c_pesan/pesan_getpesan")
+    Observable<PesanRespon> getPesan(
+            @Field("secret_key") String secret_key,
+            @Field("room_id") int room_id
+    );
+
+    @FormUrlEncoded
+    @POST("c_pesan/pesan_buat")
+    Single<StringRespon> sentPesan(
+            @Field("secret_key") String secret_key,
+            @Field("user_id") String user_id,
+            @Field("penerima") String user_id1,
+            @Field("isi") String toString);
 }

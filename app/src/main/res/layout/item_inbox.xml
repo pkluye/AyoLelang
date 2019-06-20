@@ -9,6 +9,7 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/layout_r_pesan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -66,11 +67,12 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/txt-preview"
+                android:id="@+id/txt_preview"
                 android:layout_marginTop="2dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Lorem ipsum dolor sit amet, soluta regione urbanitas vis in, qui elit populo ut. Lorem ipsum dolor sit amet, soluta regione."
+                android:maxLength="255"
                 android:textSize="12sp"
                 android:textColor="@color/colorGrey1"/>
 

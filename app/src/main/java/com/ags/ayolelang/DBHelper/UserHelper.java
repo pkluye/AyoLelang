@@ -52,7 +52,7 @@ public class UserHelper {
             user.setUser_alamat(cursor.getString(cursor.getColumnIndexOrThrow(USER_ALAMAT)));
             user.setUser_imgurl(cursor.getString(cursor.getColumnIndexOrThrow(USER_IMGURL)));
         }
-        Log.d("useer",user.toString());
+        //Log.d("useer",user.toString());
         cursor.close();
         db.endTransaction();
         return user;

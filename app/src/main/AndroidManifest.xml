@@ -19,7 +19,7 @@
         <activity android:name=".Activity.ListPekerjaan" />
         <activity android:name=".Activity.Preview" />
         <activity android:name=".Activity.Deskripsi" />
-        <activity android:name=".Activity.Message" />
+        <activity android:name=".Activity.MessageActivity" />
 
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"

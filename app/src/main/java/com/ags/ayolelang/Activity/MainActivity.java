@@ -147,8 +147,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                         final boolean provinsi_isempty = provinsiHelper.isEmpty();
                         provinsiHelper.close();
 
-
-
                         if (kategori_isempty == true && kota_isempty == true &&
                                 provinsi_isempty == true) {
                             loadToServer(0);
