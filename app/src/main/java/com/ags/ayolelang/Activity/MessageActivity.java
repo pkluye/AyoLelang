@@ -53,21 +53,21 @@ public class MessageActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         int room_id = intent.getIntExtra("room_id", 0);
-        String userid2=intent.getStringExtra("userid2");
+        String userid2 = intent.getStringExtra("userid2");
         recyclerView = findViewById(R.id.reyclerview_listItem_message);
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
-        sender_name=findViewById(R.id.sender_name);
-        btn_back=findViewById(R.id.btn_back);
-        edittext_messagebox=findViewById(R.id.edittext_messagebox);
-        btn_sendMessage=findViewById(R.id.btn_sendMessage);
-        loadData(room_id,userid2);
+        sender_name = findViewById(R.id.sender_name);
+        btn_back = findViewById(R.id.btn_back);
+        edittext_messagebox = findViewById(R.id.edittext_messagebox);
+        btn_sendMessage = findViewById(R.id.btn_sendMessage);
+        loadData(room_id, userid2);
     }
 
     private void loadData(int room_id, String userid2) {
-        UserHelper userHelper=new UserHelper(this);
+        UserHelper userHelper = new UserHelper(this);
         userHelper.open();
-        final User user=userHelper.getSingleUser(userid2);
+        final User user = userHelper.getSingleUser(userid2);
         userHelper.close();
         sender_name.setText(user.getUser_nama());
         btn_back.setOnClickListener(new View.OnClickListener() {
@@ -79,8 +79,8 @@ public class MessageActivity extends AppCompatActivity {
         btn_sendMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String text_isi=edittext_messagebox.getText().toString();
-                if (text_isi.isEmpty()){
+                String text_isi = edittext_messagebox.getText().toString();
+                if (text_isi.isEmpty()) {
                     edittext_messagebox.requestFocus();
                     return;
                 }
@@ -102,30 +102,57 @@ public class MessageActivity extends AppCompatActivity {
                     @Override
                     public void onNext(PesanRespon pesanRespon) {
                         ArrayList<Pesan> pesans = pesanRespon.getData();
-                        ArrayList<InterfacePesan> iPesan=new ArrayList<>();
-                        AdapterItemPesan adapterItemPesan = new AdapterItemPesan(MessageActivity.this);
-                        for (Pesan pesan : pesans) {
-                            int postion = pesans.indexOf(pesan);
-                            if (iPesan.isEmpty()){
-                                TanggalPesan tPesan=new TanggalPesan(pesan.getTanggal().substring(0,10));
-                                iPesan.add(tPesan);
-                                iPesan.add(pesan);
-                            }else if(!pesan.getTanggal().substring(0,10).equalsIgnoreCase(pesans.get(postion-1).getTanggal().substring(0,10))){
-                                TanggalPesan tPesan=new TanggalPesan(pesan.getTanggal().substring(0,10));
-                                iPesan.add(tPesan);
-                                iPesan.add(pesan);
-                            }else{
-                                iPesan.add(pesan);
+                        AdapterItemPesan adapterItemPesan;
+                        if (recyclerView.getAdapter()==null) {
+                            adapterItemPesan = new AdapterItemPesan(MessageActivity.this);
+                            ArrayList<InterfacePesan> iPesan = new ArrayList<>();
+                            for (Pesan pesan : pesans) {
+                                int postion = pesans.indexOf(pesan);
+                                if (iPesan.isEmpty()) {
+                                    TanggalPesan tPesan = new TanggalPesan(pesan.getTanggal().substring(0, 10));
+                                    iPesan.add(tPesan);
+                                    iPesan.add(pesan);
+                                } else if (!pesan.getTanggal().substring(0, 10).equalsIgnoreCase(pesans.get(postion - 1).getTanggal().substring(0, 10))) {
+                                    TanggalPesan tPesan = new TanggalPesan(pesan.getTanggal().substring(0, 10));
+                                    iPesan.add(tPesan);
+                                    iPesan.add(pesan);
+                                } else {
+                                    iPesan.add(pesan);
+                                }
+                            }
+                            adapterItemPesan.addItem(iPesan);
+                            recyclerView.setAdapter(adapterItemPesan);
+                            recyclerView.scrollToPosition(adapterItemPesan.getItemCount() - 1);
+                        } else {
+                            adapterItemPesan = (AdapterItemPesan) recyclerView.getAdapter();
+                            if (!adapterItemPesan.getLastItem().getClass().isInstance(new Pesan())){
+                                adapterItemPesan.removeItem(adapterItemPesan.getLastItem());
+                            }
+
+                            Pesan lastItem = (Pesan) adapterItemPesan.getLastItem();
+                            if (lastItem.isNotSynch()){
+                                adapterItemPesan.removeItem(lastItem);
+                                lastItem=(Pesan) adapterItemPesan.getLastItem();
+                            }
+                            for (Pesan pesan : pesans) {
+                                ArrayList<Integer> Array=adapterItemPesan.getArray();
+                                if (!Array.contains(pesan.getPesan_id())){
+                                    if (!pesan.getTanggal().substring(0, 10).equalsIgnoreCase(lastItem.getTanggal().substring(0, 10))){
+                                        TanggalPesan tPesan = new TanggalPesan(pesan.getTanggal().substring(0, 10));
+                                        adapterItemPesan.addTanggal(tPesan);
+                                        adapterItemPesan.addPesan(pesan);
+                                    }else{
+                                        adapterItemPesan.addPesan(pesan);
+                                    }
+                                    recyclerView.scrollToPosition(adapterItemPesan.getItemCount() - 1);
+                                }
                             }
                         }
-                        adapterItemPesan.addItem(iPesan);
-                        recyclerView.setAdapter(adapterItemPesan);
-                        recyclerView.scrollToPosition(iPesan.size() - 1);
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.d("error",e.getMessage());
+                        Log.d("error", e.getMessage());
                     }
 
                     @Override
@@ -136,7 +163,7 @@ public class MessageActivity extends AppCompatActivity {
     }
 
     private void KirimPesan(String user_id) {
-        Single<StringRespon> responSingle=RetrofitClient.getInstance().getApi().sentPesan(
+        Single<StringRespon> responSingle = RetrofitClient.getInstance().getApi().sentPesan(
                 secret_key,
                 SharedPrefManager.getInstance(this).getUser().getUser_id(),
                 user_id,
@@ -145,8 +172,8 @@ public class MessageActivity extends AppCompatActivity {
         responSingle.subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe();
-        AdapterItemPesan adapterItemPesan= (AdapterItemPesan) recyclerView.getAdapter();
-        adapterItemPesan.addPesan(new Pesan(edittext_messagebox.getText().toString(),SharedPrefManager.getInstance(this).getUser().getUser_id()));
+        AdapterItemPesan adapterItemPesan = (AdapterItemPesan) recyclerView.getAdapter();
+        adapterItemPesan.addPesan(new Pesan(edittext_messagebox.getText().toString(), SharedPrefManager.getInstance(this).getUser().getUser_id()));
         edittext_messagebox.setText("");
     }
 }

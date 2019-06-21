@@ -112,6 +112,10 @@ public class AdapterItemPesan extends RecyclerView.Adapter<RecyclerView.ViewHold
         notifyDataSetChanged();
     }
 
+    public InterfacePesan getLastItem(){
+        return mPesan.get(mPesan.size()-1);
+    }
+
     @Override
     public int getItemViewType(int position) {
         if (mPesan.get(position).isHeader()) {
@@ -128,6 +132,30 @@ public class AdapterItemPesan extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     public void addPesan(Pesan pesan) {
         mPesan.add(pesan);
+        notifyDataSetChanged();
+    }
+
+    public void addTanggal(TanggalPesan tgl) {
+        mPesan.add(tgl);
+        notifyDataSetChanged();
+    }
+
+    public boolean isAlreadySet(Pesan pesan){
+        return mPesan.contains(pesan);
+    }
+
+    public ArrayList<Integer> getArray(){
+        ArrayList<Integer> pesans_id=new ArrayList<>();
+        for (InterfacePesan interfacePesan:mPesan){
+            if (interfacePesan.getClass().isInstance(new Pesan())){
+                pesans_id.add(((Pesan) interfacePesan).getPesan_id());
+            }
+        }
+        return pesans_id;
+    }
+
+    public void removeItem(InterfacePesan pesan) {
+        mPesan.remove(pesan);
         notifyDataSetChanged();
     }
 

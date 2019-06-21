@@ -7,10 +7,15 @@ public class Pesan implements InterfacePesan {
     String pesan_isi;
     String pesan_userid;
     String pesan_cdate;
+    boolean notSynch;
+
+    public Pesan() {
+    }
 
     public Pesan(String pesan_isi, String pesan_userid) {
         this.pesan_isi = pesan_isi;
         this.pesan_userid = pesan_userid;
+        this.notSynch=true;
     }
 
     public Pesan(int pesan_id, int pesan_roomid, String pesan_isi, String pesan_userid, String pesan_cdate) {
@@ -19,6 +24,14 @@ public class Pesan implements InterfacePesan {
         this.pesan_isi = pesan_isi;
         this.pesan_userid = pesan_userid;
         this.pesan_cdate = pesan_cdate;
+    }
+
+    public boolean isNotSynch() {
+        return notSynch;
+    }
+
+    public void setNotSynch(boolean notSynch) {
+        this.notSynch = notSynch;
     }
 
     public void setPesan_id(int pesan_id) {
