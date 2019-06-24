@@ -23,134 +23,140 @@
         android:layout_marginTop="64dp"
         />
 
-    <ScrollView
-        android:layout_marginTop="8dp"
-        android:layout_below="@+id/logo"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_gravity="center"
-            android:gravity="start"
-            android:layout_below="@id/logo"
-            >
-
-            <TextView
+    <TextView
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Sign Up"
                 android:textStyle="bold"
-                android:textSize="16sp"/>
+                android:textSize="@dimen/Font_Body"/>
 
-            <TextView
+    <TextView
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Buat akun-mu sekarang!"
-                android:textSize="12sp"/>
+                android:textSize="@dimen/Font_Body2"/>
 
-            <LinearLayout
-                android:layout_marginTop="10dp"
-                android:layout_width="256dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_gravity="center"
-                android:gravity="start">
+    <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fillViewport="true">
 
-                <TextView
+                <LinearLayout
                     android:layout_marginTop="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Nama"
-                    android:textSize="10sp"/>
-
-
-                <EditText
-                    android:layout_gravity="center"
-                    android:id="@+id/in_username"
                     android:layout_width="256dp"
                     android:layout_height="wrap_content"
-                    android:ems="10" />
-
-                <TextView
-                    android:layout_marginTop="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="E-Mail"
-                    android:textSize="10sp"/>
-
-                <EditText
+                    android:orientation="vertical"
                     android:layout_gravity="center"
-                    android:id="@+id/in_email"
-                    android:layout_width="256dp"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textEmailAddress" />
+                    android:gravity="start">
 
-                <TextView
-                    android:layout_marginTop="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="No Ponsel"
-                    android:textSize="10sp" />
 
-                <EditText
+                    <com.rengwuxian.materialedittext.MaterialEditText
+                        android:id="@+id/in_username"
+
+                        android:layout_gravity="center"
+                        android:layout_width="256dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:textSize="@dimen/Font_Body"
+                        android:inputType="text"
+
+                        app:met_floatingLabel="normal"
+                        app:met_floatingLabelText="Nama"
+
+                        android:hint="Nama"
+                        />
+
+
+                    <com.rengwuxian.materialedittext.MaterialEditText
+                        android:id="@+id/in_email"
+
+                        android:layout_marginTop="4dp"
+                        android:layout_gravity="center"
+                        android:layout_width="256dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:textSize="@dimen/Font_Body"
+                        android:inputType="textEmailAddress"
+
+                        app:met_floatingLabel="normal"
+                        app:met_floatingLabelText="Email"
+
+                        android:hint="E-Mail"
+                        />
+
+                    <com.rengwuxian.materialedittext.MaterialEditText
+                        android:id="@+id/in_ponsel"
+
+                        android:layout_marginTop="4dp"
+                        android:layout_gravity="center"
+                        android:layout_width="256dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:textSize="@dimen/Font_Body"
+                        android:inputType="textEmailAddress"
+
+                        app:met_floatingLabel="normal"
+                        app:met_floatingLabelText="No Ponsel"
+
+                        android:hint="Nomor Ponsel"
+                        />
+
+                    <com.rengwuxian.materialedittext.MaterialEditText
+                        android:id="@+id/in_password"
+
+                        android:layout_marginTop="4dp"
+                        android:layout_gravity="center"
+                        android:layout_width="256dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:textSize="@dimen/Font_Body"
+                        android:inputType="textPassword"
+
+                        app:met_floatingLabel="normal"
+                        app:met_floatingLabelText="Password"
+                        app:met_minCharacters="6"
+                        app:met_iconRight="@drawable/ic_visiblepassword"
+                        app:met_iconPadding="0dp"
+
+                        android:hint="Password"
+                        />
+
+                    <com.rengwuxian.materialedittext.MaterialEditText
+                        android:id="@+id/in_repassword"
+
+                        android:layout_marginTop="4dp"
+                        android:layout_gravity="center"
+                        android:layout_width="256dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:textSize="@dimen/Font_Body"
+                        android:inputType="textPassword"
+
+                        app:met_floatingLabel="normal"
+                        app:met_floatingLabelText="Konfirmasi Password"
+                        app:met_minCharacters="6"
+                        app:met_iconRight="@drawable/ic_visiblepassword"
+                        app:met_iconPadding="0dp"
+
+                        android:hint="Konfirmasi Password"
+                        />
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btn_register"
+                    android:layout_width="128dp"
+                    android:layout_height="32dp"
                     android:layout_gravity="center"
-                    android:id="@+id/in_ponsel"
-                    android:layout_width="256dp"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="number"/>
-
-                <TextView
                     android:layout_marginTop="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Password"
-                    android:textSize="10sp"/>
+                    android:background="@drawable/button_round"
+                    android:onClick="register"
+                    android:text="Register"
+                    android:textColor="@color/colorWhite" />
 
-                <EditText
-                    android:layout_gravity="center"
-                    android:id="@+id/in_password"
-                    android:layout_width="256dp"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textPassword" />
-
-                <TextView
-                    android:layout_marginTop="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Konfirmasi Password"
-                    android:textSize="10sp"/>
-
-                <EditText
-                    android:layout_gravity="center"
-                    android:id="@+id/in_repassword"
-                    android:layout_width="256dp"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textPassword" />
-
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/btn_register"
-                android:layout_width="128dp"
-                android:layout_height="32dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/button_round"
-                android:onClick="register"
-                android:text="Register"
-                android:textColor="@color/colorWhite" />
-        </LinearLayout>
-
-    </ScrollView>
+            </ScrollView>
 
 
 </RelativeLayout>

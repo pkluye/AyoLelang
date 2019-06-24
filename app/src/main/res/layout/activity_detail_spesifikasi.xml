@@ -40,7 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Detail Spesifikasi"
-                android:textSize="24sp"
+                android:textSize="@dimen/Font_Header"
                 android:textColor="@color/colorWhite"
                 android:textAlignment="center"
                 android:layout_weight="0.9"/>
@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:text="Next"
                 android:textColor="@color/colorWhite"
-                android:textSize="18sp"
+                android:textSize="@dimen/Font_Body"
                 android:onClick="next"/>
 
         </LinearLayout>
@@ -76,7 +76,7 @@
             android:layout_height="wrap_content"
             android:text="Kategori"
             android:textColor="@color/colorBlack"
-            android:textSize="14sp"/>
+            android:textSize="@dimen/Font_Button"/>
 
         <ImageView
             app:srcCompat="@drawable/ic_navigation_next"
@@ -127,7 +127,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Ukuran"/>
+                    android:text="Ukuran"
+                    android:textSize="@dimen/Font_Caption"/>
 
                 <Spinner
                     android:layout_marginTop="4dp"
@@ -136,11 +137,12 @@
                     android:id="@+id/ukuran_sp"/>
 
                 <EditText
+                    android:textSize="@dimen/Font_Body"
                     android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/in_ukuran"
-                    android:hint="masukan jenis bahan"
+                    android:hint="Masukkan ukuran bahan"
                     android:backgroundTint="@color/colorPrimaryDark"/>
 
             </LinearLayout>
@@ -153,7 +155,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Bahan"/>
+                    android:text="Bahan"
+                    android:textSize="@dimen/Font_Caption"/>
 
                 <Spinner
                     android:layout_marginTop="4dp"
@@ -164,11 +167,12 @@
                     android:backgroundTint="@color/colorPrimaryDark"/>
 
                 <EditText
+                    android:textSize="@dimen/Font_Body"
                     android:visibility="gone"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/in_bahan"
-                    android:hint="masukan jenis bahan"
+                    android:hint="Masukkan jenis bahan"
                     android:backgroundTint="@color/colorPrimaryDark"/>
             </LinearLayout>
 
@@ -177,18 +181,72 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
                 <TextView
+                    android:textSize="@dimen/Font_Caption"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Quantity"/>
 
-                <EditText
+                <!--<EditText-->
+                    <!--android:textSize="@dimen/Font_Body"-->
+                    <!--android:layout_width="300dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:inputType="number"-->
+                    <!--android:id="@+id/in_quantity"-->
+                    <!--android:hint="Tentukan jumlah barang"-->
+                    <!--android:backgroundTint="@color/colorPrimaryDark"/>-->
+
+                <LinearLayout
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:id="@+id/in_quantity"
-                    android:hint="Tentukan jumlah barang"
-                    android:backgroundTint="@color/colorPrimaryDark"/>
+                    android:orientation="horizontal"
+                    >
+
+                    <com.rengwuxian.materialedittext.MaterialEditText
+                        android:layout_marginTop="4dp"
+                        android:id="@+id/in_quantity"
+                        android:textSize="@dimen/Font_Body"
+                        android:layout_width="224dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:hint="Tentukan Jumlah barang"
+                        app:met_helperText="-"
+                        app:met_helperTextAlwaysShown="true"
+                        app:met_helperTextColor="@color/colorBlack"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                        <ImageButton
+                            android:layout_marginLeft="4dp"
+                            android:id="@+id/image_tambah"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            app:srcCompat="@drawable/ic_add_black_24dp"
+                            android:background="@android:color/transparent"/>
+
+                        <ImageButton
+                            android:layout_marginLeft="4dp"
+                            android:id="@+id/image_kurang"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            app:srcCompat="@drawable/ic_remove_black_24dp"
+                            android:background="@android:color/transparent"/>
+
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
+
+
             </LinearLayout>
 
             <LinearLayout
@@ -197,16 +255,20 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <TextView
+                    android:textSize="@dimen/Font_Caption"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Budget Pekerjaan"/>
+                    android:text="Estimasi Biaya Pekerjaan"/>
 
                 <EditText
+                    android:layout_marginTop="4dp"
+                    android:enabled="false"
+                    android:textSize="@dimen/Font_Body"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:id="@+id/in_harga"
-                    android:hint="Berapa banyak budget"
+                    android:hint=""
                     android:backgroundTint="@color/colorPrimaryDark"/>
             </LinearLayout>
 
@@ -217,11 +279,14 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <TextView
+                    android:textSize="@dimen/Font_Caption"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Catatan Tambahan"/>
 
                 <EditText
+                    android:layout_marginTop="4dp"
+                    android:textSize="@dimen/Font_Body"
                     android:inputType="textMultiLine"
                     android:minLines="1"
                     android:lines="8"

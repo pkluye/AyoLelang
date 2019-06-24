@@ -3,4 +3,15 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+
+
+    Value_font
+    <dimen name="Font_Header">20sp</dimen>
+    <dimen name="Font_Header2">18sp</dimen>
+    <dimen name="Font_Subtitle">16sp</dimen>
+    <dimen name="Font_Subtitle2">14sp</dimen>
+    <dimen name="Font_Body">16sp</dimen>
+    <dimen name="Font_Body2">14sp</dimen>
+    <dimen name="Font_Button">14sp</dimen>
+    <dimen name="Font_Caption">12sp</dimen>
 </resources>

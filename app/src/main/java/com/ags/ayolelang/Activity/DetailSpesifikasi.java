@@ -21,6 +21,7 @@ import com.ags.ayolelang.Models.Pekerjaan;
 import com.ags.ayolelang.Models.StringRespon;
 import com.ags.ayolelang.R;
 import com.google.gson.JsonArray;
+import com.rengwuxian.materialedittext.MaterialEditText;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,7 +43,8 @@ import rx.Subscriber;
 public class DetailSpesifikasi extends AppCompatActivity {
 
     private int kategori_id;
-    private EditText ukuran, bahan, quantity, harga, catatan;
+    private EditText ukuran, bahan, harga, catatan;
+    private MaterialEditText quantity;
     private Toolbar toolbar;
     private TextView txt_subtext_kategori_dipilih;
     private boolean edit;

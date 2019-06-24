@@ -57,16 +57,20 @@
             android:onClick="login"
             android:text="Login"
             android:textColor="@color/colorWhite"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textSize="@dimen/Font_Button"/>
 
         <TextView
-            android:textColor="@color/colorWhite"
-            android:layout_marginTop="25dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Lupa Password?"
+            android:layout_marginTop="25dp"
             android:clickable="true"
-            android:onClick="lupapassword"/>
+            android:onClick="lupapassword"
+            android:text="Lupa Password?"
+            android:textColor="@color/colorWhite"
+
+            android:textSize="@dimen/Font_Body2"
+            />
 
         <TextView
             android:textColor="@color/colorWhite"
@@ -74,7 +78,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Or"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:textSize="@dimen/Font_Body"/>
 
         <Button
             android:id="@+id/btn_loginGoogle"
@@ -86,7 +91,6 @@
             android:drawableLeft="@drawable/google"
             android:onClick="login"
             android:paddingLeft="10dp"
-            android:textAllCaps="false"
             android:text="Login with google"
             android:textColor="@color/colorBlack"/>
 
@@ -104,6 +108,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Belum punya akun ?"
+            android:textSize="@dimen/Font_Caption"
+
             android:textColor="@color/colorWhite"
             />
 
@@ -115,7 +121,10 @@
             android:clickable="true"
             android:onClick="register"
             android:textColor="@color/colorWhite"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+
+            android:textSize="@dimen/Font_Caption"
+            />
 
     </LinearLayout>
 
