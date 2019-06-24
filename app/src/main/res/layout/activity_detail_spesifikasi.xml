@@ -175,6 +175,67 @@
                     android:hint="Masukkan jenis bahan"
                     android:backgroundTint="@color/colorPrimaryDark"/>
             </LinearLayout>
+            
+            <LinearLayout
+                android:id="@+id/layout_sisi"
+                android:layout_marginTop="4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sisi"
+                    android:textSize="@dimen/Font_Caption"/>
+
+                <RadioGroup
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="start">
+
+                    <RadioButton
+                        android:id="@+id/radio_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1 sisi" />
+
+                    <RadioButton
+                        android:id="@+id/radio_2"
+                        android:layout_marginLeft="8dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2 sisi" />
+
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/layout_laminasi"
+                android:layout_marginTop="4dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Laminasi"
+                    android:textSize="@dimen/Font_Caption"/>
+
+                <Spinner
+                    android:layout_marginTop="4dp"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:id="@+id/laminasi_sp"
+                    android:backgroundTint="@color/colorPrimaryDark"/>
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_marginTop="4dp"
@@ -201,26 +262,47 @@
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
+                    android:weightSum="5"
                     >
 
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <ImageButton
+                            android:layout_marginLeft="4dp"
+                            android:id="@+id/image_kurang"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            app:srcCompat="@drawable/ic_remove_black_24dp"
+                            android:background="@android:color/transparent"/>
+
+                    </LinearLayout>
+
                     <com.rengwuxian.materialedittext.MaterialEditText
-                        android:layout_marginTop="4dp"
                         android:id="@+id/in_quantity"
-                        android:textSize="@dimen/Font_Body"
-                        android:layout_width="224dp"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_weight="3"
                         android:inputType="number"
-                        android:hint="Tentukan Jumlah barang"
+                        android:text="1"
+                        android:textSize="@dimen/Font_Body"
                         app:met_helperText="-"
                         app:met_helperTextAlwaysShown="true"
-                        app:met_helperTextColor="@color/colorBlack"
-                        />
+                        app:met_helperTextColor="@color/colorBlack" />
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:orientation="horizontal"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:layout_weight="1">
 
                         <ImageButton
                             android:layout_marginLeft="4dp"
@@ -231,14 +313,6 @@
                             app:srcCompat="@drawable/ic_add_black_24dp"
                             android:background="@android:color/transparent"/>
 
-                        <ImageButton
-                            android:layout_marginLeft="4dp"
-                            android:id="@+id/image_kurang"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            app:srcCompat="@drawable/ic_remove_black_24dp"
-                            android:background="@android:color/transparent"/>
 
                     </LinearLayout>
 

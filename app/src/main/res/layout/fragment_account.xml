@@ -39,7 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Profil Saya"
-                android:textSize="24sp"
+                android:textSize="@dimen/Font_Header"
                 android:textColor="@color/colorWhite"
                 android:layout_weight="0.9" />
 
@@ -97,31 +97,31 @@
                             android:layout_height="wrap_content"
                             android:text="Nama Pengguna"
                             android:textColor="@android:color/black"
-                            android:textSize="16sp"/>
+                            android:textSize="@dimen/Font_Body"/>
 
                         <TextView
                             android:id="@+id/acc_email"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="email@mail.co"
-                            android:textSize="12sp"/>
+                            android:textSize="@dimen/Font_Body2"/>
 
                         <TextView
                             android:id="@+id/acc_noTelp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="+6212345"
-                            android:textSize="10dp"/>
+                            android:textSize="@dimen/Font_Caption"/>
 
                     </LinearLayout>
 
                     <Button
                         android:id="@+id/btn_editProfil"
-                        android:layout_width="64dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="32dp"
                         android:background="@drawable/button_rectangle"
                         android:text="Edit Profil"
-                        android:textSize="10dp"
+                        android:textSize="@dimen/Font_Button"
                         android:textColor="@color/colorWhite"
                         android:textAllCaps="false"
                         android:layout_weight="0"/>
@@ -152,7 +152,7 @@
                         android:layout_height="wrap_content"
                         android:text="0 Points"
                         android:layout_gravity="center_vertical"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/Font_Body2"
                         android:textColor="@color/colorBlack"
                         android:layout_weight="0.9"/>
 
@@ -181,7 +181,7 @@
                         android:layout_height="wrap_content"
                         android:text="My Voucher"
                         android:layout_gravity="center_vertical"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/Font_Body2"
                         android:textColor="@color/colorBlack"
                         android:layout_weight="0.9"/>
 
@@ -210,7 +210,7 @@
                         android:layout_height="wrap_content"
                         android:text="Change Language"
                         android:layout_gravity="center_vertical"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/Font_Body2"
                         android:textColor="@color/colorBlack"
                         android:layout_weight="0.9"/>
 
@@ -248,7 +248,7 @@
                         android:layout_height="wrap_content"
                         android:text="Help &amp; Center"
                         android:layout_gravity="center_vertical"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/Font_Body2"
                         android:textColor="@color/colorBlack"
                         android:layout_weight="0.9"/>
 
@@ -277,7 +277,7 @@
                         android:layout_height="wrap_content"
                         android:text="Term of Service"
                         android:layout_gravity="center_vertical"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/Font_Body2"
                         android:textColor="@color/colorBlack"
                         android:layout_weight="0.9"/>
 
@@ -306,7 +306,7 @@
                         android:layout_height="wrap_content"
                         android:text="Privacy Policy"
                         android:layout_gravity="center_vertical"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/Font_Body2"
                         android:textColor="@color/colorBlack"
                         android:layout_weight="0.9"/>
 
@@ -335,7 +335,7 @@
                         android:layout_height="wrap_content"
                         android:text="Rate"
                         android:layout_gravity="center_vertical"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/Font_Body2"
                         android:textColor="@color/colorBlack"
                         android:layout_weight="0.9"/>
 
@@ -366,7 +366,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Logout"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/Font_Body"
                     android:textColor="@color/colorRed"/>
 
             </LinearLayout>

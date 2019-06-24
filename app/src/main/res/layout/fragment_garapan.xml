@@ -5,9 +5,6 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
@@ -18,8 +15,7 @@
             app:contentInsetLeft="0dp"
             app:contentInsetStart="0dp"
             app:layout_constraintTop_toTopOf="parent"
-            app:titleTextColor="@color/colorWhite"
-            android:elevation="2dp">
+            app:titleTextColor="@color/colorWhite">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -43,7 +39,7 @@
                     android:layout_weight="0.9"
                     android:text="LELANG"
                     android:textColor="@color/colorWhite"
-                    android:textSize="24sp" />
+                    android:textSize="@dimen/Font_Header" />
 
                 <ImageButton
                     android:id="@+id/btn_notification"
@@ -60,51 +56,53 @@
 
         </android.support.v7.widget.Toolbar>
 
-        <View
+        <LinearLayout
+            android:layout_below="@id/toolbar"
+            android:id="@+id/view_kategori"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="48dp"
             android:background="@color/colorPrimaryDark"
-            android:elevation="2dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar"/>
+            android:orientation="horizontal"
+            android:layout_centerVertical="true">
 
-        <Button
-            android:id="@+id/btnKategori"
-            android:layout_width="100dp"
-            android:layout_height="32dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/button_round"
-            android:backgroundTint="@color/colorWhite"
-            android:elevation="4dp"
-            android:text="Kategori"
-            android:textSize="16sp"
-            android:textColor="@color/colorPrimaryDark"
-            android:textAllCaps="false"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+            <Button
+                android:id="@+id/btnKategori"
+                android:layout_width="100dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginLeft="24dp"
+                android:background="@drawable/button_round"
+                android:backgroundTint="@color/colorWhite"
+                android:elevation="4dp"
+                android:text="Kategori"
+                android:textSize="@dimen/Font_Button"
+                android:textColor="@color/colorPrimaryDark"
+                android:textAllCaps="false"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
-        <Button
-            android:id="@+id/btnEvent"
-            android:layout_width="100dp"
-            android:layout_height="32dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            android:background="@drawable/button_round_border"
-            android:elevation="4dp"
-            android:text="Event"
-            android:textAllCaps="false"
-            android:textColor="@color/colorWhite"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.067"
-            app:layout_constraintStart_toEndOf="@+id/btnKategori"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+            <Button
+                android:id="@+id/btnEvent"
+                android:layout_width="100dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:background="@drawable/button_round_border"
+                android:elevation="4dp"
+                android:text="Event"
+                android:textAllCaps="false"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/Font_Button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.067"
+                app:layout_constraintStart_toEndOf="@+id/btnKategori"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+        </LinearLayout>
+
+
 
         <LinearLayout
             android:id="@+id/linearLayout"
@@ -113,10 +111,8 @@
             android:layout_marginBottom="8dp"
             android:orientation="vertical"
             android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnKategori"
-            app:layout_constraintVertical_bias="0.0"
-            tools:layout_editor_absoluteX="8dp"
+            android:layout_below="@id/view_kategori"
+            android:layout_marginTop="12dp"
             android:elevation="8dp">
 
             <GridLayout
@@ -129,8 +125,9 @@
                 android:alignmentMode="alignMargins"
                 android:columnCount="3"
                 android:columnOrderPreserved="false"
-                android:padding="8dp"
-                android:rowCount="3">
+                android:padding="4dp"
+                android:rowCount="3"
+                android:layout_gravity="center_horizontal">
 
                 <!--baris 1-->
 
@@ -138,10 +135,10 @@
 
                 <android.support.v7.widget.CardView
                     android:id="@+id/cv_pendidikan"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="86dp"
+                    android:layout_height="86dp"
                     android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
+                    android:layout_marginRight="8dp"
                     android:layout_marginBottom="16dp"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="2dp">
@@ -150,7 +147,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal|center_vertical"
-                        android:layout_margin="16dp"
+                        android:layout_margin="8dp"
                         android:orientation="vertical">
 
                         <ImageView
@@ -164,20 +161,21 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:layout_marginTop="8dp"
+                            android:layout_marginTop="4dp"
                             android:text="@string/garapan_1"
                             android:textAlignment="center"
-                            android:textSize="10sp"
+                            android:textSize="@dimen/Font_Caption"
                             android:textStyle="bold" />
                     </LinearLayout>
+
                 </android.support.v7.widget.CardView>
 
                 <!--Percetakan-->
 
                 <android.support.v7.widget.CardView
                     android:id="@+id/cv_percetakan"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="86dp"
+                    android:layout_height="86dp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
                     android:layout_marginBottom="16dp"
@@ -188,7 +186,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal|center_vertical"
-                        android:layout_margin="16dp"
+                        android:layout_margin="8dp"
                         android:orientation="vertical">
 
                         <ImageView
@@ -202,10 +200,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:layout_marginTop="8dp"
+                            android:layout_marginTop="4dp"
                             android:text="@string/garapan_2"
                             android:textAlignment="center"
-                            android:textSize="10sp"
+                            android:textSize="@dimen/Font_Caption"
                             android:textStyle="bold" />
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
@@ -214,9 +212,9 @@
 
                 <android.support.v7.widget.CardView
                     android:id="@+id/cv_kuliner"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginLeft="16dp"
+                    android:layout_width="86dp"
+                    android:layout_height="86dp"
+                    android:layout_marginLeft="8dp"
                     android:layout_marginRight="16dp"
                     android:layout_marginBottom="16dp"
                     app:cardCornerRadius="8dp"
@@ -226,7 +224,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal|center_vertical"
-                        android:layout_margin="16dp"
+                        android:layout_margin="8dp"
                         android:orientation="vertical">
 
                         <ImageView
@@ -240,10 +238,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:layout_marginTop="8dp"
+                            android:layout_marginTop="4dp"
                             android:text="@string/garapan_3"
                             android:textAlignment="center"
-                            android:textSize="10sp"
+                            android:textSize="@dimen/Font_Caption"
                             android:textStyle="bold" />
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
@@ -254,10 +252,10 @@
 
                 <android.support.v7.widget.CardView
                     android:id="@+id/cv_otomotif"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="86dp"
+                    android:layout_height="86dp"
                     android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
+                    android:layout_marginRight="8dp"
                     android:layout_marginBottom="16dp"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="2dp">
@@ -266,7 +264,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal|center_vertical"
-                        android:layout_margin="16dp"
+                        android:layout_margin="8dp"
                         android:orientation="vertical">
 
                         <ImageView
@@ -280,10 +278,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:layout_marginTop="8dp"
+                            android:layout_marginTop="4dp"
                             android:text="@string/garapan_4"
                             android:textAlignment="center"
-                            android:textSize="10sp"
+                            android:textSize="@dimen/Font_Caption"
                             android:textStyle="bold" />
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
@@ -292,8 +290,8 @@
 
                 <android.support.v7.widget.CardView
                     android:id="@+id/cv_hiburan"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="86dp"
+                    android:layout_height="86dp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
                     android:layout_marginBottom="16dp"
@@ -304,7 +302,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal|center_vertical"
-                        android:layout_margin="16dp"
+                        android:layout_margin="8dp"
                         android:orientation="vertical">
 
                         <ImageView
@@ -318,10 +316,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:layout_marginTop="8dp"
+                            android:layout_marginTop="4dp"
                             android:text="@string/garapan_5"
                             android:textAlignment="center"
-                            android:textSize="10sp"
+                            android:textSize="@dimen/Font_Caption"
                             android:textStyle="bold" />
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
@@ -330,9 +328,9 @@
 
                 <android.support.v7.widget.CardView
                     android:id="@+id/cv_fotografi"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginLeft="16dp"
+                    android:layout_width="86dp"
+                    android:layout_height="86dp"
+                    android:layout_marginLeft="8dp"
                     android:layout_marginRight="16dp"
                     android:layout_marginBottom="16dp"
                     app:cardCornerRadius="8dp"
@@ -342,7 +340,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal|center_vertical"
-                        android:layout_margin="16dp"
+                        android:layout_margin="8dp"
                         android:orientation="vertical">
 
                         <ImageView
@@ -356,10 +354,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:layout_marginTop="8dp"
+                            android:layout_marginTop="4dp"
                             android:text="@string/garapan_6"
                             android:textAlignment="center"
-                            android:textSize="10sp"
+                            android:textSize="@dimen/Font_Caption"
                             android:textStyle="bold" />
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
@@ -370,8 +368,8 @@
 
                 <android.support.v7.widget.CardView
                     android:id="@+id/cv_palugada"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="86dp"
+                    android:layout_height="86dp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
                     android:layout_marginBottom="16dp"
@@ -382,7 +380,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal|center_vertical"
-                        android:layout_margin="16dp"
+                        android:layout_margin="8dp"
                         android:orientation="vertical">
 
                         <ImageView
@@ -395,10 +393,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:layout_marginTop="8dp"
+                            android:layout_marginTop="4dp"
                             android:text="@string/garapan_7"
                             android:textAlignment="center"
-                            android:textSize="10sp"
+                            android:textSize="@dimen/Font_Caption"
                             android:textStyle="bold" />
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
@@ -447,8 +445,6 @@
             <!--android:text="Palugada"/>-->
 
         </LinearLayout>
-
-    </android.support.constraint.ConstraintLayout>
 
 
 
