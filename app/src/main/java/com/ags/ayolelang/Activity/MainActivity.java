@@ -19,6 +19,7 @@ import com.ags.ayolelang.DBHelper.PekerjaanHelper;
 import com.ags.ayolelang.DBHelper.ProvinsiHelper;
 import com.ags.ayolelang.DBHelper.REQLelangHelper;
 import com.ags.ayolelang.DBHelper.REQPekerjaanHelper;
+import com.ags.ayolelang.DBHelper.SpecBarangHelper;
 import com.ags.ayolelang.DBHelper.TawaranHelper;
 import com.ags.ayolelang.DBHelper.UserHelper;
 import com.ags.ayolelang.Fragment.AccountFragment;
@@ -34,19 +35,16 @@ import com.ags.ayolelang.Models.Kota;
 import com.ags.ayolelang.Models.Lelang;
 import com.ags.ayolelang.Models.Pekerjaan;
 import com.ags.ayolelang.Models.Provinsi;
+import com.ags.ayolelang.Models.SpecBarang;
 import com.ags.ayolelang.Models.Tawaran;
 import com.ags.ayolelang.Models.User;
 import com.ags.ayolelang.R;
 import com.ags.ayolelang.Storage.SharedPrefManager;
 import com.ags.ayolelang.BottomNavigationHelper;
 
-import org.reactivestreams.Subscription;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
-import io.reactivex.Flowable;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -69,6 +67,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     private UserHelper userHelper = new UserHelper(this);
     private TawaranHelper tawaranHelper=new TawaranHelper(this);
     private HistoriTawaranHelper historiTawaranHelper=new HistoriTawaranHelper(this);
+    private SpecBarangHelper specBarangHelper=new SpecBarangHelper(this);
 
     ProgressDialog progressDoalog;
 
@@ -168,9 +167,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                         token[3],
                         token[4],
                         token[5],
-                        token[6]
+                        token[6],
+                        token[7]
                 );
-        //Log.d("token",token[0]+" "+token[1]+" "+token[2]+" ");
+
         // Set up progress before call
         //progressDoalog.setMax(100);
         progressDoalog.setMessage("Loading....");
@@ -239,6 +239,13 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                             newtoken[6] = fetchDB.getToken_tawaran();
                         }
 
+                        if (fetchDBRespon.getMessage().contains("8")) {
+                            ArrayList<SpecBarang> specBarangs = fetchDB.getSpecbarangs();
+                            insert_specBarang(specBarangs);
+                            newtoken[7] = fetchDB.getToken_specbarang();
+                            Log.d("size",specBarangs.size()+"");
+                        }
+
                         SharedPrefManager.getInstance(getApplicationContext()).saveToken(newtoken);
                     } else {
                         Log.d("Update data", "no " + fetchDBRespon.getMessage());
@@ -256,6 +263,13 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 Log.d("failure", t.getMessage());
             }
         });
+    }
+
+    private void insert_specBarang(ArrayList<SpecBarang> specBarangs) {
+        specBarangHelper.open();
+        specBarangHelper.truncate();
+        specBarangHelper.bulk_insert(specBarangs);
+        specBarangHelper.close();
     }
 
 //    public void longLog(String str) {

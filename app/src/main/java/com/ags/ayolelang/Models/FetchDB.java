@@ -11,6 +11,7 @@ public class FetchDB {
     private ArrayList<User> users;
     private ArrayList<Tawaran> tawarans;
     private ArrayList<Tawaran> historitawarans;
+    private ArrayList<SpecBarang> specbarangs;
     private String token_kategori;
     private String token_provinsi;
     private String token_kota;
@@ -18,11 +19,12 @@ public class FetchDB {
     private String token_pekerjaan;
     private String token_user;
     private String token_tawaran;
+    private String token_specbarang;
 
     public FetchDB() {
     }
 
-    public FetchDB(ArrayList<Kota> kotas, ArrayList<Provinsi> provinsis, ArrayList<Kategori> kategoris, ArrayList<Lelang> lelangs, ArrayList<Pekerjaan> pekerjaans, ArrayList<User> users, ArrayList<Tawaran> tawarans, ArrayList<Tawaran> historitawarans, String token_kategori, String token_provinsi, String token_kota, String token_lelang, String token_pekerjaan, String token_user, String token_tawaran) {
+    public FetchDB(ArrayList<Kota> kotas, ArrayList<Provinsi> provinsis, ArrayList<Kategori> kategoris, ArrayList<Lelang> lelangs, ArrayList<Pekerjaan> pekerjaans, ArrayList<User> users, ArrayList<Tawaran> tawarans, ArrayList<Tawaran> historitawarans, ArrayList<SpecBarang> specbarangs, String token_kategori, String token_provinsi, String token_kota, String token_lelang, String token_pekerjaan, String token_user, String token_tawaran, String token_specbarang) {
         this.kotas = kotas;
         this.provinsis = provinsis;
         this.kategoris = kategoris;
@@ -31,6 +33,7 @@ public class FetchDB {
         this.users = users;
         this.tawarans = tawarans;
         this.historitawarans = historitawarans;
+        this.specbarangs = specbarangs;
         this.token_kategori = token_kategori;
         this.token_provinsi = token_provinsi;
         this.token_kota = token_kota;
@@ -38,6 +41,23 @@ public class FetchDB {
         this.token_pekerjaan = token_pekerjaan;
         this.token_user = token_user;
         this.token_tawaran = token_tawaran;
+        this.token_specbarang = token_specbarang;
+    }
+
+    public ArrayList<SpecBarang> getSpecbarangs() {
+        return specbarangs;
+    }
+
+    public void setSpecbarangs(ArrayList<SpecBarang> specbarangs) {
+        this.specbarangs = specbarangs;
+    }
+
+    public String getToken_specbarang() {
+        return token_specbarang;
+    }
+
+    public void setToken_specbarang(String token_specbarang) {
+        this.token_specbarang = token_specbarang;
     }
 
     public String getToken_tawaran() {

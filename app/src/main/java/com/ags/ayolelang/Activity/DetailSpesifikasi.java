@@ -1,44 +1,30 @@
 package com.ags.ayolelang.Activity;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.MainThread;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.support.v7.widget.Toolbar;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.ags.ayolelang.API.RetrofitClient;
 import com.ags.ayolelang.DBHelper.REQLelangHelper;
 import com.ags.ayolelang.DBHelper.REQPekerjaanHelper;
+import com.ags.ayolelang.DBHelper.SpecBarangHelper;
 import com.ags.ayolelang.Models.Lelang;
 import com.ags.ayolelang.Models.Pekerjaan;
-import com.ags.ayolelang.Models.StringRespon;
 import com.ags.ayolelang.R;
-import com.google.gson.JsonArray;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
-
-import io.reactivex.Observable;
-import io.reactivex.Observer;
-import io.reactivex.Scheduler;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
-import retrofit2.Call;
-import rx.Subscriber;
 
 public class DetailSpesifikasi extends AppCompatActivity {
 
@@ -51,6 +37,9 @@ public class DetailSpesifikasi extends AppCompatActivity {
     private int pekerjaan_id;
     private long lastharga;
     private Spinner ukuransp, bahansp;
+    private SpecBarangHelper SBHelper;
+    private RadioButton sisiradio1, sisiradio2;
+    private Spinner laminasisp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,12 +50,17 @@ public class DetailSpesifikasi extends AppCompatActivity {
         ukuransp = findViewById(R.id.ukuran_sp);
         bahansp = findViewById(R.id.bahan_sp);
         quantity = findViewById(R.id.in_quantity);
+        laminasisp = findViewById(R.id.laminasi_sp);
+        sisiradio1 = findViewById(R.id.radio_1);
+        sisiradio2 = findViewById(R.id.radio_2);
         harga = findViewById(R.id.in_harga);
         catatan = findViewById(R.id.in_catatan);
         txt_subtext_kategori_dipilih = findViewById(R.id.txt_subtext_kategori_dipilih);
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        SBHelper = new SpecBarangHelper(getApplicationContext());
 
         Intent intent = getIntent();
         kategori_id = intent.getIntExtra("kategori_id", 0);
@@ -89,6 +83,66 @@ public class DetailSpesifikasi extends AppCompatActivity {
         }
         loadbahan();
         loadukuran();
+        loadlaminasi();
+        sisiradio1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadharga();
+            }
+        });
+        sisiradio2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadharga();
+            }
+        });
+        quantity.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(s.length()>0)loadharga();
+            }
+        });
+        loadharga();
+    }
+
+    private void loadlaminasi() {
+        SBHelper.open();
+        ArrayList<String> listlaminasi = SBHelper.getLaminasi(kategori_id + "");
+        SBHelper.close();
+        ArrayAdapter<String> spadapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, listlaminasi);
+        spadapter.notifyDataSetChanged();
+        laminasisp.setAdapter(spadapter);
+        laminasisp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                loadharga();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
+    private void loadharga() {
+        SBHelper.open();
+        int sisi = sisiradio1.isChecked() ? 1 : 2;
+        long harga = 0;
+        harga = SBHelper.getHargaSatuan(kategori_id + "", ukuransp.getSelectedItem().toString(), bahansp.getSelectedItem().toString(), sisi + "", laminasisp.getSelectedItem().toString());
+        quantity.setHelperText("Rp. " + harga + "/"+SBHelper.getSatuan(kategori_id+""));
+        harga *= Long.parseLong(quantity.getText().toString());
+        this.harga.setText(harga + "");
     }
 
     public void next(View view) {
@@ -100,7 +154,7 @@ public class DetailSpesifikasi extends AppCompatActivity {
                 harga = this.harga.getText().toString().trim(),
                 catatan = this.catatan.getText().toString().trim();
 
-        if (ukuransp.equalsIgnoreCase("lainnya")) {
+        if (ukuransp.equalsIgnoreCase("custom")) {
             if (ukuran.isEmpty()) {
                 this.ukuran.setError("harap lengkapi form ini");
                 this.ukuran.requestFocus();
@@ -110,7 +164,7 @@ public class DetailSpesifikasi extends AppCompatActivity {
             ukuran = ukuransp;
         }
 
-        if (bahansp.equalsIgnoreCase("lainnya")) {
+        if (bahansp.equalsIgnoreCase("custom")) {
             if (bahan.isEmpty()) {
                 this.bahan.setError("harap lengkapi form ini");
                 this.bahan.requestFocus();
@@ -174,27 +228,9 @@ public class DetailSpesifikasi extends AppCompatActivity {
     }
 
     private void loadbahan() {
-        ArrayList<String> listbahan = new ArrayList<>();
-        try {
-            JSONObject datajson = new JSONObject(loadJSONFromAsset());
-            JSONArray databahan = datajson.getJSONArray("bahan");
-            for (int i = 0; i < databahan.length(); i++) {
-                JSONObject bahan = databahan.getJSONObject(i);
-                ArrayList<Integer> listid = new ArrayList<>();
-                JSONArray list_id = bahan.getJSONArray("group_id");
-                JSONArray list_bahan = bahan.getJSONArray("list_bahan");
-                for (int j = 0; j < list_id.length(); j++) {
-                    listid.add(list_id.getInt(j));
-                }
-                if (listid.contains(kategori_id)) {
-                    for (int j = 0; j < list_bahan.length(); j++) {
-                        listbahan.add(list_bahan.getString(j));
-                    }
-                }
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        SBHelper.open();
+        ArrayList<String> listbahan = SBHelper.getBahan(kategori_id + "");
+        SBHelper.close();
         ArrayAdapter<String> spadapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, listbahan);
         spadapter.notifyDataSetChanged();
         bahansp.setAdapter(spadapter);
@@ -203,11 +239,11 @@ public class DetailSpesifikasi extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectitem = bahansp.getSelectedItem().toString();
                 bahan.setVisibility(View.GONE);
-                if (selectitem.equalsIgnoreCase("lainnya")) {
-                    Log.d("testt", "oke");
+                if (selectitem.equalsIgnoreCase("custom")) {
                     bahan.setVisibility(View.VISIBLE);
                     bahan.requestFocus();
                 }
+                loadharga();
             }
 
             @Override
@@ -218,28 +254,8 @@ public class DetailSpesifikasi extends AppCompatActivity {
     }
 
     private void loadukuran() {
-        ArrayList<String> listukuran = new ArrayList<>();
-        try {
-            JSONObject datajson = new JSONObject(loadJSONFromAsset());
-            JSONArray databahan = datajson.getJSONArray("ukuran");
-            for (int i = 0; i < databahan.length(); i++) {
-                JSONObject bahan = databahan.getJSONObject(i);
-                ArrayList<Integer> listid = new ArrayList<>();
-                JSONArray list_id = bahan.getJSONArray("group_id");
-                JSONArray list_bahan = bahan.getJSONArray("list_ukuran");
-                for (int j = 0; j < list_id.length(); j++) {
-                    listid.add(list_id.getInt(j));
-                }
-                if (listid.contains(kategori_id)) {
-                    for (int j = 0; j < list_bahan.length(); j++) {
-                        listukuran.add(list_bahan.getString(j));
-                        Log.d("testt", "oke");
-                    }
-                }
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        SBHelper.open();
+        ArrayList<String> listukuran = SBHelper.getUkuran(kategori_id + "");
         ArrayAdapter<String> spadapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, listukuran);
         spadapter.notifyDataSetChanged();
         ukuransp.setAdapter(spadapter);
@@ -248,10 +264,11 @@ public class DetailSpesifikasi extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectitem = ukuransp.getSelectedItem().toString();
                 ukuran.setVisibility(View.GONE);
-                if (selectitem.equalsIgnoreCase("lainnya")) {
+                if (selectitem.equalsIgnoreCase("custom")) {
                     ukuran.setVisibility(View.VISIBLE);
                     ukuran.requestFocus();
                 }
+                loadharga();
             }
 
             @Override
@@ -265,19 +282,17 @@ public class DetailSpesifikasi extends AppCompatActivity {
         finish();
     }
 
-    public String loadJSONFromAsset() {
-        String json = null;
-        try {
-            InputStream is = getAssets().open("databahanukuran.json");
-            int size = is.available();
-            byte[] buffer = new byte[size];
-            is.read(buffer);
-            is.close();
-            json = new String(buffer, "UTF-8");
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            return null;
+    public void qty_kurang(View view) {
+        int qty = Integer.parseInt(quantity.getText().toString());
+        if (qty > 1) {
+            qty--;
         }
-        return json;
+        quantity.setText(qty + "");
+    }
+
+    public void qty_tambah(View view) {
+        int qty = Integer.parseInt(quantity.getText().toString());
+        qty++;
+        quantity.setText(qty + "");
     }
 }

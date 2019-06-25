@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -44,7 +45,7 @@ public class MessageActivity extends AppCompatActivity {
     private TextView sender_name;
     private ImageView btn_back;
     private EditText edittext_messagebox;
-    private Button btn_sendMessage;
+    private ImageButton btn_sendMessage;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

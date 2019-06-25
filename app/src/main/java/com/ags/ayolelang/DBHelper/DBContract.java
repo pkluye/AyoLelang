@@ -14,6 +14,7 @@ public class DBContract {
     static String TABLE_USER = "TABLE_USER";
     static String TABLE_TAWARAN = "TABLE_TAWARAN";
     static String TABLE_HISTORITAWARAN = "TABLE_HISTORITAWARAN";
+    static String TABLE_SPECBARANG="TABLE_SPECBARANG";
 
     static final class PROVINSI implements BaseColumns {
         static String PROVINSI_ID = "provinsi_id";
@@ -75,6 +76,17 @@ public class DBContract {
         static String TAWARAN_LELANGID = "tawaran_lelangid";
         static String TAWARAN_USERID = "tawaran_userid";
         static String TAWARAN_ANGGARAN = "tawaran_anggaran";
+    }
+
+    static final class SPECBARANG implements BaseColumns{
+        static String SPECBARANG_ID="specbarang_id";
+        static String SPECBARANG_KATEGORIID="specbarang_kategoriid";
+        static String SPECBARANG_UKURAN="specbarang_ukuran";
+        static String SPECBARANG_BAHAN="spekbarang_bahan";
+        static String SPECBARANG_jmlsisi="specbarang_jmlsisi";
+        static String SPECBARANG_laminasi="specbarang_laminasi";
+        static String SPECBARANG_HARGASATUAN="specbarang_hargasatuan";
+        static String SPECBARANG_SATUAN="specbarang_satuan";
     }
 
 }

@@ -47,6 +47,7 @@ public class SharedPrefManager {
         editor.putString("token_pekerjaan", s[4]);
         editor.putString("token_user", s[5]);
         editor.putString("token_tawaran", s[6]);
+        editor.putString("token_specbarang", s[7]);
 
         editor.apply();
     }
@@ -65,7 +66,8 @@ public class SharedPrefManager {
                 sharedPreferences.getString("token_lelang",null),
                 sharedPreferences.getString("token_pekerjaan",null),
                 sharedPreferences.getString("token_user",null),
-                sharedPreferences.getString("token_tawaran",null)
+                sharedPreferences.getString("token_tawaran",null),
+                sharedPreferences.getString("token_specbarang",null)
         };
     }
 

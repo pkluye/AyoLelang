@@ -34,6 +34,14 @@ import static com.ags.ayolelang.DBHelper.DBContract.PEKERJAAN.PEKERJAAN_STATUS;
 import static com.ags.ayolelang.DBHelper.DBContract.PEKERJAAN.PEKERJAAN_UKURAN;
 import static com.ags.ayolelang.DBHelper.DBContract.PROVINSI.PROVINSI_ID;
 import static com.ags.ayolelang.DBHelper.DBContract.PROVINSI.PROVINSI_NAMA;
+import static com.ags.ayolelang.DBHelper.DBContract.SPECBARANG.SPECBARANG_BAHAN;
+import static com.ags.ayolelang.DBHelper.DBContract.SPECBARANG.SPECBARANG_HARGASATUAN;
+import static com.ags.ayolelang.DBHelper.DBContract.SPECBARANG.SPECBARANG_ID;
+import static com.ags.ayolelang.DBHelper.DBContract.SPECBARANG.SPECBARANG_KATEGORIID;
+import static com.ags.ayolelang.DBHelper.DBContract.SPECBARANG.SPECBARANG_SATUAN;
+import static com.ags.ayolelang.DBHelper.DBContract.SPECBARANG.SPECBARANG_UKURAN;
+import static com.ags.ayolelang.DBHelper.DBContract.SPECBARANG.SPECBARANG_jmlsisi;
+import static com.ags.ayolelang.DBHelper.DBContract.SPECBARANG.SPECBARANG_laminasi;
 import static com.ags.ayolelang.DBHelper.DBContract.TABLE_HISTORITAWARAN;
 import static com.ags.ayolelang.DBHelper.DBContract.TABLE_KATEGORI;
 import static com.ags.ayolelang.DBHelper.DBContract.TABLE_KOTA;
@@ -42,6 +50,7 @@ import static com.ags.ayolelang.DBHelper.DBContract.TABLE_PEKERJAAN;
 import static com.ags.ayolelang.DBHelper.DBContract.TABLE_PROVINSI;
 import static com.ags.ayolelang.DBHelper.DBContract.TABLE_REQ_LELANG;
 import static com.ags.ayolelang.DBHelper.DBContract.TABLE_REQ_PEKERJAAN;
+import static com.ags.ayolelang.DBHelper.DBContract.TABLE_SPECBARANG;
 import static com.ags.ayolelang.DBHelper.DBContract.TABLE_TAWARAN;
 import static com.ags.ayolelang.DBHelper.DBContract.TABLE_USER;
 import static com.ags.ayolelang.DBHelper.DBContract.TAWARAN.TAWARAN_ANGGARAN;
@@ -128,7 +137,7 @@ public class DBHelper extends SQLiteOpenHelper {
                     PEKERJAAN_HARGA + " INTEGER NOT NULL, " +
                     PEKERJAAN_JUMLAH + " INTEGER NOT NULL, " +
                     PEKERJAAN_KATEGORIID + " INTEGER NOT NULL, " +
-                    PEKERJAAN_UKURAN + " TEKS NOT NULL,"+
+                    PEKERJAAN_UKURAN + " TEKS NOT NULL," +
                     PEKERJAAN_STATUS + " INTEGER)";
 
     public static String CREATE_TABLE_USER =
@@ -140,19 +149,30 @@ public class DBHelper extends SQLiteOpenHelper {
                     USER_ALAMAT + " TEKS, " +
                     USER_IMGURL + " TEKS)";
 
-    public static String CREATE_TABLE_TAWARAN=
-            "CREATE TABLE "+TABLE_TAWARAN+" ("+
-                    TAWARAN_ID+" INTEGER PRIMARY KEY, "+
-                    TAWARAN_LELANGID+" INTEGER NOT NULL, "+
-                    TAWARAN_USERID+" INTEGER NOT NULL, "+
-                    TAWARAN_ANGGARAN+" INTEGER NOT NULL)";
+    public static String CREATE_TABLE_TAWARAN =
+            "CREATE TABLE " + TABLE_TAWARAN + " (" +
+                    TAWARAN_ID + " INTEGER PRIMARY KEY, " +
+                    TAWARAN_LELANGID + " INTEGER NOT NULL, " +
+                    TAWARAN_USERID + " INTEGER NOT NULL, " +
+                    TAWARAN_ANGGARAN + " INTEGER NOT NULL)";
 
-    public static String CREATE_TABLE_HISTORITAWARAN=
-            "CREATE TABLE "+TABLE_HISTORITAWARAN+" ("+
-                    "tawaran_historiid INTEGER PRIMARY KEY, "+
-                    TAWARAN_LELANGID+" INTEGER NOT NULL, "+
-                    TAWARAN_USERID+" INTEGER NOT NULL, "+
-                    TAWARAN_ANGGARAN+" INTEGER NOT NULL)";
+    public static String CREATE_TABLE_HISTORITAWARAN =
+            "CREATE TABLE " + TABLE_HISTORITAWARAN + " (" +
+                    "tawaran_historiid INTEGER PRIMARY KEY, " +
+                    TAWARAN_LELANGID + " INTEGER NOT NULL, " +
+                    TAWARAN_USERID + " INTEGER NOT NULL, " +
+                    TAWARAN_ANGGARAN + " INTEGER NOT NULL)";
+
+    public static String CREATE_TABLE_SPECBARANG =
+            "CREATE TABLE " + TABLE_SPECBARANG + " (" +
+                    SPECBARANG_ID + " INTEGER PRIMARY KEY, " +
+                    SPECBARANG_KATEGORIID + " INTEGER NOT NULL, " +
+                    SPECBARANG_UKURAN + " STRING NOT NULL, " +
+                    SPECBARANG_BAHAN + " STRING NOT NULL, " +
+                    SPECBARANG_jmlsisi + " INTEGER NOT NULL, " +
+                    SPECBARANG_laminasi + " STRING NOT NULL, " +
+                    SPECBARANG_HARGASATUAN + " INTEGER NOT NULL, " +
+                    SPECBARANG_SATUAN + " STRING NOT NULL)";
 
     public DBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -170,6 +190,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_USER);
         db.execSQL(CREATE_TABLE_TAWARAN);
         db.execSQL(CREATE_TABLE_HISTORITAWARAN);
+        db.execSQL(CREATE_TABLE_SPECBARANG);
     }
 
     @Override
@@ -184,6 +205,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_HISTORITAWARAN);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_TAWARAN);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_SPECBARANG);
         onCreate(db);
     }
 
