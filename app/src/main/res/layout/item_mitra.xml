@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:text="Mr. P"
             android:textColor="@color/colorGrey1"
-            android:textSize="16sp"/>
+            android:textSize="@dimen/Font_Body"/>
 
         <TextView
             android:layout_marginLeft="16dp"
@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:text="Rp. 1212121212"
             android:textColor="@color/colorPrimary"
-            android:textSize="12sp"/>
+            android:textSize="@dimen/Font_Caption"/>
 
     </LinearLayout>
 

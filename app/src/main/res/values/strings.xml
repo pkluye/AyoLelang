@@ -21,6 +21,8 @@
         <item>Penyerahan Garapan</item>
     </string-array>
 
+        <string name="drawer_open">Open navigation drawer</string>
+        <string name="drawer_close">Close navigation drawer</string>
 
     <string name="garapan_1">Pendidikan</string>
     <string name="garapan_2">Printing</string>
@@ -31,7 +33,11 @@
     <string name="garapan_7">Palugada</string>
 
 
-
     <string name="lorem">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s</string>
+
+    <!--Progress Lelang-->
+    <string name="title_pemilihan">Pemilihan Mitra</string>
+    <string name="title_pengerjaan">Pengerjaan</string>
+    <string name="title_selesai">Selesai</string>
 
 </resources>

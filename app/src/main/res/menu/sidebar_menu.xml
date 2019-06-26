@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_inbox"
+        android:icon="@drawable/ic_mitra"
+        android:title="@string/title_pemilihan" />
+
+    <item
+        android:id="@+id/navigation_garapan"
+        android:icon="@drawable/ic_pengerjaan"
+        android:title="@string/title_pengerjaan" />
+
+    <item
+        android:id="@+id/navigation_progress"
+        android:icon="@drawable/ic_selesai"
+        android:title="@string/title_selesai" />
+
+</menu>

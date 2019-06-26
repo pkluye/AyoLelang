@@ -41,11 +41,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Nama"
-                android:textSize="16sp"
+                android:textSize="@dimen/Font_Body"
                 android:textColor="@color/colorBlack"/>
 
             <TextView
                 android:layout_marginTop="2dp"
+                android:textSize="@dimen/Font_Body2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Penawaran" />

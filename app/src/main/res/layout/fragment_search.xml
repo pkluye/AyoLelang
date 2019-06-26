@@ -41,7 +41,7 @@
             <EditText
                 android:id="@+id/et_fm_search"
                 android:hint="Search"
-                android:textSize="14sp"
+                android:textSize="@dimen/Font_Body"
                 android:textColorHint="@color/colorGrey2"
                 android:textColor="@color/colorBlack"
                 android:maxLines="1"

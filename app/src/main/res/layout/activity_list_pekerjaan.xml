@@ -317,10 +317,12 @@
                 android:id="@+id/reyclerview_listItem_pekerjaan"
                 android:orientation="vertical"
                 tools:listitem="@layout/item_preview_lelang"
-                android:layout_width="300dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:layout_marginBottom="60dp"/>
+                android:layout_marginBottom="60dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"/>
 
             <LinearLayout
                 android:layout_alignParentBottom="true"

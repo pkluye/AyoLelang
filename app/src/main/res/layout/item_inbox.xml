@@ -53,7 +53,8 @@
                     android:layout_height="wrap_content"
                     android:text="Nama Client"
                     android:textColor="@color/colorBlack"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1"
+                    android:textSize="@dimen/Font_Subtitle"/>
 
                 <TextView
                     android:id="@+id/txt_tanggal"
@@ -61,7 +62,7 @@
                     android:layout_height="wrap_content"
                     android:text="10/10/2019"
                     android:textColor="@color/colorGrey2"
-                    android:textSize="10sp"
+                    android:textSize="@dimen/Font_Caption"
                     android:layout_weight="0"/>
 
             </LinearLayout>
@@ -73,7 +74,7 @@
                 android:layout_height="wrap_content"
                 android:text="Lorem ipsum dolor sit amet, soluta regione urbanitas vis in, qui elit populo ut. Lorem ipsum dolor sit amet, soluta regione."
                 android:maxLength="255"
-                android:textSize="12sp"
+                android:textSize="@dimen/Font_Subtitle2"
                 android:textColor="@color/colorGrey1"/>
 
         </LinearLayout>
