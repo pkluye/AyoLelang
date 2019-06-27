@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
+        app:titleTextColor="@color/colorWhite"
+        android:background="@color/colorPrimaryDark"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        android:elevation="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <ImageButton
+                android:id="@+id/btn_Menu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                app:srcCompat="@drawable/ic_arrow_back_black_24dp"
+                android:onClick="back"
+                android:scaleY="1.2"
+                android:scaleX="1.2"/>
+
+            <TextView
+                android:id="@+id/txt_subTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edit Profile"
+                android:textSize="@dimen/Font_Header"
+                android:textColor="@color/colorWhite"
+                android:textAlignment="center"
+                android:layout_weight="0.9" />
+
+            <ImageButton
+                android:id="@+id/btn_More"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                app:srcCompat="@drawable/ic_more"
+                android:scaleY="1.2"
+                android:scaleX="1.2"/>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="128dp"
+        android:id="@+id/img_account"
+        android:background="@drawable/bg"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/img_profile"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/button_rectangle_border"
+            android:src="@mipmap/ic_launcher"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <FrameLayout
+            android:id="@+id/btn_editImgProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="76dp"
+            android:layout_marginEnd="156dp"
+            android:layout_marginRight="156dp"
+            android:background="@drawable/bg_circle"
+            android:backgroundTint="#BBAAAAAA"
+            android:scaleX="0.6"
+            android:scaleY="0.6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:scaleX="0.8"
+                android:scaleY="0.8"
+                android:tint="@color/colorGrey3"
+                app:srcCompat="@drawable/ic_edit" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/btn_editImgBg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="84dp"
+            android:background="@drawable/bg_circle"
+            android:backgroundTint="#BBAAAAAA"
+            android:scaleX="0.6"
+            android:scaleY="0.6"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:scaleX="0.8"
+                android:scaleY="0.8"
+                android:tint="@color/colorGrey3"
+                app:srcCompat="@drawable/ic_edit" />
+
+        </FrameLayout>
+
+    </android.support.constraint.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="16dp"
+        android:paddingLeft="16dp">
+
+        <LinearLayout
+            android:id="@+id/btn_nama"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nama"
+                android:textSize="18sp"
+                android:textColor="@color/colorBlack"/>
+
+            <TextView
+                android:id="@+id/txt_nama"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nama User"
+                android:textSize="14sp" />
+
+            <View
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#F0F0F0"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_tentang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tentang"
+                android:textSize="18sp"
+                android:textColor="@color/colorBlack"/>
+
+            <TextView
+                android:id="@+id/txt_tentang"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tentang User"
+                android:textSize="14sp" />
+
+            <View
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#F0F0F0"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_alamat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Alamat"
+                android:textSize="18sp"
+                android:textColor="@color/colorBlack"/>
+
+            <TextView
+                android:id="@+id/txt_alamat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Alamat User"
+                android:textSize="14sp" />
+
+            <View
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#F0F0F0"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                android:textSize="18sp"
+                android:textColor="@color/colorBlack"/>
+
+            <TextView
+                android:id="@+id/txt_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Email User"
+                android:textSize="14sp" />
+
+            <View
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#F0F0F0"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_noTelp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nomor Telepon"
+                android:textSize="18sp"
+                android:textColor="@color/colorBlack"/>
+
+            <TextView
+                android:id="@+id/txt_noTelp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nomor Telepon User"
+                android:textSize="14sp" />
+
+            <View
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#F0F0F0"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_skill"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Skill"
+                android:textSize="18sp"
+                android:textColor="@color/colorBlack"/>
+
+            <View
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#F0F0F0"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

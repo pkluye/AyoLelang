@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -432,6 +433,22 @@
 
                             <TextView
                                 android:textSize="@dimen/Font_Body2"
+                                android:id="@+id/txt_teks_sisi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Sisi"
+                                android:textColor="@color/colorGrey1"/>
+
+                            <TextView
+                                android:textSize="@dimen/Font_Body2"
+                                android:id="@+id/txt_teks_laminasi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Laminasi"
+                                android:textColor="@color/colorGrey1"/>
+
+                            <TextView
+                                android:textSize="@dimen/Font_Body2"
                                 android:id="@+id/txt_teks_quantity"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -498,6 +515,20 @@
                                 android:text=":"
                                 android:textColor="@color/colorGrey1"/>
 
+                            <TextView
+                                android:textSize="@dimen/Font_Body2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=":"
+                                android:textColor="@color/colorGrey1"/>
+
+                            <TextView
+                                android:textSize="@dimen/Font_Body2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=":"
+                                android:textColor="@color/colorGrey1"/>
+
                         </LinearLayout>
 
                         <LinearLayout
@@ -519,6 +550,22 @@
                                 android:layout_height="wrap_content"
                                 android:text="-"
                                 android:id="@+id/txt_bahan"
+                                android:textColor="@color/colorGrey2"/>
+
+                            <TextView
+                                android:textSize="@dimen/Font_Body2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="-"
+                                android:id="@+id/txt_sisi"
+                                android:textColor="@color/colorGrey2"/>
+
+                            <TextView
+                                android:textSize="@dimen/Font_Body2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="-"
+                                android:id="@+id/txt_laminasi"
                                 android:textColor="@color/colorGrey2"/>
 
                             <TextView

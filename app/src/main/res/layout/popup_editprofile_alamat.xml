@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:orientation="vertical"
+        android:background="@drawable/button_rectangle_border">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Alamat"
+            android:textSize="@dimen/Font_Header"
+            android:textColor="@color/colorBlack"/>
+
+        <Spinner
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/provinsi"/>
+
+        <Spinner
+            android:layout_marginTop="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/kota"/>
+
+        <EditText
+            android:layout_marginTop="4dp"
+            android:id="@+id/txt_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Hint"
+            android:backgroundTint="@color/colorPrimaryDark"/>
+
+        <Button
+            android:layout_marginTop="24dp"
+            android:id="@+id/btn_simpan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:text="Simpan"
+            android:textColor="@color/colorWhite"
+            android:layout_gravity="end"
+            android:background="@drawable/button_rectangle"/>
+
+    </LinearLayout>
+
+</LinearLayout>
