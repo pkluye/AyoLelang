@@ -10,6 +10,7 @@
     <android.support.design.widget.NavigationView
         android:id="@+id/nv_view"
         android:layout_gravity="start"
+        app:headerLayout="@layout/header_sidebar"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:background="@color/colorPrimaryDark"
@@ -38,9 +39,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:padding="16dp">
+                android:gravity="start"
+                android:orientation="horizontal">
 
 
                 <!--<ImageButton-->
@@ -54,11 +54,10 @@
                     android:id="@+id/txt_Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_weight="0.9"
                     android:text="Progress Saya"
                     android:textColor="@color/colorWhite"
-                    android:textSize="@dimen/Font_Header" />
+                    android:textSize="@dimen/Font_Header"
+                    android:layout_marginBottom="2dp"/>
 
             </LinearLayout>
 
