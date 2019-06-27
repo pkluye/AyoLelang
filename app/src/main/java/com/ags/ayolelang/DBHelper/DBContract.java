@@ -82,9 +82,9 @@ public class DBContract {
         static String SPECBARANG_ID="specbarang_id";
         static String SPECBARANG_KATEGORIID="specbarang_kategoriid";
         static String SPECBARANG_UKURAN="specbarang_ukuran";
-        static String SPECBARANG_BAHAN="spekbarang_bahan";
-        static String SPECBARANG_jmlsisi="specbarang_jmlsisi";
-        static String SPECBARANG_laminasi="specbarang_laminasi";
+        static String SPECBARANG_BAHAN="specbarang_bahan";
+        static String SPECBARANG_JMLSISI ="specbarang_jmlsisi";
+        static String SPECBARANG_LAMINASI ="specbarang_laminasi";
         static String SPECBARANG_HARGASATUAN="specbarang_hargasatuan";
         static String SPECBARANG_SATUAN="specbarang_satuan";
     }

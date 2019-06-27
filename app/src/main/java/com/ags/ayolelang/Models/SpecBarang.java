@@ -4,17 +4,17 @@ public class SpecBarang {
     private int specbarang_id;
     private int specbarang_kategoriid;
     private String specbarang_ukuran;
-    private String spekbarang_bahan;
+    private String specbarang_bahan;
     private int specbarang_jmlsisi;
     private String specbarang_laminasi;
     private long specbarang_hargasatuan;
     private String specbarang_satuan;
 
-    public SpecBarang(int specbarang_id, int specbarang_kategoriid, String specbarang_ukuran, String spekbarang_bahan, int specbarang_jmlsisi, String specbarang_laminasi, long specbarang_hargasatuan, String specbarang_satuan) {
+    public SpecBarang(int specbarang_id, int specbarang_kategoriid, String specbarang_ukuran, String specbarang_bahan, int specbarang_jmlsisi, String specbarang_laminasi, long specbarang_hargasatuan, String specbarang_satuan) {
         this.specbarang_id = specbarang_id;
         this.specbarang_kategoriid = specbarang_kategoriid;
         this.specbarang_ukuran = specbarang_ukuran;
-        this.spekbarang_bahan = spekbarang_bahan;
+        this.specbarang_bahan = specbarang_bahan;
         this.specbarang_jmlsisi = specbarang_jmlsisi;
         this.specbarang_laminasi = specbarang_laminasi;
         this.specbarang_hargasatuan = specbarang_hargasatuan;
@@ -45,12 +45,12 @@ public class SpecBarang {
         this.specbarang_ukuran = specbarang_ukuran;
     }
 
-    public String getSpekbarang_bahan() {
-        return spekbarang_bahan;
+    public String getSpecbarang_bahan() {
+        return specbarang_bahan;
     }
 
-    public void setSpekbarang_bahan(String spekbarang_bahan) {
-        this.spekbarang_bahan = spekbarang_bahan;
+    public void setSpecbarang_bahan(String specbarang_bahan) {
+        this.specbarang_bahan = specbarang_bahan;
     }
 
     public int getSpecbarang_jmlsisi() {

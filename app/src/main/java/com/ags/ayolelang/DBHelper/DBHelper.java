@@ -40,8 +40,8 @@ import static com.ags.ayolelang.DBHelper.DBContract.SPECBARANG.SPECBARANG_ID;
 import static com.ags.ayolelang.DBHelper.DBContract.SPECBARANG.SPECBARANG_KATEGORIID;
 import static com.ags.ayolelang.DBHelper.DBContract.SPECBARANG.SPECBARANG_SATUAN;
 import static com.ags.ayolelang.DBHelper.DBContract.SPECBARANG.SPECBARANG_UKURAN;
-import static com.ags.ayolelang.DBHelper.DBContract.SPECBARANG.SPECBARANG_jmlsisi;
-import static com.ags.ayolelang.DBHelper.DBContract.SPECBARANG.SPECBARANG_laminasi;
+import static com.ags.ayolelang.DBHelper.DBContract.SPECBARANG.SPECBARANG_JMLSISI;
+import static com.ags.ayolelang.DBHelper.DBContract.SPECBARANG.SPECBARANG_LAMINASI;
 import static com.ags.ayolelang.DBHelper.DBContract.TABLE_HISTORITAWARAN;
 import static com.ags.ayolelang.DBHelper.DBContract.TABLE_KATEGORI;
 import static com.ags.ayolelang.DBHelper.DBContract.TABLE_KOTA;
@@ -62,12 +62,11 @@ import static com.ags.ayolelang.DBHelper.DBContract.USER.USER_EMAIL;
 import static com.ags.ayolelang.DBHelper.DBContract.USER.USER_ID;
 import static com.ags.ayolelang.DBHelper.DBContract.USER.USER_IMGURL;
 import static com.ags.ayolelang.DBHelper.DBContract.USER.USER_NAMA;
-import static com.ags.ayolelang.DBHelper.DBContract.USER.USER_STATUS;
 import static com.ags.ayolelang.DBHelper.DBContract.USER.USER_TELPON;
 
 public class DBHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     private static String DATABASE_NAME = "dbayolelang";
 
     public static String CREATE_TABLE_PROVINSI =
@@ -169,8 +168,8 @@ public class DBHelper extends SQLiteOpenHelper {
                     SPECBARANG_KATEGORIID + " INTEGER NOT NULL, " +
                     SPECBARANG_UKURAN + " STRING NOT NULL, " +
                     SPECBARANG_BAHAN + " STRING NOT NULL, " +
-                    SPECBARANG_jmlsisi + " INTEGER NOT NULL, " +
-                    SPECBARANG_laminasi + " STRING NOT NULL, " +
+                    SPECBARANG_JMLSISI + " INTEGER NOT NULL, " +
+                    SPECBARANG_LAMINASI + " STRING NOT NULL, " +
                     SPECBARANG_HARGASATUAN + " INTEGER NOT NULL, " +
                     SPECBARANG_SATUAN + " STRING NOT NULL)";
 

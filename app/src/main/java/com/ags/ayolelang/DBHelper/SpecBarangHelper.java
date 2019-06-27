@@ -17,8 +17,8 @@ import static com.ags.ayolelang.DBHelper.DBContract.SPECBARANG.SPECBARANG_ID;
 import static com.ags.ayolelang.DBHelper.DBContract.SPECBARANG.SPECBARANG_KATEGORIID;
 import static com.ags.ayolelang.DBHelper.DBContract.SPECBARANG.SPECBARANG_SATUAN;
 import static com.ags.ayolelang.DBHelper.DBContract.SPECBARANG.SPECBARANG_UKURAN;
-import static com.ags.ayolelang.DBHelper.DBContract.SPECBARANG.SPECBARANG_jmlsisi;
-import static com.ags.ayolelang.DBHelper.DBContract.SPECBARANG.SPECBARANG_laminasi;
+import static com.ags.ayolelang.DBHelper.DBContract.SPECBARANG.SPECBARANG_JMLSISI;
+import static com.ags.ayolelang.DBHelper.DBContract.SPECBARANG.SPECBARANG_LAMINASI;
 import static com.ags.ayolelang.DBHelper.DBContract.TABLE_SPECBARANG;
 
 public class SpecBarangHelper {
@@ -77,11 +77,11 @@ public class SpecBarangHelper {
     public ArrayList<String> getLaminasi(String id) {
         db.beginTransaction();
         ArrayList<String> strings = new ArrayList<>();
-        Cursor cursor = db.query(true,TABLE_SPECBARANG,new String[]{SPECBARANG_laminasi},SPECBARANG_KATEGORIID+"=?",new String[]{id},null,null,null,null);
+        Cursor cursor = db.query(true,TABLE_SPECBARANG,new String[]{SPECBARANG_LAMINASI},SPECBARANG_KATEGORIID+"=?",new String[]{id},null,null,null,null);
         cursor.moveToFirst();
         if (cursor.getCount() > 0) {
             do {
-                strings.add(cursor.getString(cursor.getColumnIndexOrThrow(SPECBARANG_laminasi)));
+                strings.add(cursor.getString(cursor.getColumnIndexOrThrow(SPECBARANG_LAMINASI)));
                 cursor.moveToNext();
             } while (!cursor.isAfterLast());
         }
@@ -108,7 +108,7 @@ public class SpecBarangHelper {
     public long getHargaSatuan(String id, String Ukuran, String Bahan,String sisi,String Laminasi){
         db.beginTransaction();
         long harga=0;
-        Cursor cursor = db.query(TABLE_SPECBARANG, null, SPECBARANG_KATEGORIID+ " = ? AND "+SPECBARANG_UKURAN+"= ? AND "+SPECBARANG_BAHAN+" = ? AND "+SPECBARANG_jmlsisi+" = ? AND "+SPECBARANG_laminasi+" = ?", new String[]{id,Ukuran,Bahan,sisi,Laminasi}, null, null, null, null);
+        Cursor cursor = db.query(TABLE_SPECBARANG, null, SPECBARANG_KATEGORIID+ " = ? AND "+SPECBARANG_UKURAN+"= ? AND "+SPECBARANG_BAHAN+" = ? AND "+ SPECBARANG_JMLSISI +" = ? AND "+ SPECBARANG_LAMINASI +" = ?", new String[]{id,Ukuran,Bahan,sisi,Laminasi}, null, null, null, null);
         cursor.moveToFirst();
         if (cursor.getCount() > 0) {
             cursor.moveToPosition(0);
@@ -125,9 +125,9 @@ public class SpecBarangHelper {
         contentValues.put(SPECBARANG_ID, specBarang.getSpecbarang_id());
         contentValues.put(SPECBARANG_KATEGORIID,specBarang.getSpecbarang_kategoriid());
         contentValues.put(SPECBARANG_UKURAN, specBarang.getSpecbarang_ukuran());
-        contentValues.put(SPECBARANG_BAHAN,specBarang.getSpekbarang_bahan());
-        contentValues.put(SPECBARANG_jmlsisi,specBarang.getSpecbarang_jmlsisi());
-        contentValues.put(SPECBARANG_laminasi,specBarang.getSpecbarang_laminasi());
+        contentValues.put(SPECBARANG_BAHAN,specBarang.getSpecbarang_bahan());
+        contentValues.put(SPECBARANG_JMLSISI,specBarang.getSpecbarang_jmlsisi());
+        contentValues.put(SPECBARANG_LAMINASI,specBarang.getSpecbarang_laminasi());
         contentValues.put(SPECBARANG_HARGASATUAN,specBarang.getSpecbarang_hargasatuan());
         contentValues.put(SPECBARANG_SATUAN,specBarang.getSpecbarang_satuan());
         return db.insert(TABLE_SPECBARANG, null, contentValues);

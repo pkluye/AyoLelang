@@ -283,7 +283,12 @@ public class DetailSpesifikasi extends AppCompatActivity {
     }
 
     public void qty_kurang(View view) {
-        int qty = Integer.parseInt(quantity.getText().toString());
+        int qty=0;
+        if (quantity.getText().length()!=0){
+            qty = Integer.parseInt(quantity.getText().toString());
+        }else{
+            qty=1;
+        }
         if (qty > 1) {
             qty--;
         }
@@ -291,7 +296,10 @@ public class DetailSpesifikasi extends AppCompatActivity {
     }
 
     public void qty_tambah(View view) {
-        int qty = Integer.parseInt(quantity.getText().toString());
+        int qty=0;
+        if (quantity.getText().length()!=0){
+            qty = Integer.parseInt(quantity.getText().toString());
+        }
         qty++;
         quantity.setText(qty + "");
     }
