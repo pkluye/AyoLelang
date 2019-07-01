@@ -66,7 +66,7 @@ import static com.ags.ayolelang.DBHelper.DBContract.USER.USER_TELPON;
 
 public class DBHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
     private static String DATABASE_NAME = "dbayolelang";
 
     public static String CREATE_TABLE_PROVINSI =
@@ -168,7 +168,7 @@ public class DBHelper extends SQLiteOpenHelper {
                     SPECBARANG_KATEGORIID + " INTEGER NOT NULL, " +
                     SPECBARANG_UKURAN + " STRING NOT NULL, " +
                     SPECBARANG_BAHAN + " STRING NOT NULL, " +
-                    SPECBARANG_JMLSISI + " INTEGER NOT NULL, " +
+                    SPECBARANG_JMLSISI + " STRING NOT NULL, " +
                     SPECBARANG_LAMINASI + " STRING NOT NULL, " +
                     SPECBARANG_HARGASATUAN + " INTEGER NOT NULL, " +
                     SPECBARANG_SATUAN + " STRING NOT NULL)";

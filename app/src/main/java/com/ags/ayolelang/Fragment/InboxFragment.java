@@ -30,6 +30,8 @@ import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+import rx.Subscriber;
+import rx.Subscription;
 
 import static com.ags.ayolelang.API.RetrofitClient.secret_key;
 
@@ -37,6 +39,7 @@ import static com.ags.ayolelang.API.RetrofitClient.secret_key;
 public class InboxFragment extends Fragment {
 
     RecyclerView rv_inbox;
+    Disposable disposable;
 
     @Nullable
     @Override
@@ -66,14 +69,14 @@ public class InboxFragment extends Fragment {
                 .subscribe(new Observer<RoomRespon>() {
                     @Override
                     public void onSubscribe(Disposable d) {
-
+                        disposable=d;
                     }
 
                     @Override
                     public void onNext(RoomRespon roomRespon) {
                         //Log.d("value",roomRespon.toString());
                         ArrayList<RoomPesan> roomPesans=roomRespon.getData();
-                        AdapterListRoom adapterListRoom=new AdapterListRoom(getActivity());
+                        AdapterListRoom adapterListRoom=new AdapterListRoom(getContext());
                         adapterListRoom.addItem(roomPesans);
                         rv_inbox.setAdapter(adapterListRoom);
                     }
@@ -95,5 +98,13 @@ public class InboxFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         getActivity().setTitle("Kotak Masuk");
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        if (!disposable.isDisposed()){
+            disposable.dispose();
+        }
     }
 }

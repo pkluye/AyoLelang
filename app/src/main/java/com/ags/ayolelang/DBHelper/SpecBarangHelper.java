@@ -52,7 +52,6 @@ public class SpecBarangHelper {
             } while (!cursor.isAfterLast());
         }
         cursor.close();
-        Log.d("count2",cursor.getCount()+"");
         db.endTransaction();
         return strings;
     }
@@ -69,7 +68,22 @@ public class SpecBarangHelper {
             } while (!cursor.isAfterLast());
         }
         cursor.close();
-        Log.d("count 1",cursor.getCount()+"");
+        db.endTransaction();
+        return strings;
+    }
+
+    public ArrayList<String> getSisi(String id) {
+        db.beginTransaction();
+        ArrayList<String> strings = new ArrayList<>();
+        Cursor cursor = db.query(true,TABLE_SPECBARANG,new String[]{SPECBARANG_JMLSISI},SPECBARANG_KATEGORIID+"=?",new String[]{id},null,null,null,null);
+        cursor.moveToFirst();
+        if (cursor.getCount() > 0) {
+            do {
+                strings.add(cursor.getString(cursor.getColumnIndexOrThrow(SPECBARANG_JMLSISI)));
+                cursor.moveToNext();
+            } while (!cursor.isAfterLast());
+        }
+        cursor.close();
         db.endTransaction();
         return strings;
     }
@@ -86,7 +100,6 @@ public class SpecBarangHelper {
             } while (!cursor.isAfterLast());
         }
         cursor.close();
-        Log.d("count 3",cursor.getCount()+"");
         db.endTransaction();
         return strings;
     }
@@ -115,7 +128,6 @@ public class SpecBarangHelper {
             harga=cursor.getLong(cursor.getColumnIndexOrThrow(SPECBARANG_HARGASATUAN));
         }
         cursor.close();
-        Log.d("count 4",harga+"");
         db.endTransaction();
         return harga;
     }

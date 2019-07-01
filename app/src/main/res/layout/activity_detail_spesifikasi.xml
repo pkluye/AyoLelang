@@ -10,12 +10,12 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="?attr/actionBarSize"
-        app:titleTextColor="@color/colorWhite"
         android:background="@color/colorPrimaryDark"
+        android:elevation="4dp"
+        android:minHeight="?attr/actionBarSize"
         app:contentInsetLeft="0dp"
         app:contentInsetStart="0dp"
-        android:elevation="4dp">
+        app:titleTextColor="@color/colorWhite">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -29,30 +29,30 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
-                app:srcCompat="@drawable/ic_arrow_back_black_24dp"
                 android:onClick="back"
+                android:scaleX="1.2"
                 android:scaleY="1.2"
-                android:scaleX="1.2"/>
+                app:srcCompat="@drawable/ic_arrow_back_black_24dp" />
 
             <TextView
-                android:layout_marginLeft="16dp"
                 android:id="@+id/txt_subTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_weight="0.9"
                 android:text="Detail Spesifikasi"
-                android:textSize="@dimen/Font_Header"
-                android:textColor="@color/colorWhite"
                 android:textAlignment="center"
-                android:layout_weight="0.9"/>
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/Font_Header" />
 
             <TextView
                 android:id="@+id/btn_next"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="next"
                 android:text="Next"
                 android:textColor="@color/colorWhite"
-                android:textSize="@dimen/Font_Body"
-                android:onClick="next"/>
+                android:textSize="@dimen/Font_Body" />
 
         </LinearLayout>
 
@@ -60,15 +60,15 @@
 
 
     <LinearLayout
-        android:layout_below="@+id/toolbar"
         android:id="@+id/tag_halaman"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:gravity="center_vertical"
+        android:layout_below="@+id/toolbar"
         android:background="@color/colorBackground"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
         android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:orientation="horizontal">
+        android:paddingRight="16dp">
 
         <TextView
             android:id="@+id/txt_subtext_kategori"
@@ -76,14 +76,14 @@
             android:layout_height="wrap_content"
             android:text="Kategori"
             android:textColor="@color/colorBlack"
-            android:textSize="@dimen/Font_Button"/>
+            android:textSize="@dimen/Font_Button" />
 
         <ImageView
-            app:srcCompat="@drawable/ic_navigation_next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:scaleX="0.8"
             android:scaleY="0.8"
-            android:scaleX="0.8"/>
+            app:srcCompat="@drawable/ic_navigation_next" />
 
         <TextView
             android:id="@+id/txt_subtext_kategori_dipilih"
@@ -91,39 +91,41 @@
             android:layout_height="wrap_content"
             android:text=""
             android:textColor="@color/colorBlack"
-            android:textSize="14sp"/>
+            android:textSize="14sp" />
 
     </LinearLayout>
 
     <ScrollView
-        android:layout_below="@id/tag_halaman"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@id/tag_halaman">
 
         <LinearLayout
             android:id="@id/layoutLinear2"
-            android:layout_below="@id/tag_halaman"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_below="@id/tag_halaman"
+            android:gravity="center_horizontal"
             android:orientation="vertical"
-            android:padding="16dp"
-            android:gravity="center_horizontal">
+            android:padding="16dp">
 
 
             <ProgressBar
                 android:id="@+id/determinateBar"
-                android:layout_gravity="center"
+                style="@style/MyProgressBarTwo"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:progress="30"
-                style="@style/MyProgressBarTwo"
                 android:theme="@style/MyProgressBarTwo" />
 
             <LinearLayout
-                android:layout_marginTop="24dp"
+                android:id="@+id/layout_ukuran"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
                 android:orientation="vertical">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -131,69 +133,84 @@
                     android:textSize="@dimen/Font_Caption" />
 
                 <Spinner
-                    android:layout_marginTop="4dp"
+                    android:id="@+id/ukuran_sp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/ukuran_sp"/>
+                    android:layout_marginTop="4dp" />
 
                 <EditText
-                    android:textSize="@dimen/Font_Body"
-                    android:visibility="gone"
+                    android:id="@+id/in_panjang"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/in_ukuran"
-                    android:hint="Masukkan ukuran bahan"
-                    android:backgroundTint="@color/colorPrimaryDark"/>
+                    android:backgroundTint="@color/colorPrimaryDark"
+                    android:hint="Masukkan panjang"
+                    android:text="1"
+                    android:inputType="number"
+                    android:textSize="@dimen/Font_Body"
+                    android:visibility="gone" />
+
+                <EditText
+                    android:id="@+id/in_lebar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/colorPrimaryDark"
+                    android:hint="Masukkan lebar"
+                    android:text="1"
+                    android:inputType="number"
+                    android:textSize="@dimen/Font_Body"
+                    android:visibility="gone" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_marginTop="4dp"
+                android:id="@+id/layout_bahan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:orientation="vertical">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Bahan"
-                    android:textSize="@dimen/Font_Caption"/>
+                    android:textSize="@dimen/Font_Caption" />
 
                 <Spinner
-                    android:layout_marginTop="4dp"
+                    android:id="@+id/bahan_sp"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
                     android:layout_weight="1"
-                    android:id="@+id/bahan_sp"
-                    android:backgroundTint="@color/colorPrimaryDark"/>
+                    android:backgroundTint="@color/colorPrimaryDark" />
 
                 <EditText
-                    android:textSize="@dimen/Font_Body"
-                    android:visibility="gone"
+                    android:id="@+id/in_bahan"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/in_bahan"
+                    android:backgroundTint="@color/colorPrimaryDark"
                     android:hint="Masukkan jenis bahan"
-                    android:backgroundTint="@color/colorPrimaryDark"/>
+                    android:textSize="@dimen/Font_Body"
+                    android:visibility="gone" />
             </LinearLayout>
-            
+
             <LinearLayout
                 android:id="@+id/layout_sisi"
-                android:layout_marginTop="4dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Sisi"
-                    android:textSize="@dimen/Font_Caption"/>
+                    android:textSize="@dimen/Font_Caption" />
 
                 <RadioGroup
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="start">
+                    android:gravity="start"
+                    android:orientation="horizontal">
 
                     <RadioButton
                         android:id="@+id/radio_1"
@@ -204,9 +221,9 @@
 
                     <RadioButton
                         android:id="@+id/radio_2"
-                        android:layout_marginLeft="8dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
                         android:text="2 sisi" />
 
                 </RadioGroup>
@@ -214,9 +231,9 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/layout_laminasi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/layout_laminasi"
                 android:layout_marginTop="4dp"
                 android:orientation="vertical">
 
@@ -224,45 +241,44 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Laminasi"
-                    android:textSize="@dimen/Font_Caption"/>
+                    android:textSize="@dimen/Font_Caption" />
 
                 <Spinner
-                    android:layout_marginTop="4dp"
+                    android:id="@+id/laminasi_sp"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
                     android:layout_weight="1"
-                    android:id="@+id/laminasi_sp"
-                    android:backgroundTint="@color/colorPrimaryDark"/>
+                    android:backgroundTint="@color/colorPrimaryDark" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_marginTop="4dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:orientation="vertical">
 
                 <TextView
-                    android:textSize="@dimen/Font_Caption"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Quantity"/>
+                    android:text="Quantity"
+                    android:textSize="@dimen/Font_Caption" />
 
                 <!--<EditText-->
-                    <!--android:textSize="@dimen/Font_Body"-->
-                    <!--android:layout_width="300dp"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:inputType="number"-->
-                    <!--android:id="@+id/in_quantity"-->
-                    <!--android:hint="Tentukan jumlah barang"-->
-                    <!--android:backgroundTint="@color/colorPrimaryDark"/>-->
+                <!--android:textSize="@dimen/Font_Body"-->
+                <!--android:layout_width="300dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:inputType="number"-->
+                <!--android:id="@+id/in_quantity"-->
+                <!--android:hint="Tentukan jumlah barang"-->
+                <!--android:backgroundTint="@color/colorPrimaryDark"/>-->
 
                 <LinearLayout
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:weightSum="5"
-                    >
+                    android:weightSum="5">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -271,14 +287,14 @@
                         android:gravity="center">
 
                         <ImageButton
-                            android:layout_marginLeft="4dp"
                             android:id="@+id/image_kurang"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            app:srcCompat="@drawable/ic_remove_black_24dp"
+                            android:layout_marginLeft="4dp"
+                            android:background="@android:color/transparent"
                             android:onClick="qty_kurang"
-                            android:background="@android:color/transparent"/>
+                            app:srcCompat="@drawable/ic_remove_black_24dp" />
 
                     </LinearLayout>
 
@@ -300,23 +316,22 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal"
+                        android:layout_weight="1"
                         android:gravity="center"
-                        android:layout_weight="1">
+                        android:orientation="horizontal">
 
                         <ImageButton
-                            android:layout_marginLeft="4dp"
                             android:id="@+id/image_tambah"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            app:srcCompat="@drawable/ic_add_black_24dp"
+                            android:layout_marginLeft="4dp"
+                            android:background="@android:color/transparent"
                             android:onClick="qty_tambah"
-                            android:background="@android:color/transparent"/>
+                            app:srcCompat="@drawable/ic_add_black_24dp" />
 
 
                     </LinearLayout>
-
 
 
                 </LinearLayout>
@@ -325,53 +340,56 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_marginTop="4dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:orientation="vertical">
+
                 <TextView
-                    android:textSize="@dimen/Font_Caption"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Estimasi Biaya Pekerjaan"/>
+                    android:text="Estimasi Biaya Pekerjaan"
+                    android:textSize="@dimen/Font_Caption" />
 
                 <EditText
-                    android:layout_marginTop="4dp"
-                    android:enabled="false"
-                    android:textSize="@dimen/Font_Body"
+                    android:id="@+id/in_harga"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:backgroundTint="@color/colorPrimaryDark"
+                    android:enabled="false"
+                    android:hint="Masukan biaya estimasi"
                     android:inputType="number"
-                    android:id="@+id/in_harga"
-                    android:hint=""
-                    android:backgroundTint="@color/colorPrimaryDark"/>
+                    android:text="0"
+                    android:textSize="@dimen/Font_Body" />
             </LinearLayout>
 
 
             <LinearLayout
-                android:layout_marginTop="4dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:orientation="vertical">
+
                 <TextView
-                    android:textSize="@dimen/Font_Caption"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Catatan Tambahan"/>
+                    android:text="Catatan Tambahan"
+                    android:textSize="@dimen/Font_Caption" />
 
                 <EditText
-                    android:layout_marginTop="4dp"
-                    android:textSize="@dimen/Font_Body"
-                    android:inputType="textMultiLine"
-                    android:minLines="1"
-                    android:lines="8"
-                    android:gravity="top|left"
-                    android:maxLines="10"
+                    android:id="@+id/in_catatan"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/in_catatan"
+                    android:layout_marginTop="4dp"
+                    android:backgroundTint="@color/colorPrimaryDark"
+                    android:gravity="top|left"
                     android:hint="Berikan catatan tambahan"
-                    android:backgroundTint="@color/colorPrimaryDark"/>
+                    android:inputType="textMultiLine"
+                    android:lines="8"
+                    android:maxLines="10"
+                    android:minLines="1"
+                    android:textSize="@dimen/Font_Body" />
             </LinearLayout>
 
         </LinearLayout>

@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=""
     xmlns:tools="http://schemas.android.com/tools">
 
     <android.support.v7.widget.Toolbar
@@ -17,44 +18,57 @@
         android:elevation="4dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:padding="16dp">
+
+
+        <ImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            app:srcCompat="@drawable/ic_arrow_back_black_24dp"
+            android:scaleY="1.2"
+            android:scaleX="1.2"/>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:padding="16dp">
-
-            <ImageButton
-                android:id="@+id/btn_back"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                app:srcCompat="@drawable/ic_arrow_back_black_24dp"
-                android:scaleY="1.2"
-                android:scaleX="1.2"/>
+            android:orientation="vertical">
 
             <TextView
+                android:layout_marginLeft="16dp"
                 android:id="@+id/sender_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Nama Client"
-                android:textSize="24sp"
+                android:textSize="@dimen/Font_Header"
                 android:textColor="@color/colorWhite"
-                android:textAlignment="center"
                 android:layout_weight="0.9"/>
 
-            <ImageButton
-                android:id="@+id/btn_More"
+            <TextView
+                android:layout_marginLeft="16dp"
+                android:id="@+id/status_sender"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                app:srcCompat="@drawable/ic_more"
-                android:scaleY="1.2"
-                android:scaleX="1.2"/>
+                android:text="offline"
+                android:textSize="@dimen/Font_Caption"
+                android:textColor="@color/colorWhite"
+                android:layout_weight="0.9"/>
 
         </LinearLayout>
+
+
+
+        <ImageButton
+            android:layout_gravity="right"
+            android:id="@+id/btn_More"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            app:srcCompat="@drawable/ic_more"
+            android:scaleY="1.2"
+            android:scaleX="1.2"/>
 
     </android.support.v7.widget.Toolbar>
 
@@ -66,8 +80,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        tools:listitem="@layout/item_message_sent"
-        android:paddingTop="4dp"/>
+        tools:listitem="@layout/item_message_sent"/>
 
     <View
         android:id="@+id/view"
@@ -89,7 +102,15 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent">
 
+        <ImageButton
+            android:id="@+id/btn_attachFile"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            app:srcCompat="@drawable/ic_attach_file_black_24dp"
+            android:background="@android:color/transparent"/>
+
         <EditText
+            android:textSize="@dimen/Font_Body"
             android:id="@+id/edittext_messagebox"
             android:hint="Kirim Pesan"
             android:background="@android:color/transparent"
@@ -99,19 +120,14 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:inputType="textMultiLine"
-            android:maxLines="4"/>
+            android:maxLines="6"/>
 
-        <Button
+        <ImageButton
             android:id="@+id/btn_sendMessage"
-            android:text="Kirim"
-            android:textSize="14dp"
-            android:background="@color/colorWhite"
-            android:clickable="true"
             android:layout_width="64dp"
             android:layout_height="48dp"
-            android:gravity="center"
-            android:layout_gravity="bottom" />
+            app:srcCompat="@drawable/ic_send_black_24dp"
+            android:background="@android:color/transparent" />
 
     </LinearLayout>
 
