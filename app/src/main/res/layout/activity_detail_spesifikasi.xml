@@ -109,7 +109,6 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-
             <ProgressBar
                 android:id="@+id/determinateBar"
                 style="@style/MyProgressBarTwo"
@@ -124,10 +123,11 @@
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:gravity="center">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Ukuran"
                     android:textSize="@dimen/Font_Caption" />
@@ -136,7 +136,8 @@
                     android:id="@+id/ukuran_sp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp" />
+                    android:layout_marginTop="4dp"
+                    android:backgroundTint="@color/colorPrimaryDark"/>
 
                 <EditText
                     android:id="@+id/in_panjang"
@@ -160,6 +161,13 @@
                     android:textSize="@dimen/Font_Body"
                     android:visibility="gone" />
 
+                <View
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_width="292dp"
+                    android:layout_height="1dp"
+                    android:background="@color/colorPrimaryDark"/>
+
             </LinearLayout>
 
             <LinearLayout
@@ -167,10 +175,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:gravity="center">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Bahan"
                     android:textSize="@dimen/Font_Caption" />
@@ -191,6 +200,14 @@
                     android:hint="Masukkan jenis bahan"
                     android:textSize="@dimen/Font_Body"
                     android:visibility="gone" />
+
+                <View
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_width="292dp"
+                    android:layout_height="1dp"
+                    android:background="@color/colorPrimaryDark"/>
+
             </LinearLayout>
 
             <LinearLayout
@@ -198,15 +215,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:gravity="center">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Sisi"
                     android:textSize="@dimen/Font_Caption" />
 
                 <RadioGroup
+                    android:layout_marginTop="8dp"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:gravity="start"
@@ -235,10 +254,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:gravity="center">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Laminasi"
                     android:textSize="@dimen/Font_Caption" />
@@ -251,16 +271,24 @@
                     android:layout_weight="1"
                     android:backgroundTint="@color/colorPrimaryDark" />
 
+                <View
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_width="292dp"
+                    android:layout_height="1dp"
+                    android:background="@color/colorPrimaryDark"/>
+
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:gravity="center">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Quantity"
                     android:textSize="@dimen/Font_Caption" />
@@ -330,19 +358,16 @@
                             android:onClick="qty_tambah"
                             app:srcCompat="@drawable/ic_add_black_24dp" />
 
-
                     </LinearLayout>
 
-
                 </LinearLayout>
-
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="8dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -360,8 +385,8 @@
                     android:enabled="false"
                     android:hint="Masukan biaya estimasi"
                     android:inputType="number"
-                    android:text="0"
-                    android:textSize="@dimen/Font_Body" />
+                    android:text="Rp. 0"
+                    android:textSize="@dimen/Font_Body"/>
             </LinearLayout>
 
 
@@ -383,13 +408,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:backgroundTint="@color/colorPrimaryDark"
-                    android:gravity="top|left"
                     android:hint="Berikan catatan tambahan"
                     android:inputType="textMultiLine"
                     android:lines="8"
                     android:maxLines="10"
                     android:minLines="1"
-                    android:textSize="@dimen/Font_Body" />
+                    android:textSize="@dimen/Font_Body"/>
+
             </LinearLayout>
 
         </LinearLayout>

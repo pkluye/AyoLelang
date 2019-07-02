@@ -183,7 +183,7 @@
                 android:layout_height="32dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/button_round"
+                android:background="@drawable/button_rectangle"
                 android:onClick="register"
                 android:textSize="@dimen/Font_Button"
                 android:text="Register"

@@ -37,14 +37,14 @@
             android:layout_height="wrap_content"
             android:text="Tidak ada lelang yang berlangsung"
             android:textSize="16sp"
-            android:textAlignment="center" />
+            android:textAlignment="center"/>
 
         <Button
             android:id="@+id/btn_buatLelang"
             android:layout_width="150dp"
             android:layout_height="36dp"
             android:layout_marginTop="16dp"
-            android:background="@drawable/button_round"
+            android:background="@drawable/button_rectangle"
             android:text="Buat Lelang"
             android:textColor="@color/colorWhite" />
 

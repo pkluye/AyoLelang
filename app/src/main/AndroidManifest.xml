@@ -15,11 +15,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".Activity.Profile" />
-        <activity android:name=".Activity.ListPekerjaan" />
-        <activity android:name=".Activity.Preview" />
-        <activity android:name=".Activity.Deskripsi" />
-        <activity android:name=".Activity.MessageActivity" />
+        <activity android:name=".Activity.Profile"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.ListPekerjaan"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.Preview"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.Deskripsi"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.MessageActivity"
+            android:screenOrientation="portrait"/>
 
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
@@ -28,12 +33,18 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".Activity.DetailSpesifikasi" />
-        <activity android:name=".Activity.LupaPasswordActivity" />
-        <activity android:name=".Activity.RegisterActivity" />
-        <activity android:name=".Activity.VerificationActivity" />
-        <activity android:name=".Activity.LoginActivity" />
-        <activity android:name=".Activity.MainActivity">
+        <activity android:name=".Activity.DetailSpesifikasi"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.LupaPasswordActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.RegisterActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.VerificationActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.LoginActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

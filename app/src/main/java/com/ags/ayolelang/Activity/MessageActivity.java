@@ -45,7 +45,7 @@ public class MessageActivity extends AppCompatActivity {
     private TextView sender_name;
     private ImageView btn_back;
     private EditText edittext_messagebox;
-    private ImageButton btn_sendMessage;
+    private Button btn_sendMessage;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

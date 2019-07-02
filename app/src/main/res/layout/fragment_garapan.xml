@@ -71,7 +71,7 @@
                 android:layout_height="32dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginLeft="24dp"
-                android:background="@drawable/button_round"
+                android:background="@drawable/button_rectangle"
                 android:backgroundTint="@color/colorWhite"
                 android:elevation="4dp"
                 android:text="Kategori"
@@ -89,11 +89,11 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
-                android:background="@drawable/button_round_border"
+                android:background="@drawable/button_rectangle_border_white"
                 android:elevation="4dp"
                 android:text="Event"
-                android:textAllCaps="false"
                 android:textColor="@color/colorWhite"
+                android:textAllCaps="false"
                 android:textSize="@dimen/Font_Button"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.067"
@@ -126,7 +126,8 @@
                 android:layout_weight="1"
                 android:weightSum="3"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp">
+                android:layout_marginBottom="8dp"
+                android:paddingVertical="2dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -262,11 +263,12 @@
                 android:layout_weight="1"
                 android:weightSum="3"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp">>
+                android:layout_marginBottom="8dp"
+                android:paddingVertical="2dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center">
 

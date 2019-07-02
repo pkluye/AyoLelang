@@ -374,7 +374,7 @@
                             android:id="@+id/btn_edit_deskripsi"
                             android:layout_width="56dp"
                             android:layout_height="22dp"
-                            android:background="@drawable/button_round"
+                            android:background="@drawable/button_rectangle"
                             android:layout_marginRight="16dp"
                             android:layout_marginTop="2dp"
                             android:layout_marginBottom="2dp"
@@ -398,7 +398,7 @@
 
                 <LinearLayout
                     android:id="@+id/linear_pekerjaan"
-                    android:visibility="visible"
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
@@ -624,7 +624,7 @@
             </LinearLayout>
 
             <android.support.v7.widget.RecyclerView
-                android:visibility="gone"
+                android:visibility="visible"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@id/layoutLinear_judul"
                 android:id="@+id/reyclerview_listItem_lelang"
