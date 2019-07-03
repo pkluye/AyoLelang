@@ -47,9 +47,9 @@ public class InboxFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_inbox, null);
 
         Toolbar toolbar = view.findViewById(R.id.toolbar);
-        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 
-        rv_inbox=view.findViewById(R.id.reyclerview_listItem_message);
+        rv_inbox = view.findViewById(R.id.reyclerview_listItem_message);
         rv_inbox.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         loadData();
@@ -59,7 +59,7 @@ public class InboxFragment extends Fragment {
 
     private void loadData() {
 //        Log.d("value","test");
-        Observable<RoomRespon> roomlist= RetrofitClient.getInstance().getApi().getRoom(
+        Observable<RoomRespon> roomlist = RetrofitClient.getInstance().getApi().getRoom(
                 secret_key,
                 SharedPrefManager.getInstance(getActivity()).getUser().getUser_id()
         );
@@ -69,21 +69,31 @@ public class InboxFragment extends Fragment {
                 .subscribe(new Observer<RoomRespon>() {
                     @Override
                     public void onSubscribe(Disposable d) {
-                        disposable=d;
+                        disposable = d;
                     }
 
                     @Override
                     public void onNext(RoomRespon roomRespon) {
                         //Log.d("value",roomRespon.toString());
-                        ArrayList<RoomPesan> roomPesans=roomRespon.getData();
-                        AdapterListRoom adapterListRoom=new AdapterListRoom(getContext());
-                        adapterListRoom.addItem(roomPesans);
-                        rv_inbox.setAdapter(adapterListRoom);
+                        ArrayList<RoomPesan> roomPesans = roomRespon.getData();
+                        AdapterListRoom adapterListRoom;
+                        if (rv_inbox.getAdapter() == null) {
+                            adapterListRoom = new AdapterListRoom(getContext());
+                            adapterListRoom.addItem(roomPesans);
+                            rv_inbox.setAdapter(adapterListRoom);
+                        } else {
+                            adapterListRoom = (AdapterListRoom) rv_inbox.getAdapter();
+                            for (RoomPesan roomPesan : roomPesans) {
+                                if (!adapterListRoom.getlistidroom().contains(roomPesan.getRoom_id())) {
+                                    adapterListRoom.addRoom(roomPesan);
+                                }
+                            }
+                        }
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.d("error",e.getMessage());
+                        Log.d("error", e.getMessage());
                     }
 
                     @Override
@@ -103,7 +113,7 @@ public class InboxFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
-        if (!disposable.isDisposed()){
+        if (!disposable.isDisposed()) {
             disposable.dispose();
         }
     }

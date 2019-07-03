@@ -81,6 +81,20 @@ public class AdapterListRoom extends RecyclerView.Adapter<AdapterListRoom.Custom
         notifyDataSetChanged();
     }
 
+    public void addRoom(RoomPesan roomPesan) {
+        this.roompesan.add(roomPesan);
+        notifyDataSetChanged();
+    }
+
+    public ArrayList<Integer> getlistidroom() {
+        ArrayList<Integer> listidroom = new ArrayList<>();
+        for (RoomPesan roomPesan:this.roompesan){
+            listidroom.add(roomPesan.getRoom_id());
+        }
+        return listidroom;
+    }
+
+
     public class CustomHolderView extends RecyclerView.ViewHolder {
         ImageView img_akun;
         TextView txt_nama, txt_tanggal, txt_preview;

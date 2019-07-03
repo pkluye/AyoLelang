@@ -7,13 +7,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.ags.ayolelang.API.PesanRespon;
+import com.ags.ayolelang.Models.PesanRespon;
 import com.ags.ayolelang.API.RetrofitClient;
 import com.ags.ayolelang.Adapter.AdapterItemPesan;
 import com.ags.ayolelang.DBHelper.UserHelper;
@@ -29,9 +28,7 @@ import java.util.ArrayList;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
-import io.reactivex.Scheduler;
 import io.reactivex.Single;
-import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
@@ -45,7 +42,7 @@ public class MessageActivity extends AppCompatActivity {
     private TextView sender_name;
     private ImageView btn_back;
     private EditText edittext_messagebox;
-    private Button btn_sendMessage;
+    private ImageButton btn_sendMessage;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -135,8 +132,8 @@ public class MessageActivity extends AppCompatActivity {
                                 adapterItemPesan.removeItem(lastItem);
                                 lastItem=(Pesan) adapterItemPesan.getLastItem();
                             }
+                            ArrayList<Integer> Array=adapterItemPesan.getlistIdPesan();
                             for (Pesan pesan : pesans) {
-                                ArrayList<Integer> Array=adapterItemPesan.getArray();
                                 if (!Array.contains(pesan.getPesan_id())){
                                     if (!pesan.getTanggal().substring(0, 10).equalsIgnoreCase(lastItem.getTanggal().substring(0, 10))){
                                         TanggalPesan tPesan = new TanggalPesan(pesan.getTanggal().substring(0, 10));

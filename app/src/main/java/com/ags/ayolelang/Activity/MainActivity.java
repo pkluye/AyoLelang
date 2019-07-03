@@ -46,9 +46,12 @@ import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -65,9 +68,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     PekerjaanHelper pekerjaanHelper = new PekerjaanHelper(this);
     Disposable disposable;
     private UserHelper userHelper = new UserHelper(this);
-    private TawaranHelper tawaranHelper=new TawaranHelper(this);
-    private HistoriTawaranHelper historiTawaranHelper=new HistoriTawaranHelper(this);
-    private SpecBarangHelper specBarangHelper=new SpecBarangHelper(this);
+    private TawaranHelper tawaranHelper = new TawaranHelper(this);
+    private HistoriTawaranHelper historiTawaranHelper = new HistoriTawaranHelper(this);
+    private SpecBarangHelper specBarangHelper = new SpecBarangHelper(this);
 
     ProgressDialog progressDoalog;
 
@@ -128,142 +131,281 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     }
 
     private void fetchdata() {
-        disposable = Observable.interval(0, 10,
-                TimeUnit.SECONDS)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<Long>() {
-                    @Override
-                    public void accept(Long aLong) throws Exception {
-                        kategoriHelper.open();
-                        final boolean kategori_isempty = kategoriHelper.isEmpty();
-                        kategoriHelper.close();
-
-                        kotaHelper.open();
-                        final boolean kota_isempty = kotaHelper.isEmpty();
-                        kotaHelper.close();
-
-                        provinsiHelper.open();
-                        final boolean provinsi_isempty = provinsiHelper.isEmpty();
-                        provinsiHelper.close();
-
-                        if (kategori_isempty == true && kota_isempty == true &&
-                                provinsi_isempty == true) {
-                            loadToServer(0);
-                        } else {
-                            loadToServer(1);
-                        }
-                    }
-                });
-    }
-
-    private void loadToServer(final int i) {
-        String[] token = SharedPrefManager.getInstance(getApplicationContext()).getToken();
-        Call<FetchDBRespon> call = RetrofitClient.getInstance()
-                .getApi().fetchDB(
-                        secret_key,
-                        token[0],
-                        token[1],
-                        token[2],
-                        token[3],
-                        token[4],
-                        token[5],
-                        token[6],
-                        token[7]
-                );
-
-        // Set up progress before call
-        //progressDoalog.setMax(100);
+        final String[] token = SharedPrefManager.getInstance(getApplicationContext()).getToken();
+        final Observable<FetchDBRespon> observable = RetrofitClient.getInstance().getApi().fetchDB(
+                secret_key,
+                token[0],
+                token[1],
+                token[2],
+                token[3],
+                token[4],
+                token[5],
+                token[6],
+                token[7]);
+        for (int i=0;i<token.length;i++){
+            Log.d("token "+i,token[i]+"");
+        }
         progressDoalog.setMessage("Loading....");
-        //progressDoalog.setTitle("ProgressDialog bar example");
         progressDoalog.setCancelable(false);
         progressDoalog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        if (i == 0) {
-            // show it
-            progressDoalog.show();
-        }
-
-        call.enqueue(new Callback<FetchDBRespon>() {
-            @Override
-            public void onResponse(Call<FetchDBRespon> call, Response<FetchDBRespon> response) {
-                if (i == 0) {
-                    progressDoalog.dismiss();
-                }
-                if (response.isSuccessful()) {
-                    FetchDBRespon fetchDBRespon = response.body();
-                    if (!fetchDBRespon.isError()) {
-                        FetchDB fetchDB = fetchDBRespon.getData();
-                        Log.d("Update data", "yes " + fetchDBRespon.getMessage());
-                        String[] newtoken = SharedPrefManager.getInstance(getApplicationContext()).getToken();
-                        if (fetchDBRespon.getMessage().contains("3")) {
-                            ArrayList<Kota> kotas = fetchDB.getKotas();
-                            insert_kota(kotas);
-                            newtoken[2] = fetchDB.getToken_kota();
-                            //Log.d("token kota",newtoken[2]+"");
-                        }
-                        if (fetchDBRespon.getMessage().contains("2")) {
-                            ArrayList<Provinsi> provinsis = fetchDB.getProvinsis();
-                            insert_provinsi(provinsis);
-                            newtoken[1] = fetchDB.getToken_provinsi();
-                        }
-                        if (fetchDBRespon.getMessage().contains("1")) {
-                            ArrayList<Kategori> kategoris = fetchDB.getKategoris();
-                            insert_kategori(kategoris);
-                            newtoken[0] = fetchDB.getToken_kategori();
-                        }
-
-                        if (fetchDBRespon.getMessage().contains("4")) {
-                            ArrayList<Lelang> lelangs = fetchDB.getLelangs();
-                            insert_lelang(lelangs);
-                            newtoken[3] = fetchDB.getToken_lelang();
-                        }
-
-                        if (fetchDBRespon.getMessage().contains("5")) {
-                            ArrayList<Pekerjaan> pekerjaans = fetchDB.getPekerjaans();
-                            insert_pekerjaan(pekerjaans);
-                            newtoken[4] = fetchDB.getToken_pekerjaan();
-                        }
-
-                        if (fetchDBRespon.getMessage().contains("6")) {
-                            ArrayList<User> users = fetchDB.getUsers();
-                            insert_user(users);
-                            newtoken[5] = fetchDB.getToken_user();
-                        }
-
-                        if (fetchDBRespon.getMessage().contains("7")) {
-                            ArrayList<Tawaran> tawarans = fetchDB.getTawarans();
-                            insert_tawaran(tawarans);
-
-                            ArrayList<Tawaran> historitawaran=fetchDB.getHistoritawarans();
-                            insert_historitawaran(historitawaran);
-
-                            newtoken[6] = fetchDB.getToken_tawaran();
-                        }
-
-                        if (fetchDBRespon.getMessage().contains("8")) {
-                            ArrayList<SpecBarang> specBarangs = fetchDB.getSpecbarangs();
-                            insert_specBarang(specBarangs);
-                            newtoken[7] = fetchDB.getToken_specbarang();
-                            Log.d("size",specBarangs.size()+"");
-                        }
-
-                        SharedPrefManager.getInstance(getApplicationContext()).saveToken(newtoken);
-                    } else {
-                        Log.d("Update data", "no " + fetchDBRespon.getMessage());
+        progressDoalog.show();
+        observable.repeat()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<FetchDBRespon>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        disposable = d;
                     }
-                } else {
-                    Log.d("error ambil data", response.message());
-                }
-            }
 
-            @Override
-            public void onFailure(Call<FetchDBRespon> call, Throwable t) {
-                if (i == 0) {
-                    progressDoalog.dismiss();
-                }
-                Log.d("failure", t.getMessage());
-            }
-        });
+                    @Override
+                    public void onNext(FetchDBRespon fetchDBRespon) {
+                        String[] newtoken = SharedPrefManager.getInstance(getApplicationContext()).getToken();
+                        if (!fetchDBRespon.isError()) {
+                            Log.d("Update data", "yes " + fetchDBRespon.getMessage());
+                            FetchDB fetchDB = fetchDBRespon.getData();
+
+                            if (fetchDBRespon.getMessage().contains("1")) {
+                                ArrayList<Kategori> kategoris = fetchDB.getKategoris();
+                                insert_kategori(kategoris);
+                                newtoken[0] = fetchDB.getToken_kategori();
+                            }
+
+                            if (fetchDBRespon.getMessage().contains("2")) {
+                                ArrayList<Provinsi> provinsis = fetchDB.getProvinsis();
+                                insert_provinsi(provinsis);
+                                newtoken[1] = fetchDB.getToken_provinsi();
+                            }
+
+                            if (fetchDBRespon.getMessage().contains("3")) {
+                                ArrayList<Kota> kotas = fetchDB.getKotas();
+                                insert_kota(kotas);
+                                newtoken[2] = fetchDB.getToken_kota();
+                            }
+
+                            if (fetchDBRespon.getMessage().contains("4")) {
+                                ArrayList<Lelang> lelangs = fetchDB.getLelangs();
+                                insert_lelang(lelangs);
+                                newtoken[3] = fetchDB.getToken_lelang();
+                            }
+
+                            if (fetchDBRespon.getMessage().contains("5")) {
+                                ArrayList<Pekerjaan> pekerjaans = fetchDB.getPekerjaans();
+                                insert_pekerjaan(pekerjaans);
+                                newtoken[4] = fetchDB.getToken_pekerjaan();
+                            }
+
+                            if (fetchDBRespon.getMessage().contains("6")) {
+                                ArrayList<User> users = fetchDB.getUsers();
+                                insert_user(users);
+                                newtoken[5] = fetchDB.getToken_user();
+                            }
+
+                            if (fetchDBRespon.getMessage().contains("7")) {
+                                ArrayList<Tawaran> tawarans = fetchDB.getTawarans();
+                                insert_tawaran(tawarans);
+
+                                ArrayList<Tawaran> historitawaran = fetchDB.getHistoritawarans();
+                                insert_historitawaran(historitawaran);
+
+                                newtoken[6] = fetchDB.getToken_tawaran();
+                            }
+
+                            if (fetchDBRespon.getMessage().contains("8")) {
+                                ArrayList<SpecBarang> specBarangs = fetchDB.getSpecbarangs();
+                                insert_specBarang(specBarangs);
+                                newtoken[7] = fetchDB.getToken_specbarang();
+                            }
+
+                            //check empty db
+                            kategoriHelper.open();
+                            boolean kategori_isempty = kategoriHelper.isEmpty();
+                            kategoriHelper.close();
+
+                            kotaHelper.open();
+                            boolean kota_isempty = kotaHelper.isEmpty();
+                            kotaHelper.close();
+
+                            provinsiHelper.open();
+                            boolean provinsi_isempty = provinsiHelper.isEmpty();
+                            provinsiHelper.close();
+
+                            specBarangHelper.open();
+                            boolean specbarang_isempty = specBarangHelper.isempty();
+                            specBarangHelper.close();
+
+                            if (kategori_isempty) {
+                                newtoken[0] = null;
+                            }
+
+                            if (provinsi_isempty) {
+                                newtoken[1] = null;
+                            }
+
+                            if (kota_isempty) {
+                                newtoken[2] = null;
+                            }
+
+                            if (specbarang_isempty) {
+                                newtoken[7] = null;
+                            }
+
+                            for (int i=0;i<token.length;i++){
+                                Log.d("token "+i,newtoken[i]+"");
+                            }
+
+                            SharedPrefManager.getInstance(getApplicationContext()).saveToken(newtoken);
+                            disposable.dispose();
+                            fetchdata();
+                        } else {
+                            progressDoalog.dismiss();
+                            Log.d("Update data", "no " + fetchDBRespon.getMessage());
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        e.printStackTrace();
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        progressDoalog.dismiss();
+                    }
+                });
+
+//                .subscribe(new Consumer<Long>() {
+//                    @Override
+//                    public void accept(Long aLong) throws Exception {
+//                        kategoriHelper.open();
+//                        final boolean kategori_isempty = kategoriHelper.isEmpty();
+//                        kategoriHelper.close();
+//
+//                        kotaHelper.open();
+//                        final boolean kota_isempty = kotaHelper.isEmpty();
+//                        kotaHelper.close();
+//
+//                        provinsiHelper.open();
+//                        final boolean provinsi_isempty = provinsiHelper.isEmpty();
+//                        provinsiHelper.close();
+//
+//                        if (kategori_isempty == true && kota_isempty == true &&
+//                                provinsi_isempty == true) {
+//                            loadToServer(0);
+//                        } else {
+//                            loadToServer(1);
+//                        }
+//                    }
+//                });
     }
+
+//    private void loadToServer(final int i) {
+//        String[] token = SharedPrefManager.getInstance(getApplicationContext()).getToken();
+//        Call<FetchDBRespon> call = RetrofitClient.getInstance()
+//                .getApi().fetchDB(
+//                        secret_key,
+//                        token[0],
+//                        token[1],
+//                        token[2],
+//                        token[3],
+//                        token[4],
+//                        token[5],
+//                        token[6],
+//                        token[7]
+//                );
+//
+//        // Set up progress before call
+//        //progressDoalog.setMax(100);
+//        progressDoalog.setMessage("Loading....");
+//        //progressDoalog.setTitle("ProgressDialog bar example");
+//        progressDoalog.setCancelable(false);
+//        progressDoalog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+//        if (i == 0) {
+//            // show it
+//            progressDoalog.show();
+//        }
+//
+//        call.enqueue(new Callback<FetchDBRespon>() {
+//            @Override
+//            public void onResponse(Call<FetchDBRespon> call, Response<FetchDBRespon> response) {
+//                if (i == 0) {
+//                    progressDoalog.dismiss();
+//                }
+//                if (response.isSuccessful()) {
+//                    FetchDBRespon fetchDBRespon = response.body();
+//                    if (!fetchDBRespon.isError()) {
+//                        FetchDB fetchDB = fetchDBRespon.getData();
+//                        String[] newtoken = SharedPrefManager.getInstance(getApplicationContext()).getToken();
+//                        if (fetchDBRespon.getMessage().contains("3")) {
+//                            ArrayList<Kota> kotas = fetchDB.getKotas();
+//                            insert_kota(kotas);
+//                            newtoken[2] = fetchDB.getToken_kota();
+//                            //Log.d("token kota",newtoken[2]+"");
+//                        }
+//                        if (fetchDBRespon.getMessage().contains("2")) {
+//                            ArrayList<Provinsi> provinsis = fetchDB.getProvinsis();
+//                            insert_provinsi(provinsis);
+//                            newtoken[1] = fetchDB.getToken_provinsi();
+//                        }
+//                        if (fetchDBRespon.getMessage().contains("1")) {
+//                            ArrayList<Kategori> kategoris = fetchDB.getKategoris();
+//                            insert_kategori(kategoris);
+//                            newtoken[0] = fetchDB.getToken_kategori();
+//                        }
+//
+//                        if (fetchDBRespon.getMessage().contains("4")) {
+//                            ArrayList<Lelang> lelangs = fetchDB.getLelangs();
+//                            insert_lelang(lelangs);
+//                            newtoken[3] = fetchDB.getToken_lelang();
+//                        }
+//
+//                        if (fetchDBRespon.getMessage().contains("5")) {
+//                            ArrayList<Pekerjaan> pekerjaans = fetchDB.getPekerjaans();
+//                            insert_pekerjaan(pekerjaans);
+//                            newtoken[4] = fetchDB.getToken_pekerjaan();
+//                        }
+//
+//                        if (fetchDBRespon.getMessage().contains("6")) {
+//                            ArrayList<User> users = fetchDB.getUsers();
+//                            insert_user(users);
+//                            newtoken[5] = fetchDB.getToken_user();
+//                        }
+//
+//                        if (fetchDBRespon.getMessage().contains("7")) {
+//                            ArrayList<Tawaran> tawarans = fetchDB.getTawarans();
+//                            insert_tawaran(tawarans);
+//
+//                            ArrayList<Tawaran> historitawaran = fetchDB.getHistoritawarans();
+//                            insert_historitawaran(historitawaran);
+//
+//                            newtoken[6] = fetchDB.getToken_tawaran();
+//                        }
+//
+//                        if (fetchDBRespon.getMessage().contains("8")) {
+//                            ArrayList<SpecBarang> specBarangs = fetchDB.getSpecbarangs();
+//                            insert_specBarang(specBarangs);
+//                            newtoken[7] = fetchDB.getToken_specbarang();
+//                            Log.d("size", specBarangs.size() + "");
+//                        }
+//
+//                        SharedPrefManager.getInstance(getApplicationContext()).saveToken(newtoken);
+//                    } else {
+//                        Log.d("Update data", "no " + fetchDBRespon.getMessage());
+//                    }
+//                } else {
+//                    Log.d("error ambil data", response.message());
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<FetchDBRespon> call, Throwable t) {
+//                if (i == 0) {
+//                    progressDoalog.dismiss();
+//                }
+//                Log.d("failure", t.getMessage());
+//            }
+//        });
+//    }
 
     private void insert_specBarang(ArrayList<SpecBarang> specBarangs) {
         specBarangHelper.open();

@@ -25,6 +25,8 @@ import com.ags.ayolelang.Models.Pekerjaan;
 import com.ags.ayolelang.R;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 
 public class DetailSpesifikasi extends AppCompatActivity {
@@ -41,7 +43,6 @@ public class DetailSpesifikasi extends AppCompatActivity {
     private SpecBarangHelper SBHelper;
     private RadioButton sisiradio1, sisiradio2;
     private Spinner laminasisp;
-    //layout
     private LinearLayout layout_ukuran, layout_bahan, layout_sisi, layout_laminasi;
     private EditText lebar;
     private EditText panjang;
@@ -129,13 +130,44 @@ public class DetailSpesifikasi extends AppCompatActivity {
                     return;
                 }
 
-                if (quantity.getText().charAt(0)=='0') {
+                if (quantity.getText().charAt(0) == '0') {
                     quantity.setError("jumlah pemesanan tidak valid");
                     quantity.requestFocus();
                     return;
                 }
 
                 loadharga();
+            }
+        });
+        harga.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.length() < 1) return;
+                if (harga.getText().toString().equalsIgnoreCase("0")) {
+                    harga.setError("biaya pemesanan harus lebih dari 0");
+                    harga.requestFocus();
+                    return;
+                }
+
+                if (harga.getText().charAt(0) == '0') {
+                    harga.setError("biaya pemesanan tidak valid");
+                    harga.requestFocus();
+                    return;
+                }
+                harga.removeTextChangedListener(this);
+                harga.setText(currencyFormat(harga.getText().toString()));
+                harga.setSelection(harga.getText().length());
+                harga.addTextChangedListener(this);
             }
         });
         loadharga();
@@ -211,107 +243,24 @@ public class DetailSpesifikasi extends AppCompatActivity {
             harga *= Long.parseLong(lebar.getText().toString());
 
         }
-        this.harga.setText(harga + "");
+        this.harga.setText(currencyFormat(harga + ""));
         if (harga < 1) {
             this.harga.setEnabled(true);
         } else {
             this.harga.setEnabled(false);
         }
+
     }
 
-    public void next(View view) {
-        String ukuran = "",
-                ukuransp = this.ukuransp.getSelectedItem().toString().trim(),
-                bahan = this.bahan.getText().toString().trim(),
-                bahansp = this.bahansp.getSelectedItem().toString().trim(),
-                quantity = this.quantity.getText().toString().trim(),
-                harga = this.harga.getText().toString().trim(),
-                catatan = this.catatan.getText().toString().trim();
-
-        if (ukuransp.equalsIgnoreCase("custom")) {
-            if (TextUtils.isEmpty(this.panjang.getText().toString())) {
-                this.panjang.setError("harap lengkapi form ini");
-                this.panjang.requestFocus();
-                return;
-            }
-
-            if (TextUtils.isEmpty(this.lebar.getText().toString())) {
-                this.lebar.setError("harap lengkapi form ini");
-                this.lebar.requestFocus();
-                return;
-            }
-
-            if (this.panjang.getText().toString().equalsIgnoreCase("0")) {
-                this.panjang.setError("masukan panjang yang benar");
-                this.panjang.requestFocus();
-                return;
-            }
-
-            if (this.lebar.getText().toString().equalsIgnoreCase("0")) {
-                this.lebar.setError("lebar harus lebih dari 0");
-                this.lebar.requestFocus();
-                return;
-            }
-
-            ukuran = this.panjang.getText().toString() + " x " + this.lebar.getText().toString();
-        } else {
-            ukuran = ukuransp;
-        }
-
-        if (bahansp.equalsIgnoreCase("custom")) {
-            if (bahan.isEmpty()) {
-                this.bahan.setError("harap lengkapi form ini");
-                this.bahan.requestFocus();
-                return;
-            }
-        } else {
-            bahan = bahansp;
-        }
-
-        if (quantity.isEmpty()) {
-            this.quantity.setError("harap lengkapi form ini");
-            this.quantity.requestFocus();
-            return;
-        }
-
-        if (harga.isEmpty()) {
-            this.harga.setError("harap lengkapi form ini");
-            this.harga.requestFocus();
-            return;
-        }
-
-        REQPekerjaanHelper reqPekerjaanHelper = new REQPekerjaanHelper(this);
-        reqPekerjaanHelper.open();
-        Intent intent;
-        REQLelangHelper reqLelangHelper = new REQLelangHelper(this);
-        reqLelangHelper.open();
-        boolean lelang_isempty = reqLelangHelper.isempty();
-        Lelang lelang = reqLelangHelper.getLelang();
-        if (edit) {
-            reqPekerjaanHelper.update(new Pekerjaan(ukuran, bahan, catatan, pekerjaan_id, Integer.parseInt(quantity), kategori_id, Long.parseLong(harga)));
-            if (!lelang_isempty) {
-                lelang.setLelang_anggaran(lelang.getLelang_anggaran() + Long.parseLong(harga) - lastharga);
-                reqLelangHelper.update(lelang);
-            }
-        } else {
-            if (!lelang_isempty) {
-                lelang.setLelang_anggaran(lelang.getLelang_anggaran() + Long.parseLong(harga));
-                reqLelangHelper.update(lelang);
-                intent = new Intent(this, Preview.class);
-                if (lelang.getLelang_status() != 0) {
-                    intent.putExtra("edit", true);
-                }
-            } else {
-                intent = new Intent(this, ListPekerjaan.class);
-            }
-            intent.putExtra("kategori_id", kategori_id);
-            reqPekerjaanHelper.insert(new Pekerjaan(ukuran, bahan, catatan, Integer.parseInt(quantity), kategori_id, Long.parseLong(harga)));
-            startActivity(intent);
-        }
-        reqLelangHelper.close();
-        reqPekerjaanHelper.close();
-
-        finish();
+    private String currencyFormat(String harga) {
+        harga=harga.replaceAll("[.,]","");
+        DecimalFormat kursIndonesia = (DecimalFormat) DecimalFormat.getCurrencyInstance();
+        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
+        formatRp.setCurrencySymbol("");
+        formatRp.setGroupingSeparator('.');
+        formatRp.setMonetaryDecimalSeparator(',');
+        kursIndonesia.setDecimalFormatSymbols(formatRp);
+        return kursIndonesia.format(Double.parseDouble(harga));
     }
 
     private void loadbahan() {
@@ -391,7 +340,7 @@ public class DetailSpesifikasi extends AppCompatActivity {
                                 return;
                             }
 
-                            if (panjang.getText().charAt(0)=='0') {
+                            if (panjang.getText().charAt(0) == '0') {
                                 panjang.setError("panjang tidak valid");
                                 panjang.requestFocus();
                                 return;
@@ -423,7 +372,7 @@ public class DetailSpesifikasi extends AppCompatActivity {
                                 return;
                             }
 
-                            if (lebar.getText().charAt(0)=='0') {
+                            if (lebar.getText().charAt(0) == '0') {
                                 lebar.setError("lebar tidak valid");
                                 lebar.requestFocus();
                                 return;
@@ -441,6 +390,113 @@ public class DetailSpesifikasi extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void next(View view) {
+        String ukuran = "",
+                ukuransp = this.ukuransp.getSelectedItem().toString().trim(),
+                bahan = this.bahan.getText().toString().trim(),
+                bahansp = this.bahansp.getSelectedItem().toString().trim(),
+                quantity = this.quantity.getText().toString().trim(),
+                harga = this.harga.getText().toString().trim(),
+                catatan = this.catatan.getText().toString().trim();
+
+        if (ukuransp.equalsIgnoreCase("custom")) {
+            if (TextUtils.isEmpty(this.panjang.getText().toString())) {
+                this.panjang.setError("harap lengkapi form ini");
+                this.panjang.requestFocus();
+                return;
+            }
+
+            if (TextUtils.isEmpty(this.lebar.getText().toString())) {
+                this.lebar.setError("harap lengkapi form ini");
+                this.lebar.requestFocus();
+                return;
+            }
+
+            if (this.panjang.getText().toString().equalsIgnoreCase("0")) {
+                this.panjang.setError("masukan panjang yang benar");
+                this.panjang.requestFocus();
+                return;
+            }
+
+            if (this.lebar.getText().toString().equalsIgnoreCase("0")) {
+                this.lebar.setError("lebar harus lebih dari 0");
+                this.lebar.requestFocus();
+                return;
+            }
+
+            ukuran = this.panjang.getText().toString() + " x " + this.lebar.getText().toString();
+        } else {
+            ukuran = ukuransp;
+        }
+
+        if (bahansp.equalsIgnoreCase("custom")) {
+            if (bahan.isEmpty()) {
+                this.bahan.setError("harap lengkapi form ini");
+                this.bahan.requestFocus();
+                return;
+            }
+        } else {
+            bahan = bahansp;
+        }
+
+        if (quantity.isEmpty()) {
+            this.quantity.setError("harap lengkapi form ini");
+            this.quantity.requestFocus();
+            return;
+        }
+
+        if (harga.isEmpty()) {
+            this.harga.setError("harap lengkapi form ini");
+            this.harga.requestFocus();
+            return;
+        }
+
+        if (harga.charAt(0) == '0') {
+            this.harga.setError("harga tidak valid");
+            this.harga.requestFocus();
+            return;
+        }
+
+        if (catatan.isEmpty()) {
+            catatan = "-";
+        }
+
+        harga=harga.replaceAll("[.,]","");
+
+        REQPekerjaanHelper reqPekerjaanHelper = new REQPekerjaanHelper(this);
+        reqPekerjaanHelper.open();
+        Intent intent;
+        REQLelangHelper reqLelangHelper = new REQLelangHelper(this);
+        reqLelangHelper.open();
+        boolean lelang_isempty = reqLelangHelper.isempty();
+        Lelang lelang = reqLelangHelper.getLelang();
+        if (edit) {
+            reqPekerjaanHelper.update(new Pekerjaan(ukuran, bahan, catatan, pekerjaan_id, Integer.parseInt(quantity), kategori_id, Long.parseLong(harga)));
+            if (!lelang_isempty) {
+                lelang.setLelang_anggaran(lelang.getLelang_anggaran() + Long.parseLong(harga) - lastharga);
+                reqLelangHelper.update(lelang);
+            }
+        } else {
+            if (!lelang_isempty) {
+                lelang.setLelang_anggaran(lelang.getLelang_anggaran() + Long.parseLong(harga));
+                reqLelangHelper.update(lelang);
+                intent = new Intent(this, Preview.class);
+                if (lelang.getLelang_status() != 0) {
+                    intent.putExtra("edit", true);
+                }
+            } else {
+                intent = new Intent(this, ListPekerjaan.class);
+            }
+            intent.putExtra("kategori_id", kategori_id);
+            reqPekerjaanHelper.insert(new Pekerjaan(ukuran, bahan, catatan, Integer.parseInt(quantity), kategori_id, Long.parseLong(harga)));
+            startActivity(intent);
+        }
+        reqLelangHelper.close();
+        reqPekerjaanHelper.close();
+
+        finish();
     }
 
     public void back(View view) {

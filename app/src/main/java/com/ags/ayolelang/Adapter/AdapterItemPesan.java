@@ -144,7 +144,7 @@ public class AdapterItemPesan extends RecyclerView.Adapter<RecyclerView.ViewHold
         return mPesan.contains(pesan);
     }
 
-    public ArrayList<Integer> getArray(){
+    public ArrayList<Integer> getlistIdPesan(){
         ArrayList<Integer> pesans_id=new ArrayList<>();
         for (InterfacePesan interfacePesan:mPesan){
             if (interfacePesan.getClass().isInstance(new Pesan())){

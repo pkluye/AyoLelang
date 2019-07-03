@@ -166,4 +166,14 @@ public class SpecBarangHelper {
         db.execSQL("VACUUM");
     }
 
+    public boolean isempty() {
+        Cursor cursor = db.query(TABLE_SPECBARANG, null, null, null, null, null, null, null);
+        int count = cursor.getCount();
+        cursor.close();
+        if (count == 0) {
+            return true;
+        }
+        return false;
+    }
+
 }

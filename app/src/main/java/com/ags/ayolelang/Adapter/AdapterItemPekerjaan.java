@@ -62,15 +62,19 @@ public class AdapterItemPekerjaan extends RecyclerView.Adapter<AdapterItemPekerj
         customHolderView.btn_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    if (pekerjaan.getPekerjaan_status()==0){
-                        Log.d("delete","ya");
-                        deleteItem(pekerjaan.getPekerjaan_id());
-                    }else{
-                        Log.d("update status","ya");
-                        updatestatus(pekerjaan.getPekerjaan_id());
+                    if (pekerjaanArrayList.size()>1){
+                        if (pekerjaan.getPekerjaan_status()==0){
+                            Log.d("delete","ya");
+                            deleteItem(pekerjaan.getPekerjaan_id());
+                        }else{
+                            Log.d("update status","ya");
+                            updatestatus(pekerjaan.getPekerjaan_id());
+                        }
+                        pekerjaanArrayList.remove(i);
+                        notifyDataSetChanged();
+                    }else {
+                        Toast.makeText(context,"Pekerjaan harus lebih dari 1",Toast.LENGTH_SHORT).show();
                     }
-                    pekerjaanArrayList.remove(i);
-                    notifyDataSetChanged();
             }
         });
 
@@ -116,8 +120,9 @@ public class AdapterItemPekerjaan extends RecyclerView.Adapter<AdapterItemPekerj
         TextView txt_harga = dialog.findViewById(R.id.txt_harga);
         TextView txt_catatan = dialog.findViewById(R.id.txt_catatan);
         Button close_btn = (Button) dialog.findViewById(R.id.close_btn);
-
-        txt_ukuran.setText(pekerjaan.getPekerjaan_ukuran());
+        if (!pekerjaan.getPekerjaan_ukuran().equalsIgnoreCase("N/A")){
+            txt_ukuran.setText(pekerjaan.getPekerjaan_ukuran());
+        }
         txt_bahan.setText(pekerjaan.getPekerjaan_bahan());
         txt_jumlah.setText(pekerjaan.getPekerjaan_jumlah() + "");
         txt_harga.setText(pekerjaan.getPekerjaan_harga() + "");
