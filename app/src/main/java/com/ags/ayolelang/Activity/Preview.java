@@ -78,14 +78,14 @@ public class Preview extends AppCompatActivity {
         txt_bahan = findViewById(R.id.txt_bahan);
         txt_jumlah = findViewById(R.id.txt_jumlah);
         txt_harga = findViewById(R.id.txt_harga);
-        txt_deadline = findViewById(R.id.txt_deadline);
+//        txt_deadline = findViewById(R.id.txt_deadline);
         txt_attachment = findViewById(R.id.txt_attachment);
         txt_pembayaran = findViewById(R.id.txt_pembayaran);
         txt_deskripsi = findViewById(R.id.txt_deskripsi);
         txt_perkiraan_totalHarga = findViewById(R.id.txt_perkiraan_totalHarga);
         rv_lelang = findViewById(R.id.reyclerview_listItem_lelang);
         btn_tambah_keranjang = findViewById(R.id.btn_tambah_keranjang);
-        btn_edit_deskripsi = findViewById(R.id.btn_edit_deskripsi);
+//        btn_edit_deskripsi = findViewById(R.id.btn_edit_deskripsi);
         btn_edit = findViewById(R.id.btn_edit);
         btn_posting = findViewById(R.id.btn_posting);
         txt_catatan = findViewById(R.id.txt_catatan);

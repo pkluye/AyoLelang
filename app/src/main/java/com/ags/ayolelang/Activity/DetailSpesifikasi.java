@@ -28,6 +28,7 @@ import com.rengwuxian.materialedittext.MaterialEditText;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class DetailSpesifikasi extends AppCompatActivity {
 
@@ -253,8 +254,9 @@ public class DetailSpesifikasi extends AppCompatActivity {
     }
 
     private String currencyFormat(String harga) {
+        Locale localeID = new Locale("in", "ID");
         harga=harga.replaceAll("[.,]","");
-        DecimalFormat kursIndonesia = (DecimalFormat) DecimalFormat.getCurrencyInstance();
+        DecimalFormat kursIndonesia = (DecimalFormat) DecimalFormat.getCurrencyInstance(localeID);
         DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
         formatRp.setCurrencySymbol("");
         formatRp.setGroupingSeparator('.');

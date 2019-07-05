@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".Activity.LoginActivity"
     android:gravity="center_vertical"
-    android:background="@color/colorPrimaryDark">
+    android:background="@color/colorWhite">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -21,58 +21,72 @@
                 android:id="@+id/gambar_login"
                 android:layout_width="125dp"
                 android:layout_height="125dp"
-                app:srcCompat="@drawable/logo"
+                app:srcCompat="@drawable/logo_fix"
                 android:layout_gravity="center"/>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Log In"
+                android:textSize="@dimen/Font_Body"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Masukkan email dan password anda"
+                android:textSize="@dimen/Font_Caption"
+                android:textColor="@color/colorGrey2"/>
+
             <LinearLayout
-                android:layout_marginTop="50dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:gravity="center_horizontal">
 
-                <EditText
-                    android:paddingLeft="16dp"
-                    android:textColor="@color/colorWhite"
-                    android:textColorHint="@color/colorWhite"
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textColorHint="@color/colorPrimaryDark"
                     android:id="@+id/in_email"
                     android:layout_width="250dp"
                     android:layout_height="50dp"
-                    android:background="@drawable/button_rectangle_border_white"
-                    android:ems="8"
                     android:hint="E-Mail"
-                    android:inputType="textEmailAddress"
-                    android:scrollbars = "vertical"/>
+                    android:inputType="textEmailAddress" />
 
-                <EditText
-                    android:paddingLeft="16dp"
-                    android:textColor="@color/colorWhite"
-                    android:textColorHint="@color/colorWhite"
-                    android:layout_marginTop="25dp"
-                    android:id="@+id/in_password"
-                    android:layout_width="250dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/button_rectangle_border_white"
-                    android:ems="8"
-                    android:hint="Password"
-                    android:inputType="textPassword"
-                    android:scrollbars = "vertical"/>
+                </android.support.design.widget.TextInputLayout>
 
-                <TextView
+                <android.support.design.widget.TextInputLayout
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:clickable="true"
-                    android:onClick="lupapassword"
-                    android:text="Lupa Password?"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="@dimen/Font_Body2"
-                    android:gravity="center"/>
+                    app:passwordToggleEnabled="true"
+                    >
+
+                    <EditText
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textColorHint="@color/colorPrimaryDark"
+                        android:layout_marginTop="25dp"
+                        android:id="@+id/in_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Password"
+                        android:inputType="textPassword"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+
+
+
 
                 <Button
                     android:id="@+id/btn_login"
                     android:layout_width="250dp"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="25dp"
                     android:background="@drawable/button_rectangle"
                     android:backgroundTint="@color/colorPrimary"
@@ -83,7 +97,18 @@
                     android:textSize="@dimen/Font_Button"/>
 
                 <TextView
-                    android:textColor="@color/colorWhite"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:clickable="true"
+                    android:onClick="lupapassword"
+                    android:text="Lupa Password?"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/Font_Body2"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:textColor="@color/colorPrimaryDark"
                     android:layout_marginTop="16dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -91,52 +116,49 @@
                     android:textStyle="bold"
                     android:textSize="@dimen/Font_Body"/>
 
-                <Button
-                    android:id="@+id/btn_loginGoogle"
+
+                <com.google.android.gms.common.SignInButton
+                    android:layout_marginTop="8dp"
+                    android:id="@+id/google_button"
                     android:layout_width="250dp"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="16dp"
-                    android:background="@drawable/button_rectangle"
-                    android:backgroundTint="@color/colorWhite"
-                    android:drawableLeft="@drawable/google"
-                    android:onClick="login"
-                    android:paddingLeft="10dp"
-                    android:text="Login with google"
-                    android:textColor="@color/colorBlack"/>
+                    android:layout_height="match_parent"
 
-            </LinearLayout>
+                    android:textSize="@dimen/Font_Button"/>
 
 
-            <LinearLayout
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center">
+           </LinearLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Belum punya akun ?"
-                    android:textSize="@dimen/Font_Caption"
 
-                    android:textColor="@color/colorWhite"
-                    />
+            <!--<LinearLayout-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:orientation="horizontal"-->
+                <!--android:gravity="center">-->
 
-                <TextView
-                    android:layout_marginLeft="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Daftar sekarang"
-                    android:clickable="true"
-                    android:onClick="register"
-                    android:textColor="@color/colorWhite"
-                    android:textStyle="bold"
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="Belum punya akun ?"-->
+                    <!--android:textSize="@dimen/Font_Caption"-->
 
-                    android:textSize="@dimen/Font_Caption"
-                    />
+                    <!--android:textColor="@color/colorWhite"-->
+                    <!--/>-->
 
-            </LinearLayout>
+                <!--<TextView-->
+                    <!--android:layout_marginLeft="10dp"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="Daftar sekarang"-->
+                    <!--android:clickable="true"-->
+                    <!--android:onClick="register"-->
+                    <!--android:textColor="@color/colorWhite"-->
+                    <!--android:textStyle="bold"-->
+
+                    <!--android:textSize="@dimen/Font_Caption"-->
+                    <!--/>-->
+
+            <!--</LinearLayout>-->
 
         </LinearLayout>
 
