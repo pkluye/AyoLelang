@@ -39,14 +39,15 @@ public class DetailSpesifikasi extends AppCompatActivity {
     private TextView txt_subtext_kategori_dipilih;
     private boolean edit;
     private int pekerjaan_id;
-    private long lastharga;
     private Spinner ukuransp, bahansp;
     private SpecBarangHelper SBHelper;
     private RadioButton sisiradio1, sisiradio2;
+    private String jmlsisi;
     private Spinner laminasisp;
     private LinearLayout layout_ukuran, layout_bahan, layout_sisi, layout_laminasi;
     private EditText lebar;
     private EditText panjang;
+    private Pekerjaan lastPekerjaan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,32 +84,31 @@ public class DetailSpesifikasi extends AppCompatActivity {
         txt_subtext_kategori_dipilih.setText(kategori_nama);
         if (edit) {
             pekerjaan_id = intent.getIntExtra("pekerjaan_id", 0);
-            String ukuran_e = intent.getStringExtra("ukuran");
-            //ukuran.setText(ukuran_e);
-            String bahan_e = intent.getStringExtra("bahan");
-            bahan.setText(bahan_e);
-            int jumlah = intent.getIntExtra("jumlah", 0);
-            quantity.setText(jumlah + "");
-            long harga_e = intent.getLongExtra("harga", 0);
-            harga.setText(harga_e + "");
-            String catatan_e = intent.getStringExtra("catatan");
-            catatan.setText(catatan_e);
-            lastharga = intent.getLongExtra("harga", 0);
+            lastPekerjaan=new Pekerjaan();
+            lastPekerjaan.setPekerjaan_ukuran(intent.getStringExtra("ukuran"));
+            lastPekerjaan.setPekerjaan_bahan(intent.getStringExtra("bahan"));
+            lastPekerjaan.setPekerjaan_jumlah(intent.getIntExtra("jumlah", 0));
+            lastPekerjaan.setPekerjaan_harga(intent.getLongExtra("harga", 0));
+            lastPekerjaan.setPekerjaan_jmlsisi(intent.getStringExtra("jmlsisi"));
+            lastPekerjaan.setPekerjaan_laminasi(intent.getStringExtra("laminasi"));
+            lastPekerjaan.setPekerjaan_catatan(intent.getStringExtra("catatan"));
+            quantity.setText(lastPekerjaan.getPekerjaan_jumlah()+"");
         }
         loadbahan();
         loadukuran();
         loadlaminasi();
         loadsisi();
+
         sisiradio1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadharga();
+                if(ukuransp.getAdapter()!=null||bahansp.getAdapter()!=null||laminasisp!=null)loadharga();
             }
         });
         sisiradio2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadharga();
+                if(ukuransp.getAdapter()!=null||bahansp.getAdapter()!=null||laminasisp!=null)loadharga();
             }
         });
         quantity.addTextChangedListener(new TextWatcher() {
@@ -137,7 +137,7 @@ public class DetailSpesifikasi extends AppCompatActivity {
                     return;
                 }
 
-                loadharga();
+                if(ukuransp.getAdapter()!=null||bahansp.getAdapter()!=null||laminasisp!=null)loadharga();
             }
         });
         harga.addTextChangedListener(new TextWatcher() {
@@ -171,7 +171,7 @@ public class DetailSpesifikasi extends AppCompatActivity {
                 harga.addTextChangedListener(this);
             }
         });
-        loadharga();
+        if(ukuransp.getAdapter()!=null||bahansp.getAdapter()!=null||laminasisp!=null)loadharga();
     }
 
     private void loadsisi() {
@@ -181,7 +181,15 @@ public class DetailSpesifikasi extends AppCompatActivity {
         if (listsisi != null) {
             if (!listsisi.contains("N/A")) {
                 layout_sisi.setVisibility(View.VISIBLE);
+                if (edit){
+                    if (lastPekerjaan.getPekerjaan_jmlsisi().equalsIgnoreCase("1")){
+                        sisiradio1.setChecked(true);
+                    }else{
+                        sisiradio2.setChecked(true);
+                    }
+                }
             } else {
+                jmlsisi = "N/A";
                 layout_sisi.setVisibility(View.GONE);
             }
         }
@@ -192,19 +200,28 @@ public class DetailSpesifikasi extends AppCompatActivity {
         ArrayList<String> listlaminasi = SBHelper.getLaminasi(kategori_id + "");
         SBHelper.close();
         if (listlaminasi != null) {
-            if (!listlaminasi.contains("N/A")) {
-                layout_laminasi.setVisibility(View.VISIBLE);
-            } else {
-                layout_laminasi.setVisibility(View.GONE);
-            }
             ArrayAdapter<String> spadapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, listlaminasi);
             spadapter.notifyDataSetChanged();
             laminasisp.setAdapter(spadapter);
+            if (!listlaminasi.contains("N/A")) {
+                layout_laminasi.setVisibility(View.VISIBLE);
+                if (edit) {
+                    if (listlaminasi.contains(lastPekerjaan.getPekerjaan_laminasi())) {
+                        int potition = spadapter.getPosition(lastPekerjaan.getPekerjaan_bahan());
+                        laminasisp.setSelection(potition);
+                    }else{
+                        int potition = spadapter.getPosition("custom");
+                        laminasisp.setSelection(potition);
+                    }
+                }
+            } else {
+                layout_laminasi.setVisibility(View.GONE);
+            }
         }
         laminasisp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                loadharga();
+                if(bahansp.getAdapter()!=null||ukuransp.getAdapter()!=null)loadharga();
             }
 
             @Override
@@ -217,21 +234,22 @@ public class DetailSpesifikasi extends AppCompatActivity {
     private void loadharga() {
         SBHelper.open();
         int sisi = sisiradio1.isChecked() ? 1 : 2;
+        jmlsisi = sisi + "";
         long harga = 0;
         if (layout_sisi.getVisibility() == View.VISIBLE) {
             harga = SBHelper.getHargaSatuan(
                     kategori_id + "",
-                    ukuransp.getSelectedItem().toString(),
-                    bahansp.getSelectedItem().toString(),
+                    ukuransp.getSelectedItem().toString()+"",
+                    bahansp.getSelectedItem().toString()+"",
                     sisi + "",
-                    laminasisp.getSelectedItem().toString());
+                    laminasisp.getSelectedItem().toString()+"");
         } else {
             harga = SBHelper.getHargaSatuan(
                     kategori_id + "",
-                    ukuransp.getSelectedItem().toString(),
-                    bahansp.getSelectedItem().toString(),
+                    ukuransp.getSelectedItem().toString()+"",
+                    bahansp.getSelectedItem().toString()+"",
                     "N/A",
-                    laminasisp.getSelectedItem().toString());
+                    laminasisp.getSelectedItem().toString()+"");
         }
         if (harga > 0) {
             quantity.setHelperText("Rp. " + harga + "/" + SBHelper.getSatuan(kategori_id + ""));
@@ -255,7 +273,7 @@ public class DetailSpesifikasi extends AppCompatActivity {
 
     private String currencyFormat(String harga) {
         Locale localeID = new Locale("in", "ID");
-        harga=harga.replaceAll("[.,]","");
+        harga = harga.replaceAll("[.,]", "");
         DecimalFormat kursIndonesia = (DecimalFormat) DecimalFormat.getCurrencyInstance(localeID);
         DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
         formatRp.setCurrencySymbol("");
@@ -270,14 +288,24 @@ public class DetailSpesifikasi extends AppCompatActivity {
         ArrayList<String> listbahan = SBHelper.getBahan(kategori_id + "");
         SBHelper.close();
         if (listbahan != null) {
-            if (!listbahan.contains("N/A")) {
-                layout_bahan.setVisibility(View.VISIBLE);
-            } else {
-                layout_bahan.setVisibility(View.GONE);
-            }
             ArrayAdapter<String> spadapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, listbahan);
             spadapter.notifyDataSetChanged();
             bahansp.setAdapter(spadapter);
+
+            if (!listbahan.contains("N/A")) {
+                layout_bahan.setVisibility(View.VISIBLE);
+                if (edit) {
+                    if (listbahan.contains(lastPekerjaan.getPekerjaan_bahan())) {
+                        int potition = spadapter.getPosition(lastPekerjaan.getPekerjaan_bahan());
+                        bahansp.setSelection(potition);
+                    }else{
+                        int potition = spadapter.getPosition("custom");
+                        bahansp.setSelection(potition);
+                    }
+                }
+            } else {
+                layout_bahan.setVisibility(View.GONE);
+            }
         }
         bahansp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -288,7 +316,7 @@ public class DetailSpesifikasi extends AppCompatActivity {
                     bahan.setVisibility(View.VISIBLE);
                     bahan.requestFocus();
                 }
-                loadharga();
+                if(ukuransp.getAdapter()!=null||laminasisp.getAdapter()!=null)loadharga();
             }
 
             @Override
@@ -303,14 +331,27 @@ public class DetailSpesifikasi extends AppCompatActivity {
         ArrayList<String> listukuran = SBHelper.getUkuran(kategori_id + "");
         SBHelper.close();
         if (listukuran != null) {
-            if (!listukuran.contains("N/A")) {
-                layout_ukuran.setVisibility(View.VISIBLE);
-            } else {
-                layout_ukuran.setVisibility(View.GONE);
-            }
             ArrayAdapter<String> spadapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, listukuran);
             spadapter.notifyDataSetChanged();
             ukuransp.setAdapter(spadapter);
+            if (!listukuran.contains("N/A")) {
+                layout_ukuran.setVisibility(View.VISIBLE);
+                if (edit) {
+                    if (listukuran.contains(lastPekerjaan.getPekerjaan_ukuran())) {
+                        int potition = spadapter.getPosition(lastPekerjaan.getPekerjaan_bahan());
+                        ukuransp.setSelection(potition);
+                    } else {
+                        int potition=spadapter.getPosition("custom");
+                        ukuransp.setSelection(potition);
+                        String ukuran_et=lastPekerjaan.getPekerjaan_ukuran().replace(" ","");
+                        String []split=ukuran_et.split("x");
+                        panjang.setText(split[0]);
+                        lebar.setText(split[1]);
+                    }
+                }
+            } else {
+                layout_ukuran.setVisibility(View.GONE);
+            }
         }
         ukuransp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -384,7 +425,7 @@ public class DetailSpesifikasi extends AppCompatActivity {
                         }
                     });
                 }
-                loadharga();
+                if(bahansp.getAdapter()!=null||laminasisp.getAdapter()!=null)loadharga();
             }
 
             @Override
@@ -399,6 +440,8 @@ public class DetailSpesifikasi extends AppCompatActivity {
                 ukuransp = this.ukuransp.getSelectedItem().toString().trim(),
                 bahan = this.bahan.getText().toString().trim(),
                 bahansp = this.bahansp.getSelectedItem().toString().trim(),
+                jmlsisi = this.jmlsisi,
+                laminasi = this.laminasisp.getSelectedItem().toString(),
                 quantity = this.quantity.getText().toString().trim(),
                 harga = this.harga.getText().toString().trim(),
                 catatan = this.catatan.getText().toString().trim();
@@ -465,7 +508,7 @@ public class DetailSpesifikasi extends AppCompatActivity {
             catatan = "-";
         }
 
-        harga=harga.replaceAll("[.,]","");
+        harga = harga.replaceAll("[.,]", "");
 
         REQPekerjaanHelper reqPekerjaanHelper = new REQPekerjaanHelper(this);
         reqPekerjaanHelper.open();
@@ -475,24 +518,15 @@ public class DetailSpesifikasi extends AppCompatActivity {
         boolean lelang_isempty = reqLelangHelper.isempty();
         Lelang lelang = reqLelangHelper.getLelang();
         if (edit) {
-            reqPekerjaanHelper.update(new Pekerjaan(ukuran, bahan, catatan, pekerjaan_id, Integer.parseInt(quantity), kategori_id, Long.parseLong(harga)));
+            reqPekerjaanHelper.update(new Pekerjaan(ukuran, bahan, catatan, pekerjaan_id, Integer.parseInt(quantity), kategori_id, Long.parseLong(harga), jmlsisi, laminasi));
             if (!lelang_isempty) {
-                lelang.setLelang_anggaran(lelang.getLelang_anggaran() + Long.parseLong(harga) - lastharga);
+                lelang.setLelang_anggaran(lelang.getLelang_anggaran() + Long.parseLong(harga) - lastPekerjaan.getPekerjaan_harga());
                 reqLelangHelper.update(lelang);
             }
         } else {
-            if (!lelang_isempty) {
-                lelang.setLelang_anggaran(lelang.getLelang_anggaran() + Long.parseLong(harga));
-                reqLelangHelper.update(lelang);
-                intent = new Intent(this, Preview.class);
-                if (lelang.getLelang_status() != 0) {
-                    intent.putExtra("edit", true);
-                }
-            } else {
-                intent = new Intent(this, ListPekerjaan.class);
-            }
+            intent = new Intent(this, ListPekerjaan.class);
             intent.putExtra("kategori_id", kategori_id);
-            reqPekerjaanHelper.insert(new Pekerjaan(ukuran, bahan, catatan, Integer.parseInt(quantity), kategori_id, Long.parseLong(harga)));
+            reqPekerjaanHelper.insert(new Pekerjaan(ukuran, bahan, catatan, Integer.parseInt(quantity), kategori_id, Long.parseLong(harga), jmlsisi, laminasi));
             startActivity(intent);
         }
         reqLelangHelper.close();

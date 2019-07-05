@@ -3,9 +3,8 @@ package com.ags.ayolelang.Activity;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
-import android.app.MediaRouteButton;
 import android.app.ProgressDialog;
-import android.app.RemoteAction;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -29,6 +28,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.ags.ayolelang.API.RetrofitClient;
@@ -36,7 +36,6 @@ import com.ags.ayolelang.DBHelper.KotaHelper;
 import com.ags.ayolelang.DBHelper.ProvinsiHelper;
 import com.ags.ayolelang.DBHelper.REQLelangHelper;
 import com.ags.ayolelang.DBHelper.REQPekerjaanHelper;
-import com.ags.ayolelang.Fragment.DatePickerFragmentDialog;
 import com.ags.ayolelang.Models.Kota;
 import com.ags.ayolelang.Models.Lelang;
 import com.ags.ayolelang.Models.Pekerjaan;
@@ -61,7 +60,7 @@ import retrofit2.Response;
 import static com.ags.ayolelang.API.RetrofitClient.secret_key;
 
 
-public class Deskripsi extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+public class Deskripsi extends AppCompatActivity implements DatePickerDialog.OnDateSetListener,TimePickerDialog.OnTimeSetListener {
 
     EditText judul, deskripsi, deadline, alamat;
     TextView txt_namaFile;
@@ -114,9 +113,9 @@ public class Deskripsi extends AppCompatActivity implements DatePickerDialog.OnD
             alamat_e = intent.getStringExtra("alamatlengkap");
             prov_e = intent.getStringExtra("provnama");
             kota_e = intent.getStringExtra("kotanama");
-            pembayaran_e = intent.getIntExtra("pembayaran",0);
+            pembayaran_e = intent.getIntExtra("pembayaran", 0);
             lelang_id_e = intent.getIntExtra("id", 0);
-            Log.d("id lelang",lelang_id_e+"");
+            Log.d("id lelang", lelang_id_e + "");
             txt_url_e = intent.getStringExtra("fileurl");
         }
 
@@ -143,11 +142,11 @@ public class Deskripsi extends AppCompatActivity implements DatePickerDialog.OnD
             alamat.setText(alamat_e);
             txt_url.setText(txt_url_e);
             if (txt_url_e.length() > 1) {
-                String filename="";
-                if (txt_url_e.length()>79){
+                String filename = "";
+                if (txt_url_e.length() > 79) {
                     int posOfSubstr = txt_url_e.lastIndexOf("/") + 12;
                     filename = txt_url_e.substring(posOfSubstr);
-                }else{
+                } else {
                     filename = txt_url_e;
                 }
                 txt_namaFile.setText(filename);
@@ -185,8 +184,12 @@ public class Deskripsi extends AppCompatActivity implements DatePickerDialog.OnD
         image_Kalender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogFragment datePicker = new DatePickerFragmentDialog();
-                datePicker.show(getSupportFragmentManager(), "Custom Date Picker");
+                Calendar calendar = Calendar.getInstance();
+                int year = calendar.get(Calendar.YEAR);
+                int month = calendar.get(Calendar.MONTH);
+                int dayOfmonth = calendar.get(Calendar.DAY_OF_MONTH);
+                DatePickerDialog datePicker = datePicker = new DatePickerDialog(Deskripsi.this, Deskripsi.this, year, month, dayOfmonth);
+                datePicker.show();
             }
         });
     }
@@ -260,8 +263,8 @@ public class Deskripsi extends AppCompatActivity implements DatePickerDialog.OnD
         REQLelangHelper reqLelangHelper = new REQLelangHelper(this);
         reqLelangHelper.open();
         if (edit) {
-            Log.d("deskripsi",deadline);
-            Lelang lelang=new Lelang(deskripsi,
+            Log.d("deskripsi", deadline);
+            Lelang lelang = new Lelang(deskripsi,
                     lelang_id_e,
                     deadline,
                     judul,
@@ -271,7 +274,6 @@ public class Deskripsi extends AppCompatActivity implements DatePickerDialog.OnD
                     getKotaid(kota),
                     pembayaran,
                     totalharga);
-            Log.d("lelang",lelang.toString());
             reqLelangHelper.update(lelang);
             reqLelangHelper.close();
         } else {
@@ -285,7 +287,7 @@ public class Deskripsi extends AppCompatActivity implements DatePickerDialog.OnD
                     pembayaran,
                     totalharga));
             reqLelangHelper.close();
-            Intent intent=new Intent(this, Preview.class);
+            Intent intent = new Intent(this, Preview.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
         }
@@ -308,20 +310,31 @@ public class Deskripsi extends AppCompatActivity implements DatePickerDialog.OnD
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         Calendar calendar = Calendar.getInstance();
+        int hour=calendar.get(Calendar.HOUR_OF_DAY);
+        int minute=calendar.get(Calendar.MINUTE);
         calendar.set(Calendar.YEAR, year);
         calendar.set(Calendar.MONTH, month);
         calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-        calendar.set(Calendar.HOUR_OF_DAY, 23);
-        calendar.set(Calendar.MINUTE, 59);
-        calendar.set(Calendar.SECOND, 59);
 
         @SuppressLint("SimpleDateFormat") DateFormat dateFormat = new
-                SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                SimpleDateFormat("yyyy-MM-dd");
         String currentDateString = dateFormat.format(calendar.getTime());
-
         deadline.setText(currentDateString);
+        TimePickerDialog timepicker = new TimePickerDialog(Deskripsi.this, Deskripsi.this,hour,minute,true);
+        timepicker.show();
     }
 
+    @Override
+    public void onTimeSet(TimePicker view, int hour, int minute) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, hour);
+        calendar.set(Calendar.MINUTE, minute);
+        calendar.set(Calendar.SECOND,00);
+        @SuppressLint("SimpleDateFormat") DateFormat dateFormat = new
+                SimpleDateFormat("HH:mm:ss");
+        String currentDateString = dateFormat.format(calendar.getTime());
+        deadline.append(" "+currentDateString);
+    }
 
     public void upload(View view) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {

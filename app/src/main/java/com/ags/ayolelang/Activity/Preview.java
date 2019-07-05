@@ -43,7 +43,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -55,13 +58,13 @@ public class Preview extends AppCompatActivity {
 
     private TextView txt_judul, txt_alamat, txt_alamatlengkap, txt_deskripsi, txt_ukuran, txt_bahan, txt_jumlah, txt_harga, txt_deadline, txt_pembayaran, txt_attachment, txt_perkiraan_totalHarga, txt_catatan;
     private RecyclerView rv_lelang;
-    private FloatingActionButton btn_tambah_keranjang;
     private Button btn_edit, btn_posting, btn_edit_deskripsi;
     //    private ImageButton btn_home;
     private Toolbar toolbar;
-    private boolean edit;
     REQPekerjaanHelper reqPekerjaanHelper = new REQPekerjaanHelper(this);
     REQLelangHelper reqLelangHelper = new REQLelangHelper(this);
+    private TextView txt_laminasi;
+    private TextView txt_sisi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,133 +81,40 @@ public class Preview extends AppCompatActivity {
         txt_bahan = findViewById(R.id.txt_bahan);
         txt_jumlah = findViewById(R.id.txt_jumlah);
         txt_harga = findViewById(R.id.txt_harga);
-//        txt_deadline = findViewById(R.id.txt_deadline);
+        txt_sisi=findViewById(R.id.txt_sisi);
+        txt_laminasi=findViewById(R.id.txt_laminasi);
         txt_attachment = findViewById(R.id.txt_attachment);
+        txt_deadline=findViewById(R.id.txt_deadline);
         txt_pembayaran = findViewById(R.id.txt_pembayaran);
         txt_deskripsi = findViewById(R.id.txt_deskripsi);
         txt_perkiraan_totalHarga = findViewById(R.id.txt_perkiraan_totalHarga);
         rv_lelang = findViewById(R.id.reyclerview_listItem_lelang);
-        btn_tambah_keranjang = findViewById(R.id.btn_tambah_keranjang);
-//        btn_edit_deskripsi = findViewById(R.id.btn_edit_deskripsi);
         btn_edit = findViewById(R.id.btn_edit);
+        btn_edit_deskripsi=findViewById(R.id.btn_edit_deskripsi);
         btn_posting = findViewById(R.id.btn_posting);
         txt_catatan = findViewById(R.id.txt_catatan);
         rv_lelang.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        Intent intent = getIntent();
-        edit = intent.getBooleanExtra("edit", false);
-        if (edit) {
-            btn_posting.setText("Simpan");
-        }
+
         btn_posting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (edit) {
-                    edit();
-                } else {
                     postingLelang();
-                }
             }
         });
 
         loadDataLelang();
     }
 
-    private void edit() {
-        JSONObject lelang = new JSONObject();
-        final REQLelangHelper lelangHelper = new REQLelangHelper(this);
-        lelangHelper.open();
-        Lelang lelang_data = lelangHelper.getLelang();
-        lelangHelper.close();
-
-        try {
-            lelang.put("lelang_id", lelang_data.getLelang_id());
-            lelang.put("lelang_judul", lelang_data.getLelang_judul());
-            lelang.put("lelang_anggaran", lelang_data.getLelang_anggaran());
-            lelang.put("lelang_deskripsi", lelang_data.getLelang_deskripsi());
-            lelang.put("lelang_tglselesai", lelang_data.getLelang_tglselesai());
-            lelang.put("lelang_userid", lelang_data.getLelang_userid());
-            lelang.put("lelang_pembayaran", lelang_data.getLelang_pembayaran());
-            lelang.put("lelang_kota", lelang_data.getLelang_kota());
-            lelang.put("lelang_alamat", lelang_data.getLelang_alamat());
-            lelang.put("lelang_fileurl", lelang_data.getLelang_fileurl());
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        JSONArray pekerjaans = new JSONArray();
-        final REQPekerjaanHelper reqPekerjaanHelper = new REQPekerjaanHelper(this);
-        reqPekerjaanHelper.open();
-        ArrayList<Pekerjaan> pekerjaans_data = reqPekerjaanHelper.getPekerjaan();
-        reqPekerjaanHelper.close();
-        for (Pekerjaan pekerjaan : pekerjaans_data) {
-            JSONObject jsonObject = new JSONObject();
-            try {
-                if (pekerjaan.getPekerjaan_status() != 0) {
-                    jsonObject.put("pekerjaan_id", pekerjaan.getPekerjaan_id());
-                }
-                jsonObject.put("pekerjaan_ukuran", pekerjaan.getPekerjaan_ukuran());
-                jsonObject.put("pekerjaan_harga", pekerjaan.getPekerjaan_harga());
-                jsonObject.put("pekerjaan_bahan", pekerjaan.getPekerjaan_bahan());
-                jsonObject.put("pekerjaan_jumlah", pekerjaan.getPekerjaan_jumlah());
-                jsonObject.put("pekerjaan_catatan", pekerjaan.getPekerjaan_catatan());
-                jsonObject.put("pekerjaan_kategoriid", pekerjaan.getPekerjaan_kategoriid());
-                jsonObject.put("pekerjaan_status", pekerjaan.getPekerjaan_status());
-                pekerjaans.put(jsonObject);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-
-        final JSONObject req = new JSONObject();
-        try {
-            req.put("secret_key", secret_key);
-            req.put("lelang", lelang);
-            req.put("pekerjaan", pekerjaans);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        Log.d("req edit", req.toString());
-        Call<StringRespon> call = RetrofitClient.getInstance()
-                .getApi().editLelang(req.toString());
-
-        final ProgressDialog progressDoalog;
-        progressDoalog = new ProgressDialog(Preview.this);
-        //progressDoalog.setMax(100);
-        progressDoalog.setMessage("Loading....");
-        //progressDoalog.setTitle("ProgressDialog bar example");
-        progressDoalog.setCancelable(false);
-        progressDoalog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        // show it
-        progressDoalog.show();
-
-        call.enqueue(new Callback<StringRespon>() {
-            @Override
-            public void onResponse(Call<StringRespon> call, Response<StringRespon> response) {
-                progressDoalog.dismiss();
-                if (response.isSuccessful()) {
-                    StringRespon stringRespon = response.body();
-                    if (!stringRespon.isError()) {
-                        Toast.makeText(Preview.this, stringRespon.getMessage(), Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(Preview.this, MainActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        startActivity(intent);
-                        finish();
-                    } else {
-                        Toast.makeText(Preview.this, stringRespon.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    Toast.makeText(Preview.this, response.message(), Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<StringRespon> call, Throwable t) {
-                progressDoalog.dismiss();
-                Toast.makeText(Preview.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-                Log.d("aaaa", t.getMessage());
-
-            }
-        });
+    private String currencyFormat(String harga) {
+        Locale localeID = new Locale("in", "ID");
+        harga = harga.replaceAll("[.,]", "");
+        DecimalFormat kursIndonesia = (DecimalFormat) DecimalFormat.getCurrencyInstance(localeID);
+        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
+        formatRp.setCurrencySymbol("");
+        formatRp.setGroupingSeparator('.');
+        formatRp.setMonetaryDecimalSeparator(',');
+        kursIndonesia.setDecimalFormatSymbols(formatRp);
+        return kursIndonesia.format(Double.parseDouble(harga));
     }
 
     public void postingLelang() {
@@ -239,6 +149,8 @@ public class Preview extends AppCompatActivity {
                 jsonObject.put("pekerjaan_ukuran", pekerjaan.getPekerjaan_ukuran());
                 jsonObject.put("pekerjaan_harga", pekerjaan.getPekerjaan_harga());
                 jsonObject.put("pekerjaan_bahan", pekerjaan.getPekerjaan_bahan());
+                jsonObject.put("pekerjaan_jmlsisi",pekerjaan.getPekerjaan_jmlsisi());
+                jsonObject.put("pekerjaan_laminasi",pekerjaan.getPekerjaan_laminasi());
                 jsonObject.put("pekerjaan_jumlah", pekerjaan.getPekerjaan_jumlah());
                 jsonObject.put("pekerjaan_catatan", pekerjaan.getPekerjaan_catatan());
                 jsonObject.put("pekerjaan_kategoriid", pekerjaan.getPekerjaan_kategoriid());
@@ -339,12 +251,13 @@ public class Preview extends AppCompatActivity {
         Kota kota = kotaHelper.getKotabyidKota(lelang.getLelang_kota());
         kotaHelper.close();
         //set tampilan
+        Log.d("lelang", lelang.toString());
         txt_judul.setText(lelang.getLelang_judul());
         txt_alamat.setText(kota.getNama() + ", " + getProvnama(kota.getProvinsi_id()) + ", ID");
         txt_alamatlengkap.setText(lelang.getLelang_alamat());
-        txt_deadline.setText(lelang.getLelang_tglselesai());
+        txt_deadline.setText(lelang.getLelang_tglselesai()+"");
         txt_deskripsi.setText(lelang.getLelang_deskripsi());
-        txt_perkiraan_totalHarga.setText("Rp. " + lelang.getLelang_anggaran());
+        txt_perkiraan_totalHarga.setText("Rp. " + currencyFormat(lelang.getLelang_anggaran()+""));
         txt_pembayaran.setText(getResources().getStringArray(R.array.metode_bayar)[lelang.getLelang_pembayaran()]);
         if (lelang.getLelang_fileurl() != null) {
             Log.d("url", lelang.getLelang_fileurl());
@@ -399,16 +312,6 @@ public class Preview extends AppCompatActivity {
                 }
             });
         }
-        btn_tambah_keranjang.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Preview.this, MainActivity.class);
-                intent.putExtra("tambah_pekerjaan", true);
-                intent.putExtra("id", kategori_parent.getKategori_id());
-                intent.putExtra("tittle", kategori_parent.getKategori_nama());
-                startActivity(intent);
-            }
-        });
 
         btn_edit_deskripsi.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -456,9 +359,12 @@ public class Preview extends AppCompatActivity {
         final Kategori kategori_parent = kategoriHelper.getSingleKategori(lastkategori.getKategori_parentid());
         kategoriHelper.close();
         txt_ukuran.setText(pekerjaan.getPekerjaan_ukuran());
+
         txt_bahan.setText(pekerjaan.getPekerjaan_bahan());
         txt_jumlah.setText(pekerjaan.getPekerjaan_jumlah() + "");
-        txt_harga.setText("Rp. " + pekerjaan.getPekerjaan_harga());
+        txt_sisi.setText(pekerjaan.getPekerjaan_jmlsisi());
+        txt_laminasi.setText(pekerjaan.getPekerjaan_laminasi());
+        txt_harga.setText("Rp. " + currencyFormat(pekerjaan.getPekerjaan_harga()+""));
         txt_catatan.setText(pekerjaan.getPekerjaan_catatan());
         btn_edit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -468,6 +374,8 @@ public class Preview extends AppCompatActivity {
                 intent.putExtra("ukuran", pekerjaan.getPekerjaan_ukuran());
                 intent.putExtra("bahan", pekerjaan.getPekerjaan_bahan());
                 intent.putExtra("jumlah", pekerjaan.getPekerjaan_jumlah());
+                intent.putExtra("jmlsisi",pekerjaan.getPekerjaan_jmlsisi());
+                intent.putExtra("laminasi",pekerjaan.getPekerjaan_laminasi());
                 intent.putExtra("harga", pekerjaan.getPekerjaan_harga());
                 intent.putExtra("catatan", pekerjaan.getPekerjaan_catatan());
                 intent.putExtra("pekerjaan_id", pekerjaan.getPekerjaan_id());

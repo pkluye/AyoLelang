@@ -22,6 +22,7 @@
                 android:layout_width="125dp"
                 android:layout_height="125dp"
                 app:srcCompat="@drawable/logo_fix"
+                tools:ignore="MissingPrefix"
                 android:layout_gravity="center"/>
 
             <TextView

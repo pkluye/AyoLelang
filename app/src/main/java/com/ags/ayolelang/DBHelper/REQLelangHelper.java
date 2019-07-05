@@ -83,6 +83,7 @@ public class REQLelangHelper {
     }
 
     public long insert(Lelang lelang) {
+        Log.d("lelang", lelang.toString());
         ContentValues contentValues = new ContentValues();
         contentValues.put(LELANG_JUDUL, lelang.getLelang_judul());
         contentValues.put(LELANG_ALAMAT, lelang.getLelang_alamat());

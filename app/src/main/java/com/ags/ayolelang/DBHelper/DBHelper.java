@@ -27,8 +27,10 @@ import static com.ags.ayolelang.DBHelper.DBContract.PEKERJAAN.PEKERJAAN_BAHAN;
 import static com.ags.ayolelang.DBHelper.DBContract.PEKERJAAN.PEKERJAAN_CATATAN;
 import static com.ags.ayolelang.DBHelper.DBContract.PEKERJAAN.PEKERJAAN_HARGA;
 import static com.ags.ayolelang.DBHelper.DBContract.PEKERJAAN.PEKERJAAN_ID;
+import static com.ags.ayolelang.DBHelper.DBContract.PEKERJAAN.PEKERJAAN_JMLSISI;
 import static com.ags.ayolelang.DBHelper.DBContract.PEKERJAAN.PEKERJAAN_JUMLAH;
 import static com.ags.ayolelang.DBHelper.DBContract.PEKERJAAN.PEKERJAAN_KATEGORIID;
+import static com.ags.ayolelang.DBHelper.DBContract.PEKERJAAN.PEKERJAAN_LAMINASI;
 import static com.ags.ayolelang.DBHelper.DBContract.PEKERJAAN.PEKERJAAN_LELANGID;
 import static com.ags.ayolelang.DBHelper.DBContract.PEKERJAAN.PEKERJAAN_STATUS;
 import static com.ags.ayolelang.DBHelper.DBContract.PEKERJAAN.PEKERJAAN_UKURAN;
@@ -97,22 +99,24 @@ public class DBHelper extends SQLiteOpenHelper {
                     LELANG_KOTA + " INTEGER NOT NULL, " +
                     LELANG_PEMBAYARAN + " INTEGER NOT NULL, " +
                     LELANG_STATUS + " INTEGER NOT NULL, " +
-                    LELANG_FILEURL + " TEKS NOT NULL, " +
-                    LELANG_TGLMULAI + " TEKS NOT NULL, " +
-                    LELANG_TGLSELESAI + " TEKS NOT NULL, " +
+                    LELANG_FILEURL + " TEXT NOT NULL, " +
+                    LELANG_TGLMULAI + " TEXT NOT NULL, " +
+                    LELANG_TGLSELESAI + " TEXT NOT NULL, " +
                     LELANG_USERID + " TEXT NOT NULL)";
 
     public static String CREATE_TABLE_PEKERJAAN =
             "CREATE TABLE " + TABLE_PEKERJAAN + " (" +
                     PEKERJAAN_ID + " INTEGER PRIMARY KEY, " +
-                    PEKERJAAN_BAHAN + " TEKS NOT NULL, " +
-                    PEKERJAAN_CATATAN + " TEKS NOT NULL, " +
+                    PEKERJAAN_BAHAN + " TEXT NOT NULL, " +
+                    PEKERJAAN_CATATAN + " TEXT NOT NULL, " +
                     PEKERJAAN_HARGA + " INTEGER NOT NULL, " +
                     PEKERJAAN_JUMLAH + " INTEGER NOT NULL, " +
+                    PEKERJAAN_JMLSISI+" TEXT NOT NULL, "+
+                    PEKERJAAN_LAMINASI+" TEXT NOT NULL, "+
                     PEKERJAAN_KATEGORIID + " INTEGER NOT NULL, " +
                     PEKERJAAN_LELANGID + " INTEGER NOT NULL, " +
                     PEKERJAAN_STATUS + " INTEGER NOT NULL, " +
-                    PEKERJAAN_UKURAN + " TEKS NOT NULL)";
+                    PEKERJAAN_UKURAN + " TEXT NOT NULL)";
 
     public static String CREATE_TABLE_REQ_LELANG =
             "CREATE TABLE " + TABLE_REQ_LELANG + " (" +
@@ -123,30 +127,32 @@ public class DBHelper extends SQLiteOpenHelper {
                     LELANG_JUDUL + " TEXT NOT NULL, " +
                     LELANG_KOTA + " INTEGER NOT NULL, " +
                     LELANG_PEMBAYARAN + " INTEGER NOT NULL, " +
-                    LELANG_FILEURL + " TEKS NOT NULL, " +
-                    LELANG_TGLSELESAI + " TEKS NOT NULL, " +
+                    LELANG_FILEURL + " TEXT NOT NULL, " +
+                    LELANG_TGLSELESAI + " TEXT NOT NULL, " +
                     LELANG_STATUS + " INTEGER, " +
                     LELANG_USERID + " TEXT NOT NULL)";
 
     public static String CREATE_TABLE_REQ_PEKERJAAN =
             "CREATE TABLE " + TABLE_REQ_PEKERJAAN + " (" +
                     PEKERJAAN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    PEKERJAAN_BAHAN + " TEKS NOT NULL, " +
-                    PEKERJAAN_CATATAN + " TEKS NOT NULL, " +
+                    PEKERJAAN_BAHAN + " TEXT NOT NULL, " +
+                    PEKERJAAN_JMLSISI+" TEXT NOT NULL, "+
+                    PEKERJAAN_LAMINASI+" TEXT NOT NULL, "+
+                    PEKERJAAN_CATATAN + " TEXT NOT NULL, " +
                     PEKERJAAN_HARGA + " INTEGER NOT NULL, " +
                     PEKERJAAN_JUMLAH + " INTEGER NOT NULL, " +
                     PEKERJAAN_KATEGORIID + " INTEGER NOT NULL, " +
-                    PEKERJAAN_UKURAN + " TEKS NOT NULL," +
+                    PEKERJAAN_UKURAN + " TEXT NOT NULL," +
                     PEKERJAAN_STATUS + " INTEGER)";
 
     public static String CREATE_TABLE_USER =
             "CREATE TABLE " + TABLE_USER + " (" +
-                    USER_ID + " TEKS PRIMARY KEY, " +
-                    USER_NAMA + " TEKS NOT NULL, " +
-                    USER_EMAIL + " TEKS NOT NULL, " +
-                    USER_TELPON + " TEKS, " +
-                    USER_ALAMAT + " TEKS, " +
-                    USER_IMGURL + " TEKS)";
+                    USER_ID + " TEXT PRIMARY KEY, " +
+                    USER_NAMA + " TEXT NOT NULL, " +
+                    USER_EMAIL + " TEXT NOT NULL, " +
+                    USER_TELPON + " TEXT, " +
+                    USER_ALAMAT + " TEXT, " +
+                    USER_IMGURL + " TEXT)";
 
     public static String CREATE_TABLE_TAWARAN =
             "CREATE TABLE " + TABLE_TAWARAN + " (" +
