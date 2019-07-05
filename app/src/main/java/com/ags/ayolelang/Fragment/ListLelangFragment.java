@@ -11,6 +11,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ags.ayolelang.Adapter.AdapterListlelang;
@@ -33,6 +35,7 @@ public class ListLelangFragment extends Fragment implements SwipeRefreshLayout.O
     int kategori_id;
     ArrayList<Integer>listidkategori=new ArrayList<>();
     private SwipeRefreshLayout swipe_container;
+    private ImageView btn_back;
 
     @Nullable
     @Override
@@ -42,6 +45,13 @@ public class ListLelangFragment extends Fragment implements SwipeRefreshLayout.O
         rv_search_lelang=v.findViewById(R.id.rv_search_lelang);
         rv_search_lelang.setLayoutManager(new LinearLayoutManager(getContext()));
         swipe_container=v.findViewById(R.id.swipe_container);
+        btn_back=v.findViewById(R.id.btn_Back);
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
+            }
+        });
 
         Bundle bundle=getArguments();
         txt_subtext_kategori_dipilih.setText(bundle.getString("tittle"));

@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ags.ayolelang.Adapter.AdapterItemPekerjaan_s;
@@ -30,6 +31,7 @@ public class ListPekerjaanFragment extends Fragment implements SwipeRefreshLayou
     RecyclerView rv_search_pekerjaan;
     int lelang_id;
     private SwipeRefreshLayout swipe_container;
+    private ImageView btn_back;
 
     @Nullable
     @Override
@@ -38,7 +40,15 @@ public class ListPekerjaanFragment extends Fragment implements SwipeRefreshLayou
         rv_search_pekerjaan = v.findViewById(R.id.rv_search_lelang);
         rv_search_pekerjaan.setLayoutManager(new LinearLayoutManager(getContext()));
         v.findViewById(R.id.navigatorr).setVisibility(View.GONE);
+        v.findViewById(R.id.layout_search).setVisibility(View.GONE);
         swipe_container = v.findViewById(R.id.swipe_container);
+        btn_back=v.findViewById(R.id.btn_Back);
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
+            }
+        });
 
         rv_search_pekerjaan.setPadding(50,50,50,50);
 

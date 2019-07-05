@@ -21,7 +21,6 @@ import com.ags.ayolelang.R;
 
 import java.util.ArrayList;
 
-import static com.ags.ayolelang.Fragment.SearchFragment.et_fm_search;
 
 public class SearchMitraFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
 
@@ -47,28 +46,28 @@ public class SearchMitraFragment extends Fragment implements SwipeRefreshLayout.
         rv_datasearch.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         loadDataSearch();
-
-        et_fm_search.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if (s.length() != 0) {
-                    loadDataSearch(et_fm_search.getText().toString());
-                } else {
-                    tv_not_found.setVisibility(View.GONE);
-                    loadDataSearch();
-                }
-            }
-        });
+////
+////        et_fm_search.addTextChangedListener(new TextWatcher() {
+////            @Override
+////            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+////
+////            }
+////
+////            @Override
+////            public void onTextChanged(CharSequence s, int start, int before, int count) {
+////
+////            }
+////
+////            @Override
+////            public void afterTextChanged(Editable s) {
+////                if (s.length() != 0) {
+////                    loadDataSearch(et_fm_search.getText().toString());
+////                } else {
+////                    tv_not_found.setVisibility(View.GONE);
+////                    loadDataSearch();
+////                }
+////            }
+////        });
         srl_datasearch.setOnRefreshListener(this);
 
         return v;
@@ -87,21 +86,21 @@ public class SearchMitraFragment extends Fragment implements SwipeRefreshLayout.
         rv_datasearch.setAdapter(adapterListUser);
         srl_datasearch.setRefreshing(false);
     }
-
-    private void loadDataSearch(String s) {
-        userHelper.open();
-        ArrayList<User> arrayList=userHelper.getUserbyName(s);
-        userHelper.close();
-        //Log.d("search result",arrayList.size()+"");
-        tv_not_found.setVisibility(View.GONE);
-        if (arrayList.size()<=0){
-            tv_not_found.setVisibility(View.VISIBLE);
-        }
-        adapterListUser.addItem(arrayList);
-        rv_datasearch.setAdapter(adapterListUser);
-        srl_datasearch.setRefreshing(false);
-    }
-
+//
+//    private void loadDataSearch(String s) {
+//        userHelper.open();
+//        ArrayList<User> arrayList=userHelper.getUserbyName(s);
+//        userHelper.close();
+//        //Log.d("search result",arrayList.size()+"");
+//        tv_not_found.setVisibility(View.GONE);
+//        if (arrayList.size()<=0){
+//            tv_not_found.setVisibility(View.VISIBLE);
+//        }
+//        adapterListUser.addItem(arrayList);
+//        rv_datasearch.setAdapter(adapterListUser);
+//        srl_datasearch.setRefreshing(false);
+//    }
+//
     @Override
     public void onRefresh() {
         loadDataSearch();

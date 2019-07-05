@@ -14,11 +14,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ags.ayolelang.API.RetrofitClient;
+import com.ags.ayolelang.Activity.MainActivity;
 import com.ags.ayolelang.Activity.Preview;
 import com.ags.ayolelang.DBHelper.LelangHelper;
 import com.ags.ayolelang.DBHelper.PekerjaanHelper;
@@ -48,6 +50,9 @@ public class FragmentDetailLelang_s extends Fragment {
     private LinearLayout btn_detailgarapan;
     private Button btn_ajukanPenawaran,btn_batalkan;
     private int lelang_id;
+    private TextView txt_subTittle;
+    private ImageView btn_back;
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -63,8 +68,16 @@ public class FragmentDetailLelang_s extends Fragment {
         txt_jumlahmitra = v.findViewById(R.id.txt_jumlahmitra);
         txt_pembayaran = v.findViewById(R.id.txt_pembayaran);
         txt_status = v.findViewById(R.id.txt_status);
+        txt_subTittle=v.findViewById(R.id.txt_subTittle);
         btn_detailgarapan = v.findViewById(R.id.btn_detailgarapan);
         btn_ajukanPenawaran = v.findViewById(R.id.btn_ajukanPenawaran);
+        btn_back=v.findViewById(R.id.btn_Back);
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
+            }
+        });
 
         Bundle bundle = getArguments();
         LelangHelper lelangHelper = new LelangHelper(getContext());
@@ -73,6 +86,7 @@ public class FragmentDetailLelang_s extends Fragment {
         lelangHelper.close();
         lelang_id = lelang.getLelang_id();
         txt_judulgarapan.setText(lelang.getLelang_judul());
+        txt_subTittle.setText(lelang.getLelang_judul());
         txt_namaPelelang.setText(getNama(lelang.getLelang_userid()));
         txt_alamat.setText(bundle.getString("alamat"));
         txt_eta.setText(bundle.getString("eta"));
@@ -80,7 +94,6 @@ public class FragmentDetailLelang_s extends Fragment {
         txt_jumlahmitra.setText(bundle.getInt("count_mitra") + " ");
         txt_pembayaran.setText(getResources().getStringArray(R.array.metode_bayar)[lelang.getLelang_pembayaran()]);
         txt_harga.setText("Rp. " + lelang.getLelang_anggaran());
-
         String userid = SharedPrefManager.getInstance(getContext()).getUser().getUser_id();
 
         TawaranHelper tawaranHelper = new TawaranHelper(getActivity());
@@ -120,7 +133,7 @@ public class FragmentDetailLelang_s extends Fragment {
                 bundle1.putInt("lelang_id", lelang.getLelang_id());
                 Fragment fragment = new ListPekerjaanFragment();
                 fragment.setArguments(bundle1);
-                ReplaceFragment(fragment);
+                ((MainActivity)getActivity())._loadFragment(fragment);
             }
         });
         return v;
@@ -322,15 +335,6 @@ public class FragmentDetailLelang_s extends Fragment {
                 Log.e("error", t.getMessage());
             }
         });
-    }
-
-    public void ReplaceFragment(Fragment fragment) {
-        if (fragment != null)
-            getFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.ContainerFragmentSearch, fragment)
-                    .addToBackStack(null)
-                    .commit();
     }
 
     private String getNama(String lelang_userid) {

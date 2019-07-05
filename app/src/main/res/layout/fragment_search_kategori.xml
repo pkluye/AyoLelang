@@ -7,24 +7,6 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:gravity="center"
-        android:background="@color/colorBackground"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp">
-
-        <TextView
-            android:id="@+id/txt_subtext_kategori"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Pencarian garapan berdasarkan Kategori:"
-            android:textColor="@color/colorBlack"
-            android:textSize="16sp"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp"
         android:orientation="vertical">

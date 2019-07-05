@@ -1,5 +1,8 @@
 package com.ags.ayolelang.Fragment;
 
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,53 +14,84 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.ags.ayolelang.Adapter.SearchTabAdapter;
 import com.ags.ayolelang.R;
 
-public class SearchFragment extends Fragment {
+public class SearchFragment extends Fragment implements View.OnClickListener {
 
-    private SearchTabAdapter mSearchTabAdapter;
-
-    private ViewPager mViewPager;
-    public static EditText et_fm_search;
+    Button btn_kategori,btn_event,btn_mitra;
 
     @Nullable
     @Override
+
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search, null);
 
-        mSearchTabAdapter = new SearchTabAdapter(getFragmentManager());
+        btn_kategori=view.findViewById(R.id.btn_kategori);
+        btn_event=view.findViewById(R.id.btn_event);
+        btn_mitra=view.findViewById(R.id.btn_mitra);
+        btn_kategori.setOnClickListener(this);
+        btn_mitra.setOnClickListener(this);
+        btn_event.setOnClickListener(this);
 
-        mViewPager = view.findViewById(R.id.tab_pager);
-
-
-        mSearchTabAdapter.addFragment(new ContainerKategoriSearchFragment(), "Kategori");
-        mSearchTabAdapter.addFragment(new SearchEventFragment(), "Event");
-        mSearchTabAdapter.addFragment(new SearchMitraFragment(), "Mitra");
-
-        mViewPager.setAdapter(mSearchTabAdapter);
-        int limit = (mSearchTabAdapter.getCount() > 1 ? mSearchTabAdapter.getCount() - 1 : 1);
-        mViewPager.setOffscreenPageLimit(limit);
-
-        TabLayout tabLayout = view.findViewById(R.id.tab_layout);
-        tabLayout.setupWithViewPager(mViewPager);
-
-        tabLayout.getTabAt(0).setText("Kategori");
-        tabLayout.getTabAt(1).setText("Event");
-        tabLayout.getTabAt(2).setText("Mitra");
-
-        et_fm_search = view.findViewById(R.id.et_fm_search);
+        btn_kategori.callOnClick();
 
         return view;
     }
 
+    public void ReplaceFragment(Fragment fragment) {
+        if (fragment != null)
+            getFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.search_container, fragment)
+                    .commit();
+    }
 
-//    private void setupViewPager(ViewPager viewPager) {
-//        SearchTabAdapter adapter = new SearchTabAdapter(getFragmentManager());
-//        adapter.addFragment(new SearchKategoriFragment(), "Kategori");
-//        adapter.addFragment(new SearchEventFragment(), "Event");
-//        adapter.addFragment(new SearchMitraFragment(), "Mitra");
-//    }
+    @Override
+    public void onClick(View v) {
+        Fragment fragment = null;
+
+        Drawable background_white=getResources().getDrawable(R.drawable.button_rectangle_selector);
+        Drawable background_selected=getResources().getDrawable(R.drawable.button_rectangle);
+        int light=getResources().getColor(R.color.colorWhite);
+        int dark=getResources().getColor(R.color.colorGrey1);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            //backkground
+            btn_kategori.setBackground(background_white);
+            btn_event.setBackground(background_white);
+            btn_mitra.setBackground(background_white);
+            //text
+            btn_kategori.setTextColor(dark);
+            btn_event.setTextColor(dark);
+            btn_mitra.setTextColor(dark);
+        }
+
+        switch (v.getId()) {
+            case R.id.btn_kategori:
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    btn_kategori.setBackground(background_selected);
+                    btn_kategori.setTextColor(light);
+                }
+                fragment=new SearchKategoriFragment();
+                break;
+            case R.id.btn_event:
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    btn_event.setBackground(background_selected);
+                    btn_event.setTextColor(light);
+                }
+                fragment=new SearchEventFragment();
+                break;
+            case R.id.btn_mitra:
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    btn_mitra.setBackground(background_selected);
+                    btn_mitra.setTextColor(light);
+                }
+                fragment=new SearchMitraFragment();
+                break;
+        }
+        ReplaceFragment(fragment);
+    }
 }

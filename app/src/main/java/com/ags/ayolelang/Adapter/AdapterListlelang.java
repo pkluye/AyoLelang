@@ -31,7 +31,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-import static com.ags.ayolelang.Fragment.SearchFragment.et_fm_search;
 
 public class AdapterListlelang extends RecyclerView.Adapter<AdapterListlelang.CustomHolderView> {
     private LayoutInflater mInflater;
@@ -73,7 +72,6 @@ public class AdapterListlelang extends RecyclerView.Adapter<AdapterListlelang.Cu
         cvh.item_search_kategori.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                et_fm_search.setText(null);
                 Bundle bundle=new Bundle();
                 bundle.putString("eta",eta);
                 bundle.putString("alamat",alamat);
@@ -82,18 +80,9 @@ public class AdapterListlelang extends RecyclerView.Adapter<AdapterListlelang.Cu
                 bundle.putInt("count_mitra",count_mitra);
                 Fragment fragment = new FragmentDetailLelang_s();
                 fragment.setArguments(bundle);
-                ReplaceFragment(fragment);
+                ((MainActivity)context)._loadFragment(fragment);
             }
         });
-    }
-
-    public void ReplaceFragment(Fragment fragment){
-        if (fragment != null)
-            ((MainActivity)context).getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.ContainerFragmentSearch, fragment)
-                    .addToBackStack(null)
-                    .commit();
     }
 
     private String getKotaProv(int i) {

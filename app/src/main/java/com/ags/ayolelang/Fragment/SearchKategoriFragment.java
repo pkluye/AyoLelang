@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.ags.ayolelang.Activity.MainActivity;
 import com.ags.ayolelang.R;
 
 public class SearchKategoriFragment extends Fragment implements View.OnClickListener{
@@ -43,15 +44,6 @@ public class SearchKategoriFragment extends Fragment implements View.OnClickList
         btn_search_fotografi.setOnClickListener(this);
         btn_search_palugada.setOnClickListener(this);
         return v;
-    }
-
-    public void ReplaceFragment(Fragment fragment){
-        if (fragment != null)
-            getFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.ContainerFragmentSearch, fragment)
-                    .addToBackStack(null)
-                    .commit();
     }
 
     @Override
@@ -92,6 +84,6 @@ public class SearchKategoriFragment extends Fragment implements View.OnClickList
         }
 
         fragment.setArguments(bundle);
-        ReplaceFragment(fragment);
+        ((MainActivity)getActivity())._loadFragment(fragment);
     }
 }

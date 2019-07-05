@@ -7,6 +7,85 @@
     android:layout_marginBottom="56dp"
     android:orientation="vertical">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:elevation="4dp"
+        android:minHeight="?attr/actionBarSize"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        app:titleTextColor="@color/colorWhite">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <ImageView
+                android:id="@+id/btn_Back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleX="1.2"
+                android:scaleY="1.2"
+                app:srcCompat="@drawable/ic_arrow_back_black_24dp" />
+
+            <TextView
+                android:id="@+id/txt_Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.9"
+                android:text="Detail Spesifikasi"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/Font_Header" />
+
+        </LinearLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:id="@+id/layout_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/search_bar"
+        android:minHeight="24dp"
+        android:orientation="horizontal"
+        android:padding="5dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="8dp"
+            android:scaleX="0.9"
+            android:scaleY="0.9"
+            android:tint="@color/colorGrey1"
+            app:srcCompat="@drawable/ic_search_black_24dp" />
+
+        <EditText
+            android:id="@+id/et_fm_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="16dp"
+            android:background="@android:color/transparent"
+            android:hint="Search"
+            android:maxLines="1"
+            android:textColor="@color/colorBlack"
+            android:textColorHint="@color/colorGrey2"
+            android:textSize="@dimen/Font_Body" />
+
+    </LinearLayout>
+
     <LinearLayout
         android:id="@+id/navigatorr"
         android:layout_width="match_parent"
