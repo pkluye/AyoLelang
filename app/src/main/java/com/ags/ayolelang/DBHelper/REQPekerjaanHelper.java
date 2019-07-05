@@ -15,8 +15,10 @@ import static com.ags.ayolelang.DBHelper.DBContract.PEKERJAAN.PEKERJAAN_BAHAN;
 import static com.ags.ayolelang.DBHelper.DBContract.PEKERJAAN.PEKERJAAN_CATATAN;
 import static com.ags.ayolelang.DBHelper.DBContract.PEKERJAAN.PEKERJAAN_HARGA;
 import static com.ags.ayolelang.DBHelper.DBContract.PEKERJAAN.PEKERJAAN_ID;
+import static com.ags.ayolelang.DBHelper.DBContract.PEKERJAAN.PEKERJAAN_JMLSISI;
 import static com.ags.ayolelang.DBHelper.DBContract.PEKERJAAN.PEKERJAAN_JUMLAH;
 import static com.ags.ayolelang.DBHelper.DBContract.PEKERJAAN.PEKERJAAN_KATEGORIID;
+import static com.ags.ayolelang.DBHelper.DBContract.PEKERJAAN.PEKERJAAN_LAMINASI;
 import static com.ags.ayolelang.DBHelper.DBContract.PEKERJAAN.PEKERJAAN_LELANGID;
 import static com.ags.ayolelang.DBHelper.DBContract.PEKERJAAN.PEKERJAAN_STATUS;
 import static com.ags.ayolelang.DBHelper.DBContract.PEKERJAAN.PEKERJAAN_UKURAN;
@@ -54,6 +56,8 @@ public class REQPekerjaanHelper {
                 pekerjaan.setPekerjaan_kategoriid(cursor.getInt(cursor.getColumnIndexOrThrow(PEKERJAAN_KATEGORIID)));
                 pekerjaan.setPekerjaan_ukuran(cursor.getString(cursor.getColumnIndexOrThrow(PEKERJAAN_UKURAN)));
                 pekerjaan.setPekerjaan_bahan(cursor.getString(cursor.getColumnIndexOrThrow(PEKERJAAN_BAHAN)));
+                pekerjaan.setPekerjaan_jmlsisi(cursor.getString(cursor.getColumnIndexOrThrow(PEKERJAAN_JMLSISI)));
+                pekerjaan.setPekerjaan_laminasi(cursor.getString(cursor.getColumnIndexOrThrow(PEKERJAAN_LAMINASI)));
                 pekerjaan.setPekerjaan_harga(cursor.getLong(cursor.getColumnIndexOrThrow(PEKERJAAN_HARGA)));
                 pekerjaan.setPekerjaan_jumlah(cursor.getInt(cursor.getColumnIndexOrThrow(PEKERJAAN_JUMLAH)));
                 pekerjaan.setPekerjaan_catatan(cursor.getString(cursor.getColumnIndexOrThrow(PEKERJAAN_CATATAN)));
@@ -119,6 +123,8 @@ public class REQPekerjaanHelper {
         contentValue.put(PEKERJAAN_KATEGORIID, pekerjaan.getPekerjaan_kategoriid());
         contentValue.put(PEKERJAAN_CATATAN, pekerjaan.getPekerjaan_catatan());
         contentValue.put(PEKERJAAN_JUMLAH, pekerjaan.getPekerjaan_jumlah());
+        contentValue.put(PEKERJAAN_JMLSISI,pekerjaan.getPekerjaan_jmlsisi());
+        contentValue.put(PEKERJAAN_LAMINASI,pekerjaan.getPekerjaan_laminasi());
         contentValue.put(PEKERJAAN_HARGA, pekerjaan.getPekerjaan_harga());
         contentValue.put(PEKERJAAN_UKURAN, pekerjaan.getPekerjaan_ukuran());
         contentValue.put(PEKERJAAN_BAHAN, pekerjaan.getPekerjaan_bahan());
@@ -132,6 +138,8 @@ public class REQPekerjaanHelper {
         contentValue.put(PEKERJAAN_CATATAN, pekerjaan.getPekerjaan_catatan());
         contentValue.put(PEKERJAAN_JUMLAH, pekerjaan.getPekerjaan_jumlah());
         contentValue.put(PEKERJAAN_HARGA, pekerjaan.getPekerjaan_harga());
+        contentValue.put(PEKERJAAN_JMLSISI,pekerjaan.getPekerjaan_jmlsisi());
+        contentValue.put(PEKERJAAN_LAMINASI,pekerjaan.getPekerjaan_laminasi());
         contentValue.put(PEKERJAAN_UKURAN, pekerjaan.getPekerjaan_ukuran());
         contentValue.put(PEKERJAAN_BAHAN, pekerjaan.getPekerjaan_bahan());
         contentValue.put(PEKERJAAN_STATUS, pekerjaan.getPekerjaan_status());
@@ -147,6 +155,8 @@ public class REQPekerjaanHelper {
         contentValue.put(PEKERJAAN_KATEGORIID, pekerjaan.getPekerjaan_kategoriid());
         contentValue.put(PEKERJAAN_CATATAN, pekerjaan.getPekerjaan_catatan());
         contentValue.put(PEKERJAAN_JUMLAH, pekerjaan.getPekerjaan_jumlah());
+        contentValue.put(PEKERJAAN_JMLSISI,pekerjaan.getPekerjaan_jmlsisi());
+        contentValue.put(PEKERJAAN_LAMINASI,pekerjaan.getPekerjaan_laminasi());
         contentValue.put(PEKERJAAN_HARGA, pekerjaan.getPekerjaan_harga());
         contentValue.put(PEKERJAAN_UKURAN, pekerjaan.getPekerjaan_ukuran());
         contentValue.put(PEKERJAAN_BAHAN, pekerjaan.getPekerjaan_bahan());

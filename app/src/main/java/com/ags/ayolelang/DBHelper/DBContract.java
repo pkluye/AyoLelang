@@ -54,6 +54,8 @@ public class DBContract {
         static String PEKERJAAN_LELANGID = "pekerjaan_lelangid";
         static String PEKERJAAN_UKURAN = "pekerjaan_ukuran";
         static String PEKERJAAN_BAHAN = "pekerjaan_bahan";
+        static String PEKERJAAN_JMLSISI="pekerjaan_jmlsisi";
+        static String PEKERJAAN_LAMINASI="pekerjaan_laminasi";
         static String PEKERJAAN_JUMLAH = "pekerjaan_jumlah";
         static String PEKERJAAN_HARGA = "pekerjaan_harga";
         static String PEKERJAAN_CATATAN = "pekerjaan_catatan";

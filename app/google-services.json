@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "126769181083",
+    "firebase_url": "https://garapan-5bc10.firebaseio.com",
+    "project_id": "garapan-5bc10",
+    "storage_bucket": "garapan-5bc10.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:126769181083:android:c732735045773735",
+        "android_client_info": {
+          "package_name": "com.ags.ayolelang"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "126769181083-jann1niidk7ds661ojfqap8o1nidnhh0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ags.ayolelang",
+            "certificate_hash": "147675847888d7901a2651689b4c03d1a8a6d644"
+          }
+        },
+        {
+          "client_id": "126769181083-c5k9sgqkl6leidd8vsbac670fun4gq8g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZwXk6PezE_P5gYgf2jx7Wl-8DF9qB2hA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "126769181083-c5k9sgqkl6leidd8vsbac670fun4gq8g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

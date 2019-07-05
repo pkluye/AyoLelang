@@ -88,10 +88,7 @@ public class FragmentDetailLelang_s extends Fragment {
         boolean isAlreadyBid = tawaranHelper.isAlreadyBid(userid, lelang_id);
         tawaranHelper.close();
         btn_batalkan=v.findViewById(R.id.btn_batalkan);
-        if (userid.equalsIgnoreCase(lelang.getLelang_userid())) {
-            btn_ajukanPenawaran.setText("Edit Lelang");
-            btn_batalkan.setVisibility(View.VISIBLE);
-        } else if (isAlreadyBid) {
+        if (isAlreadyBid) {
             btn_ajukanPenawaran.setText("Edit Penawaran");
             btn_batalkan.setVisibility(View.VISIBLE);
         }
@@ -99,9 +96,7 @@ public class FragmentDetailLelang_s extends Fragment {
         btn_batalkan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (btn_ajukanPenawaran.getText().toString().equalsIgnoreCase("Edit Lelang")) {
-
-                } else if (btn_ajukanPenawaran.getText().toString().equalsIgnoreCase("Edit Penawaran")) {
+                if (btn_ajukanPenawaran.getText().toString().equalsIgnoreCase("Edit Penawaran")) {
                     dialogBatalkan();
                 }
             }
@@ -110,9 +105,7 @@ public class FragmentDetailLelang_s extends Fragment {
         btn_ajukanPenawaran.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (btn_ajukanPenawaran.getText().toString().equalsIgnoreCase("Edit Lelang")) {
-                    editLelang(lelang);
-                } else if (btn_ajukanPenawaran.getText().toString().equalsIgnoreCase("Edit Penawaran")) {
+                if (btn_ajukanPenawaran.getText().toString().equalsIgnoreCase("Edit Penawaran")) {
                     dialogTawaran(true);
                 } else {
                     dialogTawaran(false);
@@ -290,33 +283,6 @@ public class FragmentDetailLelang_s extends Fragment {
                 Log.e("error", t.getMessage());
             }
         });
-    }
-
-
-    private void editLelang(Lelang lelang) {
-        REQLelangHelper reqLelangHelper = new REQLelangHelper(getContext());
-        reqLelangHelper.open();
-        reqLelangHelper.insert2(lelang);
-        reqLelangHelper.close();
-
-        PekerjaanHelper pekerjaanHelper = new PekerjaanHelper(getContext());
-        pekerjaanHelper.open();
-        ArrayList<Pekerjaan> pekerjaans = pekerjaanHelper.getPekerjaan(lelang.getLelang_id());
-        pekerjaanHelper.close();
-
-        REQPekerjaanHelper reqPekerjaanHelper = new REQPekerjaanHelper(getContext());
-        reqPekerjaanHelper.open();
-        reqPekerjaanHelper.bulk_edit(pekerjaans);
-        ArrayList<Pekerjaan> pekerjaanArrayList = reqPekerjaanHelper.getPekerjaan();
-        reqPekerjaanHelper.close();
-
-//        for (Pekerjaan pekerjaan:pekerjaanArrayList){
-//            Log.d("testtt",pekerjaan.toString());
-//        }
-
-        Intent intent = new Intent(getContext(), Preview.class);
-        intent.putExtra("editLelang", true);
-        startActivity(intent);
     }
 
     private void delete_tawaran(final Dialog dialog) {
