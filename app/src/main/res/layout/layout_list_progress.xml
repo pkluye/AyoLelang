@@ -18,8 +18,8 @@
             android:id="@+id/txt_subtext_kategori"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Lelang Yang Sedang Berlangsung"
-            android:textColor="@color/colorBlack"
+            android:text="Garapan yang sedang berlangsung"
+            android:textColor="@color/colorGrey1"
             android:textSize="16sp"/>
 
     </LinearLayout>
@@ -30,23 +30,46 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="16dp">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tidak ada lelang yang berlangsung"
-            android:textSize="16sp"
-            android:textAlignment="center"/>
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nothing here!!!"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/Font_Body"
+                android:textAlignment="center"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tidak ada garapan yang sedang dikerjakan"
+                android:textColor="@color/colorGrey1"
+                android:textSize="@dimen/Font_Body2"
+                android:textAlignment="center"/>
+
+        </LinearLayout>
+
 
         <Button
             android:id="@+id/btn_buatLelang"
-            android:layout_width="150dp"
-            android:layout_height="36dp"
-            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginBottom="16dp"
             android:background="@drawable/button_rectangle"
-            android:text="Buat Lelang"
-            android:textColor="@color/colorWhite" />
+            android:text="Buat Garapan"
+            android:textSize="@dimen/Font_Body"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite"
+            android:layout_weight="0"/>
 
 
     </LinearLayout>

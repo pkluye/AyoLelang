@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/item_penawaran"
+        android:layout_weight="1">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorBackground"
+        android:gravity="end|center_vertical"
+        android:orientation="horizontal"
+        android:padding="12dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total Harga :"
+                android:textSize="@dimen/Font_Body2" />
+
+            <TextView
+                android:id="@+id/txt_totalHarga"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="harga"
+                android:textColor="@color/colorRed"
+                android:textSize="@dimen/Font_Caption" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_tawar"
+            android:layout_width="wrap_content"
+            android:layout_height="34dp"
+            android:layout_marginLeft="12dp"
+            android:background="@drawable/button_rectangle"
+            android:text="Tawar"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/Font_Button" />
+
+    </LinearLayout>
+</LinearLayout>

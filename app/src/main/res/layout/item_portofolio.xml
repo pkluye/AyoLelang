@@ -29,7 +29,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textSize="@dimen/Font_Caption"
-            android:text="Rp 1.000.000" />
+            android:text="Rp 1.000.000"
+            android:gravity="end" />
 
     </LinearLayout>
 
@@ -60,7 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/Font_Caption"
-            android:text="by Beril Sanda"/>
+            android:text="by John Doe"/>
 
         <TextView
             android:layout_marginLeft="4dp"

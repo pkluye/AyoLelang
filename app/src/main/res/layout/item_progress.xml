@@ -177,7 +177,7 @@
                 android:layout_height="40dp"
                 android:text="Batalkan"
                 android:textAllCaps="false"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/colorPrimary"
                 android:background="@drawable/button_rectangle_border_green"/>
 
             <Button

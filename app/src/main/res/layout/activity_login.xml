@@ -80,10 +80,6 @@
 
                 </android.support.design.widget.TextInputLayout>
 
-
-
-
-
                 <Button
                     android:id="@+id/btn_login"
                     android:layout_width="250dp"
@@ -123,7 +119,6 @@
                     android:id="@+id/google_button"
                     android:layout_width="250dp"
                     android:layout_height="match_parent"
-
                     android:textSize="@dimen/Font_Button"/>
 
 

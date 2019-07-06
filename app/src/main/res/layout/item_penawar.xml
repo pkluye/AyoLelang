@@ -27,7 +27,6 @@
                 android:src="@drawable/ic_user"
                 tools:ignore="VectorDrawableCompat"
                 android:layout_gravity="center_horizontal"/>
-
         </LinearLayout>
 
         <LinearLayout

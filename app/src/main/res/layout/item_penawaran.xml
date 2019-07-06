@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nama Item"
+        android:textSize="@dimen/Font_Body"
+        android:textColor="@color/colorBlack"/>
+
+    <EditText
+        android:layout_marginLeft="-4dp"
+        android:layout_marginRight="-4dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Masukkan penawaran"
+        android:textColor="@color/colorGrey1"
+        android:textSize="@dimen/Font_Body2"
+        android:backgroundTint="@color/colorPrimaryDark"/>
+
+</LinearLayout>

@@ -413,7 +413,6 @@
                         android:layout_marginRight="16dp"
                         android:layout_marginBottom="2dp"
                         android:background="@drawable/button_rectangle"
-                        android:backgroundTint="@color/colorPrimaryDark"
                         android:text="Edit"
                         android:textAlignment="center"
                         android:textAllCaps="false"
