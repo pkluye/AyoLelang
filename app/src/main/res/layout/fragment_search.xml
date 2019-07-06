@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:layout_marginBottom="56dp">
+    android:layout_marginBottom="56dp"
+    android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="?attr/actionBarSize"
-        app:titleTextColor="@color/colorWhite"
         android:background="@color/colorPrimaryDark"
+        android:elevation="4dp"
+        android:minHeight="?attr/actionBarSize"
         app:contentInsetLeft="0dp"
         app:contentInsetStart="0dp"
-        android:elevation="4dp">
+        app:titleTextColor="@color/colorWhite">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,10 +29,10 @@
                 android:id="@+id/txt_Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="0.9"
                 android:text="Pencarian"
-                android:textSize="@dimen/Font_Header"
                 android:textColor="@color/colorWhite"
-                android:layout_weight="0.9" />
+                android:textSize="@dimen/Font_Header" />
 
         </LinearLayout>
 
@@ -41,94 +42,103 @@
         android:id="@+id/layout_messageBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="16dp"
+        android:layout_gravity="center"
         android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="8dp"
-        android:minHeight="24dp"
-        android:padding="5dp"
         android:background="@drawable/search_bar"
-        android:layout_gravity="center">
+        android:minHeight="24dp"
+        android:orientation="horizontal"
+        android:padding="5dp">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_search_black_24dp"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="8dp"
-            android:scaleY="0.9"
             android:scaleX="0.9"
-            android:tint="@color/colorGrey1"/>
+            android:scaleY="0.9"
+            android:tint="@color/colorGrey1"
+            app:srcCompat="@drawable/ic_search_black_24dp" />
 
         <EditText
             android:id="@+id/et_fm_search"
-            android:hint="Search"
-            android:textSize="@dimen/Font_Body"
-            android:textColorHint="@color/colorGrey2"
-            android:textColor="@color/colorBlack"
-            android:maxLines="1"
-            android:background="@android:color/transparent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="16dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:background="@android:color/transparent"
+            android:hint="Search"
+            android:maxLines="1"
+            android:textColor="@color/colorBlack"
+            android:textColorHint="@color/colorGrey2"
+            android:textSize="@dimen/Font_Body" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_marginBottom="16dp"
         android:gravity="center"
-        android:paddingHorizontal="4dp"
-        android:layout_marginBottom="16dp">
+        android:orientation="horizontal"
+        android:paddingHorizontal="4dp">
 
         <Button
             android:id="@+id/btn_kategori"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="38dp"
             android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_rectangle_selector"
+            android:elevation="4dp"
             android:padding="4dp"
             android:text="Kategori"
-            android:textColor="@drawable/button_textcolor_selector"
             android:textAllCaps="false"
-            android:background="@drawable/button_rectangle_selector"
-            android:elevation="4dp"/>
+            android:textColor="@drawable/button_textcolor_selector" />
 
         <Button
             android:id="@+id/btn_event"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="38dp"
             android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_rectangle_selector"
+            android:elevation="4dp"
             android:padding="4dp"
             android:text="Event"
-            android:textColor="@drawable/button_textcolor_selector"
             android:textAllCaps="false"
-            android:background="@drawable/button_rectangle_selector"
-            android:elevation="4dp"/>
+            android:textColor="@drawable/button_textcolor_selector" />
 
         <Button
             android:id="@+id/btn_mitra"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="38dp"
             android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_rectangle_selector"
+            android:elevation="4dp"
             android:padding="4dp"
             android:text="Mitra"
-            android:textColor="@drawable/button_textcolor_selector"
             android:textAllCaps="false"
-            android:background="@drawable/button_rectangle_selector"
-            android:elevation="4dp"/>
+            android:textColor="@drawable/button_textcolor_selector" />
 
     </LinearLayout>
-
 
     <FrameLayout
         android:id="@+id/search_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_search_lelang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="8dp"
+        tools:listitem="@layout/item_search_kategori"
+        android:visibility="gone"/>
+
 </LinearLayout>
