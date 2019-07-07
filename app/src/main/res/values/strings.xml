@@ -20,8 +20,8 @@
         <item>Penyerahan Garapan</item>
     </string-array>
 
-        <string name="drawer_open">Open navigation drawer</string>
-        <string name="drawer_close">Close navigation drawer</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
 
     <string name="garapan_1">Pendidikan</string>
     <string name="garapan_2">Printing</string>

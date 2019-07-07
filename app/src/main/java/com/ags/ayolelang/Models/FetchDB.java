@@ -11,6 +11,7 @@ public class FetchDB {
     private ArrayList<User> users;
     private ArrayList<Tawaran> tawarans;
     private ArrayList<Tawaran> historitawarans;
+    private ArrayList<TWPekerjaan> twpekerjaans;
     private ArrayList<SpecBarang> specbarangs;
     private String token_kategori;
     private String token_provinsi;
@@ -24,7 +25,7 @@ public class FetchDB {
     public FetchDB() {
     }
 
-    public FetchDB(ArrayList<Kota> kotas, ArrayList<Provinsi> provinsis, ArrayList<Kategori> kategoris, ArrayList<Lelang> lelangs, ArrayList<Pekerjaan> pekerjaans, ArrayList<User> users, ArrayList<Tawaran> tawarans, ArrayList<Tawaran> historitawarans, ArrayList<SpecBarang> specbarangs, String token_kategori, String token_provinsi, String token_kota, String token_lelang, String token_pekerjaan, String token_user, String token_tawaran, String token_specbarang) {
+    public FetchDB(ArrayList<Kota> kotas, ArrayList<Provinsi> provinsis, ArrayList<Kategori> kategoris, ArrayList<Lelang> lelangs, ArrayList<Pekerjaan> pekerjaans, ArrayList<User> users, ArrayList<Tawaran> tawarans, ArrayList<Tawaran> historitawarans, ArrayList<TWPekerjaan> twpekerjaans, ArrayList<SpecBarang> specbarangs, String token_kategori, String token_provinsi, String token_kota, String token_lelang, String token_pekerjaan, String token_user, String token_tawaran, String token_specbarang) {
         this.kotas = kotas;
         this.provinsis = provinsis;
         this.kategoris = kategoris;
@@ -33,6 +34,7 @@ public class FetchDB {
         this.users = users;
         this.tawarans = tawarans;
         this.historitawarans = historitawarans;
+        this.twpekerjaans = twpekerjaans;
         this.specbarangs = specbarangs;
         this.token_kategori = token_kategori;
         this.token_provinsi = token_provinsi;
@@ -42,6 +44,14 @@ public class FetchDB {
         this.token_user = token_user;
         this.token_tawaran = token_tawaran;
         this.token_specbarang = token_specbarang;
+    }
+
+    public ArrayList<TWPekerjaan> getTwpekerjaans() {
+        return twpekerjaans;
+    }
+
+    public void setTwpekerjaans(ArrayList<TWPekerjaan> twpekerjaans) {
+        this.twpekerjaans = twpekerjaans;
     }
 
     public ArrayList<SpecBarang> getSpecbarangs() {

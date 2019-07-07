@@ -64,6 +64,12 @@ public class AdapterItemPekerjaan_s extends RecyclerView.Adapter<AdapterItemPeke
         customHolderView.btn_delete.setVisibility(View.GONE);
         customHolderView.btn_editItemLelang.setVisibility(View.GONE);
 
+        if (pekerjaan.getPekerjaan_catatan().equalsIgnoreCase("-")||
+                pekerjaan.getPekerjaan_catatan().equalsIgnoreCase("")||
+                pekerjaan.getPekerjaan_catatan().equalsIgnoreCase(" ")){
+            customHolderView.txt_catatan_item.setVisibility(View.GONE);
+        }
+
         customHolderView.btn_detailItemLelang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

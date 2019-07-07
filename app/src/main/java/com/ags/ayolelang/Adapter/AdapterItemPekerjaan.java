@@ -65,8 +65,10 @@ public class AdapterItemPekerjaan extends RecyclerView.Adapter<AdapterItemPekerj
         specBarangHelper.close();
         customHolderView.txt_judul_item.setText(kategori.getKategori_nama() + "");
         customHolderView.txt_perkiraan_harga.setText("Rp. " + currencyFormat(pekerjaan.getPekerjaan_harga() + ""));
-        customHolderView.txt_jumlah.setText(pekerjaan.getPekerjaan_jumlah() + " " + (satuan.equalsIgnoreCase("meter")?"":satuan));
+        customHolderView.txt_jumlah.setText(pekerjaan.getPekerjaan_jumlah() + " " + (satuan.equalsIgnoreCase("meter") ? "" : satuan));
         customHolderView.txt_catatan_item.setText(pekerjaan.getPekerjaan_catatan() + "");
+        if (pekerjaan.getPekerjaan_catatan().equalsIgnoreCase("-"))
+            customHolderView.txt_catatan_item.setVisibility(View.GONE);
 
         customHolderView.btn_delete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,8 +127,8 @@ public class AdapterItemPekerjaan extends RecyclerView.Adapter<AdapterItemPekerj
         dialog.setContentView(R.layout.popup_pekerjaan);
         TextView txt_ukuran = dialog.findViewById(R.id.txt_ukuran);
         TextView txt_bahan = dialog.findViewById(R.id.txt_bahan);
-        TextView txt_jmlsisi=dialog.findViewById(R.id.txt_jmlsisi);
-        TextView txt_laminasi=dialog.findViewById(R.id.txt_laminasi);
+        TextView txt_jmlsisi = dialog.findViewById(R.id.txt_jmlsisi);
+        TextView txt_laminasi = dialog.findViewById(R.id.txt_laminasi);
         TextView txt_jumlah = dialog.findViewById(R.id.txt_jumlah);
         TextView txt_harga = dialog.findViewById(R.id.txt_harga);
         TextView txt_catatan = dialog.findViewById(R.id.txt_catatan);
@@ -140,7 +142,7 @@ public class AdapterItemPekerjaan extends RecyclerView.Adapter<AdapterItemPekerj
         specBarangHelper.open();
         String satuan = specBarangHelper.getSatuan(pekerjaan.getPekerjaan_kategoriid() + "");
         specBarangHelper.close();
-        txt_jumlah.setText(pekerjaan.getPekerjaan_jumlah() +" "+ (satuan.equalsIgnoreCase("meter")?"":satuan));
+        txt_jumlah.setText(pekerjaan.getPekerjaan_jumlah() + " " + (satuan.equalsIgnoreCase("meter") ? "" : satuan));
         txt_harga.setText("Rp. " + currencyFormat(pekerjaan.getPekerjaan_harga() + ""));
         txt_catatan.setText(pekerjaan.getPekerjaan_catatan());
 
