@@ -41,6 +41,7 @@
                 android:textColor="@color/colorGrey2"/>
 
             <LinearLayout
+                android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -52,13 +53,13 @@
                     android:layout_height="wrap_content">
 
                     <EditText
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textColorHint="@color/colorPrimaryDark"
-                    android:id="@+id/in_email"
-                    android:layout_width="250dp"
-                    android:layout_height="50dp"
-                    android:hint="E-Mail"
-                    android:inputType="textEmailAddress" />
+                        android:textColor="@color/colorGrey1"
+                        android:textColorHint="@color/colorPrimaryDark"
+                        android:id="@+id/in_email"
+                        android:layout_width="250dp"
+                        android:layout_height="50dp"
+                        android:hint="E-Mail"
+                        android:inputType="textEmailAddress" />
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -69,7 +70,7 @@
                     >
 
                     <EditText
-                        android:textColor="@color/colorPrimaryDark"
+                        android:textColor="@color/colorGrey1"
                         android:textColorHint="@color/colorPrimaryDark"
                         android:layout_marginTop="25dp"
                         android:id="@+id/in_password"
@@ -89,6 +90,7 @@
                     android:backgroundTint="@color/colorPrimary"
                     android:onClick="login"
                     android:text="Login"
+                    android:textAllCaps="false"
                     android:textColor="@color/colorWhite"
                     android:textStyle="bold"
                     android:textSize="@dimen/Font_Button"/>
@@ -104,14 +106,33 @@
                     android:textSize="@dimen/Font_Body2"
                     android:gravity="center"/>
 
-                <TextView
-                    android:textColor="@color/colorPrimaryDark"
-                    android:layout_marginTop="16dp"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_marginVertical="8dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Or"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/Font_Body"/>
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <View
+                        android:layout_width="100dp"
+                        android:layout_height="1dp"
+                        android:background="@color/colorGrey2"/>
+
+                    <TextView
+                        android:layout_marginHorizontal="8dp"
+                        android:textColor="@color/colorGrey2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Or"
+                        android:textSize="@dimen/Font_Body"/>
+
+                    <View
+                        android:layout_width="100dp"
+                        android:layout_height="1dp"
+                        android:background="@color/colorGrey2"/>
+
+                </LinearLayout>
+
 
 
                 <com.google.android.gms.common.SignInButton

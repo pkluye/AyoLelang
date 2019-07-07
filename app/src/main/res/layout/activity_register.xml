@@ -1,196 +1,150 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity.RegisterActivity"
-    android:orientation="vertical">
-
-    <LinearLayout
-        android:id="@+id/layoutLinear1"
-        android:layout_width="match_parent"
-        android:layout_height="128dp"
-        android:background="@color/colorPrimaryDark"
-        android:orientation="horizontal">
-    </LinearLayout>
-
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="124dp"
-        android:layout_height="124dp"
-        android:src="@drawable/logo"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="64dp"
-        />
-
-    <TextView
-        android:id="@+id/judulHeader"
-        android:layout_marginTop="16dp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sign Up"
-        android:textStyle="bold"
-        android:textSize="@dimen/Font_Body"/>
-
-    <TextView
-        android:id="@+id/judulHeader2"
-        android:layout_marginTop="2dp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/judulHeader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Buat akun-mu sekarang!"
-        android:textSize="@dimen/Font_Body2"/>
+    android:gravity="center_vertical">
 
     <ScrollView
-        android:layout_below="@id/judulHeader2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <LinearLayout
-            android:layout_marginTop="4dp"
-            android:layout_width="256dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="center_horizontal"
-            android:gravity="start">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
+            <ImageView
+                android:id="@+id/gambar_login"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
+                app:srcCompat="@drawable/logo_fix"
+                tools:ignore="MissingPrefix"
+                android:layout_gravity="center"/>
 
-            <com.rengwuxian.materialedittext.MaterialEditText
-                android:id="@+id/in_username"
-
-                android:layout_gravity="center"
-                android:layout_width="256dp"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:textSize="@dimen/Font_Body"
-                android:inputType="text"
+                android:layout_gravity="center_horizontal"
+                android:text="Sign Up"
+                android:textSize="@dimen/Font_Body"/>
 
-                app:met_floatingLabel="normal"
-                app:met_floatingLabelText="Nama"
-
-                android:hint="Nama"
-                />
-
-
-            <com.rengwuxian.materialedittext.MaterialEditText
-                android:id="@+id/in_email"
-
-                android:layout_marginTop="4dp"
-                android:layout_gravity="center"
-                android:layout_width="256dp"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:textSize="@dimen/Font_Body"
-                android:inputType="textEmailAddress"
-
-                app:met_floatingLabel="normal"
-                app:met_floatingLabelText="Email"
-
-                android:hint="E-Mail"
-                />
-
-            <com.rengwuxian.materialedittext.MaterialEditText
-                android:id="@+id/in_ponsel"
-
-                android:layout_marginTop="4dp"
-                android:layout_gravity="center"
-                android:layout_width="256dp"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:textSize="@dimen/Font_Body"
-                android:inputType="number"
-
-                app:met_floatingLabel="normal"
-                app:met_floatingLabelText="No Ponsel"
-
-                android:hint="Nomor Ponsel"
-                />
+                android:layout_gravity="center_horizontal"
+                android:text="Buat akun-mu sekarang"
+                android:textSize="@dimen/Font_Caption"
+                android:textColor="@color/colorGrey2"/>
 
             <LinearLayout
+                android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
 
-                <com.rengwuxian.materialedittext.MaterialEditText
-                    android:id="@+id/in_password"
 
-                    android:layout_marginTop="4dp"
-                    android:layout_gravity="center"
-                    android:layout_width="224dp"
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textColorHint="@color/colorPrimaryDark"
+                        android:id="@+id/in_username"
+                        android:layout_width="250dp"
+                        android:layout_height="50dp"
+                        android:hint="Username"
+                        android:inputType="text" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textColorHint="@color/colorPrimaryDark"
+                        android:id="@+id/in_email"
+                        android:layout_width="250dp"
+                        android:layout_height="50dp"
+                        android:hint="E-Mail"
+                        android:inputType="textEmailAddress" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textColorHint="@color/colorPrimaryDark"
+                        android:id="@+id/in_ponsel"
+                        android:layout_width="250dp"
+                        android:layout_height="50dp"
+                        android:hint="Nomor Handphone"
+                        android:inputType="text" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="250dp"
                     android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:textSize="@dimen/Font_Body"
-                    android:inputType="textPassword"
+                    app:passwordToggleEnabled="true"
+                    >
 
-                    app:met_floatingLabel="normal"
-                    app:met_floatingLabelText="Password"
-                    app:met_minCharacters="6"
+                    <EditText
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textColorHint="@color/colorPrimaryDark"
+                        android:layout_marginTop="25dp"
+                        android:id="@+id/in_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Password"
+                        android:inputType="textPassword"/>
 
-                    android:hint="Password"
-                    />
+                </android.support.design.widget.TextInputLayout>
 
-                <ImageButton
-                    android:id="@+id/img_visiblePassword"
-                    android:layout_gravity="center"
-                    android:layout_width="fill_parent"
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="250dp"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/password_open"
-                    android:background="@android:color/transparent"/>
+                    app:passwordToggleEnabled="true"
+                    >
+
+                    <EditText
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textColorHint="@color/colorPrimaryDark"
+                        android:layout_marginTop="25dp"
+                        android:id="@+id/in_repassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Ulangi Password"
+                        android:inputType="textPassword"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+                <Button
+                    android:id="@+id/btn_login"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:background="@drawable/button_rectangle"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:onClick="register"
+                    android:text="Register"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorWhite"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/Font_Button"/>
 
             </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <com.rengwuxian.materialedittext.MaterialEditText
-                    android:id="@+id/in_repassword"
-
-                    android:layout_marginTop="4dp"
-                    android:layout_gravity="center"
-                    android:layout_width="224dp"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:textSize="@dimen/Font_Body"
-                    android:inputType="textPassword"
-
-                    app:met_floatingLabel="normal"
-                    app:met_floatingLabelText="Konfirmasi Password"
-                    app:met_minCharacters="6"
-
-                    android:hint="Konfirmasi Password"
-                    />
-
-                <ImageButton
-                    android:id="@+id/img_visibleKonfirmasiPassword"
-                    android:layout_gravity="center"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/password_open"
-                    android:background="@android:color/transparent"/>
-
-            </LinearLayout>
-
-
-            <Button
-                android:id="@+id/btn_register"
-                android:layout_width="128dp"
-                android:layout_height="32dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/button_rectangle"
-                android:onClick="register"
-                android:textSize="@dimen/Font_Button"
-                android:text="Register"
-                android:textColor="@color/colorWhite" />
 
         </LinearLayout>
 
     </ScrollView>
 
-</RelativeLayout>
+</LinearLayout>

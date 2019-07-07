@@ -11,15 +11,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.ags.ayolelang.Activity.MainActivity;
+import com.ags.ayolelang.Models.User;
 import com.ags.ayolelang.R;
+import com.ags.ayolelang.Storage.SharedPrefManager;
 
 public class GarapanFragment extends Fragment implements View.OnClickListener {
     private View v;
 
     private int id_parent;
     private CardView cv_pendidikan, cv_percetakan, cv_kuliner, cv_hiburan, cv_otomotif, cv_fotografi, cv_palugada;
+    private TextView txt_namaPengguna;
 
     @Nullable
     @Override
@@ -32,6 +36,7 @@ public class GarapanFragment extends Fragment implements View.OnClickListener {
         cv_otomotif = v.findViewById(R.id.cv_otomotif);
         cv_fotografi = v.findViewById(R.id.cv_fotografi);
         cv_palugada = v.findViewById(R.id.cv_palugada);
+        txt_namaPengguna = v.findViewById(R.id.txt_namaPengguna);
         cv_pendidikan.setOnClickListener(this);
         cv_percetakan.setOnClickListener(this);
         cv_hiburan.setOnClickListener(this);
@@ -39,6 +44,8 @@ public class GarapanFragment extends Fragment implements View.OnClickListener {
         cv_fotografi.setOnClickListener(this);
         cv_kuliner.setOnClickListener(this);
         cv_palugada.setOnClickListener(this);
+
+        loadAccount();
 
         Toolbar toolbar = v.findViewById(R.id.toolbar);
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
@@ -52,6 +59,11 @@ public class GarapanFragment extends Fragment implements View.OnClickListener {
         super.onViewCreated(view, savedInstanceState);
 
         getActivity().setTitle("LELANG");
+    }
+
+    private void loadAccount() {
+        User user= SharedPrefManager.getInstance(getContext()).getUser();
+        txt_namaPengguna.setText(user.getUser_nama());
     }
 
     @Override
