@@ -85,6 +85,16 @@ public class UserHelper {
         }
     }
 
+    public boolean isEmpty() {
+        Cursor cursor = db.query(TABLE_USER, null, null, null, null, null, null, null);
+        int count = cursor.getCount();
+        cursor.close();
+        if (count == 0) {
+            return true;
+        }
+        return false;
+    }
+
     public void truncate() {
         db.execSQL("DELETE FROM " + TABLE_USER);
         db.execSQL("VACUUM");

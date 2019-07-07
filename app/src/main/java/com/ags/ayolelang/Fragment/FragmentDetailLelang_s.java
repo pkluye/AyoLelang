@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.ags.ayolelang.API.RetrofitClient;
 import com.ags.ayolelang.Activity.MainActivity;
+import com.ags.ayolelang.Activity.PenawaranActivity;
 import com.ags.ayolelang.Activity.Preview;
 import com.ags.ayolelang.DBHelper.LelangHelper;
 import com.ags.ayolelang.DBHelper.PekerjaanHelper;
@@ -36,7 +37,10 @@ import com.ags.ayolelang.Models.User;
 import com.ags.ayolelang.R;
 import com.ags.ayolelang.Storage.SharedPrefManager;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -78,7 +82,11 @@ public class FragmentDetailLelang_s extends Fragment {
                 getActivity().onBackPressed();
             }
         });
+        loadData();
+        return v;
+    }
 
+    private void loadData() {
         Bundle bundle = getArguments();
         LelangHelper lelangHelper = new LelangHelper(getContext());
         lelangHelper.open();
@@ -89,11 +97,11 @@ public class FragmentDetailLelang_s extends Fragment {
         txt_subTittle.setText(lelang.getLelang_judul());
         txt_namaPelelang.setText(getNama(lelang.getLelang_userid()));
         txt_alamat.setText(bundle.getString("alamat"));
-        txt_eta.setText(bundle.getString("eta"));
+        txt_eta.setText("("+bundle.getString("eta")+")");
         txt_tenggatWaktu.setText(bundle.getString("tenggat_waktu"));
         txt_jumlahmitra.setText(bundle.getInt("count_mitra") + " ");
         txt_pembayaran.setText(getResources().getStringArray(R.array.metode_bayar)[lelang.getLelang_pembayaran()]);
-        txt_harga.setText("Rp. " + lelang.getLelang_anggaran());
+        txt_harga.setText("Rp. " + currencyFormat(lelang.getLelang_anggaran()+""));
         String userid = SharedPrefManager.getInstance(getContext()).getUser().getUser_id();
 
         TawaranHelper tawaranHelper = new TawaranHelper(getActivity());
@@ -101,7 +109,15 @@ public class FragmentDetailLelang_s extends Fragment {
         boolean isAlreadyBid = tawaranHelper.isAlreadyBid(userid, lelang_id);
         tawaranHelper.close();
         btn_batalkan=v.findViewById(R.id.btn_batalkan);
+
+        if (lelang.getLelang_userid().equalsIgnoreCase(SharedPrefManager.getInstance(getContext()).getUser().getUser_id())){
+            btn_ajukanPenawaran.setVisibility(View.GONE);
+        }
+        int tawaran_id=0;
         if (isAlreadyBid) {
+            tawaranHelper.open();
+            tawaran_id=tawaranHelper.SingleTawaran(userid,lelang_id).getTawaran_id();
+            tawaranHelper.close();
             btn_ajukanPenawaran.setText("Edit Penawaran");
             btn_batalkan.setVisibility(View.VISIBLE);
         }
@@ -115,13 +131,20 @@ public class FragmentDetailLelang_s extends Fragment {
             }
         });
 
+        final int finalTawaran_id = tawaran_id;
         btn_ajukanPenawaran.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (btn_ajukanPenawaran.getText().toString().equalsIgnoreCase("Edit Penawaran")) {
-                    dialogTawaran(true);
+                    Intent intent= new Intent(getActivity(), PenawaranActivity.class);
+                    intent.putExtra("edit",true);
+                    intent.putExtra("lelang_id",lelang_id);
+                    intent.putExtra("tawaran_id", finalTawaran_id);
+                    startActivity(intent);
                 } else {
-                    dialogTawaran(false);
+                    Intent intent= new Intent(getActivity(), PenawaranActivity.class);
+                    intent.putExtra("lelang_id",lelang_id);
+                    startActivity(intent);
                 }
             }
         });
@@ -136,65 +159,18 @@ public class FragmentDetailLelang_s extends Fragment {
                 ((MainActivity)getActivity())._loadFragment(fragment);
             }
         });
-        return v;
     }
 
-    private void dialogTawaran(final boolean Edit) {
-        final Dialog dialog = new Dialog(getActivity());
-        dialog.setContentView(R.layout.popup_penawaran);
-        TextView tv_tittle = dialog.findViewById(R.id.tv_tittle);
-        TextView tv_topbid = dialog.findViewById(R.id.tv_topbid);
-        if (Edit) {
-            tv_tittle.setText("Edit Penawaran");
-        }
-
-        TawaranHelper tawaranHelper = new TawaranHelper(getActivity());
-        tawaranHelper.open();
-        final ArrayList<Tawaran> tawarans = tawaranHelper.getlisttawaran(lelang_id);
-        tawaranHelper.close();
-        if (tawarans.size() > 0) {
-            UserHelper userHelper = new UserHelper(getActivity());
-            userHelper.open();
-            User user = userHelper.getSingleUser(tawarans.get(0).getTawaran_userid());
-            userHelper.close();
-            tv_topbid.setText(tawarans.get(0).getTawaran_anggaran() + " [" + user.getUser_nama() + "]");
-        }
-
-        final EditText editText = dialog.findViewById(R.id.et_penawaran);
-        Button btn_batal = (Button) dialog.findViewById(R.id.btn_batal);
-        Button btn_setuju = dialog.findViewById(R.id.btn_setuju);
-
-        btn_setuju.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (TextUtils.isEmpty(editText.getText().toString().trim())) {
-                    editText.setError("harap isi tawaran");
-                    editText.requestFocus();
-                    return;
-                }
-                if (tawarans.size() > 0) {
-                    if (tawarans.get(0).getTawaran_anggaran() < Long.parseLong(editText.getText().toString())) {
-                        editText.setError("tawar dengan budget lebih murah");
-                        editText.requestFocus();
-                        return;
-                    }
-                }
-                long penawaran = Long.parseLong(editText.getText().toString());
-                if (Edit) {
-                    edit_tawaran(penawaran,dialog);
-                } else {
-                    new_tawaran(penawaran,dialog);
-                }
-            }
-        });
-
-        btn_batal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
-        dialog.show();
+    private String currencyFormat(String harga) {
+        Locale localeID = new Locale("in", "ID");
+        harga = harga.replaceAll("[.,]", "");
+        DecimalFormat kursIndonesia = (DecimalFormat) DecimalFormat.getCurrencyInstance(localeID);
+        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
+        formatRp.setCurrencySymbol("");
+        formatRp.setGroupingSeparator('.');
+        formatRp.setMonetaryDecimalSeparator(',');
+        kursIndonesia.setDecimalFormatSymbols(formatRp);
+        return kursIndonesia.format(Double.parseDouble(harga));
     }
 
     private void dialogBatalkan() {
@@ -218,84 +194,6 @@ public class FragmentDetailLelang_s extends Fragment {
             }
         });
         dialog.show();
-    }
-
-    private void edit_tawaran(long penawaran, final Dialog dialog) {
-        String userid = SharedPrefManager.getInstance(getContext()).getUser().getUser_id();
-        TawaranHelper tawaranHelper = new TawaranHelper(getActivity());
-        tawaranHelper.open();
-        Tawaran tawaran = tawaranHelper.SingleTawaran(userid, lelang_id);
-        tawaranHelper.close();
-        Call<StringRespon> call = RetrofitClient.getInstance()
-                .getApi().editTawaran(
-                        secret_key,
-                        userid,
-                        tawaran.getTawaran_id(),
-                        penawaran
-                );
-        call.enqueue(new Callback<StringRespon>() {
-            @Override
-            public void onResponse(Call<StringRespon> call, Response<StringRespon> response) {
-                if (response.isSuccessful()) {
-                    if (!response.body().isError()) {
-                        Toast.makeText(getActivity(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
-                        dialog.dismiss();
-                    } else {
-                        Toast.makeText(getActivity(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    Log.e("error", response.code() + "");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<StringRespon> call, Throwable t) {
-                Log.e("error", t.getMessage());
-            }
-        });
-    }
-
-    private void new_tawaran(long penawaran, final Dialog dialog) {
-        String userid = SharedPrefManager.getInstance(getContext()).getUser().getUser_id();
-        Call<StringRespon> call = RetrofitClient.getInstance()
-                .getApi().buatTawaran(
-                        secret_key,
-                        userid,
-                        lelang_id,
-                        penawaran
-                );
-        final ProgressDialog progressDoalog;
-        progressDoalog = new ProgressDialog(getActivity());
-        //progressDoalog.setMax(100);
-        progressDoalog.setMessage("Loading....");
-        //progressDoalog.setTitle("ProgressDialog bar example");
-        progressDoalog.setCancelable(false);
-        progressDoalog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        progressDoalog.show();
-        call.enqueue(new Callback<StringRespon>() {
-            @Override
-            public void onResponse(Call<StringRespon> call, Response<StringRespon> response) {
-                if (response.isSuccessful()) {
-                    progressDoalog.dismiss();
-                    if (!response.body().isError()) {
-                        Toast.makeText(getActivity(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
-                        btn_ajukanPenawaran.setText("Edit Penawaran");
-                        btn_batalkan.setVisibility(View.VISIBLE);
-                        dialog.dismiss();
-                    } else {
-                        Toast.makeText(getActivity(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    Log.e("error", response.code() + "");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<StringRespon> call, Throwable t) {
-                progressDoalog.dismiss();
-                Log.e("error", t.getMessage());
-            }
-        });
     }
 
     private void delete_tawaran(final Dialog dialog) {

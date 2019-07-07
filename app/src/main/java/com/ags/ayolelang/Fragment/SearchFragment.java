@@ -98,27 +98,27 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
     }
 
     private void loadMitra(String s) {
-        UserHelper userHelper=new UserHelper(getContext());
+        UserHelper userHelper = new UserHelper(getContext());
         userHelper.open();
-        ArrayList<User> users=userHelper.getUserbyName(s);
-        if (userHelper.getUserbyName(s).size()==0){
+        ArrayList<User> users = userHelper.getUserbyName(s);
+        if (userHelper.getUserbyName(s).size() == 0) {
             Toast.makeText(getActivity(), "item tidak ditemukan", Toast.LENGTH_SHORT).show();
         }
         userHelper.close();
-        AdapterListMitra adapterListMitra=new AdapterListMitra(getContext());
+        AdapterListMitra adapterListMitra = new AdapterListMitra(getContext());
         adapterListMitra.addItem(users);
         rv_search_lelang.setAdapter(adapterListMitra);
     }
 
     private void loadLelang(String s) {
-        LelangHelper lelangHelper=new LelangHelper(getContext());
+        LelangHelper lelangHelper = new LelangHelper(getContext());
         lelangHelper.open();
-        ArrayList<Lelang> lelangs=lelangHelper.getlelangbyjudul(s);
-        if (lelangHelper.getlelangbyjudul(s).size()==0){
+        ArrayList<Lelang> lelangs = lelangHelper.getlelangbyjudul(s);
+        if (lelangHelper.getlelangbyjudul(s).size() == 0) {
             Toast.makeText(getActivity(), "item tidak ditemukan", Toast.LENGTH_SHORT).show();
         }
         lelangHelper.close();
-        AdapterListlelang adapterListlelang=new AdapterListlelang(getContext());
+        AdapterListlelang adapterListlelang = new AdapterListlelang(getContext());
         adapterListlelang.addItem(lelangs);
         rv_search_lelang.setAdapter(adapterListlelang);
     }

@@ -1,26 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="8dp">
 
     <TextView
+        android:id="@+id/nama_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Nama Item"
-        android:textSize="@dimen/Font_Body"
-        android:textColor="@color/colorBlack"/>
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/Font_Body" />
 
     <EditText
-        android:layout_marginLeft="-4dp"
-        android:layout_marginRight="-4dp"
+        android:id="@+id/et_tawaran"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="-4dp"
+        android:layout_marginRight="-4dp"
+        android:backgroundTint="@color/colorPrimaryDark"
         android:hint="Masukkan penawaran"
+        android:text="0"
+        android:inputType="number"
         android:textColor="@color/colorGrey1"
-        android:textSize="@dimen/Font_Body2"
-        android:backgroundTint="@color/colorPrimaryDark"/>
+        android:textSize="@dimen/Font_Body2" />
 
 </LinearLayout>

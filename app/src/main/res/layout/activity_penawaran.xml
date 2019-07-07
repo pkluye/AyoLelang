@@ -1,57 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".Activity.PenawaranActivity">
 
-    <android.support.v7.widget.RecyclerView
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/item_penawaran"
-        android:layout_weight="1">
+        android:background="@color/colorPrimaryDark"
+        android:elevation="4dp"
+        android:minHeight="?attr/actionBarSize"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        app:titleTextColor="@color/colorWhite">
 
-    </android.support.v7.widget.RecyclerView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/txt_subTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="38.8dp"
+                android:layout_weight="0.9"
+                android:text="Penawaran"
+                android:textAlignment="center"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/Font_Header" />
+
+            <TextView
+                android:id="@+id/btn_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="cancel"
+                android:text="Cancel"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/Font_Body" />
+
+        </LinearLayout>
+
+    </android.support.v7.widget.Toolbar>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorBackground"
-        android:gravity="end|center_vertical"
-        android:orientation="horizontal"
-        android:padding="12dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_item_tawaran"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            tools:listitem="@layout/item_penawaran">
+
+        </android.support.v7.widget.RecyclerView>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="end"
-            android:orientation="vertical">
+            android:background="@color/colorBackground"
+            android:gravity="end|center_vertical"
+            android:orientation="horizontal"
+            android:padding="12dp">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Total Harga :"
-                android:textSize="@dimen/Font_Body2" />
+                android:gravity="end"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/txt_totalHarga"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total Harga :"
+                    android:textSize="@dimen/Font_Body2" />
+
+                <TextView
+                    android:id="@+id/txt_totalHarga"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="harga"
+                    android:textColor="@color/colorRed"
+                    android:textSize="@dimen/Font_Caption" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_tawar"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="harga"
-                android:textColor="@color/colorRed"
-                android:textSize="@dimen/Font_Caption" />
+                android:layout_height="34dp"
+                android:layout_marginLeft="12dp"
+                android:background="@drawable/button_rectangle"
+                android:text="Tawar"
+                android:onClick="tawar"
+                android:textAllCaps="false"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/Font_Button" />
+
         </LinearLayout>
-
-        <Button
-            android:id="@+id/btn_tawar"
-            android:layout_width="wrap_content"
-            android:layout_height="34dp"
-            android:layout_marginLeft="12dp"
-            android:background="@drawable/button_rectangle"
-            android:text="Tawar"
-            android:textAllCaps="false"
-            android:textColor="@color/colorWhite"
-            android:textSize="@dimen/Font_Button" />
-
     </LinearLayout>
 </LinearLayout>

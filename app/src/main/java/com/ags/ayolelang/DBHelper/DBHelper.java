@@ -54,11 +54,16 @@ import static com.ags.ayolelang.DBHelper.DBContract.TABLE_REQ_LELANG;
 import static com.ags.ayolelang.DBHelper.DBContract.TABLE_REQ_PEKERJAAN;
 import static com.ags.ayolelang.DBHelper.DBContract.TABLE_SPECBARANG;
 import static com.ags.ayolelang.DBHelper.DBContract.TABLE_TAWARAN;
+import static com.ags.ayolelang.DBHelper.DBContract.TABLE_TWPEKERJAAN;
 import static com.ags.ayolelang.DBHelper.DBContract.TABLE_USER;
 import static com.ags.ayolelang.DBHelper.DBContract.TAWARAN.TAWARAN_ANGGARAN;
 import static com.ags.ayolelang.DBHelper.DBContract.TAWARAN.TAWARAN_ID;
 import static com.ags.ayolelang.DBHelper.DBContract.TAWARAN.TAWARAN_LELANGID;
 import static com.ags.ayolelang.DBHelper.DBContract.TAWARAN.TAWARAN_USERID;
+import static com.ags.ayolelang.DBHelper.DBContract.TWPEKERJAAN.TWPEKERJAAN_ANGGARANID;
+import static com.ags.ayolelang.DBHelper.DBContract.TWPEKERJAAN.TWPEKERJAAN_ID;
+import static com.ags.ayolelang.DBHelper.DBContract.TWPEKERJAAN.TWPEKERJAAN_PEKERJAANID;
+import static com.ags.ayolelang.DBHelper.DBContract.TWPEKERJAAN.TWPEKERJAAN_TAWARANID;
 import static com.ags.ayolelang.DBHelper.DBContract.USER.USER_ALAMAT;
 import static com.ags.ayolelang.DBHelper.DBContract.USER.USER_EMAIL;
 import static com.ags.ayolelang.DBHelper.DBContract.USER.USER_ID;
@@ -68,7 +73,7 @@ import static com.ags.ayolelang.DBHelper.DBContract.USER.USER_TELPON;
 
 public class DBHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 4;
     private static String DATABASE_NAME = "dbayolelang";
 
     public static String CREATE_TABLE_PROVINSI =
@@ -178,6 +183,12 @@ public class DBHelper extends SQLiteOpenHelper {
                     SPECBARANG_LAMINASI + " STRING NOT NULL, " +
                     SPECBARANG_HARGASATUAN + " INTEGER NOT NULL, " +
                     SPECBARANG_SATUAN + " STRING NOT NULL)";
+    public static String CREATE_TABLE_TWPEKERJAAN=
+            "CREATE TABLE "+ TABLE_TWPEKERJAAN+" ("+
+                    TWPEKERJAAN_ID+" INTEGER PRIMARY KEY, "+
+                    TWPEKERJAAN_TAWARANID+" INTEGER NOT NULL, "+
+                    TWPEKERJAAN_PEKERJAANID+" INTEGER NOT NULL, "+
+                    TWPEKERJAAN_ANGGARANID+" INTEGER NOT NULL)";
 
     public DBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -196,6 +207,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_TAWARAN);
         db.execSQL(CREATE_TABLE_HISTORITAWARAN);
         db.execSQL(CREATE_TABLE_SPECBARANG);
+        db.execSQL(CREATE_TABLE_TWPEKERJAAN);
     }
 
     @Override
@@ -211,6 +223,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_HISTORITAWARAN);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_TAWARAN);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_SPECBARANG);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_TWPEKERJAAN);
         onCreate(db);
     }
 

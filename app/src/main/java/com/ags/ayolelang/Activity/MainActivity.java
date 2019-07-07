@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
@@ -20,6 +21,7 @@ import com.ags.ayolelang.DBHelper.ProvinsiHelper;
 import com.ags.ayolelang.DBHelper.REQLelangHelper;
 import com.ags.ayolelang.DBHelper.REQPekerjaanHelper;
 import com.ags.ayolelang.DBHelper.SpecBarangHelper;
+import com.ags.ayolelang.DBHelper.TWPekerjaanHelper;
 import com.ags.ayolelang.DBHelper.TawaranHelper;
 import com.ags.ayolelang.DBHelper.UserHelper;
 import com.ags.ayolelang.Fragment.AccountFragment;
@@ -36,6 +38,7 @@ import com.ags.ayolelang.Models.Lelang;
 import com.ags.ayolelang.Models.Pekerjaan;
 import com.ags.ayolelang.Models.Provinsi;
 import com.ags.ayolelang.Models.SpecBarang;
+import com.ags.ayolelang.Models.TWPekerjaan;
 import com.ags.ayolelang.Models.Tawaran;
 import com.ags.ayolelang.Models.User;
 import com.ags.ayolelang.R;
@@ -71,6 +74,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     private TawaranHelper tawaranHelper = new TawaranHelper(this);
     private HistoriTawaranHelper historiTawaranHelper = new HistoriTawaranHelper(this);
     private SpecBarangHelper specBarangHelper = new SpecBarangHelper(this);
+    private TWPekerjaanHelper twPekerjaanHelper=new TWPekerjaanHelper(this);
 
     ProgressDialog progressDoalog;
 
@@ -208,6 +212,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                                 ArrayList<Tawaran> historitawaran = fetchDB.getHistoritawarans();
                                 insert_historitawaran(historitawaran);
 
+                                ArrayList<TWPekerjaan> twPekerjaans=fetchDB.getTwpekerjaans();
+                                insert_twpekerjaan(twPekerjaans);
+
                                 newtoken[6] = fetchDB.getToken_tawaran();
                             }
 
@@ -234,6 +241,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                             boolean specbarang_isempty = specBarangHelper.isempty();
                             specBarangHelper.close();
 
+                            userHelper.open();
+                            boolean user_isempty=userHelper.isEmpty();
+                            userHelper.close();
+
                             if (kategori_isempty) {
                                 newtoken[0] = null;
                             }
@@ -244,6 +255,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
                             if (kota_isempty) {
                                 newtoken[2] = null;
+                            }
+
+                            if (user_isempty){
+                                newtoken[6] = null;
                             }
 
                             if (specbarang_isempty) {
@@ -273,6 +288,13 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                         progressDoalog.dismiss();
                     }
                 });
+    }
+
+    private void insert_twpekerjaan(ArrayList<TWPekerjaan> twPekerjaans) {
+        twPekerjaanHelper.open();
+        twPekerjaanHelper.truncate();
+        twPekerjaanHelper.bulk_insert(twPekerjaans);
+        twPekerjaanHelper.close();
     }
 
 
@@ -376,6 +398,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     }
 
     private boolean loadFragment(Fragment fragment) {
+        FragmentManager fm = getSupportFragmentManager();
+        for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {
+            fm.popBackStack();
+        }
         //switching fragment
         if (fragment != null) {
             getSupportFragmentManager()
@@ -394,6 +420,25 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                     .replace(R.id.fragment_container, fragment)
                     .addToBackStack(null)
                     .commit();
+    }
+
+    public void loadFragment_(Fragment fragment) {
+        if (fragment != null)
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, fragment)
+                    .commit();
+        if (fragment.getClass().isInstance(new GarapanFragment())){
+            bottomNavigation.setSelectedItemId(R.id.navigation_garapan);
+        }else if(fragment.getClass().isInstance(new InboxFragment())){
+            bottomNavigation.setSelectedItemId(R.id.navigation_inbox);
+        }else if(fragment.getClass().isInstance(new ProgressFragment())){
+            bottomNavigation.setSelectedItemId(R.id.navigation_progress);
+        }else if(fragment.getClass().isInstance(new AccountFragment())){
+            bottomNavigation.setSelectedItemId(R.id.navigation_account);
+        }else{
+            bottomNavigation.setSelectedItemId(R.id.navigation_search);
+        }
     }
 
     @Override

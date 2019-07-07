@@ -82,6 +82,16 @@ public interface Api {
             @Field("lelang_id") int lelang_id,
             @Field("anggaran") long penawaran);
 
+    @Headers("Content-Type: application/json")
+    @POST("c_tawaran/tawaran_buatv2")
+    Single<StringRespon> tawaran_buatv2(
+            @Body String body);
+
+    @Headers("Content-Type: application/json")
+    @POST("c_tawaran/tawaran_editv2")
+    Single<StringRespon> tawaran_editv2(
+            @Body String body);
+
     @FormUrlEncoded
     @POST("c_tawaran/tawaran_edit")
     Call<StringRespon> editTawaran(

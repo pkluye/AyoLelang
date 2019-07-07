@@ -3,7 +3,7 @@ package com.ags.ayolelang.Models;
 public class Pekerjaan {
     private String pekerjaan_ukuran, pekerjaan_bahan, pekerjaan_catatan,pekerjaan_jmlsisi,pekerjaan_laminasi;
     private int pekerjaan_id, pekerjaan_lelangid,pekerjaan_jumlah,pekerjaan_kategoriid;
-    private long pekerjaan_harga;
+    private long pekerjaan_harga,hargaTawaran;
     private int pekerjaan_status;
 
     public Pekerjaan() {
@@ -56,6 +56,14 @@ public class Pekerjaan {
         this.pekerjaan_kategoriid = pekerjaan_kategoriid;
         this.pekerjaan_harga = pekerjaan_harga;
         this.pekerjaan_status = pekerjaan_status;
+    }
+
+    public long getHargaTawaran() {
+        return hargaTawaran;
+    }
+
+    public void setHargaTawaran(long hargaTawaran) {
+        this.hargaTawaran = hargaTawaran;
     }
 
     public String getPekerjaan_jmlsisi() {
