@@ -40,7 +40,9 @@ public class ListPekerjaanFragment extends Fragment implements SwipeRefreshLayou
         rv_search_pekerjaan = v.findViewById(R.id.rv_search_lelang);
         rv_search_pekerjaan.setLayoutManager(new LinearLayoutManager(getContext()));
         v.findViewById(R.id.navigatorr).setVisibility(View.GONE);
-        v.findViewById(R.id.layout_messageBox).setVisibility(View.GONE);
+        v.findViewById(R.id.layout_search).setVisibility(View.GONE);
+        TextView tittle=v.findViewById(R.id.txt_Title);
+        tittle.setText("Detail Spesifikasi");
         swipe_container = v.findViewById(R.id.swipe_container);
         btn_back=v.findViewById(R.id.btn_Back);
         btn_back.setOnClickListener(new View.OnClickListener() {
