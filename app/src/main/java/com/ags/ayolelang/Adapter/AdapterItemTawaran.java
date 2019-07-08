@@ -59,7 +59,7 @@ public class AdapterItemTawaran extends RecyclerView.Adapter<AdapterItemTawaran.
         kategoriHelper.open();
         final Kategori kategori = kategoriHelper.getSingleKategori(pekerjaan.getPekerjaan_kategoriid());
         kategoriHelper.close();
-        final long lastharga = pekerjaan.getHargaTawaran();
+        final long lastharga = pekerjaan.getPekerjaan_harga();
         customHolderView.nama_item.setText(kategori.getKategori_nama());
         customHolderView.et_tawaran.setText(currencyFormat(pekerjaan.getHargaTawaran() + "") + "");
         customHolderView.et_tawaran.addTextChangedListener(new TextWatcher() {
@@ -77,19 +77,32 @@ public class AdapterItemTawaran extends RecyclerView.Adapter<AdapterItemTawaran.
             public void afterTextChanged(Editable s) {
                 customHolderView.et_tawaran.removeTextChangedListener(this);
                 if (s.length() > 0) {
-                    if (Long.parseLong(customHolderView.et_tawaran.getText().toString().replaceAll("[.,]", ""))>lastharga){
-                        customHolderView.et_tawaran.setError("Tawaran harus lebih dari Rp. "+currencyFormat(lastharga+""));
+                    if (Long.parseLong(customHolderView.et_tawaran.getText().toString().replaceAll("[.,]", "")) > lastharga) {
+                        customHolderView.et_tawaran.setError("Tawaran harus lebih dari Rp. " + currencyFormat(lastharga + ""));
                         customHolderView.et_tawaran.requestFocus();
                         customHolderView.et_tawaran.addTextChangedListener(this);
                         return;
                     }
+
+                    if (customHolderView.et_tawaran.getText().toString().charAt(0) == '0') {
+                        customHolderView.et_tawaran.setError("invalid biaya");
+                        customHolderView.et_tawaran.requestFocus();
+                        customHolderView.et_tawaran.addTextChangedListener(this);
+                        return;
+                    }
+
                     Pekerjaan pekerjaan1 = pekerjaan;
                     pekerjaan1.setHargaTawaran(Long.parseLong(customHolderView.et_tawaran.getText().toString().replaceAll("[.,]", "")));
-                    pekerjaanArrayList.set(i,pekerjaan1);
+                    pekerjaanArrayList.set(i, pekerjaan1);
 
                     customHolderView.et_tawaran.setText(currencyFormat(customHolderView.et_tawaran.getText().toString().replaceAll("[.,]", "")) + "");
                     customHolderView.et_tawaran.setSelection(customHolderView.et_tawaran.getText().length());
                     txt_totalHarga.setText("Rp. " + currencyFormat(gethargaTawaran() + ""));
+                } else {
+                    customHolderView.et_tawaran.setError("harap masukan harga");
+                    customHolderView.et_tawaran.requestFocus();
+                    customHolderView.et_tawaran.addTextChangedListener(this);
+                    return;
                 }
                 customHolderView.et_tawaran.addTextChangedListener(this);
             }

@@ -1,5 +1,6 @@
 package com.ags.ayolelang.Fragment;
 
+import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -21,6 +22,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.ags.ayolelang.Adapter.AdapterListMitra;
@@ -168,7 +170,7 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
                     }
                     fragment = new SearchEventFragment();
                 } else {
-                    Toast.makeText(getActivity(), "Anda bukan member premium", Toast.LENGTH_SHORT).show();
+                    dialogBukanPremium();
                 }
                 break;
             case R.id.btn_mitra:
@@ -181,5 +183,20 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
                 break;
         }
         ReplaceFragment(fragment);
+    }
+
+    private void dialogBukanPremium() {
+        final Dialog dialog = new Dialog(getActivity());
+        dialog.setContentView(R.layout.popup_upgrade);
+        dialog.setCanceledOnTouchOutside(true);
+        dialog.setCancelable(true);
+        ImageButton btn_close=dialog.findViewById(R.id.btn_close);
+        btn_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
     }
 }
