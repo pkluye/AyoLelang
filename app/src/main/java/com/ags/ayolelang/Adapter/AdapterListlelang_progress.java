@@ -1,9 +1,7 @@
 package com.ags.ayolelang.Adapter;
 
-import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -12,29 +10,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ags.ayolelang.Activity.MainActivity;
-import com.ags.ayolelang.Activity.Preview;
 import com.ags.ayolelang.DBHelper.KotaHelper;
 import com.ags.ayolelang.DBHelper.ProvinsiHelper;
-import com.ags.ayolelang.DBHelper.REQLelangHelper;
-import com.ags.ayolelang.DBHelper.REQPekerjaanHelper;
-import com.ags.ayolelang.Fragment.FragmentDetailLelang_s;
 import com.ags.ayolelang.Fragment.FragmentstatusProgress;
 import com.ags.ayolelang.Models.Kota;
 import com.ags.ayolelang.Models.Lelang;
 import com.ags.ayolelang.Models.Provinsi;
 import com.ags.ayolelang.R;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 
 public class AdapterListlelang_progress extends RecyclerView.Adapter<AdapterListlelang_progress.CustomHolderView> {
     private LayoutInflater mInflater;
@@ -50,7 +38,7 @@ public class AdapterListlelang_progress extends RecyclerView.Adapter<AdapterList
     @Override
     public CustomHolderView onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
-        View v = inflater.inflate(R.layout.item_progress, viewGroup, false);
+        View v = inflater.inflate(R.layout.item_pemilihan, viewGroup, false);
         AdapterListlelang_progress.CustomHolderView vh = new AdapterListlelang_progress.CustomHolderView(v);
         return vh;
     }
@@ -99,19 +87,19 @@ public class AdapterListlelang_progress extends RecyclerView.Adapter<AdapterList
                 Bundle bundle=new Bundle();
                 bundle.putInt("lelang_id",lelang.getLelang_id());
                 fragment.setArguments(bundle);
-                ReplaceFragment(fragment);
+//                ReplaceFragment(fragment);
             }
         });
     }
 
-    public void ReplaceFragment(Fragment fragment){
-        if (fragment != null)
-            ((MainActivity)context).getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.ContainerFragmentProgress, fragment)
-                    .addToBackStack(null)
-                    .commit();
-    }
+//    public void ReplaceFragment(Fragment fragment){
+//        if (fragment != null)
+//            ((MainActivity)context).getSupportFragmentManager()
+//                    .beginTransaction()
+//                    .replace(R.id.ContainerFragmentProgress, fragment)
+//                    .addToBackStack(null)
+//                    .commit();
+//    }
 
     private String getKotaProv(int i) {
         String s = "";

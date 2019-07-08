@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ags.ayolelang.Activity.MainActivity;
@@ -22,7 +23,7 @@ public class GarapanFragment extends Fragment implements View.OnClickListener {
     private View v;
 
     private int id_parent;
-    private CardView cv_pendidikan, cv_percetakan, cv_kuliner, cv_hiburan, cv_otomotif, cv_fotografi, cv_palugada;
+    private LinearLayout cv_pendidikan, cv_percetakan, cv_kuliner, cv_hiburan, cv_otomotif, cv_fotografi, cv_palugada;
     private TextView txt_namaPengguna;
 
     @Nullable

@@ -291,6 +291,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
                     android:backgroundTint="@color/colorPrimaryDark" />
 
                 <Spinner
@@ -298,6 +300,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
                     android:backgroundTint="@color/colorPrimaryDark" />
 
             </LinearLayout>
@@ -359,14 +363,13 @@
                         android:onClick="upload"
                         android:text="Upload File"
                         android:textColor="@color/colorPrimaryDark"
-                        android:textSize="@dimen/Font_Body" />
+                        android:textSize="@dimen/Font_Caption" />
 
                     <TextView
                         android:id="@+id/txt_Hint"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="4dp"
-                        android:layout_marginTop="2dp"
                         android:text="(Max size file 5 mb, pdf only)"
                         android:textColor="@color/colorGrey2"
                         android:textSize="@dimen/Font_Caption" />

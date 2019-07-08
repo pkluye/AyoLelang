@@ -45,7 +45,7 @@ public class ProgressFragment extends Fragment {
 
         drawerToggle.syncState();
 
-        ReplaceFragment(new FragmentlistProgress());
+//        ReplaceFragment(new FragmentlistProgress());
         return view;
     }
 
@@ -70,13 +70,13 @@ public class ProgressFragment extends Fragment {
     }
 
 
-    public void ReplaceFragment(Fragment fragment) {
-        if (fragment != null)
-            getFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.ContainerFragmentProgress, fragment)
-                    //.addToBackStack(null)
-                    .commit();
-    }
+//    public void ReplaceFragment(Fragment fragment) {
+//        if (fragment != null)
+//            getFragmentManager()
+//                    .beginTransaction()
+//                    .replace(R.id.ContainerFragmentProgress, fragment)
+//                    //.addToBackStack(null)
+//                    .commit();
+//    }
 
 }

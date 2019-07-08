@@ -1,76 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout_drawer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="56dp">
+    android:layout_marginBottom="56dp"
+    android:orientation="vertical">
 
-    <android.support.design.widget.NavigationView
-        android:id="@+id/nv_view"
-        android:layout_gravity="start"
-        app:headerLayout="@layout/header_sidebar"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/colorPrimaryDark"
-        app:itemIconTint="@color/colorWhite"
-        app:itemTextColor="@color/colorWhite"
-        app:menu="@menu/sidebar_menu">
+        android:elevation="4dp"
+        android:minHeight="?attr/actionBarSize"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        app:titleTextColor="@color/colorWhite">
 
-    </android.support.design.widget.NavigationView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/txt_Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.9"
+                android:text="Progress Saya"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/Font_Header" />
+
+        </LinearLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:id="@+id/layoutLinear2"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_below="@id/toolbar"
+        android:background="@color/colorBackground"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <TextView
+            android:id="@+id/txt_subtext_kategori"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Garapan status pemilihan mitra"
+            android:textColor="@color/colorGrey1"
+            android:textSize="16sp" />
+
+    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/text_nothing"
+            android:visibility="gone"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryDark"
-            android:elevation="4dp"
-            android:fitsSystemWindows="true"
-            android:minHeight="?attr/actionBarSize"
-            app:contentInsetLeft="0dp"
-            app:contentInsetStart="0dp"
-            app:titleTextColor="@color/colorWhite">
+            android:text="Tidak ada garapan yang sedang dilelang"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="start"
-                android:orientation="horizontal">
-
-
-                <!--<ImageButton-->
-                    <!--android:id="@+id/btn_menuProgress"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:background="@android:color/transparent"-->
-                    <!--app:srcCompat="@drawable/ic_menu" />-->
-
-                <TextView
-                    android:id="@+id/txt_Title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Progress Saya"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="@dimen/Font_Header"
-                    android:layout_marginBottom="2dp"/>
-
-            </LinearLayout>
-
-        </android.support.v7.widget.Toolbar>
-
-        <FrameLayout
-            android:id="@+id/ContainerFragmentProgress"
+        <android.support.v7.widget.RecyclerView
+            android:visibility="visible"
+            android:id="@+id/rv_item_pemilihan"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/toolbar">
+            tools:listitem="@layout/item_pemilihan">
 
-        </FrameLayout>
+        </android.support.v7.widget.RecyclerView>
 
     </RelativeLayout>
 
-</android.support.v4.widget.DrawerLayout>
+</LinearLayout>

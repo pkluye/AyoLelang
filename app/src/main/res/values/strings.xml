@@ -33,7 +33,7 @@
     <string name="garapan_8">Lainnya</string>
     <string name="garapan_9">Event Organizer</string>
     <string name="garapan_10">Wedding Organizer</string>
-    <string name="garapan_11">Event \nLainnya</string>
+    <string name="garapan_11">Event Lainnya</string>
 
 
     <string name="lorem">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s</string>
@@ -42,5 +42,8 @@
     <string name="title_pemilihan">Pemilihan Mitra</string>
     <string name="title_pengerjaan">Pengerjaan</string>
     <string name="title_selesai">Selesai</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
