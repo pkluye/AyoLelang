@@ -14,8 +14,8 @@ public class DBContract {
     static String TABLE_USER = "TABLE_USER";
     static String TABLE_TAWARAN = "TABLE_TAWARAN";
     static String TABLE_HISTORITAWARAN = "TABLE_HISTORITAWARAN";
-    static String TABLE_SPECBARANG="TABLE_SPECBARANG";
-    static String TABLE_TWPEKERJAAN="table_twpekerjaan";
+    static String TABLE_SPECBARANG = "TABLE_SPECBARANG";
+    static String TABLE_TWPEKERJAAN = "table_twpekerjaan";
 
     static final class PROVINSI implements BaseColumns {
         static String PROVINSI_ID = "provinsi_id";
@@ -43,6 +43,7 @@ public class DBContract {
         static String LELANG_TGLSELESAI = "lelang_tglselesai";
         static String LELANG_JUDUL = "lelang_judul";
         static String LELANG_USERID = "lelang_userid";
+        static String LELANG_MITRAID = "lelang_mitraid";
         static String LELANG_PEMBAYARAN = "lelang_pembayaran";
         static String LELANG_KOTA = "lelang_kota";
         static String LELANG_ALAMAT = "lelang_alamat";
@@ -55,8 +56,8 @@ public class DBContract {
         static String PEKERJAAN_LELANGID = "pekerjaan_lelangid";
         static String PEKERJAAN_UKURAN = "pekerjaan_ukuran";
         static String PEKERJAAN_BAHAN = "pekerjaan_bahan";
-        static String PEKERJAAN_JMLSISI="pekerjaan_jmlsisi";
-        static String PEKERJAAN_LAMINASI="pekerjaan_laminasi";
+        static String PEKERJAAN_JMLSISI = "pekerjaan_jmlsisi";
+        static String PEKERJAAN_LAMINASI = "pekerjaan_laminasi";
         static String PEKERJAAN_JUMLAH = "pekerjaan_jumlah";
         static String PEKERJAAN_HARGA = "pekerjaan_harga";
         static String PEKERJAAN_CATATAN = "pekerjaan_catatan";
@@ -81,22 +82,22 @@ public class DBContract {
         static String TAWARAN_ANGGARAN = "tawaran_anggaran";
     }
 
-    static final class SPECBARANG implements BaseColumns{
-        static String SPECBARANG_ID="specbarang_id";
-        static String SPECBARANG_KATEGORIID="specbarang_kategoriid";
-        static String SPECBARANG_UKURAN="specbarang_ukuran";
-        static String SPECBARANG_BAHAN="specbarang_bahan";
-        static String SPECBARANG_JMLSISI ="specbarang_jmlsisi";
-        static String SPECBARANG_LAMINASI ="specbarang_laminasi";
-        static String SPECBARANG_HARGASATUAN="specbarang_hargasatuan";
-        static String SPECBARANG_SATUAN="specbarang_satuan";
+    static final class SPECBARANG implements BaseColumns {
+        static String SPECBARANG_ID = "specbarang_id";
+        static String SPECBARANG_KATEGORIID = "specbarang_kategoriid";
+        static String SPECBARANG_UKURAN = "specbarang_ukuran";
+        static String SPECBARANG_BAHAN = "specbarang_bahan";
+        static String SPECBARANG_JMLSISI = "specbarang_jmlsisi";
+        static String SPECBARANG_LAMINASI = "specbarang_laminasi";
+        static String SPECBARANG_HARGASATUAN = "specbarang_hargasatuan";
+        static String SPECBARANG_SATUAN = "specbarang_satuan";
     }
 
-    static final class TWPEKERJAAN implements BaseColumns{
-        static String TWPEKERJAAN_ID="twpekerjaan_id";
-        static String TWPEKERJAAN_TAWARANID="twpekerjaan_tawaranid";
-        static String TWPEKERJAAN_PEKERJAANID="twpekerjaan_pekerjaanid";
-        static String TWPEKERJAAN_ANGGARANID="twpekerjaan_anggaran";
+    static final class TWPEKERJAAN implements BaseColumns {
+        static String TWPEKERJAAN_ID = "twpekerjaan_id";
+        static String TWPEKERJAAN_TAWARANID = "twpekerjaan_tawaranid";
+        static String TWPEKERJAAN_PEKERJAANID = "twpekerjaan_pekerjaanid";
+        static String TWPEKERJAAN_ANGGARANID = "twpekerjaan_anggaran";
     }
 
 }

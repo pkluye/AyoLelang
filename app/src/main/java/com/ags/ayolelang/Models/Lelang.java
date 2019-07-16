@@ -1,13 +1,14 @@
 package com.ags.ayolelang.Models;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 
-public class Lelang {
+public class Lelang implements Serializable {
     private String lelang_deskripsi,
             lelang_tglmulai,
             lelang_tglselesai,
             lelang_judul,
             lelang_userid,
+            lelang_mitraid,
             lelang_alamat,
             lelang_fileurl;
     private int lelang_id, lelang_kota, lelang_status, lelang_pembayaran;
@@ -44,18 +45,41 @@ public class Lelang {
     }
 
     public Lelang(String deskripsi, int lelang_id_e, String deadline, String judul, String user_id, String alamat, String txt_url, int kotaid, int pembayaran, long totalharga) {
-        this.lelang_deskripsi=deskripsi;
-        this.lelang_id=lelang_id_e;
-        this.lelang_tglselesai=deadline;
-        this.lelang_judul=judul;
-        this.lelang_userid=user_id;
-        this.lelang_alamat=alamat;
-        this.lelang_fileurl=txt_url;
-        this.lelang_kota=kotaid;
-        this.lelang_pembayaran=pembayaran;
-        this.lelang_anggaran=totalharga;
+        this.lelang_deskripsi = deskripsi;
+        this.lelang_id = lelang_id_e;
+        this.lelang_tglselesai = deadline;
+        this.lelang_judul = judul;
+        this.lelang_userid = user_id;
+        this.lelang_alamat = alamat;
+        this.lelang_fileurl = txt_url;
+        this.lelang_kota = kotaid;
+        this.lelang_pembayaran = pembayaran;
+        this.lelang_anggaran = totalharga;
     }
 
+    public Lelang(String lelang_deskripsi, String lelang_tglmulai, String lelang_tglselesai, String lelang_judul, String lelang_userid, String lelang_mitraid, String lelang_alamat, String lelang_fileurl, int lelang_id, int lelang_kota, int lelang_status, int lelang_pembayaran, long lelang_anggaran) {
+        this.lelang_deskripsi = lelang_deskripsi;
+        this.lelang_tglmulai = lelang_tglmulai;
+        this.lelang_tglselesai = lelang_tglselesai;
+        this.lelang_judul = lelang_judul;
+        this.lelang_userid = lelang_userid;
+        this.lelang_mitraid = lelang_mitraid;
+        this.lelang_alamat = lelang_alamat;
+        this.lelang_fileurl = lelang_fileurl;
+        this.lelang_id = lelang_id;
+        this.lelang_kota = lelang_kota;
+        this.lelang_status = lelang_status;
+        this.lelang_pembayaran = lelang_pembayaran;
+        this.lelang_anggaran = lelang_anggaran;
+    }
+
+    public String getLelang_mitraid() {
+        return lelang_mitraid;
+    }
+
+    public void setLelang_mitraid(String lelang_mitraid) {
+        this.lelang_mitraid = lelang_mitraid;
+    }
 
     public int getLelang_status() {
         return lelang_status;
@@ -161,6 +185,7 @@ public class Lelang {
                 ", lelang_tglselesai='" + lelang_tglselesai + '\'' +
                 ", lelang_judul='" + lelang_judul + '\'' +
                 ", lelang_userid='" + lelang_userid + '\'' +
+                ", lelang_mitraid='" + lelang_mitraid + '\'' +
                 ", lelang_alamat='" + lelang_alamat + '\'' +
                 ", lelang_fileurl='" + lelang_fileurl + '\'' +
                 ", lelang_id=" + lelang_id +

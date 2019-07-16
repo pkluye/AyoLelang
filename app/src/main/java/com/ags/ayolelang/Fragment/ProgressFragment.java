@@ -20,63 +20,31 @@ import android.widget.RelativeLayout;
 
 import com.ags.ayolelang.R;
 
-public class ProgressFragment extends Fragment {
-
-    private DrawerLayout mDrawer;
-    private Toolbar toolbar;
-    private ActionBarDrawerToggle drawerToggle;
+public class ProgressFragment extends Fragment implements View.OnClickListener{
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_progress, null);
-
-        toolbar = view.findViewById(R.id.toolbar);
-        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
-
-        mDrawer = view.findViewById(R.id.layout_drawer);
-
-        drawerToggle = setupDrawerToggle();
-
-        mDrawer.addDrawerListener(drawerToggle);
-
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        drawerToggle.syncState();
-
-//        ReplaceFragment(new FragmentlistProgress());
+        View view = inflater.inflate(R.layout.fragment_menu_progress, null);
         return view;
     }
 
-    private ActionBarDrawerToggle setupDrawerToggle() {
-        return new ActionBarDrawerToggle(getActivity(), mDrawer, toolbar, R.string.drawer_open,  R.string.drawer_close);
-    }
-
-
     @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        // Pass any configuration change to the drawer toggles
-        drawerToggle.onConfigurationChanged(newConfig);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (drawerToggle.onOptionsItemSelected(item)) {
-            return true;
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.klien_pemilihan:
+                break;
+            case R.id.klien_pengerjaan:
+                break;
+            case R.id.klien_selesai:
+                break;
+            case R.id.mitra_penawaran:
+                break;
+            case R.id.mitra_pengerjaan:
+                break;
+            case R.id.mitra_selesai:
+                break;
         }
-        return super.onOptionsItemSelected(item);
     }
-
-
-//    public void ReplaceFragment(Fragment fragment) {
-//        if (fragment != null)
-//            getFragmentManager()
-//                    .beginTransaction()
-//                    .replace(R.id.ContainerFragmentProgress, fragment)
-//                    //.addToBackStack(null)
-//                    .commit();
-//    }
-
 }

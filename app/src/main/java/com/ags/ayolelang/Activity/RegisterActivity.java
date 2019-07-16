@@ -3,6 +3,7 @@ package com.ags.ayolelang.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.MainThread;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Patterns;
 import android.view.View;
@@ -15,6 +16,11 @@ import com.ags.ayolelang.Models.User;
 import com.ags.ayolelang.R;
 import com.google.gson.internal.LinkedTreeMap;
 
+import io.reactivex.Single;
+import io.reactivex.SingleObserver;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -24,6 +30,8 @@ import static com.ags.ayolelang.API.RetrofitClient.secret_key;
 public class RegisterActivity extends AppCompatActivity {
 
     private EditText in_username,in_email,in_password,in_repassword;
+    private EditText in_ponsel;
+    Disposable disposable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +42,7 @@ public class RegisterActivity extends AppCompatActivity {
         in_email = (EditText) findViewById(R.id.in_email);
         in_password = (EditText) findViewById(R.id.in_password);
         in_repassword = (EditText) findViewById(R.id.in_repassword);
+        in_ponsel=findViewById(R.id.in_ponsel);
 
     }
 
@@ -42,6 +51,7 @@ public class RegisterActivity extends AppCompatActivity {
         String email = in_email.getText().toString().trim();
         String password = in_password.getText().toString().trim();
         String repassword = in_repassword.getText().toString().trim();
+        String ponsel=in_ponsel.getText().toString().trim();
 
         if (nama.isEmpty()) {
             in_username.setError("Username is required");
@@ -52,6 +62,12 @@ public class RegisterActivity extends AppCompatActivity {
         if (email.isEmpty()) {
             in_email.setError("Email is required");
             in_email.requestFocus();
+            return;
+        }
+
+        if (ponsel.isEmpty()){
+            in_ponsel.setError("Nomor Handphone is required");
+            in_ponsel.requestFocus();
             return;
         }
 
@@ -79,8 +95,8 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-        Call<UserRespon> call = RetrofitClient
-                .getInstance().getApi().auth_register(secret_key,nama,email, password);
+        Single<UserRespon> call = RetrofitClient
+                .getInstance().getApi().auth_register(secret_key,nama,email, password,ponsel);
 
         // Set up progress before call
         final ProgressDialog progressDoalog;
@@ -92,29 +108,42 @@ public class RegisterActivity extends AppCompatActivity {
         progressDoalog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         // show it
         progressDoalog.show();
+        call.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new SingleObserver<UserRespon>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        disposable=d;
+                    }
 
-        call.enqueue(new Callback<UserRespon>() {
-            @Override
-            public void onResponse(Call<UserRespon> call, Response<UserRespon> response) {
-                progressDoalog.dismiss();
-                UserRespon registerResponse = response.body();
-                if (!registerResponse.isError()){
-                    User user=registerResponse.getData();
-                    Intent intent = new Intent(RegisterActivity.this, VerificationActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    intent.putExtra("user_id",user.getUser_id());
-                    startActivity(intent);
-                    finish();
-                }else{
-                    Toast.makeText(getApplicationContext(),registerResponse.getMessage(),Toast.LENGTH_LONG).show();
-                }
-            }
+                    @Override
+                    public void onSuccess(UserRespon userRespon) {
+                        if (!userRespon.isError()){
+                            User user=userRespon.getData();
+                            Intent intent = new Intent(RegisterActivity.this, VerificationActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            intent.putExtra("user_id",user.getUser_id());
+                            startActivity(intent);
+                            finish();
+                        }else{
+                            Toast.makeText(getApplicationContext(),userRespon.getMessage(),Toast.LENGTH_LONG).show();
+                        }
+                    }
 
-            @Override
-            public void onFailure(Call<UserRespon> call, Throwable t) {
-                progressDoalog.dismiss();
-                Toast.makeText(getApplicationContext(),t.getMessage(),Toast.LENGTH_LONG).show();
-            }
-        });
+                    @Override
+                    public void onError(Throwable e) {
+                        progressDoalog.dismiss();
+                        Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_LONG).show();
+                    }
+                });
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (!disposable.isDisposed()){
+            disposable.dispose();
+        }
     }
 }

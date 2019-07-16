@@ -13,7 +13,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -22,15 +21,9 @@ import android.widget.Toast;
 import com.ags.ayolelang.API.RetrofitClient;
 import com.ags.ayolelang.Activity.MainActivity;
 import com.ags.ayolelang.Activity.PenawaranActivity;
-import com.ags.ayolelang.Activity.Preview;
-import com.ags.ayolelang.DBHelper.LelangHelper;
-import com.ags.ayolelang.DBHelper.PekerjaanHelper;
-import com.ags.ayolelang.DBHelper.REQLelangHelper;
-import com.ags.ayolelang.DBHelper.REQPekerjaanHelper;
 import com.ags.ayolelang.DBHelper.TawaranHelper;
 import com.ags.ayolelang.DBHelper.UserHelper;
 import com.ags.ayolelang.Models.Lelang;
-import com.ags.ayolelang.Models.Pekerjaan;
 import com.ags.ayolelang.Models.StringRespon;
 import com.ags.ayolelang.Models.Tawaran;
 import com.ags.ayolelang.Models.User;
@@ -39,7 +32,6 @@ import com.ags.ayolelang.Storage.SharedPrefManager;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
-import java.util.ArrayList;
 import java.util.Locale;
 
 import retrofit2.Call;
@@ -53,7 +45,7 @@ public class FragmentDetailLelang_s extends Fragment {
     private TextView txt_judulgarapan, txt_alamat, txt_tenggatWaktu, txt_eta, txt_namaPelelang, txt_deskripsi, txt_harga, txt_jumlahmitra, txt_pembayaran, txt_status;
     private LinearLayout btn_detailgarapan;
     private Button btn_ajukanPenawaran,btn_batalkan;
-    private int lelang_id;
+    private Lelang lelang;
     private TextView txt_subTittle;
     private ImageView btn_back;
 
@@ -88,11 +80,7 @@ public class FragmentDetailLelang_s extends Fragment {
 
     private void loadData() {
         Bundle bundle = getArguments();
-        LelangHelper lelangHelper = new LelangHelper(getContext());
-        lelangHelper.open();
-        final Lelang lelang = lelangHelper.getLelang(bundle.getInt("lelang_id"));
-        lelangHelper.close();
-        lelang_id = lelang.getLelang_id();
+        lelang=(Lelang) bundle.getSerializable("lelang");
         txt_judulgarapan.setText(lelang.getLelang_judul());
         txt_subTittle.setText(lelang.getLelang_judul());
         txt_namaPelelang.setText(getNama(lelang.getLelang_userid()));
@@ -106,7 +94,7 @@ public class FragmentDetailLelang_s extends Fragment {
 
         TawaranHelper tawaranHelper = new TawaranHelper(getActivity());
         tawaranHelper.open();
-        boolean isAlreadyBid = tawaranHelper.isAlreadyBid(userid, lelang_id);
+        boolean isAlreadyBid = tawaranHelper.isAlreadyBid(userid, lelang.getLelang_id());
         tawaranHelper.close();
         btn_batalkan=v.findViewById(R.id.btn_batalkan);
 
@@ -116,7 +104,7 @@ public class FragmentDetailLelang_s extends Fragment {
         int tawaran_id=0;
         if (isAlreadyBid) {
             tawaranHelper.open();
-            tawaran_id=tawaranHelper.SingleTawaran(userid,lelang_id).getTawaran_id();
+            tawaran_id=tawaranHelper.SingleTawaran(userid,lelang.getLelang_id()).getTawaran_id();
             tawaranHelper.close();
             btn_ajukanPenawaran.setText("Edit Penawaran");
             btn_batalkan.setVisibility(View.VISIBLE);
@@ -138,12 +126,12 @@ public class FragmentDetailLelang_s extends Fragment {
                 if (btn_ajukanPenawaran.getText().toString().equalsIgnoreCase("Edit Penawaran")) {
                     Intent intent= new Intent(getActivity(), PenawaranActivity.class);
                     intent.putExtra("edit",true);
-                    intent.putExtra("lelang_id",lelang_id);
+                    intent.putExtra("lelang_id",lelang.getLelang_id());
                     intent.putExtra("tawaran_id", finalTawaran_id);
                     startActivity(intent);
                 } else {
                     Intent intent= new Intent(getActivity(), PenawaranActivity.class);
-                    intent.putExtra("lelang_id",lelang_id);
+                    intent.putExtra("lelang_id",lelang.getLelang_id());
                     startActivity(intent);
                 }
             }
@@ -200,7 +188,7 @@ public class FragmentDetailLelang_s extends Fragment {
         String userid = SharedPrefManager.getInstance(getContext()).getUser().getUser_id();
         final TawaranHelper tawaranHelper = new TawaranHelper(getActivity());
         tawaranHelper.open();
-        final Tawaran tawaran = tawaranHelper.SingleTawaran(userid, lelang_id);
+        final Tawaran tawaran = tawaranHelper.SingleTawaran(userid, lelang.getLelang_id());
         tawaranHelper.close();
         Call<StringRespon> call = RetrofitClient.getInstance()
                 .getApi().deleteTawaran(

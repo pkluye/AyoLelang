@@ -56,7 +56,7 @@
                         android:id="@+id/in_username"
                         android:layout_width="250dp"
                         android:layout_height="50dp"
-                        android:hint="Username"
+                        android:hint="Nama"
                         android:inputType="text" />
 
                 </android.support.design.widget.TextInputLayout>

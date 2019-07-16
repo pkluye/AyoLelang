@@ -18,6 +18,7 @@ import static com.ags.ayolelang.DBHelper.DBContract.LELANG.LELANG_FILEURL;
 import static com.ags.ayolelang.DBHelper.DBContract.LELANG.LELANG_ID;
 import static com.ags.ayolelang.DBHelper.DBContract.LELANG.LELANG_JUDUL;
 import static com.ags.ayolelang.DBHelper.DBContract.LELANG.LELANG_KOTA;
+import static com.ags.ayolelang.DBHelper.DBContract.LELANG.LELANG_MITRAID;
 import static com.ags.ayolelang.DBHelper.DBContract.LELANG.LELANG_PEMBAYARAN;
 import static com.ags.ayolelang.DBHelper.DBContract.LELANG.LELANG_STATUS;
 import static com.ags.ayolelang.DBHelper.DBContract.LELANG.LELANG_TGLMULAI;
@@ -107,6 +108,7 @@ public class DBHelper extends SQLiteOpenHelper {
                     LELANG_FILEURL + " TEXT NOT NULL, " +
                     LELANG_TGLMULAI + " TEXT NOT NULL, " +
                     LELANG_TGLSELESAI + " TEXT NOT NULL, " +
+                    LELANG_MITRAID + " TEXT NOT NULL, " +
                     LELANG_USERID + " TEXT NOT NULL)";
 
     public static String CREATE_TABLE_PEKERJAAN =

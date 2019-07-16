@@ -31,12 +31,12 @@ public interface Api {
 
     @FormUrlEncoded
     @POST("c_auth/auth_register")
-    Call<UserRespon> auth_register(
+    Single<UserRespon> auth_register(
             @Field("secret_key") String secret_key,
             @Field("nama") String nama,
             @Field("email") String email,
-            @Field("password") String password
-    );
+            @Field("password") String password,
+            @Field("ponsel")String ponsel);
 
     @FormUrlEncoded
     @POST("c_auth/auth_verif")
@@ -69,18 +69,18 @@ public interface Api {
             @Field("token_user") String s5,
             @Field("token_tawaran") String s6,
             @Field("token_specbarang") String s7);
-
-    @Headers("Content-Type: application/json")
-    @POST("c_lelang/lelang_edit")
-    Call<StringRespon> editLelang(@Body String toString);
-
-    @FormUrlEncoded
-    @POST("c_tawaran/tawaran_buat")
-    Call<StringRespon> buatTawaran(
-            @Field("secret_key") String secret_key,
-            @Field("user_id") String userid,
-            @Field("lelang_id") int lelang_id,
-            @Field("anggaran") long penawaran);
+//
+//    @Headers("Content-Type: application/json")
+//    @POST("c_lelang/lelang_edit")
+//    Call<StringRespon> editLelang(@Body String toString);
+//
+//    @FormUrlEncoded
+//    @POST("c_tawaran/tawaran_buat")
+//    Call<StringRespon> buatTawaran(
+//            @Field("secret_key") String secret_key,
+//            @Field("user_id") String userid,
+//            @Field("lelang_id") int lelang_id,
+//            @Field("anggaran") long penawaran);
 
     @Headers("Content-Type: application/json")
     @POST("c_tawaran/tawaran_buatv2")
@@ -91,14 +91,14 @@ public interface Api {
     @POST("c_tawaran/tawaran_editv2")
     Single<StringRespon> tawaran_editv2(
             @Body String body);
-
-    @FormUrlEncoded
-    @POST("c_tawaran/tawaran_edit")
-    Call<StringRespon> editTawaran(
-            @Field("secret_key") String secret_key,
-            @Field("user_id") String userid,
-            @Field("tawaran_id") int tawaran_id,
-            @Field("anggaran") long penawaran);
+//
+//    @FormUrlEncoded
+//    @POST("c_tawaran/tawaran_edit")
+//    Call<StringRespon> editTawaran(
+//            @Field("secret_key") String secret_key,
+//            @Field("user_id") String userid,
+//            @Field("tawaran_id") int tawaran_id,
+//            @Field("anggaran") long penawaran);
 
     @FormUrlEncoded
     @POST("c_tawaran/tawaran_delete")

@@ -1,6 +1,11 @@
 package com.ags.ayolelang.Models;
 
-public class User {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
+
+public class User implements Serializable {
 
     private String user_id,user_nama, user_email, user_telpon, user_alamat, user_imgurl;
     private boolean user_status;

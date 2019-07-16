@@ -75,7 +75,7 @@ public class AdapterListlelang extends RecyclerView.Adapter<AdapterListlelang.Cu
                 Bundle bundle=new Bundle();
                 bundle.putString("eta",eta);
                 bundle.putString("alamat",alamat);
-                bundle.putInt("lelang_id",lelang.getLelang_id());
+                bundle.putSerializable("lelang",lelang);
                 bundle.putString("tenggat_waktu",tenggat_waktu);
                 bundle.putInt("count_mitra",count_mitra);
                 Fragment fragment = new FragmentDetailLelang_s();

@@ -1,13 +1,16 @@
 package com.ags.ayolelang.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.ags.ayolelang.Activity.Profile;
 import com.ags.ayolelang.Models.User;
 import com.ags.ayolelang.R;
 
@@ -33,9 +36,17 @@ public class AdapterListMitra extends RecyclerView.Adapter<AdapterListMitra.Cust
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CustomHolderView customHolderView, int i) {
-        User user=users.get(i);
+    public void onBindViewHolder(@NonNull CustomHolderView customHolderView, final int i) {
+        final User user=users.get(i);
         customHolderView.txt_nama.setText(user.getUser_nama());
+        customHolderView.item_search_mitra.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(context, Profile.class);
+                intent.putExtra("user",user);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -50,11 +61,13 @@ public class AdapterListMitra extends RecyclerView.Adapter<AdapterListMitra.Cust
 
     public class CustomHolderView extends RecyclerView.ViewHolder  {
 
+        private LinearLayout item_search_mitra;
         TextView txt_nama;
 
         public CustomHolderView(@NonNull View v) {
             super(v);
             txt_nama=v.findViewById(R.id.txt_nama);
+            item_search_mitra=v.findViewById(R.id.item_search_mitra);
         }
     }
 }

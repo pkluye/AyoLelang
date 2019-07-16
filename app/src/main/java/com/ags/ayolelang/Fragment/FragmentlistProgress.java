@@ -7,13 +7,13 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.ags.ayolelang.Activity.MainActivity;
 import com.ags.ayolelang.Adapter.AdapterListlelang_progress;
 import com.ags.ayolelang.DBHelper.LelangHelper;
 import com.ags.ayolelang.Models.Lelang;
@@ -44,40 +44,19 @@ public class FragmentlistProgress extends Fragment{
     private void loadData() {
         LelangHelper lelangHelper = new LelangHelper(getContext());
         lelangHelper.open();
+        int size=lelangHelper.getLelangbyUser(SharedPrefManager.getInstance(getContext()).getUser().getUser_id()).size();
         ArrayList<Lelang> lelangs = lelangHelper.getLelangbyUser(SharedPrefManager.getInstance(getContext()).getUser().getUser_id());
         lelangHelper.close();
-        AdapterListlelang_progress adapterListlelang = new AdapterListlelang_progress(getContext());
-        adapterListlelang.addItem(lelangs);
-        if (adapterListlelang.getItemCount()>0){
+        if (size<1){
+            rv_lelang.setVisibility(View.GONE);
+            default_layout.setVisibility(View.VISIBLE);
+        }else{
             default_layout.setVisibility(View.GONE);
-            btn_buatLelang.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    ((MainActivity)getActivity()).loadFragment_(new GarapanFragment());
-                }
-            });
             rv_lelang.setVisibility(View.VISIBLE);
         }
+        AdapterListlelang_progress adapterListlelang = new AdapterListlelang_progress(getContext());
+        adapterListlelang.addItem(lelangs);
         rv_lelang.setAdapter(adapterListlelang);
-        rv_lelang.addOnChildAttachStateChangeListener(new RecyclerView.OnChildAttachStateChangeListener() {
-            @Override
-            public void onChildViewAttachedToWindow(@NonNull View view) {
-            }
-
-            @Override
-            public void onChildViewDetachedFromWindow(@NonNull View view) {
-                if (rv_lelang.getAdapter().getItemCount()<1){
-                    default_layout.setVisibility(View.VISIBLE);
-                    rv_lelang.setVisibility(View.GONE);
-                }
-            }
-        });
     }
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        getActivity().setTitle("Progress Saya");
-    }
 }
