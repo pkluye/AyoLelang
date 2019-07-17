@@ -2,6 +2,7 @@ package com.ags.ayolelang.DBHelper;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.AbstractCursor;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -32,6 +33,7 @@ import static com.ags.ayolelang.DBHelper.DBContract.PEKERJAAN.PEKERJAAN_LELANGID
 import static com.ags.ayolelang.DBHelper.DBContract.TABLE_KATEGORI;
 import static com.ags.ayolelang.DBHelper.DBContract.TABLE_LELANG;
 import static com.ags.ayolelang.DBHelper.DBContract.TABLE_PEKERJAAN;
+import static com.ags.ayolelang.DBHelper.DBContract.TABLE_TAWARAN;
 
 public class LelangHelper {
     private Context context;
@@ -150,10 +152,48 @@ public class LelangHelper {
         return lelangs;
     }
 
-    public ArrayList<Lelang> getLelangbyUser(String user_id) {
+    public ArrayList<Lelang> getLelangbyUser(String user_id,int status) {
         db.beginTransaction();
         ArrayList<Lelang> lelangs = new ArrayList<>();
-        Cursor cursor = db.query(TABLE_LELANG, null, LELANG_USERID + " = '" + user_id + "'", null, null, null, null, null);
+        Cursor cursor = db.query(TABLE_LELANG, null, LELANG_USERID + " = '" + user_id + "' AND "+LELANG_STATUS+" = "+status, null, null, null, null, null);
+        //Cursor cursor = db.query(TABLE_LELANG, null,null, null, null, null, null, String.valueOf(limit));
+        cursor.moveToFirst();
+        Lelang lelang;
+        if (cursor.getCount() > 0) {
+            do {
+                lelang = new Lelang();
+                lelang.setLelang_id(cursor.getInt(cursor.getColumnIndexOrThrow(LELANG_ID)));
+                lelang.setLelang_judul(cursor.getString(cursor.getColumnIndexOrThrow(LELANG_JUDUL)));
+                lelang.setLelang_alamat(cursor.getString(cursor.getColumnIndexOrThrow(LELANG_ALAMAT)));
+                lelang.setLelang_anggaran(cursor.getLong(cursor.getColumnIndexOrThrow(LELANG_ANGGARAN)));
+                lelang.setLelang_status(cursor.getInt(cursor.getColumnIndexOrThrow(LELANG_STATUS)));
+                lelang.setLelang_fileurl(cursor.getString(cursor.getColumnIndexOrThrow(LELANG_FILEURL)));
+                lelang.setLelang_kota(cursor.getInt(cursor.getColumnIndexOrThrow(LELANG_KOTA)));
+                lelang.setLelang_deskripsi(cursor.getString(cursor.getColumnIndexOrThrow(LELANG_DESKRIPSI)));
+                lelang.setLelang_pembayaran(cursor.getInt(cursor.getColumnIndexOrThrow(LELANG_PEMBAYARAN)));
+                lelang.setLelang_tglmulai(cursor.getString(cursor.getColumnIndexOrThrow(LELANG_TGLMULAI)));
+                lelang.setLelang_tglselesai(cursor.getString(cursor.getColumnIndexOrThrow(LELANG_TGLSELESAI)));
+                lelang.setLelang_userid(cursor.getString(cursor.getColumnIndexOrThrow(LELANG_USERID)));
+                lelang.setLelang_mitraid(cursor.getString(cursor.getColumnIndexOrThrow(LELANG_MITRAID)));
+                lelangs.add(lelang);
+                cursor.moveToNext();
+            } while (!cursor.isAfterLast());
+        }
+        cursor.close();
+        db.endTransaction();
+        return lelangs;
+    }
+
+    public ArrayList<Lelang> getLelangbyMitra(String user_id,int status) {
+        db.beginTransaction();
+        ArrayList<Lelang> lelangs = new ArrayList<>();
+        Cursor cursor=null;
+        if (status==3){
+            String sql="SELECT * FROM "+TABLE_LELANG+" l JOIN "+TABLE_TAWARAN+" t ON l.lelang_id=t.tawaran_lelangid WHERE t.tawaran_userid='"+user_id+"' AND l.lelang_status=3";
+            cursor = db.rawQuery(sql,null);
+        }else{
+            cursor = db.query(TABLE_LELANG, null, LELANG_MITRAID + " = '" + user_id + "' AND "+LELANG_STATUS+" = "+status, null, null, null, null, null);
+        }
         //Cursor cursor = db.query(TABLE_LELANG, null,null, null, null, null, null, String.valueOf(limit));
         cursor.moveToFirst();
         Lelang lelang;
