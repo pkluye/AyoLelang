@@ -3,12 +3,15 @@ package com.ags.ayolelang.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.ags.ayolelang.Adapter.AdapterItemPortofolio;
+import com.ags.ayolelang.Models.Lelang;
 import com.ags.ayolelang.Models.User;
 import com.ags.ayolelang.R;
 
@@ -34,6 +37,7 @@ public class Profile extends AppCompatActivity {
         text_about = findViewById(R.id.text_about);
         flowlayout = findViewById(R.id.flowlayout);
         recycle_portofolio = findViewById(R.id.recycle_portofolio);
+        recycle_portofolio.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
 
         Intent intent = getIntent();
         String text_skill = null;
@@ -53,6 +57,17 @@ public class Profile extends AppCompatActivity {
             flowlayout.addView(textView);
             flowlayout.relayoutToAlign();
         }
+
+        ArrayList<Lelang> lelangs=new ArrayList<>();
+        Lelang lelang1=new Lelang();
+        lelang1.setLelang_userid("20190616061002eA0");
+        lelang1.setLelang_judul("Test saja");
+        lelang1.setLelang_anggaran(999999);
+        lelang1.setLelang_deskripsi("ini hanya test saja, test pertama");
+        lelangs.add(lelang1);
+        AdapterItemPortofolio portofolio=new AdapterItemPortofolio(getApplicationContext());
+        portofolio.addItem(lelangs);
+        recycle_portofolio.setAdapter(portofolio);
     }
 
     public void back(View view) {

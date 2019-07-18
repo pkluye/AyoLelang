@@ -18,65 +18,69 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 
+import com.ags.ayolelang.Activity.MainActivity;
 import com.ags.ayolelang.R;
 
-public class ProgressFragment extends Fragment {
-
-    private DrawerLayout mDrawer;
-    private Toolbar toolbar;
-    private ActionBarDrawerToggle drawerToggle;
+public class ProgressFragment extends Fragment implements View.OnClickListener{
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_progress, null);
-
-        toolbar = view.findViewById(R.id.toolbar);
-        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
-
-        mDrawer = view.findViewById(R.id.layout_drawer);
-
-        drawerToggle = setupDrawerToggle();
-
-        mDrawer.addDrawerListener(drawerToggle);
-
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        drawerToggle.syncState();
-
-//        ReplaceFragment(new FragmentlistProgress());
+        View view = inflater.inflate(R.layout.fragment_menu_progress, null);
+        view.findViewById(R.id.klien_pemilihan).setOnClickListener(this);
+        view.findViewById(R.id.klien_pengerjaan).setOnClickListener(this);
+        view.findViewById(R.id.klien_selesai).setOnClickListener(this);
+        view.findViewById(R.id.mitra_penawaran).setOnClickListener(this);
+        view.findViewById(R.id.mitra_pengerjaan).setOnClickListener(this);
+        view.findViewById(R.id.mitra_selesai).setOnClickListener(this);
         return view;
     }
 
-    private ActionBarDrawerToggle setupDrawerToggle() {
-        return new ActionBarDrawerToggle(getActivity(), mDrawer, toolbar, R.string.drawer_open,  R.string.drawer_close);
-    }
-
-
     @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        // Pass any configuration change to the drawer toggles
-        drawerToggle.onConfigurationChanged(newConfig);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (drawerToggle.onOptionsItemSelected(item)) {
-            return true;
+    public void onClick(View v) {
+        Fragment fragment=null;
+        Bundle bundle=new Bundle();
+        switch (v.getId()){
+            case R.id.klien_pemilihan:
+                fragment=new FragmentlistProgress();
+                bundle.putInt("status",3);
+                fragment.setArguments(bundle);
+                ((MainActivity)getActivity())._loadFragment(fragment);
+                break;
+            case R.id.klien_pengerjaan:
+                fragment=new FragmentlistProgress();
+                bundle.putInt("status",4);
+                fragment.setArguments(bundle);
+                ((MainActivity)getActivity())._loadFragment(fragment);
+                break;
+            case R.id.klien_selesai:
+                fragment=new FragmentlistProgress();
+                bundle.putInt("status",6);
+                fragment.setArguments(bundle);
+                ((MainActivity)getActivity())._loadFragment(fragment);
+                break;
+            case R.id.mitra_penawaran:
+                fragment=new FragmentlistProgress();
+                bundle.putInt("status",3);
+                bundle.putBoolean("mitra",true);
+                fragment.setArguments(bundle);
+                ((MainActivity)getActivity())._loadFragment(fragment);
+                break;
+            case R.id.mitra_pengerjaan:
+                fragment=new FragmentlistProgress();
+                bundle.putInt("status",4);
+                bundle.putBoolean("mitra",true);
+                fragment.setArguments(bundle);
+                ((MainActivity)getActivity())._loadFragment(fragment);
+                break;
+            case R.id.mitra_selesai:
+                fragment=new FragmentlistProgress();
+                bundle.putInt("status",6);
+                bundle.putBoolean("mitra",true);
+                fragment.setArguments(bundle);
+                ((MainActivity)getActivity())._loadFragment(fragment);
+                break;
         }
-        return super.onOptionsItemSelected(item);
     }
-
-
-//    public void ReplaceFragment(Fragment fragment) {
-//        if (fragment != null)
-//            getFragmentManager()
-//                    .beginTransaction()
-//                    .replace(R.id.ContainerFragmentProgress, fragment)
-//                    //.addToBackStack(null)
-//                    .commit();
-//    }
-
 }
