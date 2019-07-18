@@ -2,6 +2,7 @@ package com.ags.ayolelang.Fragment;
 
 import android.app.Dialog;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -186,9 +188,10 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
     }
 
     private void dialogBukanPremium() {
-        final Dialog dialog = new Dialog(getActivity());
+        final Dialog dialog = new Dialog(getActivity(), android.R.style.Theme_DeviceDefault_NoActionBar);
         dialog.setContentView(R.layout.popup_upgrade);
         dialog.setCanceledOnTouchOutside(true);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(true);
         ImageButton btn_close=dialog.findViewById(R.id.btn_close);
         btn_close.setOnClickListener(new View.OnClickListener() {

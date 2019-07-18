@@ -1,57 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#AAAAAAAA"
+    android:background="#AA4B4B4B"
     android:gravity="center"
     android:orientation="vertical"
     android:padding="16dp">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:gravity="center|end">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <ImageButton
-            android:id="@+id/btn_close"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ic_close_circle"
-            android:backgroundTint="@color/colorWhite"
-            android:scaleX="1.25"
-            android:scaleY="1.25" />
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="46dp"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="4dp">
-
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Silahkan upgrade akun Garapan Anda untuk dapat menggunakan fitur Event!"
-            android:textColor="@color/colorWhite"
-            android:textSize="@dimen/Font_Header2" />
-
-        <Button
-            android:layout_width="120dp"
-            android:layout_height="40dp"
             android:layout_marginTop="16dp"
-            android:background="@drawable/button_rectangle"
-            android:padding="8dp"
-            android:text="Upgrade"
-            android:textAllCaps="false"
-            android:textColor="@color/colorWhite"
-            android:textSize="@dimen/Font_Body" />
+            android:gravity="center|end">
+
+            <ImageButton
+                android:id="@+id/btn_close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_close_circle"
+                android:backgroundTint="@color/colorWhite"
+                android:scaleX="1.25"
+                android:scaleY="1.25" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="46dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="4dp">
+
+            <TextView
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Silahkan upgrade akun Garapan Anda untuk dapat menggunakan fitur Event!"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/Font_Header2" />
+
+            <Button
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/button_rectangle"
+                android:padding="8dp"
+                android:text="Upgrade"
+                android:textAllCaps="false"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/Font_Body" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>

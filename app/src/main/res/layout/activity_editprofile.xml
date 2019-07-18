@@ -2,20 +2,20 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="?attr/actionBarSize"
-        app:titleTextColor="@color/colorWhite"
         android:background="@color/colorPrimaryDark"
+        android:elevation="4dp"
+        android:minHeight="?attr/actionBarSize"
         app:contentInsetLeft="0dp"
         app:contentInsetStart="0dp"
-        android:elevation="4dp">
+        app:titleTextColor="@color/colorWhite">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -29,41 +29,40 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
-                app:srcCompat="@drawable/ic_arrow_back_black_24dp"
                 android:onClick="back"
+                android:scaleX="1.2"
                 android:scaleY="1.2"
-                android:scaleX="1.2"/>
+                app:srcCompat="@drawable/ic_arrow_back_black_24dp" />
 
             <TextView
                 android:id="@+id/txt_subTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="Edit Profile"
-                android:textSize="@dimen/Font_Header"
-                android:textColor="@color/colorWhite"
                 android:textAlignment="center"
-                android:layout_weight="0.9" />
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/Font_Header" />
 
-            <ImageButton
-                android:id="@+id/btn_More"
+            <TextView
+                android:id="@+id/txt_simpan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                app:srcCompat="@drawable/ic_more"
-                android:scaleY="1.2"
-                android:scaleX="1.2"/>
+                android:text="Simpan"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/Font_Subtitle2" />
 
         </LinearLayout>
 
     </android.support.v7.widget.Toolbar>
 
     <android.support.constraint.ConstraintLayout
+        android:id="@+id/img_account"
         android:layout_width="match_parent"
         android:layout_height="128dp"
-        android:id="@+id/img_account"
         android:background="@drawable/bg_main"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="vertical">
 
         <ImageView
             android:id="@+id/img_profile"
@@ -134,180 +133,268 @@
 
     </android.support.constraint.ConstraintLayout>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingTop="16dp"
-        android:paddingLeft="16dp">
+        android:fillViewport="true">
 
         <LinearLayout
-            android:id="@+id/btn_nama"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp">
 
-            <TextView
+            <!--nama-->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nama"
-                android:textSize="18sp"
-                android:textColor="@color/colorBlack"/>
+                android:layout_marginTop="4dp"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/txt_nama"
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:text="Nama"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/Font_Subtitle2" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/txt_nama"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/colorPrimaryDark"
+                        android:gravity="top|left"
+                        android:hint="Nama anda"
+                        android:inputType="text"
+                        android:minLines="1"
+                        android:text=""
+                        android:textSize="@dimen/Font_Subtitle" />
+
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+            <!--Email-->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nama User"
-                android:textSize="14sp" />
+                android:layout_marginTop="4dp"
+                android:orientation="vertical">
 
-            <View
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:text="E-mail"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/Font_Subtitle2" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/txt_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/colorPrimaryDark"
+                        android:gravity="top|left"
+                        android:hint="Email anda"
+                        android:inputType="textEmailAddress"
+                        android:minLines="1"
+                        android:text=""
+                        android:textSize="@dimen/Font_Subtitle" />
+
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <!--Password-->
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="#F0F0F0"/>
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:text="Password"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/Font_Subtitle2" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:passwordToggleEnabled="true">
+
+                    <EditText
+                        android:id="@+id/txt_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/colorPrimaryDark"
+                        android:gravity="top|left"
+                        android:hint="Password anda"
+                        android:inputType="textPassword"
+                        android:minLines="1"
+                        android:text=""
+                        android:textSize="@dimen/Font_Subtitle" />
+
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <!--Alamat-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:text="Alamat"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/Font_Subtitle2" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/txt_alamat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/colorPrimaryDark"
+                        android:gravity="top|left"
+                        android:hint="Alamat anda"
+                        android:inputType="textMultiLine"
+                        android:minLines="1"
+                        android:maxLines="3"
+                        android:scrollbars="vertical"
+                        android:text=""
+                        android:textSize="@dimen/Font_Subtitle" />
+
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <!--Nomor handphone-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:text="No Handphone"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/Font_Subtitle2" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/txt_nomorTelp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/colorPrimaryDark"
+                        android:gravity="top|left"
+                        android:hint="Nomor telefon anda"
+                        android:inputType="number"
+                        android:minLines="1"
+                        android:text=""
+                        android:textSize="@dimen/Font_Subtitle" />
+
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <!--Tentang-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:text="Tentang"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/Font_Subtitle2" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="256">
+
+                    <EditText
+                        android:id="@+id/txt_tentang"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/colorPrimaryDark"
+                        android:gravity="top|left"
+                        android:hint="Tentang anda"
+                        android:inputType="textMultiLine"
+                        android:maxLength="256"
+                        android:maxLines="3"
+                        android:minLines="1"
+                        android:scrollbars="vertical"
+                        android:text=""
+                        android:textSize="@dimen/Font_Subtitle" />
+
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <!--Skill-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:text="List Skill"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/Font_Subtitle2" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/txt_skill"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/colorPrimaryDark"
+                        android:gravity="top|left"
+                        android:hint="Skill anda, Skill 1, Skill 2, Skill 3"
+                        android:inputType="text"
+                        android:minLines="1"
+                        android:maxLines="3"
+                        android:text=""
+                        android:textSize="@dimen/Font_Subtitle" />
+
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
 
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/btn_tentang"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+    </ScrollView>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Tentang"
-                android:textSize="18sp"
-                android:textColor="@color/colorBlack"/>
-
-            <TextView
-                android:id="@+id/txt_tentang"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Tentang User"
-                android:textSize="14sp" />
-
-            <View
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="#F0F0F0"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/btn_alamat"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Alamat"
-                android:textSize="18sp"
-                android:textColor="@color/colorBlack"/>
-
-            <TextView
-                android:id="@+id/txt_alamat"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Alamat User"
-                android:textSize="14sp" />
-
-            <View
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="#F0F0F0"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/btn_email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Email"
-                android:textSize="18sp"
-                android:textColor="@color/colorBlack"/>
-
-            <TextView
-                android:id="@+id/txt_email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Email User"
-                android:textSize="14sp" />
-
-            <View
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="#F0F0F0"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/btn_noTelp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Nomor Telepon"
-                android:textSize="18sp"
-                android:textColor="@color/colorBlack"/>
-
-            <TextView
-                android:id="@+id/txt_noTelp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Nomor Telepon User"
-                android:textSize="14sp" />
-
-            <View
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="#F0F0F0"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/btn_skill"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Skill"
-                android:textSize="18sp"
-                android:textColor="@color/colorBlack"/>
-
-            <View
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="#F0F0F0"/>
-
-        </LinearLayout>
-
-    </LinearLayout>
 
 </LinearLayout>
