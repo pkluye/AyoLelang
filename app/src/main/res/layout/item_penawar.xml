@@ -1,57 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_kategori"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/item_penawar"
-
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="16dp"
+    android:background="@drawable/button_round_border_grey"
+    android:weightSum="7">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:elevation="2dp"
-        android:orientation="horizontal"
-        android:background="@drawable/button_rectangle"
-        android:backgroundTint="@color/colorWhite"
-        android:padding="8dp">
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center">
 
-        <LinearLayout
-            android:layout_marginTop="4dp"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/image_user"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:src="@drawable/ic_user"
-                tools:ignore="VectorDrawableCompat"
-                android:layout_gravity="center_horizontal"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_marginLeft="8dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_weight="1">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Nama"
-                android:textSize="@dimen/Font_Body"
-                android:textColor="@color/colorBlack"/>
-
-            <TextView
-                android:layout_marginTop="2dp"
-                android:textSize="@dimen/Font_Body2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Penawaran" />
-
-        </LinearLayout>
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/image_user"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_user_big"
+            tools:ignore="VectorDrawableCompat" />
 
     </LinearLayout>
 
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="5"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txt_namaPenawar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="12dp"
+            android:text="Bpk. Antono"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/Font_Header2" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingLeft="12dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/ic_location"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:id="@+id/txt_lokasiPenawar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Malang, Jawa Timur"
+                android:paddingLeft="4dp"
+                android:textColor="@color/colorGrey2"
+                android:textSize="@dimen/Font_Subtitle2" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingLeft="12dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/ic_tawar"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:paddingLeft="4dp"
+                android:id="@+id/txt_hargaPenawar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Rp. 800.000"
+                android:textColor="@color/colorGrey2"
+                android:textSize="@dimen/Font_Subtitle2" />
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center">
+
+        <ImageButton
+            android:id="@+id/btn_nextArrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:scaleX="1.5"
+            android:scaleY="1.5"
+            android:tint="@color/colorPrimaryDark"
+            app:srcCompat="@drawable/ic_navigation_next" />
+
+    </LinearLayout>
 </LinearLayout>

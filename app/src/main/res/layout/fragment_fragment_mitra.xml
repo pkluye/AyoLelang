@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.Profile">
+
+    <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark"
+            android:elevation="4dp"
+            android:minHeight="?attr/actionBarSize"
+            app:contentInsetLeft="0dp"
+            app:contentInsetStart="0dp"
+            app:titleTextColor="@color/colorWhite">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
+                <ImageButton
+                    android:id="@+id/btn_Menu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:onClick="back"
+                    android:scaleX="1.2"
+                    android:scaleY="1.2"
+                    app:srcCompat="@drawable/ic_arrow_back_black_24dp" />
+
+                <TextView
+                    android:id="@+id/txt_subTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.9"
+                    android:text="Pemilihan Mitra"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/Font_Header" />
+
+                <ImageButton
+                    android:id="@+id/btn_More"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:scaleX="1.2"
+                    android:scaleY="1.2"
+                    app:srcCompat="@drawable/ic_more" />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.Toolbar>
+
+
+    <ScrollView
+        android:layout_below="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center">
+
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_marginTop="32dp"
+                    android:id="@+id/img_Mitra"
+                    android:layout_width="86dp"
+                    android:layout_height="86dp"
+                    android:src="@mipmap/ic_launcher_round"/>
+
+                <TextView
+                    android:layout_marginTop="4dp"
+                    android:id="@+id/txt_namaMitra"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bpk. Antono"
+                    android:textSize="@dimen/Font_Header"
+                    android:textColor="@color/colorBlack"/>
+
+                <LinearLayout
+                    android:layout_marginTop="4dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txt_namaMitra"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/ic_location" />
+
+                    <TextView
+                        android:id="@+id/txt_kotaProv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
+                        android:text="Kota, Provinsi"
+                        android:textSize="@dimen/Font_Body2" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:layout_margin="16dp"
+                    android:id="@+id/btn_profilMitra"
+                    android:layout_width="128dp"
+                    android:layout_height="wrap_content"
+                    android:text="Lihat Profil"
+                    android:textAllCaps="false"
+                    android:textSize="@dimen/Font_Button"
+                    android:background="@drawable/button_rectangle"
+                    android:textColor="@color/colorWhite"
+                    />
+
+                <Button
+                    android:layout_margin="16dp"
+                    android:id="@+id/btn_messageMitra"
+                    android:layout_width="128dp"
+                    android:layout_height="wrap_content"
+                    android:text="Kirim Pesan"
+                    android:textAllCaps="false"
+                    android:textSize="@dimen/Font_Button"
+                    android:background="@drawable/button_rectangle_border_green"
+                    android:textColor="@color/colorPrimary"
+                    />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="32dp"
+                android:paddingRight="32dp">
+
+                <TextView
+                    android:textSize="@dimen/Font_Body2"
+                    android:layout_marginLeft="3dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Penawaran : "/>
+
+                <EditText
+                    android:id="@+id/txt_penawaran_mitra"
+                    android:textSize="@dimen/Font_Header2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Rp. 800.000"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="32dp"
+                android:paddingRight="32dp">
+
+                <TextView
+                    android:textSize="@dimen/Font_Body2"
+                    android:layout_marginLeft="3dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Riwayat Penawaran : "/>
+
+                <android.support.v7.widget.RecyclerView
+                    android:layout_marginTop="4dp"
+                    android:id="@+id/rv_riwayatPenawaran"
+                    android:layout_width="match_parent"
+                    android:layout_height="128dp"
+                    android:scrollbars="vertical"
+                    tools:listitem="@layout/item_riwayatpenawaran">
+
+                </android.support.v7.widget.RecyclerView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="18dp"
+                android:paddingRight="32dp"
+                android:paddingLeft="32dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pilih Mitra"/>
+
+                <Button
+                    android:layout_marginTop="8dp"
+                    android:id="@+id/btn_pilihMitra"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Hire Me !"
+                    android:textAllCaps="false"
+                    android:textSize="@dimen/Font_Button"
+                    android:background="@drawable/button_rectangle"
+                    android:textColor="@color/colorWhite"
+                    />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</RelativeLayout>

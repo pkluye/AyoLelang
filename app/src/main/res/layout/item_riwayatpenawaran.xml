@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="8dp"
+    android:weightSum="5"
+    android:background="@drawable/button_round_border_grey">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:orientation="vertical"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:textSize="10sp"
+            android:id="@+id/txt_hari"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Senin, 21 Juli 2019"/>
+
+        <TextView
+            android:id="@+id/txt_waktu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="21:33 PM"
+            android:textSize="12sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:orientation="vertical"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:textSize="14sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Rp. 200.000"
+            android:textColor="@color/colorBlack"
+            android:gravity="end"
+            android:layout_marginRight="24dp" />
+
+    </LinearLayout>
+
+</LinearLayout>
