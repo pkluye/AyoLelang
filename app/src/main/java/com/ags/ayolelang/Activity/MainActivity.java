@@ -3,6 +3,7 @@ package com.ags.ayolelang.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.ags.ayolelang.API.RetrofitClient;
 import com.ags.ayolelang.DBHelper.HistoriTawaranHelper;
@@ -74,9 +76,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     private TawaranHelper tawaranHelper = new TawaranHelper(this);
     private HistoriTawaranHelper historiTawaranHelper = new HistoriTawaranHelper(this);
     private SpecBarangHelper specBarangHelper = new SpecBarangHelper(this);
-    private TWPekerjaanHelper twPekerjaanHelper=new TWPekerjaanHelper(this);
+    private TWPekerjaanHelper twPekerjaanHelper = new TWPekerjaanHelper(this);
 
     ProgressDialog progressDoalog;
+    boolean doubleBackToExitPressedOnce = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -146,8 +149,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 token[5],
                 token[6],
                 token[7]);
-        for (int i=0;i<token.length;i++){
-            Log.d("token "+i,token[i]+"");
+        for (int i = 0; i < token.length; i++) {
+            Log.d("token " + i, token[i] + "");
         }
         progressDoalog.setMessage("Loading....");
         progressDoalog.setCancelable(false);
@@ -212,7 +215,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                                 ArrayList<Tawaran> historitawaran = fetchDB.getHistoritawarans();
                                 insert_historitawaran(historitawaran);
 
-                                ArrayList<TWPekerjaan> twPekerjaans=fetchDB.getTwpekerjaans();
+                                ArrayList<TWPekerjaan> twPekerjaans = fetchDB.getTwpekerjaans();
                                 insert_twpekerjaan(twPekerjaans);
 
                                 newtoken[6] = fetchDB.getToken_tawaran();
@@ -242,7 +245,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                             specBarangHelper.close();
 
                             userHelper.open();
-                            boolean user_isempty=userHelper.isEmpty();
+                            boolean user_isempty = userHelper.isEmpty();
                             userHelper.close();
 
                             if (kategori_isempty) {
@@ -257,7 +260,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                                 newtoken[2] = null;
                             }
 
-                            if (user_isempty){
+                            if (user_isempty) {
                                 newtoken[6] = null;
                             }
 
@@ -265,8 +268,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                                 newtoken[7] = null;
                             }
 
-                            for (int i=0;i<token.length;i++){
-                                Log.d("token "+i,newtoken[i]+"");
+                            for (int i = 0; i < token.length; i++) {
+                                Log.d("token " + i, newtoken[i] + "");
                             }
 
                             SharedPrefManager.getInstance(getApplicationContext()).saveToken(newtoken);
@@ -399,7 +402,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     private boolean loadFragment(Fragment fragment) {
         FragmentManager fm = getSupportFragmentManager();
-        for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {
+        for (int i = 0; i < fm.getBackStackEntryCount(); ++i) {
             fm.popBackStack();
         }
         //switching fragment
@@ -428,16 +431,42 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                     .beginTransaction()
                     .replace(R.id.fragment_container, fragment)
                     .commit();
-        if (fragment.getClass().isInstance(new GarapanFragment())){
+        if (fragment.getClass().isInstance(new GarapanFragment())) {
             bottomNavigation.setSelectedItemId(R.id.navigation_garapan);
-        }else if(fragment.getClass().isInstance(new InboxFragment())){
+        } else if (fragment.getClass().isInstance(new InboxFragment())) {
             bottomNavigation.setSelectedItemId(R.id.navigation_inbox);
-        }else if(fragment.getClass().isInstance(new ProgressFragment())){
+        } else if (fragment.getClass().isInstance(new ProgressFragment())) {
             bottomNavigation.setSelectedItemId(R.id.navigation_progress);
-        }else if(fragment.getClass().isInstance(new AccountFragment())){
+        } else if (fragment.getClass().isInstance(new AccountFragment())) {
             bottomNavigation.setSelectedItemId(R.id.navigation_account);
-        }else{
+        } else {
             bottomNavigation.setSelectedItemId(R.id.navigation_search);
+        }
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        FragmentManager fm=getSupportFragmentManager();
+        if (fm.getBackStackEntryCount()==0){
+            if (doubleBackToExitPressedOnce) {
+                super.onBackPressed();
+                return;
+            }
+
+            this.doubleBackToExitPressedOnce = true;
+
+            Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+            new Handler().postDelayed(new Runnable() {
+
+                @Override
+                public void run() {
+                    doubleBackToExitPressedOnce = false;
+                }
+            }, 2000);
+        }else{
+            super.onBackPressed();
         }
     }
 

@@ -129,7 +129,7 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
 
     public void ReplaceFragment(Fragment fragment) {
         if (fragment != null)
-            getFragmentManager()
+            getChildFragmentManager()
                     .beginTransaction()
                     .replace(R.id.search_container, fragment)
                     .commit();
@@ -173,6 +173,12 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
                     fragment = new SearchEventFragment();
                 } else {
                     dialogBukanPremium();
+                    if (fragment_active == R.id.btn_kategori) {
+                        btn_kategori.callOnClick();
+                    } else {
+                        btn_mitra.callOnClick();
+                    }
+
                 }
                 break;
             case R.id.btn_mitra:
@@ -193,7 +199,7 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
         dialog.setCanceledOnTouchOutside(true);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(true);
-        ImageButton btn_close=dialog.findViewById(R.id.btn_close);
+        ImageButton btn_close = dialog.findViewById(R.id.btn_close);
         btn_close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

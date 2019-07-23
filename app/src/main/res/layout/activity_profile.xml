@@ -180,7 +180,6 @@
                         android:id="@+id/flowlayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="30dp"
                         android:paddingLeft="-10dp"
                         android:paddingRight="-10dp"
                         app:lineSpacing="10dp"/>

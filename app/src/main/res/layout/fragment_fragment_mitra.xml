@@ -7,61 +7,61 @@
     tools:context=".Activity.Profile">
 
     <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:elevation="4dp"
+        android:minHeight="?attr/actionBarSize"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        app:titleTextColor="@color/colorWhite">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryDark"
-            android:elevation="4dp"
-            android:minHeight="?attr/actionBarSize"
-            app:contentInsetLeft="0dp"
-            app:contentInsetStart="0dp"
-            app:titleTextColor="@color/colorWhite">
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="16dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <ImageButton
+                android:id="@+id/btn_Menu"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:padding="16dp">
+                android:background="@android:color/transparent"
+                android:onClick="back"
+                android:scaleX="1.2"
+                android:scaleY="1.2"
+                app:srcCompat="@drawable/ic_arrow_back_black_24dp" />
 
-                <ImageButton
-                    android:id="@+id/btn_Menu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"
-                    android:onClick="back"
-                    android:scaleX="1.2"
-                    android:scaleY="1.2"
-                    app:srcCompat="@drawable/ic_arrow_back_black_24dp" />
+            <TextView
+                android:id="@+id/txt_subTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.9"
+                android:text="Pemilihan Mitra"
+                android:textAlignment="center"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/Font_Header" />
 
-                <TextView
-                    android:id="@+id/txt_subTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.9"
-                    android:text="Pemilihan Mitra"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="@dimen/Font_Header" />
+            <ImageButton
+                android:id="@+id/btn_More"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:scaleX="1.2"
+                android:scaleY="1.2"
+                app:srcCompat="@drawable/ic_more" />
 
-                <ImageButton
-                    android:id="@+id/btn_More"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"
-                    android:scaleX="1.2"
-                    android:scaleY="1.2"
-                    app:srcCompat="@drawable/ic_more" />
+        </LinearLayout>
 
-            </LinearLayout>
-
-        </android.support.v7.widget.Toolbar>
+    </android.support.v7.widget.Toolbar>
 
 
     <ScrollView
-        android:layout_below="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
         android:fillViewport="true">
 
         <LinearLayout
@@ -72,31 +72,31 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="vertical">
 
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_marginTop="32dp"
                     android:id="@+id/img_Mitra"
                     android:layout_width="86dp"
                     android:layout_height="86dp"
-                    android:src="@mipmap/ic_launcher_round"/>
+                    android:layout_marginTop="32dp"
+                    android:src="@mipmap/ic_launcher_round" />
 
                 <TextView
-                    android:layout_marginTop="4dp"
                     android:id="@+id/txt_namaMitra"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
                     android:text="Bpk. Antono"
-                    android:textSize="@dimen/Font_Header"
-                    android:textColor="@color/colorBlack"/>
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/Font_Header" />
 
                 <LinearLayout
-                    android:layout_marginTop="4dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/txt_namaMitra"
+                    android:layout_marginTop="4dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -124,76 +124,75 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:layout_margin="16dp"
                     android:id="@+id/btn_profilMitra"
                     android:layout_width="128dp"
                     android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:background="@drawable/button_rectangle"
                     android:text="Lihat Profil"
                     android:textAllCaps="false"
-                    android:textSize="@dimen/Font_Button"
-                    android:background="@drawable/button_rectangle"
                     android:textColor="@color/colorWhite"
-                    />
+                    android:textSize="@dimen/Font_Button" />
 
                 <Button
-                    android:layout_margin="16dp"
                     android:id="@+id/btn_messageMitra"
                     android:layout_width="128dp"
                     android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:background="@drawable/button_rectangle_border_green"
                     android:text="Kirim Pesan"
                     android:textAllCaps="false"
-                    android:textSize="@dimen/Font_Button"
-                    android:background="@drawable/button_rectangle_border_green"
                     android:textColor="@color/colorPrimary"
-                    />
+                    android:textSize="@dimen/Font_Button" />
 
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:orientation="vertical"
                 android:paddingLeft="32dp"
                 android:paddingRight="32dp">
 
                 <TextView
-                    android:textSize="@dimen/Font_Body2"
-                    android:layout_marginLeft="3dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Penawaran : "/>
+                    android:layout_marginLeft="3dp"
+                    android:text="Penawaran : "
+                    android:textSize="@dimen/Font_Body2" />
 
                 <EditText
                     android:id="@+id/txt_penawaran_mitra"
-                    android:textSize="@dimen/Font_Header2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Rp. 800.000"/>
+                    android:text="Rp. 800.000"
+                    android:enabled="false"
+                    android:textSize="@dimen/Font_Header2" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:orientation="vertical"
                 android:paddingLeft="32dp"
                 android:paddingRight="32dp">
 
                 <TextView
-                    android:textSize="@dimen/Font_Body2"
-                    android:layout_marginLeft="3dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Riwayat Penawaran : "/>
+                    android:layout_marginLeft="3dp"
+                    android:text="Riwayat Penawaran : "
+                    android:textSize="@dimen/Font_Body2" />
 
                 <android.support.v7.widget.RecyclerView
-                    android:layout_marginTop="4dp"
                     android:id="@+id/rv_riwayatPenawaran"
                     android:layout_width="match_parent"
                     android:layout_height="128dp"
+                    android:layout_marginTop="4dp"
                     android:scrollbars="vertical"
                     tools:listitem="@layout/item_riwayatpenawaran">
 
@@ -202,29 +201,28 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_marginTop="18dp"
-                android:paddingRight="32dp"
-                android:paddingLeft="32dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_marginTop="18dp"
+                android:orientation="vertical"
+                android:paddingLeft="32dp"
+                android:paddingRight="32dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pilih Mitra"/>
+                    android:text="Pilih Mitra" />
 
                 <Button
-                    android:layout_marginTop="8dp"
                     android:id="@+id/btn_pilihMitra"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/button_rectangle"
                     android:text="Hire Me !"
                     android:textAllCaps="false"
-                    android:textSize="@dimen/Font_Button"
-                    android:background="@drawable/button_rectangle"
                     android:textColor="@color/colorWhite"
-                    />
+                    android:textSize="@dimen/Font_Button" />
 
 
             </LinearLayout>

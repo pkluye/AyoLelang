@@ -86,7 +86,7 @@
                 android:id="@+id/txt_subtext_judul"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Judul Projek"
+                android:text="Judul Garapan"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/Font_Button" />
 

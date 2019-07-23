@@ -1,13 +1,11 @@
 package com.ags.ayolelang.Fragment;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +13,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.ags.ayolelang.Activity.MainActivity;
-import com.ags.ayolelang.Adapter.AdapterListlelang_progress;
+import com.ags.ayolelang.Adapter.AdapterListProgress_PemilihanMitra;
 import com.ags.ayolelang.DBHelper.LelangHelper;
 import com.ags.ayolelang.Models.Lelang;
 import com.ags.ayolelang.R;
@@ -66,7 +64,7 @@ public class FragmentlistProgress extends Fragment {
             default_layout.setVisibility(View.GONE);
             rv_lelang.setVisibility(View.VISIBLE);
         }
-        AdapterListlelang_progress adapterListlelang = new AdapterListlelang_progress(getContext());
+        AdapterListProgress_PemilihanMitra adapterListlelang = new AdapterListProgress_PemilihanMitra(getContext());
         adapterListlelang.addItem(lelangs);
         rv_lelang.setAdapter(adapterListlelang);
     }
@@ -83,7 +81,7 @@ public class FragmentlistProgress extends Fragment {
             default_layout.setVisibility(View.GONE);
             rv_lelang.setVisibility(View.VISIBLE);
         }
-        AdapterListlelang_progress adapterListlelang = new AdapterListlelang_progress(getContext());
+        AdapterListProgress_PemilihanMitra adapterListlelang = new AdapterListProgress_PemilihanMitra(getContext());
         adapterListlelang.addItem(lelangs);
         rv_lelang.setAdapter(adapterListlelang);
     }
