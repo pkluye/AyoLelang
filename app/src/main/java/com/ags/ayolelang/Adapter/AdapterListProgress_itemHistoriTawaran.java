@@ -9,8 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ags.ayolelang.Activity.MainActivity;
@@ -27,12 +25,12 @@ import java.util.Locale;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class AdapterListProgress_itemMitra extends RecyclerView.Adapter<AdapterListProgress_itemMitra.CustomHolderView> {
+public class AdapterListProgress_itemHistoriTawaran extends RecyclerView.Adapter<AdapterListProgress_itemHistoriTawaran.CustomHolderView> {
     ArrayList<Tawaran> tawarans;
     Context context;
     private LayoutInflater mInflater;
 
-    public AdapterListProgress_itemMitra(Context context) {
+    public AdapterListProgress_itemHistoriTawaran(Context context) {
         this.context = context;
         this.mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -41,33 +39,18 @@ public class AdapterListProgress_itemMitra extends RecyclerView.Adapter<AdapterL
     @Override
     public CustomHolderView onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
-        View v = inflater.inflate(R.layout.item_penawar, viewGroup, false);
-        AdapterListProgress_itemMitra.CustomHolderView vh = new AdapterListProgress_itemMitra.CustomHolderView(v);
+        View v = inflater.inflate(R.layout.item_riwayatpenawaran, viewGroup, false);
+        AdapterListProgress_itemHistoriTawaran.CustomHolderView vh = new AdapterListProgress_itemHistoriTawaran.CustomHolderView(v);
         return vh;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CustomHolderView customHolderView, int i) {
+    public void onBindViewHolder(@NonNull CustomHolderView chv, int i) {
         final Tawaran tawaran = tawarans.get(i);
-        Log.d("tawaran",tawaran.toString());
-        UserHelper userHelper = new UserHelper(context);
-        userHelper.open();
-        final User user = userHelper.getSingleUser(tawaran.getTawaran_userid());
-        userHelper.close();
-
-        customHolderView.txt_namaPenawar.setText(user.getUser_nama());
-        customHolderView.txt_hargaPenawar.setText("Rp. " + currencyFormat(tawaran.getTawaran_anggaran()+""));
-        customHolderView.btn_nextArrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentMitra fragment= new FragmentMitra();
-                Bundle bundle=new Bundle();
-                bundle.putSerializable("user",user);
-                bundle.putSerializable("tawaran",tawaran);
-                fragment.setArguments(bundle);
-                ((MainActivity)context)._loadFragment(fragment);
-            }
-        });
+        String[]splittime=tawaran.getTawaran_cdate().split(" ");
+        chv.txt_hari.setText(splittime[0]);
+        chv.txt_waktu.setText(splittime[1]);
+        chv.anggaran.setText("Rp. "+currencyFormat(tawaran.getTawaran_anggaran()+""));
     }
 
     private String currencyFormat(String harga) {
@@ -94,19 +77,15 @@ public class AdapterListProgress_itemMitra extends RecyclerView.Adapter<AdapterL
 
     public class CustomHolderView extends RecyclerView.ViewHolder {
 
-        ImageButton btn_nextArrow;
-        TextView txt_lokasiPenawar;
-        CircleImageView image_user;
-        TextView txt_hargaPenawar;
-        TextView txt_namaPenawar;
+        TextView anggaran;
+        TextView txt_waktu;
+        TextView txt_hari;
 
         public CustomHolderView(@NonNull View v) {
             super(v);
-            image_user=v.findViewById(R.id.image_user);
-            txt_namaPenawar = v.findViewById(R.id.txt_namaPenawar);
-            txt_hargaPenawar = v.findViewById(R.id.txt_hargaPenawar);
-            txt_lokasiPenawar=v.findViewById(R.id.txt_lokasiPenawar);
-            btn_nextArrow=v.findViewById(R.id.btn_nextArrow);
+            txt_waktu=v.findViewById(R.id.txt_waktu);
+            txt_hari=v.findViewById(R.id.txt_hari);
+            anggaran=v.findViewById(R.id.anggaran);
         }
     }
 }

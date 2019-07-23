@@ -194,6 +194,8 @@
                     android:layout_height="128dp"
                     android:layout_marginTop="4dp"
                     android:scrollbars="vertical"
+                    app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+                    android:orientation="vertical"
                     tools:listitem="@layout/item_riwayatpenawaran">
 
                 </android.support.v7.widget.RecyclerView>

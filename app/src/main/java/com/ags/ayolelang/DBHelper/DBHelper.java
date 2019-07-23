@@ -173,18 +173,19 @@ public class DBHelper extends SQLiteOpenHelper {
                     "tawaran_historiid INTEGER PRIMARY KEY, " +
                     TAWARAN_LELANGID + " INTEGER NOT NULL, " +
                     TAWARAN_USERID + " INTEGER NOT NULL, " +
+                    "tawaran_cdate TEXT NOT NULL, " +
                     TAWARAN_ANGGARAN + " INTEGER NOT NULL)";
 
     public static String CREATE_TABLE_SPECBARANG =
             "CREATE TABLE " + TABLE_SPECBARANG + " (" +
                     SPECBARANG_ID + " INTEGER PRIMARY KEY, " +
                     SPECBARANG_KATEGORIID + " INTEGER NOT NULL, " +
-                    SPECBARANG_UKURAN + " STRING NOT NULL, " +
-                    SPECBARANG_BAHAN + " STRING NOT NULL, " +
-                    SPECBARANG_JMLSISI + " STRING NOT NULL, " +
-                    SPECBARANG_LAMINASI + " STRING NOT NULL, " +
+                    SPECBARANG_UKURAN + " TEXT NOT NULL, " +
+                    SPECBARANG_BAHAN + " TEXT NOT NULL, " +
+                    SPECBARANG_JMLSISI + " TEXT NOT NULL, " +
+                    SPECBARANG_LAMINASI + " TEXT NOT NULL, " +
                     SPECBARANG_HARGASATUAN + " INTEGER NOT NULL, " +
-                    SPECBARANG_SATUAN + " STRING NOT NULL)";
+                    SPECBARANG_SATUAN + " TEXT NOT NULL)";
     public static String CREATE_TABLE_TWPEKERJAAN=
             "CREATE TABLE "+ TABLE_TWPEKERJAAN+" ("+
                     TWPEKERJAAN_ID+" INTEGER PRIMARY KEY, "+

@@ -37,20 +37,23 @@ public class HistoriTawaranHelper {
         dbHelper.close();
     }
 
-    public ArrayList<Tawaran> getlisttawaran(int id) {
+    public ArrayList<Tawaran> getlisttawaran(int id,String userid) {
         ArrayList<Tawaran> tawarans=new ArrayList<>();
         db.beginTransaction();
-        Cursor cursor = db.query(TABLE_TAWARAN, null, TAWARAN_LELANGID + "='" + id + "'", null, null, null, null, null);
+        Cursor cursor = db.query(TABLE_HISTORITAWARAN, null, TAWARAN_LELANGID+"=" + id + " AND "+TAWARAN_USERID+"='"+userid+"'", null, null, null, null, null);
         cursor.moveToFirst();
         Tawaran tawaran;
         if (cursor.getCount() > 0) {
-            tawaran=new Tawaran();
-            tawaran.setTawaran_historiid(cursor.getInt(cursor.getColumnIndexOrThrow("tawaran_historiid")));
-            tawaran.setTawaran_lelangid(cursor.getInt(cursor.getColumnIndexOrThrow(TAWARAN_LELANGID)));
-            tawaran.setTawaran_userid(cursor.getString(cursor.getColumnIndexOrThrow(TAWARAN_USERID)));
-            tawaran.setTawaran_anggaran(cursor.getLong(cursor.getColumnIndexOrThrow(TAWARAN_ANGGARAN)));
-            tawarans.add(tawaran);
-            cursor.moveToNext();
+            do {
+                tawaran=new Tawaran();
+                tawaran.setTawaran_historiid(cursor.getInt(cursor.getColumnIndexOrThrow("tawaran_historiid")));
+                tawaran.setTawaran_lelangid(cursor.getInt(cursor.getColumnIndexOrThrow(TAWARAN_LELANGID)));
+                tawaran.setTawaran_userid(cursor.getString(cursor.getColumnIndexOrThrow(TAWARAN_USERID)));
+                tawaran.setTawaran_anggaran(cursor.getLong(cursor.getColumnIndexOrThrow(TAWARAN_ANGGARAN)));
+                tawaran.setTawaran_cdate(cursor.getString(cursor.getColumnIndexOrThrow("tawaran_cdate")));
+                tawarans.add(tawaran);
+                cursor.moveToNext();
+            }while (!cursor.isAfterLast());
         }
         cursor.close();
         db.endTransaction();
@@ -63,6 +66,7 @@ public class HistoriTawaranHelper {
         contentValues.put(TAWARAN_LELANGID, tawaran.getTawaran_lelangid());
         contentValues.put(TAWARAN_USERID,tawaran.getTawaran_userid());
         contentValues.put(TAWARAN_ANGGARAN,tawaran.getTawaran_anggaran());
+        contentValues.put("tawaran_cdate",tawaran.getTawaran_cdate());
         return db.insert(TABLE_HISTORITAWARAN, null, contentValues);
     }
 

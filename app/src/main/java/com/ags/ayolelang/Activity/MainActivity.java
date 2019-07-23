@@ -48,18 +48,12 @@ import com.ags.ayolelang.Storage.SharedPrefManager;
 import com.ags.ayolelang.BottomNavigationHelper;
 
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 import static com.ags.ayolelang.API.RetrofitClient.secret_key;
 
@@ -473,7 +467,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d("state", "onresume");
         if (disposable.isDisposed()) fetchdata();
     }
 
@@ -481,7 +474,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     protected void onPause() {
         super.onPause();
         progressDoalog.dismiss();
-        Log.d("state", "onpause");
         if (!disposable.isDisposed()) disposable.dispose();
     }
 
@@ -489,7 +481,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     protected void onStop() {
         super.onStop();
         progressDoalog.dismiss();
-        Log.d("state", "onstop");
         if (!disposable.isDisposed()) disposable.dispose();
     }
 
@@ -497,7 +488,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     protected void onDestroy() {
         super.onDestroy();
         progressDoalog.dismiss();
-        Log.d("state", "ondestroy");
         if (!disposable.isDisposed()) disposable.dispose();
     }
 }

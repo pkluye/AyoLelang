@@ -80,7 +80,7 @@ public class FragmentPemilihanMitra extends Fragment {
         tawaranHelper.close();
         txt_totalMitra.setText(tawarans.size() + "");
 
-        AdapterListProgress_itemMitra adapterListProgressitemMitra_ = new AdapterListProgress_itemMitra(getActivity(),lelang_id);
+        AdapterListProgress_itemMitra adapterListProgressitemMitra_ = new AdapterListProgress_itemMitra(getActivity());
         adapterListProgressitemMitra_.addItem(tawarans);
 
         rv_mitra.setLayoutManager(new LinearLayoutManager(getActivity()));
