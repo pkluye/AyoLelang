@@ -213,41 +213,6 @@
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
 
-            <!--Password-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="4dp"
-                    android:text="Password"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/Font_Subtitle2" />
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:passwordToggleEnabled="true">
-
-                    <EditText
-                        android:id="@+id/txt_password"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="@color/colorPrimaryDark"
-                        android:gravity="top|left"
-                        android:hint="Password anda"
-                        android:inputType="textPassword"
-                        android:minLines="1"
-                        android:text=""
-                        android:textSize="@dimen/Font_Subtitle" />
-
-                </android.support.design.widget.TextInputLayout>
-            </LinearLayout>
-
             <!--Alamat-->
             <LinearLayout
                 android:layout_width="match_parent"

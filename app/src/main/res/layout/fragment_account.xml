@@ -115,16 +115,35 @@
 
                     </LinearLayout>
 
-                    <Button
-                        android:id="@+id/btn_editProfil"
+                    <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="32dp"
-                        android:background="@drawable/button_rectangle"
-                        android:text="Edit Profil"
-                        android:textSize="@dimen/Font_Button"
-                        android:textColor="@color/colorWhite"
-                        android:textAllCaps="false"
-                        android:layout_weight="0"/>
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:id="@+id/btn_editProfil"
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:background="@drawable/button_rectangle"
+                            android:text="Edit Profil"
+                            android:textSize="12sp"
+                            android:textColor="@color/colorWhite"
+                            android:textAllCaps="false" />
+
+                        <Button
+                            android:layout_marginTop="8dp"
+                            android:id="@+id/btn_editPassword"
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:background="@drawable/button_rectangle"
+                            android:text="Edit Password"
+                            android:textSize="12sp"
+                            android:textColor="@color/colorWhite"
+                            android:textAllCaps="false" />
+
+
+                    </LinearLayout>
+
 
                 </LinearLayout>
 
