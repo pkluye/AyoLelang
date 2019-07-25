@@ -99,7 +99,18 @@ public class MessageActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(SingleRoomRespon singleRoomRespon) {
                         if (!singleRoomRespon.isError()){
-                            RoomPesan roomPesan=singleRoomRespon.getData();
+                            final RoomPesan roomPesan=singleRoomRespon.getData();
+                            btn_sendMessage.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    String text_isi = edittext_messagebox.getText().toString();
+                                    if (text_isi.isEmpty()) {
+                                        edittext_messagebox.requestFocus();
+                                        return;
+                                    }
+                                    KirimPesan(roomPesan.getRoom_id());
+                                }
+                            });
                             loadData(roomPesan.getRoom_id());
                         }else {
                             Log.d("error",singleRoomRespon.getMessage());
@@ -108,24 +119,12 @@ public class MessageActivity extends AppCompatActivity {
 
                     @Override
                     public void onError(Throwable e) {
-
+                        e.printStackTrace();
                     }
                 });
     }
 
     private void loadData(final int room_id) {
-        btn_sendMessage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String text_isi = edittext_messagebox.getText().toString();
-                if (text_isi.isEmpty()) {
-                    edittext_messagebox.requestFocus();
-                    return;
-                }
-                KirimPesan(room_id);
-            }
-        });
-
         Observable<PesanRespon> observable = RetrofitClient.getInstance().getApi().getPesan(
                 secret_key,
                 room_id);
@@ -211,8 +210,10 @@ public class MessageActivity extends AppCompatActivity {
         responSingle.subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe();
-        AdapterItemPesan adapterItemPesan = (AdapterItemPesan) recyclerView.getAdapter();
-        adapterItemPesan.addPesan(new Pesan(edittext_messagebox.getText().toString(), SharedPrefManager.getInstance(this).getUser().getUser_id()));
-        edittext_messagebox.setText("");
+        if (recyclerView.getAdapter()!=null){
+            AdapterItemPesan adapterItemPesan = (AdapterItemPesan) recyclerView.getAdapter();
+            adapterItemPesan.addPesan(new Pesan(edittext_messagebox.getText().toString(), SharedPrefManager.getInstance(this).getUser().getUser_id()));
+            edittext_messagebox.setText("");
+        }
     }
 }
