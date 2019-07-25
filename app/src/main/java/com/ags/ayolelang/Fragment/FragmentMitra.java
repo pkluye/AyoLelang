@@ -80,7 +80,6 @@ public class FragmentMitra extends Fragment {
         historiTawaranHelper.open();
         ArrayList<Tawaran> tawarans=historiTawaranHelper.getlisttawaran(tawaran.getTawaran_lelangid(),user.getUser_id());
         historiTawaranHelper.close();
-        Log.d("count size",tawarans.size()+"");
         AdapterListProgress_itemHistoriTawaran adapterListProgress_itemHistoriTawaran=new AdapterListProgress_itemHistoriTawaran(getContext());
         adapterListProgress_itemHistoriTawaran.addItem(tawarans);
         rv_riwayatPenawaran.setAdapter(adapterListProgress_itemHistoriTawaran);
