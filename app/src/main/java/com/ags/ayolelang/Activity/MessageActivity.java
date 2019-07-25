@@ -2,6 +2,7 @@ package com.ags.ayolelang.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.MainThread;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,6 +19,9 @@ import com.ags.ayolelang.Adapter.AdapterItemPesan;
 import com.ags.ayolelang.DBHelper.UserHelper;
 import com.ags.ayolelang.Models.InterfacePesan;
 import com.ags.ayolelang.Models.Pesan;
+import com.ags.ayolelang.Models.RoomPesan;
+import com.ags.ayolelang.Models.RoomRespon;
+import com.ags.ayolelang.Models.SingleRoomRespon;
 import com.ags.ayolelang.Models.StringRespon;
 import com.ags.ayolelang.Models.TanggalPesan;
 import com.ags.ayolelang.Models.User;
@@ -29,6 +33,7 @@ import java.util.ArrayList;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.Single;
+import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
@@ -59,21 +64,56 @@ public class MessageActivity extends AppCompatActivity {
         btn_back = findViewById(R.id.btn_back);
         edittext_messagebox = findViewById(R.id.edittext_messagebox);
         btn_sendMessage = findViewById(R.id.btn_sendMessage);
-        loadData(room_id, userid2);
-    }
-
-    private void loadData(int room_id, String userid2) {
         UserHelper userHelper = new UserHelper(this);
         userHelper.open();
-        final User user = userHelper.getSingleUser(userid2);
+        final User user2 = userHelper.getSingleUser(userid2);
         userHelper.close();
-        sender_name.setText(user.getUser_nama());
+        sender_name.setText(user2.getUser_nama());
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
             }
         });
+        if (room_id==0){
+            loadRoom(user2);
+        }else{
+            loadData(room_id);
+        }
+    }
+
+    private void loadRoom(final User user2) {
+        Single<SingleRoomRespon> single=RetrofitClient.getInstance().getApi()
+                .getSingleRoom(
+                        secret_key,
+                        SharedPrefManager.getInstance(this).getUser().getUser_id(),
+                        user2.getUser_id());
+        single.subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new SingleObserver<SingleRoomRespon>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onSuccess(SingleRoomRespon singleRoomRespon) {
+                        if (!singleRoomRespon.isError()){
+                            RoomPesan roomPesan=singleRoomRespon.getData();
+                            loadData(roomPesan.getRoom_id());
+                        }else {
+                            Log.d("error",singleRoomRespon.getMessage());
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+                });
+    }
+
+    private void loadData(final int room_id) {
         btn_sendMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,9 +122,10 @@ public class MessageActivity extends AppCompatActivity {
                     edittext_messagebox.requestFocus();
                     return;
                 }
-                KirimPesan(user.getUser_id());
+                KirimPesan(room_id);
             }
         });
+
         Observable<PesanRespon> observable = RetrofitClient.getInstance().getApi().getPesan(
                 secret_key,
                 room_id);
@@ -160,11 +201,11 @@ public class MessageActivity extends AppCompatActivity {
                 });
     }
 
-    private void KirimPesan(String user_id) {
+    private void KirimPesan(int room_id) {
         Single<StringRespon> responSingle = RetrofitClient.getInstance().getApi().sentPesan(
                 secret_key,
                 SharedPrefManager.getInstance(this).getUser().getUser_id(),
-                user_id,
+                room_id,
                 edittext_messagebox.getText().toString()
         );
         responSingle.subscribeOn(Schedulers.newThread())

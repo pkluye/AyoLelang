@@ -38,7 +38,7 @@ public class FragmentlistProgress extends Fragment {
         btn_buatLelang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainActivity)getActivity()).loadFragment_(new GarapanFragment());
+                ((MainActivity) getActivity()).loadFragment_(new GarapanFragment());
             }
         });
         Bundle bundle = getArguments();
@@ -52,38 +52,72 @@ public class FragmentlistProgress extends Fragment {
         return view;
     }
 
-    private void loadDataMitra(int status) {
+    private void loadDataMitra(final int status) {
         LelangHelper lelangHelper = new LelangHelper(getContext());
         lelangHelper.open();
         ArrayList<Lelang> lelangs = lelangHelper.getLelangbyMitra(SharedPrefManager.getInstance(getContext()).getUser().getUser_id(), status);
         lelangHelper.close();
-        if (lelangs.isEmpty()) {
+        AdapterListProgress_PemilihanMitra adapterListlelang = new AdapterListProgress_PemilihanMitra(getContext());
+        adapterListlelang.addItem(lelangs);
+        rv_lelang.setAdapter(adapterListlelang);
+        if (rv_lelang.getAdapter().getItemCount() <1) {
             rv_lelang.setVisibility(View.GONE);
             default_layout.setVisibility(View.VISIBLE);
         } else {
             default_layout.setVisibility(View.GONE);
             rv_lelang.setVisibility(View.VISIBLE);
         }
-        AdapterListProgress_PemilihanMitra adapterListlelang = new AdapterListProgress_PemilihanMitra(getContext());
-        adapterListlelang.addItem(lelangs);
-        rv_lelang.setAdapter(adapterListlelang);
+        rv_lelang.addOnChildAttachStateChangeListener(new RecyclerView.OnChildAttachStateChangeListener() {
+            @Override
+            public void onChildViewAttachedToWindow(View view) {
+
+            }
+
+            @Override
+            public void onChildViewDetachedFromWindow(View view) {
+                if (rv_lelang.getAdapter().getItemCount() <1) {
+                    rv_lelang.setVisibility(View.GONE);
+                    default_layout.setVisibility(View.VISIBLE);
+                } else {
+                    default_layout.setVisibility(View.GONE);
+                    rv_lelang.setVisibility(View.VISIBLE);
+                }
+            }
+        });
     }
 
-    private void loadData(int status) {
+    private void loadData(final int status) {
         LelangHelper lelangHelper = new LelangHelper(getContext());
         lelangHelper.open();
         ArrayList<Lelang> lelangs = lelangHelper.getLelangbyUser(SharedPrefManager.getInstance(getContext()).getUser().getUser_id(), status);
         lelangHelper.close();
-        if (lelangs.isEmpty()) {
+        AdapterListProgress_PemilihanMitra adapterListlelang = new AdapterListProgress_PemilihanMitra(getContext());
+        adapterListlelang.addItem(lelangs);
+        rv_lelang.setAdapter(adapterListlelang);
+        if (rv_lelang.getAdapter().getItemCount() <1) {
             rv_lelang.setVisibility(View.GONE);
             default_layout.setVisibility(View.VISIBLE);
         } else {
             default_layout.setVisibility(View.GONE);
             rv_lelang.setVisibility(View.VISIBLE);
         }
-        AdapterListProgress_PemilihanMitra adapterListlelang = new AdapterListProgress_PemilihanMitra(getContext());
-        adapterListlelang.addItem(lelangs);
-        rv_lelang.setAdapter(adapterListlelang);
+        rv_lelang.addOnChildAttachStateChangeListener(new RecyclerView.OnChildAttachStateChangeListener() {
+            @Override
+            public void onChildViewAttachedToWindow(View view) {
+
+            }
+
+            @Override
+            public void onChildViewDetachedFromWindow(View view) {
+                if (rv_lelang.getAdapter().getItemCount() <1) {
+                    rv_lelang.setVisibility(View.GONE);
+                    default_layout.setVisibility(View.VISIBLE);
+                } else {
+                    default_layout.setVisibility(View.GONE);
+                    rv_lelang.setVisibility(View.VISIBLE);
+                }
+            }
+        });
     }
 
 }

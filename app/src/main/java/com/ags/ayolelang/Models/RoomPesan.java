@@ -54,4 +54,15 @@ public class RoomPesan {
     public void setRoom_user2(String room_user2) {
         this.room_user2 = room_user2;
     }
+
+    @Override
+    public String toString() {
+        return "RoomPesan{" +
+                "room_id=" + room_id +
+                ", room_toppesan='" + room_toppesan + '\'' +
+                ", room_tanggalpesan='" + room_tanggalpesan + '\'' +
+                ", room_user1='" + room_user1 + '\'' +
+                ", room_user2='" + room_user2 + '\'' +
+                '}';
+    }
 }

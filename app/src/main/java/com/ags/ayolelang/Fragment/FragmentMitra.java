@@ -1,5 +1,6 @@
 package com.ags.ayolelang.Fragment;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,12 +15,18 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.ags.ayolelang.API.RetrofitClient;
+import com.ags.ayolelang.Activity.MainActivity;
+import com.ags.ayolelang.Activity.MessageActivity;
+import com.ags.ayolelang.Activity.Preview;
 import com.ags.ayolelang.Activity.Profile;
 import com.ags.ayolelang.Adapter.AdapterListProgress_itemHistoriTawaran;
 import com.ags.ayolelang.DBHelper.HistoriTawaranHelper;
+import com.ags.ayolelang.Models.StringRespon;
 import com.ags.ayolelang.Models.Tawaran;
 import com.ags.ayolelang.Models.User;
 import com.ags.ayolelang.R;
+import com.ags.ayolelang.Storage.SharedPrefManager;
 
 import java.io.Serializable;
 import java.text.DecimalFormat;
@@ -28,6 +35,13 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import io.reactivex.Single;
+import io.reactivex.SingleObserver;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+
+import static com.ags.ayolelang.API.RetrofitClient.secret_key;
 
 public class FragmentMitra extends Fragment {
 
@@ -79,6 +93,14 @@ public class FragmentMitra extends Fragment {
                 startActivity(intent);
             }
         });
+        btn_messageMitra.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getActivity(), MessageActivity.class);
+                intent.putExtra("userid2",user.getUser_id());
+                startActivity(intent);
+            }
+        });
 
         btn_Menu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,7 +109,53 @@ public class FragmentMitra extends Fragment {
             }
         });
 
+        btn_pilihMitra.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pilih_mitra(tawaran.getTawaran_lelangid(),user);
+            }
+        });
         return view;
+    }
+
+    private void pilih_mitra(int lelang_id, User user) {
+        Single<StringRespon> single= RetrofitClient.getInstance().getApi().lelang_hire(
+                secret_key,
+                lelang_id+"",
+                SharedPrefManager.getInstance(getContext()).getUser().getUser_id(),
+                user.getUser_id()
+        );
+
+        final ProgressDialog progressDoalog;
+        progressDoalog = new ProgressDialog(getActivity());
+        //progressDoalog.setMax(100);
+        progressDoalog.setMessage("Loading....");
+        //progressDoalog.setTitle("ProgressDialog bar example");
+        progressDoalog.setCancelable(false);
+        progressDoalog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        // show it
+        progressDoalog.show();
+        single.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new SingleObserver<StringRespon>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onSuccess(StringRespon stringRespon) {
+                        progressDoalog.dismiss();
+                        Fragment fragment=new GarapanFragment();
+                        ((MainActivity)getActivity()).loadFragment_(fragment);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        progressDoalog.dismiss();
+                        e.printStackTrace();
+                    }
+                });
     }
 
     private String currencyFormat(String harga) {

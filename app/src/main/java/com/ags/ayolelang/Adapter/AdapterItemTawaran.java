@@ -77,20 +77,6 @@ public class AdapterItemTawaran extends RecyclerView.Adapter<AdapterItemTawaran.
             public void afterTextChanged(Editable s) {
                 customHolderView.et_tawaran.removeTextChangedListener(this);
                 if (s.length() > 0) {
-                    if (Long.parseLong(customHolderView.et_tawaran.getText().toString().replaceAll("[.,]", "")) > lastharga) {
-                        customHolderView.et_tawaran.setError("Tawaran harus lebih dari Rp. " + currencyFormat(lastharga + ""));
-                        customHolderView.et_tawaran.requestFocus();
-                        customHolderView.et_tawaran.addTextChangedListener(this);
-                        return;
-                    }
-
-                    if (customHolderView.et_tawaran.getText().toString().charAt(0) == '0') {
-                        customHolderView.et_tawaran.setError("invalid biaya");
-                        customHolderView.et_tawaran.requestFocus();
-                        customHolderView.et_tawaran.addTextChangedListener(this);
-                        return;
-                    }
-
                     Pekerjaan pekerjaan1 = pekerjaan;
                     pekerjaan1.setHargaTawaran(Long.parseLong(customHolderView.et_tawaran.getText().toString().replaceAll("[.,]", "")));
                     pekerjaanArrayList.set(i, pekerjaan1);
@@ -98,6 +84,20 @@ public class AdapterItemTawaran extends RecyclerView.Adapter<AdapterItemTawaran.
                     customHolderView.et_tawaran.setText(currencyFormat(customHolderView.et_tawaran.getText().toString().replaceAll("[.,]", "")) + "");
                     customHolderView.et_tawaran.setSelection(customHolderView.et_tawaran.getText().length());
                     txt_totalHarga.setText("Rp. " + currencyFormat(gethargaTawaran() + ""));
+
+                    if (Long.parseLong(customHolderView.et_tawaran.getText().toString().replaceAll("[.,]", "")) > lastharga) {
+                        customHolderView.et_tawaran.setError("Tawaran harus lebih dari Rp. " + currencyFormat(lastharga + ""));
+                        customHolderView.et_tawaran.requestFocus();
+                        customHolderView.et_tawaran.addTextChangedListener(this);
+                        return;
+                    }
+//
+                    if (customHolderView.et_tawaran.getText().toString().charAt(0) == '0') {
+                        customHolderView.et_tawaran.setError("invalid biaya");
+                        customHolderView.et_tawaran.requestFocus();
+                        customHolderView.et_tawaran.addTextChangedListener(this);
+                        return;
+                    }
                 } else {
                     customHolderView.et_tawaran.setError("harap masukan harga");
                     customHolderView.et_tawaran.requestFocus();

@@ -3,6 +3,7 @@ package com.ags.ayolelang.API;
 import com.ags.ayolelang.Models.FetchDBRespon;
 import com.ags.ayolelang.Models.PesanRespon;
 import com.ags.ayolelang.Models.RoomRespon;
+import com.ags.ayolelang.Models.SingleRoomRespon;
 import com.ags.ayolelang.Models.StringRespon;
 import com.ags.ayolelang.Models.UserRespon;
 
@@ -114,6 +115,13 @@ public interface Api {
             @Field("user_id") String user_id);
 
     @FormUrlEncoded
+    @POST("c_pesan/pesan_getsingleroom")
+    Single<SingleRoomRespon> getSingleRoom(
+            @Field("secret_key") String secret_key,
+            @Field("user_id1") String user_id,
+            @Field("user_id2") String user_id2);
+
+    @FormUrlEncoded
     @POST("c_pesan/pesan_getpesan")
     Observable<PesanRespon> getPesan(
             @Field("secret_key") String secret_key,
@@ -125,6 +133,23 @@ public interface Api {
     Single<StringRespon> sentPesan(
             @Field("secret_key") String secret_key,
             @Field("user_id") String user_id,
-            @Field("penerima") String user_id1,
+            @Field("room_id") int room_id,
             @Field("isi") String toString);
+
+    @FormUrlEncoded
+    @POST("c_lelang/lelang_hire")
+    Single<StringRespon> lelang_hire(
+            @Field("secret_key") String secret_key,
+            @Field("lelang_id") String lelang_id,
+            @Field("user_id") String user_id,
+            @Field("mitra_id") String mitra_id);
+
+    @FormUrlEncoded
+    @POST("c_lelang/lelang_delete")
+    Single<StringRespon> lelang_delete(
+            @Field("secret_key") String secret_key,
+            @Field("lelang_id") String lelang_id,
+            @Field("user_id") String user_id);
+
+
 }

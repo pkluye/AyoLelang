@@ -71,7 +71,8 @@ public class PenawaranActivity extends AppCompatActivity {
             TWPekerjaanHelper twPekerjaanHelper = new TWPekerjaanHelper(this);
             for (Pekerjaan pekerjaan : pekerjaans_array) {
                 twPekerjaanHelper.open();
-                long anggaran=twPekerjaanHelper.getSingleTWPekerjaanby(tawaran_id+"", pekerjaan.getPekerjaan_id()+"").getTwpekerjaan_anggaran();
+                long anggaran=0;
+                anggaran=twPekerjaanHelper.getSingleTWPekerjaanby(tawaran_id+"", pekerjaan.getPekerjaan_id()+"").getTwpekerjaan_anggaran();
                 twPekerjaanHelper.close();
                 pekerjaan.setHargaTawaran(anggaran);
                 pekerjaans.add(pekerjaan);
