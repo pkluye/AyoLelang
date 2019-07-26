@@ -30,7 +30,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Harga Pasaran Produk"
+                android:text="Harga Pasaran Produk (satuan)"
                 android:textSize="@dimen/Font_Body2"/>
 
             <TextView
@@ -81,7 +81,7 @@
         android:layout_marginTop="4dp">
 
         <EditText
-            android:id="@+id/txt_alamat"
+            android:id="@+id/et_tawaran"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/colorPrimaryDark"

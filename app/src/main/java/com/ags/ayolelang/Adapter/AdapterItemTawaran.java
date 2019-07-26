@@ -23,6 +23,7 @@ import com.ags.ayolelang.DBHelper.REQPekerjaanHelper;
 import com.ags.ayolelang.DBHelper.SpecBarangHelper;
 import com.ags.ayolelang.Models.Kategori;
 import com.ags.ayolelang.Models.Pekerjaan;
+import com.ags.ayolelang.Models.SpecBarang;
 import com.ags.ayolelang.R;
 
 import java.text.DecimalFormat;
@@ -60,6 +61,26 @@ public class AdapterItemTawaran extends RecyclerView.Adapter<AdapterItemTawaran.
         final Kategori kategori = kategoriHelper.getSingleKategori(pekerjaan.getPekerjaan_kategoriid());
         kategoriHelper.close();
         final long lastharga = pekerjaan.getPekerjaan_harga();
+        SpecBarangHelper specBarangHelper = new SpecBarangHelper(context);
+        specBarangHelper.open();
+        Log.d("pekerjaan", pekerjaan.toString());
+        long harga = 0;
+        if (specBarangHelper.Cek(pekerjaan.getPekerjaan_id() + "", "specbarang_ukuran", pekerjaan.getPekerjaan_ukuran())) {
+            harga = specBarangHelper.getHargaSatuan(pekerjaan.getPekerjaan_kategoriid() + "", pekerjaan.getPekerjaan_ukuran().trim() + "", pekerjaan.getPekerjaan_bahan().trim() + "", pekerjaan.getPekerjaan_jmlsisi().trim() + "", pekerjaan.getPekerjaan_laminasi().trim() + "");
+        } else {
+            if (specBarangHelper.Cek(pekerjaan.getPekerjaan_kategoriid() + "", "specbarang_ukuran", "N/A")) {
+                if (pekerjaan.getPekerjaan_kategoriid() == 11) {
+                    harga = specBarangHelper.getHargaSatuan(pekerjaan.getPekerjaan_kategoriid() + "", "N/A", pekerjaan.getPekerjaan_ukuran().trim() + " (" + pekerjaan.getPekerjaan_bahan().trim() + ")", pekerjaan.getPekerjaan_jmlsisi().trim() + "", pekerjaan.getPekerjaan_laminasi().trim() + "");
+                } else {
+                    harga = specBarangHelper.getHargaSatuan(pekerjaan.getPekerjaan_kategoriid() + "", "N/A", pekerjaan.getPekerjaan_bahan().trim() + "", pekerjaan.getPekerjaan_jmlsisi().trim() + "", pekerjaan.getPekerjaan_laminasi().trim() + "");
+                }
+            } else {
+                harga = specBarangHelper.getHargaSatuan(pekerjaan.getPekerjaan_kategoriid() + "", "custom", pekerjaan.getPekerjaan_bahan().trim() + "", pekerjaan.getPekerjaan_jmlsisi().trim() + "", pekerjaan.getPekerjaan_laminasi().trim() + "");
+            }
+        }
+        specBarangHelper.close();
+        customHolderView.txt_hargaPasar.setText("Rp. " + currencyFormat(harga + ""));
+        customHolderView.txt_jumlahProduk.setText("" + pekerjaan.getPekerjaan_jumlah());
         customHolderView.nama_item.setText(kategori.getKategori_nama());
         customHolderView.et_tawaran.setText(currencyFormat(pekerjaan.getHargaTawaran() + "") + "");
         customHolderView.et_tawaran.addTextChangedListener(new TextWatcher() {
@@ -145,11 +166,15 @@ public class AdapterItemTawaran extends RecyclerView.Adapter<AdapterItemTawaran.
 
     public class CustomHolderView extends RecyclerView.ViewHolder {
 
+        TextView txt_hargaPasar;
+        TextView txt_jumlahProduk;
         TextView nama_item;
         EditText et_tawaran;
 
         public CustomHolderView(@NonNull View itemView) {
             super(itemView);
+            txt_hargaPasar = itemView.findViewById(R.id.txt_hargaPasar);
+            txt_jumlahProduk = itemView.findViewById(R.id.txt_jumlahProduk);
             nama_item = itemView.findViewById(R.id.nama_item);
             et_tawaran = itemView.findViewById(R.id.et_tawaran);
         }

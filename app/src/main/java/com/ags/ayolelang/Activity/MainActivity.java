@@ -47,6 +47,8 @@ import com.ags.ayolelang.R;
 import com.ags.ayolelang.Storage.SharedPrefManager;
 import com.ags.ayolelang.BottomNavigationHelper;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 
 import io.reactivex.Observable;

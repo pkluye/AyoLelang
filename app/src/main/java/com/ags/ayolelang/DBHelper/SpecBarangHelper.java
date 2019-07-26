@@ -127,9 +127,24 @@ public class SpecBarangHelper {
             cursor.moveToPosition(0);
             harga=cursor.getLong(cursor.getColumnIndexOrThrow(SPECBARANG_HARGASATUAN));
         }
+        Log.d("count",cursor.getCount()+"");
         cursor.close();
         db.endTransaction();
         return harga;
+    }
+
+    public boolean Cek(String id,String colum, String value){
+        db.beginTransaction();
+        boolean cek=false;
+        Cursor cursor = db.query(TABLE_SPECBARANG, null, colum+"=? AND "+SPECBARANG_KATEGORIID+"=?",new String[]{value,id}, null, null, null, null);
+        cursor.moveToFirst();
+        if (cursor.getCount() > 0) {
+            cursor.moveToPosition(0);
+            cek=true;
+        }
+        cursor.close();
+        db.endTransaction();
+        return cek;
     }
 
     public long insert(SpecBarang specBarang) {

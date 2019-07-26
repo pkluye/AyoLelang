@@ -131,6 +131,9 @@ public class AdapterItemPesan extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
     public void addPesan(Pesan pesan) {
+        if (mPesan!=null){
+            mPesan=new ArrayList<>();
+        }
         mPesan.add(pesan);
         notifyDataSetChanged();
     }
