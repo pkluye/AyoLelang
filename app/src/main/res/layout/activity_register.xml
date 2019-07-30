@@ -141,6 +141,31 @@
                     android:textStyle="bold"
                     android:textSize="@dimen/Font_Button"/>
 
+                <LinearLayout
+                    android:layout_marginTop="16dp"
+                    android:id="@+id/tv_login"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sudah punya akun? "
+                        android:textColor="@color/colorGrey1"
+                        android:textSize="@dimen/Font_Subtitle"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Masuk"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/Font_Subtitle"
+                        android:textStyle="bold"/>
+
+                </LinearLayout>
+
             </LinearLayout>
 
         </LinearLayout>

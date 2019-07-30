@@ -141,10 +141,10 @@
 
             <Button
                 android:textSize="@dimen/Font_Button"
-                android:id="@+id/btn_batal"
+                android:id="@+id/btn_detail"
                 android:layout_width="100dp"
                 android:layout_height="40dp"
-                android:text="Batalkan"
+                android:text="Detail"
                 android:textAllCaps="false"
                 android:textColor="@color/colorPrimary"
                 android:background="@drawable/button_rectangle_border_green"/>
@@ -152,10 +152,10 @@
             <Button
                 android:textSize="@dimen/Font_Button"
                 android:layout_marginLeft="8dp"
-                android:id="@+id/btn_status"
+                android:id="@+id/btn_selesai"
                 android:layout_width="100dp"
                 android:layout_height="40dp"
-                android:text="Cek Penawar"
+                android:text="Selesai"
                 android:textAllCaps="false"
                 android:textColor="@color/colorWhite"
                 android:background="@drawable/button_rectangle"/>

@@ -62,12 +62,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/toolbar"
-        android:fillViewport="true">
+        android:fillViewport="true"
+        android:layout_marginBottom="60dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingBottom="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -121,13 +129,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginVertical="16dp">
 
                 <Button
                     android:id="@+id/btn_profilMitra"
                     android:layout_width="128dp"
                     android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
                     android:background="@drawable/button_rectangle"
                     android:text="Lihat Profil"
                     android:textAllCaps="false"
@@ -135,10 +143,10 @@
                     android:textSize="@dimen/Font_Button" />
 
                 <Button
+                    android:layout_marginLeft="8dp"
                     android:id="@+id/btn_messageMitra"
                     android:layout_width="128dp"
                     android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
                     android:background="@drawable/button_rectangle_border_green"
                     android:text="Kirim Pesan"
                     android:textAllCaps="false"
@@ -168,6 +176,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Rp. 800.000"
+                    android:textColor="@color/colorBlack"
                     android:enabled="false"
                     android:textSize="@dimen/Font_Header2" />
 
@@ -202,32 +211,20 @@
 
             </LinearLayout>
 
-            <LinearLayout
+        </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_pilihMitra"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
-                android:orientation="vertical"
-                android:paddingLeft="32dp"
-                android:paddingRight="32dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Pilih Mitra" />
-
-                <Button
-                    android:id="@+id/btn_pilihMitra"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:background="@drawable/button_rectangle"
-                    android:text="Hire Me !"
-                    android:textAllCaps="false"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="@dimen/Font_Button" />
-
-
-            </LinearLayout>
+                android:layout_marginHorizontal="32dp"
+                android:background="@drawable/button_rectangle"
+                android:text="Hire Me !"
+                android:textAllCaps="false"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/Font_Button"
+                android:layout_weight="0"/>
 
         </LinearLayout>
 

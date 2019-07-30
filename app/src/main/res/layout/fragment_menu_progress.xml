@@ -61,7 +61,8 @@
     <ScrollView
         android:layout_below="@id/layoutLinear2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="60dp">
 
         <LinearLayout
             android:id="@+id/linearLayout"
@@ -70,6 +71,7 @@
             android:orientation="vertical"
             android:visibility="visible"
             android:layout_marginTop="16dp"
+            android:paddingBottom="16dp"
             android:weightSum="3"
             android:paddingHorizontal="16dp">
 

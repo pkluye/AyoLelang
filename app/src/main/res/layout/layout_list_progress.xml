@@ -74,12 +74,18 @@
             android:layout_weight="1"
             android:gravity="center">
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/img_noprogress"/>
+
             <TextView
+                android:layout_marginTop="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Nothing here!!!"
                 android:textColor="@color/colorBlack"
-                android:textSize="@dimen/Font_Body"
+                android:textSize="@dimen/Font_Header"
                 android:textAlignment="center"/>
 
             <TextView
@@ -87,7 +93,7 @@
                 android:layout_height="wrap_content"
                 android:text="Tidak ada garapan yang sedang dikerjakan"
                 android:textColor="@color/colorGrey1"
-                android:textSize="@dimen/Font_Body2"
+                android:textSize="@dimen/Font_Header2"
                 android:textAlignment="center"/>
 
         </LinearLayout>

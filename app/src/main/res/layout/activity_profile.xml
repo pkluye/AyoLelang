@@ -122,7 +122,9 @@
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                app:srcCompat="@drawable/ic_location" />
+                                app:srcCompat="@drawable/ic_location"
+                                android:scaleX="0.8"
+                                android:scaleY="0.8"/>
 
                             <TextView
                                 android:id="@+id/txt_kotaProv"
