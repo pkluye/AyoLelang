@@ -44,18 +44,18 @@ public class Profile extends AppCompatActivity {
         if (intent != null) {
             User user = (User) intent.getSerializableExtra("user");
             txt_namaMitra.setText(user.getUser_nama());
-            txt_kotaProv.setText("belum diset");
-            text_about.setText("belum diset");
-            text_skill = "java, android, photoshop,java, android, photoshop,java, android, photoshop,java, android, photoshop,java, android, photoshop,java, android, photoshop,java, android, photoshop,java, android, photoshop,java, android, photoshop,java, android, photoshop,java, android, photoshop,java, android, photoshop,java, android, photoshop,java, android, photoshop,java, android, photoshop,java, android, photoshop,";
-            text_skill = text_skill.substring(0, text_skill.length() - 1).trim();
+            txt_kotaProv.setText(user.getUser_alamat()!=null?user.getUser_alamat():"belum diset");
+            text_about.setText(user.getUser_tentang()!=null?user.getUser_tentang():"belum diset");
+            text_skill = user.getUser_skill();
         }
-
-        final String[] skills = text_skill.split("\\s*,\\s*");
-        for (String s:skills){
-            TextView textView= (TextView) getLayoutInflater().inflate(R.layout.item_skill,null);
-            textView.setText(s);
-            flowlayout.addView(textView);
-            flowlayout.relayoutToAlign();
+        if (text_skill!=null&&!text_skill.isEmpty()){
+            final String[] skills = text_skill.trim().split("\\s*,\\s*");
+            for (String s:skills){
+                TextView textView= (TextView) getLayoutInflater().inflate(R.layout.item_skill,null);
+                textView.setText(s);
+                flowlayout.addView(textView);
+                flowlayout.relayoutToAlign();
+            }
         }
 
         ArrayList<Lelang> lelangs=new ArrayList<>();

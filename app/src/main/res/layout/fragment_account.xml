@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_marginBottom="56dp"
-    android:background="@color/colorGrey3">
+    android:background="@color/colorGrey3"
+    android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="?attr/actionBarSize"
-        app:titleTextColor="@color/colorWhite"
         android:background="@color/colorPrimaryDark"
+        android:elevation="4dp"
+        android:minHeight="?attr/actionBarSize"
         app:contentInsetLeft="0dp"
         app:contentInsetStart="0dp"
-        android:elevation="4dp">
+        app:titleTextColor="@color/colorWhite">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -31,17 +31,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
-                app:srcCompat="@drawable/ic_menu"/>
+                app:srcCompat="@drawable/ic_menu" />
 
             <TextView
-                android:layout_marginLeft="16dp"
                 android:id="@+id/txt_Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_weight="0.9"
                 android:text="Profil Saya"
-                android:textSize="@dimen/Font_Header"
                 android:textColor="@color/colorWhite"
-                android:layout_weight="0.9" />
+                android:textSize="@dimen/Font_Header" />
 
         </LinearLayout>
 
@@ -79,17 +79,17 @@
 
 
                 <LinearLayout
-                    android:layout_marginTop="8dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center">
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_weight="1">
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/acc_Name"
@@ -97,21 +97,21 @@
                             android:layout_height="wrap_content"
                             android:text="Nama Pengguna"
                             android:textColor="@android:color/black"
-                            android:textSize="@dimen/Font_Body"/>
+                            android:textSize="@dimen/Font_Body" />
 
                         <TextView
                             android:id="@+id/acc_email"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="email@mail.co"
-                            android:textSize="@dimen/Font_Body2"/>
+                            android:textSize="@dimen/Font_Body2" />
 
                         <TextView
                             android:id="@+id/acc_noTelp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="+6212345"
-                            android:textSize="@dimen/Font_Caption"/>
+                            android:textSize="@dimen/Font_Caption" />
 
                     </LinearLayout>
 
@@ -126,20 +126,20 @@
                             android:layout_height="32dp"
                             android:background="@drawable/button_rectangle"
                             android:text="Edit Profil"
-                            android:textSize="12sp"
+                            android:textAllCaps="false"
                             android:textColor="@color/colorWhite"
-                            android:textAllCaps="false" />
+                            android:textSize="12sp" />
 
                         <Button
-                            android:layout_marginTop="8dp"
                             android:id="@+id/btn_editPassword"
                             android:layout_width="wrap_content"
                             android:layout_height="32dp"
+                            android:layout_marginTop="8dp"
                             android:background="@drawable/button_rectangle"
                             android:text="Edit Password"
-                            android:textSize="12sp"
+                            android:textAllCaps="false"
                             android:textColor="@color/colorWhite"
-                            android:textAllCaps="false" />
+                            android:textSize="12sp" />
 
 
                     </LinearLayout>
@@ -150,243 +150,243 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:background="@color/colorWhite"
                 android:orientation="vertical"
                 android:padding="5dp">
 
                 <LinearLayout
-                    android:layout_marginLeft="50dp"
-                    android:paddingLeft="3dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:background="@drawable/border_bottom"
                     android:orientation="horizontal"
-                    android:background="@drawable/border_bottom">
+                    android:paddingLeft="3dp">
 
                     <TextView
                         android:id="@+id/txt_Point"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="0.9"
                         android:text="0 Points"
-                        android:layout_gravity="center_vertical"
-                        android:textSize="@dimen/Font_Body2"
                         android:textColor="@color/colorBlack"
-                        android:layout_weight="0.9"/>
+                        android:textSize="@dimen/Font_Body2" />
 
 
                     <ImageView
-                        android:layout_marginRight="8dp"
                         android:id="@+id/btn_Point"
-                        app:srcCompat="@drawable/ic_navigation_next"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.1"/>
+                        android:layout_marginRight="8dp"
+                        android:layout_weight="0.1"
+                        app:srcCompat="@drawable/ic_navigation_next" />
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginTop="8dp"
-                    android:layout_marginLeft="50dp"
-                    android:paddingLeft="3dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/border_bottom"
                     android:orientation="horizontal"
-                    android:background="@drawable/border_bottom">
+                    android:paddingLeft="3dp">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="0.9"
                         android:text="My Voucher"
-                        android:layout_gravity="center_vertical"
-                        android:textSize="@dimen/Font_Body2"
                         android:textColor="@color/colorBlack"
-                        android:layout_weight="0.9"/>
+                        android:textSize="@dimen/Font_Body2" />
 
 
                     <ImageView
-                        android:layout_marginRight="8dp"
                         android:id="@+id/btn_Voucher"
-                        app:srcCompat="@drawable/ic_navigation_next"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.1"/>
+                        android:layout_marginRight="8dp"
+                        android:layout_weight="0.1"
+                        app:srcCompat="@drawable/ic_navigation_next" />
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginTop="8dp"
-                    android:layout_marginLeft="50dp"
-                    android:paddingLeft="3dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/border_bottom"
                     android:orientation="horizontal"
-                    android:background="@drawable/border_bottom">
+                    android:paddingLeft="3dp">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Change Language"
                         android:layout_gravity="center_vertical"
-                        android:textSize="@dimen/Font_Body2"
+                        android:layout_weight="0.9"
+                        android:text="Change Language"
                         android:textColor="@color/colorBlack"
-                        android:layout_weight="0.9"/>
+                        android:textSize="@dimen/Font_Body2" />
 
 
                     <ImageView
-                        android:layout_marginRight="8dp"
                         android:id="@+id/btn_Bahasa"
-                        app:srcCompat="@drawable/ic_navigation_next"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.1"/>
+                        android:layout_marginRight="8dp"
+                        android:layout_weight="0.1"
+                        app:srcCompat="@drawable/ic_navigation_next" />
 
                 </LinearLayout>
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:background="@color/colorWhite"
                 android:orientation="vertical"
                 android:padding="5dp">
 
                 <LinearLayout
-                    android:layout_marginLeft="50dp"
-                    android:paddingLeft="3dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:background="@drawable/border_bottom"
                     android:orientation="horizontal"
-                    android:background="@drawable/border_bottom">
+                    android:paddingLeft="3dp">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="0.9"
                         android:text="Help &amp; Center"
-                        android:layout_gravity="center_vertical"
-                        android:textSize="@dimen/Font_Body2"
                         android:textColor="@color/colorBlack"
-                        android:layout_weight="0.9"/>
+                        android:textSize="@dimen/Font_Body2" />
 
 
                     <ImageView
-                        android:layout_marginRight="8dp"
                         android:id="@+id/btn_Help"
-                        app:srcCompat="@drawable/ic_navigation_next"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.1"/>
+                        android:layout_marginRight="8dp"
+                        android:layout_weight="0.1"
+                        app:srcCompat="@drawable/ic_navigation_next" />
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginTop="8dp"
-                    android:layout_marginLeft="50dp"
-                    android:paddingLeft="3dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/border_bottom"
                     android:orientation="horizontal"
-                    android:background="@drawable/border_bottom">
+                    android:paddingLeft="3dp">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="0.9"
                         android:text="Term of Service"
-                        android:layout_gravity="center_vertical"
-                        android:textSize="@dimen/Font_Body2"
                         android:textColor="@color/colorBlack"
-                        android:layout_weight="0.9"/>
+                        android:textSize="@dimen/Font_Body2" />
 
 
                     <ImageView
-                        android:layout_marginRight="8dp"
                         android:id="@+id/btn_ToS"
-                        app:srcCompat="@drawable/ic_navigation_next"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.1"/>
+                        android:layout_marginRight="8dp"
+                        android:layout_weight="0.1"
+                        app:srcCompat="@drawable/ic_navigation_next" />
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginTop="8dp"
-                    android:layout_marginLeft="50dp"
-                    android:paddingLeft="3dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/border_bottom"
                     android:orientation="horizontal"
-                    android:background="@drawable/border_bottom">
+                    android:paddingLeft="3dp">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="0.9"
                         android:text="Privacy Policy"
-                        android:layout_gravity="center_vertical"
-                        android:textSize="@dimen/Font_Body2"
                         android:textColor="@color/colorBlack"
-                        android:layout_weight="0.9"/>
+                        android:textSize="@dimen/Font_Body2" />
 
 
                     <ImageView
-                        android:layout_marginRight="8dp"
                         android:id="@+id/btn_Privacy"
-                        app:srcCompat="@drawable/ic_navigation_next"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.1"/>
+                        android:layout_marginRight="8dp"
+                        android:layout_weight="0.1"
+                        app:srcCompat="@drawable/ic_navigation_next" />
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginTop="8dp"
-                    android:layout_marginLeft="50dp"
-                    android:paddingLeft="3dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/border_bottom"
                     android:orientation="horizontal"
-                    android:background="@drawable/border_bottom">
+                    android:paddingLeft="3dp">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Rate"
                         android:layout_gravity="center_vertical"
-                        android:textSize="@dimen/Font_Body2"
+                        android:layout_weight="0.9"
+                        android:text="Rate"
                         android:textColor="@color/colorBlack"
-                        android:layout_weight="0.9"/>
+                        android:textSize="@dimen/Font_Body2" />
 
 
                     <ImageView
-                        android:layout_marginRight="8dp"
                         android:id="@+id/btn_Rate"
-                        app:srcCompat="@drawable/ic_navigation_next"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.1"/>
+                        android:layout_marginRight="8dp"
+                        android:layout_weight="0.1"
+                        app:srcCompat="@drawable/ic_navigation_next" />
 
                 </LinearLayout>
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_marginTop="12sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="12sp"
+                android:layout_marginBottom="8dp"
                 android:background="@color/colorWhite"
                 android:gravity="center"
-                android:padding="10dp"
-                android:layout_marginBottom="8dp">
+                android:padding="10dp">
 
                 <TextView
                     android:id="@+id/txt_Logout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Logout"
-                    android:textSize="@dimen/Font_Body"
-                    android:textColor="@color/colorRed"/>
+                    android:textColor="@color/colorRed"
+                    android:textSize="@dimen/Font_Body" />
 
             </LinearLayout>
 

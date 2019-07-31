@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".Activity.EditProfile">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -48,6 +49,7 @@
                 android:id="@+id/txt_simpan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="simpan"
                 android:text="Simpan"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/Font_Subtitle2" />
@@ -240,8 +242,8 @@
                         android:gravity="top|left"
                         android:hint="Alamat anda"
                         android:inputType="textMultiLine"
-                        android:minLines="1"
                         android:maxLines="3"
+                        android:minLines="1"
                         android:scrollbars="vertical"
                         android:text=""
                         android:textSize="@dimen/Font_Subtitle" />
@@ -337,24 +339,30 @@
                     android:textColor="@color/colorBlack"
                     android:textSize="@dimen/Font_Subtitle2" />
 
-                <android.support.design.widget.TextInputLayout
+                <!--<android.support.design.widget.TextInputLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content">-->
+
+                <!--<EditText-->
+                <!--android:id="@+id/txt_skill"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:backgroundTint="@color/colorPrimaryDark"-->
+                <!--android:gravity="top|left"-->
+                <!--android:hint="Skill anda, Skill 1, Skill 2, Skill 3"-->
+                <!--android:inputType="text"-->
+                <!--android:minLines="1"-->
+                <!--android:maxLines="3"-->
+                <!--android:text=""-->
+                <!--android:textSize="@dimen/Font_Subtitle" />-->
+
+                <!--</android.support.design.widget.TextInputLayout>-->
+
+                <MultiAutoCompleteTextView
+                    android:id="@+id/txt_skill"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
-                        android:id="@+id/txt_skill"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="@color/colorPrimaryDark"
-                        android:gravity="top|left"
-                        android:hint="Skill anda, Skill 1, Skill 2, Skill 3"
-                        android:inputType="text"
-                        android:minLines="1"
-                        android:maxLines="3"
-                        android:text=""
-                        android:textSize="@dimen/Font_Subtitle" />
-
-                </android.support.design.widget.TextInputLayout>
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp" />
             </LinearLayout>
 
         </LinearLayout>

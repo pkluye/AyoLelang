@@ -17,8 +17,8 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class RetrofitClient {
 
-    //private static final String BASE_URL = "https://lelang.agsgroup.co.id/api/";
-    private static final String BASE_URL = "http://192.168.0.9:80/lelangags/api/";
+    private static final String BASE_URL = "https://lelang.agsgroup.co.id/api/";
+    //private static final String BASE_URL = "http://192.168.56.1:80/lelangags/api/";
     public static final String secret_key = "6621AC59567F158090B9F54C9E1FF4C9252CF05B";
     private static RetrofitClient mInstance;
     private Retrofit retrofit;

@@ -146,4 +146,8 @@ public class RegisterActivity extends AppCompatActivity {
             disposable.dispose();
         }
     }
+
+    public void login(View view) {
+        startActivity(new Intent(this,LoginActivity.class));
+    }
 }

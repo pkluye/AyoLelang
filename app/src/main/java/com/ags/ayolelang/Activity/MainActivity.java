@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             }
 
         } else {
-            Intent intent = new Intent(this, LoginActivity.class);
+            Intent intent = new Intent(this, Splash.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
         }
@@ -223,6 +223,21 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                                 newtoken[7] = fetchDB.getToken_specbarang();
                             }
 
+                            for(User user : fetchDB.getUsers()){
+                                if (user.getUser_id().equalsIgnoreCase(SharedPrefManager.getInstance(getApplicationContext()).getUser().getUser_id())){
+                                    SharedPrefManager.getInstance(MainActivity.this).saveUser(new User(
+                                            user.getUser_id(),
+                                            user.getUser_nama(),
+                                            user.getUser_email(),
+                                            user.getUser_telpon(),
+                                            user.getUser_alamat(),
+                                            user.getUser_imgurl(),
+                                            user.getUser_skill(),
+                                            user.getUser_tentang()
+                                    ));
+                                }
+                            }
+
                             //check empty db
                             kategoriHelper.open();
                             boolean kategori_isempty = kategoriHelper.isEmpty();
@@ -280,6 +295,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                     @Override
                     public void onError(Throwable e) {
                         e.printStackTrace();
+                        progressDoalog.dismiss();
                     }
 
                     @Override

@@ -92,6 +92,16 @@ public interface Api {
     @POST("c_tawaran/tawaran_editv2")
     Single<StringRespon> tawaran_editv2(
             @Body String body);
+
+    @Headers("Content-Type: application/json")
+    @POST("c_auth/edit_profil")
+    Single<StringRespon> edit_profil(
+            @Body String body);
+
+    @Headers("Content-Type: application/json")
+    @POST("c_auth/edit_password")
+    Single<StringRespon> edit_password(
+            @Body String body);
 //
 //    @FormUrlEncoded
 //    @POST("c_tawaran/tawaran_edit")
@@ -150,6 +160,5 @@ public interface Api {
             @Field("secret_key") String secret_key,
             @Field("lelang_id") String lelang_id,
             @Field("user_id") String user_id);
-
 
 }

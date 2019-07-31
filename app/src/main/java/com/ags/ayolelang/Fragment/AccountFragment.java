@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.ags.ayolelang.Activity.EditPassword;
+import com.ags.ayolelang.Activity.EditProfile;
 import com.ags.ayolelang.Activity.LoginActivity;
 import com.ags.ayolelang.Models.User;
 import com.ags.ayolelang.R;
@@ -23,6 +25,9 @@ public class AccountFragment extends Fragment {
     View v;
     TextView logout_btn;
     private TextView acc_Name,acc_email,acc_noTelp;
+    private Button btn_editProfil;
+    private Button btn_editPassword;
+
 
     @Nullable
     @Override
@@ -32,6 +37,8 @@ public class AccountFragment extends Fragment {
         acc_Name=v.findViewById(R.id.acc_Name);
         acc_email=v.findViewById(R.id.acc_email);
         acc_noTelp=v.findViewById(R.id.acc_noTelp);
+        btn_editProfil=v.findViewById(R.id.btn_editProfil);
+        btn_editPassword=v.findViewById(R.id.btn_editPassword);
         loadAccount();
         logout_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,10 +46,21 @@ public class AccountFragment extends Fragment {
                 logout();
             }
         });
+        btn_editProfil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(),EditProfile.class));
+            }
+        });
 
         Toolbar toolbar = v.findViewById(R.id.toolbar);
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
-
+        btn_editPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), EditPassword.class));
+            }
+        });
         return v;
     }
 

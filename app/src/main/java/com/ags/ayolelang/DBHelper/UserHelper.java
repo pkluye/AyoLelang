@@ -17,7 +17,9 @@ import static com.ags.ayolelang.DBHelper.DBContract.USER.USER_EMAIL;
 import static com.ags.ayolelang.DBHelper.DBContract.USER.USER_ID;
 import static com.ags.ayolelang.DBHelper.DBContract.USER.USER_IMGURL;
 import static com.ags.ayolelang.DBHelper.DBContract.USER.USER_NAMA;
+import static com.ags.ayolelang.DBHelper.DBContract.USER.USER_SKILL;
 import static com.ags.ayolelang.DBHelper.DBContract.USER.USER_TELPON;
+import static com.ags.ayolelang.DBHelper.DBContract.USER.USER_TENTANG;
 
 public class UserHelper {
     private Context context;
@@ -51,6 +53,8 @@ public class UserHelper {
             user.setUser_telpon(cursor.getString(cursor.getColumnIndexOrThrow(USER_TELPON)));
             user.setUser_alamat(cursor.getString(cursor.getColumnIndexOrThrow(USER_ALAMAT)));
             user.setUser_imgurl(cursor.getString(cursor.getColumnIndexOrThrow(USER_IMGURL)));
+            user.setUser_skill(cursor.getString(cursor.getColumnIndexOrThrow(USER_SKILL)));
+            user.setUser_tentang(cursor.getString(cursor.getColumnIndexOrThrow(USER_TENTANG)));
         }
         //Log.d("useer",user.toString());
         cursor.close();
@@ -66,6 +70,8 @@ public class UserHelper {
         contentValues.put(USER_TELPON, user.getUser_telpon());
         contentValues.put(USER_IMGURL,user.getUser_imgurl());
         contentValues.put(USER_ALAMAT,user.getUser_alamat());
+        contentValues.put(USER_SKILL,user.getUser_skill());
+        contentValues.put(USER_TENTANG,user.getUser_tentang());
         return db.insert(TABLE_USER, null, contentValues);
     }
 
@@ -115,6 +121,8 @@ public class UserHelper {
                 user.setUser_telpon(cursor.getString(cursor.getColumnIndexOrThrow(USER_TELPON)));
                 user.setUser_alamat(cursor.getString(cursor.getColumnIndexOrThrow(USER_ALAMAT)));
                 user.setUser_imgurl(cursor.getString(cursor.getColumnIndexOrThrow(USER_IMGURL)));
+                user.setUser_skill(cursor.getString(cursor.getColumnIndexOrThrow(USER_SKILL)));
+                user.setUser_tentang(cursor.getString(cursor.getColumnIndexOrThrow(USER_TENTANG)));
                 users.add(user);
                 cursor.moveToNext();
             }while (!cursor.isAfterLast());
@@ -139,6 +147,8 @@ public class UserHelper {
                 user.setUser_telpon(cursor.getString(cursor.getColumnIndexOrThrow(USER_TELPON)));
                 user.setUser_alamat(cursor.getString(cursor.getColumnIndexOrThrow(USER_ALAMAT)));
                 user.setUser_imgurl(cursor.getString(cursor.getColumnIndexOrThrow(USER_IMGURL)));
+                user.setUser_skill(cursor.getString(cursor.getColumnIndexOrThrow(USER_SKILL)));
+                user.setUser_tentang(cursor.getString(cursor.getColumnIndexOrThrow(USER_TENTANG)));
                 users.add(user);
                 cursor.moveToNext();
             }while (!cursor.isAfterLast());

@@ -72,6 +72,8 @@ public class DBContract {
         static String USER_TELPON = "user_telpon";
         static String USER_STATUS = "user_status";
         static String USER_ALAMAT = "user_alamat";
+        static String USER_SKILL = "user_skill";
+        static String USER_TENTANG = "user_tentang";
         static String USER_IMGURL = "user_imgurl";
     }
 

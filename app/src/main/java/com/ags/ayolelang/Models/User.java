@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 public class User implements Serializable {
 
-    private String user_id,user_nama, user_email, user_telpon, user_alamat, user_imgurl;
+    private String user_id,user_nama, user_email, user_telpon, user_alamat, user_imgurl, user_skill,user_tentang;
     private boolean user_status;
 
     public User() {
@@ -21,6 +21,45 @@ public class User implements Serializable {
         this.user_alamat = user_alamat;
         this.user_imgurl = user_imgurl;
         this.user_status = user_status;
+    }
+
+    public User(String user_id, String user_nama, String user_email, String user_telpon, String user_alamat, String user_imgurl, String user_skill, String user_tentang, boolean user_status) {
+        this.user_id = user_id;
+        this.user_nama = user_nama;
+        this.user_email = user_email;
+        this.user_telpon = user_telpon;
+        this.user_alamat = user_alamat;
+        this.user_imgurl = user_imgurl;
+        this.user_skill = user_skill;
+        this.user_tentang = user_tentang;
+        this.user_status = user_status;
+    }
+
+    public User(String user_id, String user_nama, String user_email, String user_telpon, String user_alamat, String user_imgurl, String user_skill, String user_tentang) {
+        this.user_id = user_id;
+        this.user_nama = user_nama;
+        this.user_email = user_email;
+        this.user_telpon = user_telpon;
+        this.user_alamat = user_alamat;
+        this.user_imgurl = user_imgurl;
+        this.user_skill = user_skill;
+        this.user_tentang = user_tentang;
+    }
+
+    public String getUser_tentang() {
+        return user_tentang;
+    }
+
+    public void setUser_tentang(String user_tentang) {
+        this.user_tentang = user_tentang;
+    }
+
+    public String getUser_skill() {
+        return user_skill;
+    }
+
+    public void setUser_skill(String user_skill) {
+        this.user_skill = user_skill;
     }
 
     public String getUser_id() {
@@ -88,6 +127,7 @@ public class User implements Serializable {
                 ", user_telpon='" + user_telpon + '\'' +
                 ", user_alamat='" + user_alamat + '\'' +
                 ", user_imgurl='" + user_imgurl + '\'' +
+                ", user_skill='" + user_skill + '\'' +
                 ", user_status=" + user_status +
                 '}';
     }

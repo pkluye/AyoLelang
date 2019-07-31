@@ -70,11 +70,13 @@ import static com.ags.ayolelang.DBHelper.DBContract.USER.USER_EMAIL;
 import static com.ags.ayolelang.DBHelper.DBContract.USER.USER_ID;
 import static com.ags.ayolelang.DBHelper.DBContract.USER.USER_IMGURL;
 import static com.ags.ayolelang.DBHelper.DBContract.USER.USER_NAMA;
+import static com.ags.ayolelang.DBHelper.DBContract.USER.USER_SKILL;
 import static com.ags.ayolelang.DBHelper.DBContract.USER.USER_TELPON;
+import static com.ags.ayolelang.DBHelper.DBContract.USER.USER_TENTANG;
 
 public class DBHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
     private static String DATABASE_NAME = "dbgarapan";
 
     public static String CREATE_TABLE_PROVINSI =
@@ -159,6 +161,8 @@ public class DBHelper extends SQLiteOpenHelper {
                     USER_EMAIL + " TEXT NOT NULL, " +
                     USER_TELPON + " TEXT, " +
                     USER_ALAMAT + " TEXT, " +
+                    USER_SKILL + " TEXT, " +
+                    USER_TENTANG + " TEXT, " +
                     USER_IMGURL + " TEXT)";
 
     public static String CREATE_TABLE_TAWARAN =

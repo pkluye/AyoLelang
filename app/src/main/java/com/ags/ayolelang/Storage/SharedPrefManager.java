@@ -33,6 +33,8 @@ public class SharedPrefManager {
         editor.putBoolean("status", user.isUser_status());
         editor.putString("alamat",user.getUser_alamat());
         editor.putString("img_url",user.getUser_imgurl());
+        editor.putString("skill",user.getUser_skill());
+        editor.putString("tentang",user.getUser_tentang());
 
         editor.apply();
     }
@@ -80,6 +82,8 @@ public class SharedPrefManager {
                 sharedPreferences.getString("telpon",null),
                 sharedPreferences.getString("alamat",null),
                 sharedPreferences.getString("img_url",null),
+                sharedPreferences.getString("skill",null),
+                sharedPreferences.getString("tentang",null),
                 sharedPreferences.getBoolean("status",false)
         );
     }
