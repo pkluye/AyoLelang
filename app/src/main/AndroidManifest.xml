@@ -17,7 +17,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".Activity.PenawaranActivity"></activity>
+        <activity android:name=".Activity.Splash"></activity>
+        <activity android:name=".Activity.PenawaranActivity" />
         <activity
             android:name=".Activity.Profile"
             android:screenOrientation="portrait" />
