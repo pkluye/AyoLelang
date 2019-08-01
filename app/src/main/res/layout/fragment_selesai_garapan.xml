@@ -99,32 +99,25 @@
             android:background="@color/colorGrey3" />
 
         <LinearLayout
+            android:padding="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="8dp"
-            android:weightSum="4">
+            android:orientation="vertical"
+            android:gravity="center">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_weight="3"
-                android:text="ID Garapan"
-                android:textSize="@dimen/Font_Body" />
-
-            <TextView
-                android:id="@+id/txt_idGarapan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="12dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="N2133"
-                android:textAlignment="textEnd"
+                android:text="Bagaimana Hasil Pekerjaan ?"
+                android:textStyle="bold|italic"
                 android:textColor="@color/colorBlack"
-                android:textSize="@dimen/Font_Body"
-                tools:ignore="RtlCompat" />
+                android:textSize="@dimen/Font_Header"/>
+
+            <RatingBar
+                android:id="@+id/rating_pekerjaan"
+                android:layout_marginTop="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 
@@ -139,28 +132,51 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="8dp"
-            android:weightSum="4">
+            android:gravity="center">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_weight="3"
-                android:text="Biaya Garapan"
-                android:textSize="@dimen/Font_Body" />
 
-            <TextView
-                android:id="@+id/txt_perkiraanBiaya"
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/image_user"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_user_big"
+                tools:ignore="VectorDrawableCompat" />
+
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:layout_marginEnd="12dp"
-                android:text="Rp 1000000"
-                android:textAlignment="textEnd"
-                android:textColor="@color/colorBlack"
-                android:textSize="@dimen/Font_Body"
-                tools:ignore="RtlCompat" />
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/txt_namaPenawar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="16dp"
+                    android:text="Bpk. Antono"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/Font_Header2" />
+
+                <LinearLayout
+                    android:layout_marginTop="4dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="12dp">
+
+                    <TextView
+                        android:id="@+id/txt_lokasiPenawar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="4dp"
+                        android:text="Malang, Jawa Timur"
+                        android:textColor="@color/colorGrey2"
+                        android:textSize="@dimen/Font_Subtitle2" />
+
+                </LinearLayout>
+
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -173,30 +189,136 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:padding="8dp"
-            android:weightSum="4">
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_weight="3"
-                android:text="Mitra Garapan"
-                android:textSize="@dimen/Font_Body" />
+                android:text="Detail Garapan"/>
 
-            <TextView
-                android:id="@+id/txt_jumlahMitra"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="12dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="Nama Mitra"
-                android:textColor="@color/colorBlack"
-                android:textSize="@dimen/Font_Body"
-                android:textAlignment="textEnd"
-                tools:ignore="RtlCompat" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <LinearLayout
+                    android:layout_marginTop="8dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="4">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:text="ID Garapan"
+                        android:textSize="@dimen/Font_Body" />
+
+                    <TextView
+                        android:id="@+id/txt_idGarapan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="N2133"
+                        android:textAlignment="textEnd"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/Font_Body"
+                        tools:ignore="RtlCompat" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="4dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="4">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:text="Biaya Garapan"
+                        android:textSize="@dimen/Font_Body" />
+
+                    <TextView
+                        android:id="@+id/txt_perkiraanBiaya"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Rp 1000000"
+                        android:textAlignment="textEnd"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/Font_Body"
+                        tools:ignore="RtlCompat" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="4dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="4">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:text="Tanggal Mulai"
+                        android:textSize="@dimen/Font_Body" />
+
+                    <TextView
+                        android:id="@+id/txt_tglMulai"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="21 Juli 2019"
+                        android:textAlignment="textEnd"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/Font_Body"
+                        tools:ignore="RtlCompat" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="4dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="4">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:text="Tanggal Selesai"
+                        android:textSize="@dimen/Font_Body" />
+
+                    <TextView
+                        android:id="@+id/txt_tglSelesai"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="22 Juli 2019"
+                        android:textAlignment="textEnd"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/Font_Body"
+                        tools:ignore="RtlCompat" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
 
         </LinearLayout>
 
@@ -206,16 +328,40 @@
             android:layout_marginVertical="8dp"
             android:background="@color/colorGrey3" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_mitra"
-            tools:listitem="@layout/item_penawar"
-            android:layout_margin="16dp"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_marginVertical="16dp"
+            android:layout_marginHorizontal="32dp"
+            android:weightSum="2">
+
+            <Button
+                android:id="@+id/btn_lapor"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/button_rectangle_border_green"
+                android:text="Laporkan Issue !"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/Font_Button" />
+
+            <Button
+                android:layout_marginLeft="8dp"
+                android:id="@+id/btn_lihatSPK"
+                android:layout_width="fill_parent"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_rectangle"
+                android:text="Lihat SPK"
+                android:textAllCaps="false"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/Font_Button" />
 
 
-        </android.support.v7.widget.RecyclerView>
-
+        </LinearLayout>
 
     </LinearLayout>
 
