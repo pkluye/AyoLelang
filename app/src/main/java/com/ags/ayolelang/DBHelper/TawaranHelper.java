@@ -112,6 +112,21 @@ public class TawaranHelper {
         return tawaran;
     }
 
+    public Tawaran getTawaran1st(int lelangid){
+        Cursor cursor = db.query(TABLE_TAWARAN, null, TAWARAN_LELANGID+"=?", new String[]{lelangid+""}, null, null, TAWARAN_ANGGARAN+" ASC", null);
+        Tawaran tawaran=new Tawaran();
+        cursor.moveToFirst();
+        if (cursor.getCount()>0){
+            cursor.moveToPosition(0);
+            tawaran.setTawaran_id(cursor.getInt(cursor.getColumnIndexOrThrow(TAWARAN_ID)));
+            tawaran.setTawaran_lelangid(cursor.getInt(cursor.getColumnIndexOrThrow(TAWARAN_LELANGID)));
+            tawaran.setTawaran_userid(cursor.getString(cursor.getColumnIndexOrThrow(TAWARAN_USERID)));
+            tawaran.setTawaran_anggaran(cursor.getLong(cursor.getColumnIndexOrThrow(TAWARAN_ANGGARAN)));
+        }
+        cursor.close();
+        return tawaran;
+    }
+
     public void truncate() {
         db.execSQL("DELETE FROM " + TABLE_TAWARAN);
         db.execSQL("VACUUM");

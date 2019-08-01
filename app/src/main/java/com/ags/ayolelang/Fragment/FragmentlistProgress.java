@@ -13,7 +13,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.ags.ayolelang.Activity.MainActivity;
-import com.ags.ayolelang.Adapter.AdapterListProgress_PemilihanMitra;
+import com.ags.ayolelang.Adapter.AdapterListProgress_PemilihanvClient;
+import com.ags.ayolelang.Adapter.AdapterListProgress_PenawaranvMitra;
 import com.ags.ayolelang.DBHelper.LelangHelper;
 import com.ags.ayolelang.Models.Lelang;
 import com.ags.ayolelang.R;
@@ -57,9 +58,11 @@ public class FragmentlistProgress extends Fragment {
         lelangHelper.open();
         ArrayList<Lelang> lelangs = lelangHelper.getLelangbyMitra(SharedPrefManager.getInstance(getContext()).getUser().getUser_id(), status);
         lelangHelper.close();
-        AdapterListProgress_PemilihanMitra adapterListlelang = new AdapterListProgress_PemilihanMitra(getContext());
-        adapterListlelang.addItem(lelangs);
-        rv_lelang.setAdapter(adapterListlelang);
+        if (status==3){
+            AdapterListProgress_PenawaranvMitra adapterListlelang = new AdapterListProgress_PenawaranvMitra(getContext());
+            adapterListlelang.addItem(lelangs);
+            rv_lelang.setAdapter(adapterListlelang);
+        }
         if (rv_lelang.getAdapter().getItemCount() <1) {
             rv_lelang.setVisibility(View.GONE);
             default_layout.setVisibility(View.VISIBLE);
@@ -91,7 +94,7 @@ public class FragmentlistProgress extends Fragment {
         lelangHelper.open();
         ArrayList<Lelang> lelangs = lelangHelper.getLelangbyUser(SharedPrefManager.getInstance(getContext()).getUser().getUser_id(), status);
         lelangHelper.close();
-        AdapterListProgress_PemilihanMitra adapterListlelang = new AdapterListProgress_PemilihanMitra(getContext());
+        AdapterListProgress_PemilihanvClient adapterListlelang = new AdapterListProgress_PemilihanvClient(getContext());
         adapterListlelang.addItem(lelangs);
         rv_lelang.setAdapter(adapterListlelang);
         if (rv_lelang.getAdapter().getItemCount() <1) {

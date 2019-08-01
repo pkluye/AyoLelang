@@ -126,8 +126,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void register(View view) {
-        startActivity(new Intent(getApplicationContext(),RegisterActivity.class));
-        finish();
+        startActivity(new Intent(this,RegisterActivity.class));
     }
 
     public void lupapassword(View view) {

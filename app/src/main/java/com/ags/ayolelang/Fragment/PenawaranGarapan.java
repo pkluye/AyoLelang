@@ -4,106 +4,80 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.ags.ayolelang.Adapter.AdapterListProgress_itemHistoriTawaran;
+import com.ags.ayolelang.DBHelper.HistoriTawaranHelper;
+import com.ags.ayolelang.DBHelper.TawaranHelper;
+import com.ags.ayolelang.DBHelper.UserHelper;
+import com.ags.ayolelang.Models.Lelang;
+import com.ags.ayolelang.Models.Tawaran;
+import com.ags.ayolelang.Models.User;
 import com.ags.ayolelang.R;
+import com.ags.ayolelang.Storage.SharedPrefManager;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link PenawaranGarapan.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link PenawaranGarapan#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.ArrayList;
+import java.util.Locale;
+
 public class PenawaranGarapan extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    private OnFragmentInteractionListener mListener;
-
-    public PenawaranGarapan() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment PenawaranGarapan.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static PenawaranGarapan newInstance(String param1, String param2) {
-        PenawaranGarapan fragment = new PenawaranGarapan();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    private View v;
+    private TextView txt_subtext_judul;
+    private TextView txt_idGarapan;
+    private TextView txt_perkiraanBiaya;
+    private TextView penawaran_terendah;
+    private RecyclerView rv_riwayatPenawaran;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
+        v = inflater.inflate(R.layout.fragment_penawaran_garapan, container, false);
+
+        txt_subtext_judul=v.findViewById(R.id.txt_subtext_judul);
+        txt_idGarapan=(TextView) v.findViewById(R.id.txt_idGarapan);
+        txt_perkiraanBiaya=v.findViewById(R.id.txt_perkiraanBiaya);
+        penawaran_terendah=v.findViewById(R.id.penawaran_terendah);
+        rv_riwayatPenawaran=v.findViewById(R.id.rv_riwayatPenawaran);
+
+        Bundle bundle=getArguments();
+        Lelang lelang= (Lelang) bundle.getSerializable("lelang");
+
+        txt_subtext_judul.setText(lelang.getLelang_judul());
+        txt_idGarapan.setText(lelang.getLelang_id()+"");
+        txt_perkiraanBiaya.setText("Rp. "+currencyFormat(lelang.getLelang_anggaran()+""));
+        TawaranHelper tawaranHelper=new TawaranHelper(getContext());
+        tawaranHelper.open();
+        Tawaran tawaran=tawaranHelper.getTawaran1st(lelang.getLelang_id());
+        tawaranHelper.close();
+        UserHelper userHelper=new UserHelper(getContext());
+        userHelper.open();
+        User user=userHelper.getSingleUser(tawaran.getTawaran_userid());
+        userHelper.close();
+        penawaran_terendah.setText("Rp. "+currencyFormat(tawaran.getTawaran_anggaran()+"")+" ("+user.getUser_nama()+")");
+        HistoriTawaranHelper historiTawaranHelper=new HistoriTawaranHelper(getContext());
+        historiTawaranHelper.open();
+        ArrayList<Tawaran> tawarans=historiTawaranHelper.getlisttawaran(lelang.getLelang_id(), SharedPrefManager.getInstance(getContext()).getUser().getUser_id());
+        historiTawaranHelper.close();
+        AdapterListProgress_itemHistoriTawaran adapterListProgress_itemHistoriTawaran=new AdapterListProgress_itemHistoriTawaran(getContext());
+        adapterListProgress_itemHistoriTawaran.addItem(tawarans);
+        rv_riwayatPenawaran.setAdapter(adapterListProgress_itemHistoriTawaran);
+        return v;
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_penawaran_garapan, container, false);
-    }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+    private String currencyFormat(String harga) {
+        Locale localeID = new Locale("in", "ID");
+        harga = harga.replaceAll("[.,]", "");
+        DecimalFormat kursIndonesia = (DecimalFormat) DecimalFormat.getCurrencyInstance(localeID);
+        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
+        formatRp.setCurrencySymbol("");
+        formatRp.setGroupingSeparator('.');
+        formatRp.setMonetaryDecimalSeparator(',');
+        kursIndonesia.setDecimalFormatSymbols(formatRp);
+        return kursIndonesia.format(Double.parseDouble(harga));
     }
 }

@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.ags.ayolelang.API.RetrofitClient;
 import com.ags.ayolelang.Activity.MainActivity;
@@ -36,12 +35,12 @@ import io.reactivex.schedulers.Schedulers;
 
 import static com.ags.ayolelang.API.RetrofitClient.secret_key;
 
-public class AdapterListProgress_PemilihanMitra extends RecyclerView.Adapter<AdapterListProgress_PemilihanMitra.CustomHolderView> {
+public class AdapterListProgress_PemilihanvClient extends RecyclerView.Adapter<AdapterListProgress_PemilihanvClient.CustomHolderView> {
     private LayoutInflater mInflater;
     Context context;
     ArrayList<Lelang> lelangs;
 
-    public AdapterListProgress_PemilihanMitra(Context context) {
+    public AdapterListProgress_PemilihanvClient(Context context) {
         this.context = context;
         this.mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -51,7 +50,7 @@ public class AdapterListProgress_PemilihanMitra extends RecyclerView.Adapter<Ada
     public CustomHolderView onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
         View v = inflater.inflate(R.layout.item_pemilihan, viewGroup, false);
-        AdapterListProgress_PemilihanMitra.CustomHolderView vh = new AdapterListProgress_PemilihanMitra.CustomHolderView(v);
+        AdapterListProgress_PemilihanvClient.CustomHolderView vh = new AdapterListProgress_PemilihanvClient.CustomHolderView(v);
         return vh;
     }
 

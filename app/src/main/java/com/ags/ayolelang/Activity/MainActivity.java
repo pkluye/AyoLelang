@@ -200,6 +200,20 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
                             if (fetchDBRespon.getMessage().contains("6")) {
                                 ArrayList<User> users = fetchDB.getUsers();
+                                for(User user : users){
+                                    if (user.getUser_id().equalsIgnoreCase(SharedPrefManager.getInstance(getApplicationContext()).getUser().getUser_id())){
+                                        SharedPrefManager.getInstance(MainActivity.this).saveUser(new User(
+                                                user.getUser_id(),
+                                                user.getUser_nama(),
+                                                user.getUser_email(),
+                                                user.getUser_telpon(),
+                                                user.getUser_alamat(),
+                                                user.getUser_imgurl(),
+                                                user.getUser_skill(),
+                                                user.getUser_tentang()
+                                        ));
+                                    }
+                                }
                                 insert_user(users);
                                 newtoken[5] = fetchDB.getToken_user();
                             }
@@ -221,21 +235,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                                 ArrayList<SpecBarang> specBarangs = fetchDB.getSpecbarangs();
                                 insert_specBarang(specBarangs);
                                 newtoken[7] = fetchDB.getToken_specbarang();
-                            }
-
-                            for(User user : fetchDB.getUsers()){
-                                if (user.getUser_id().equalsIgnoreCase(SharedPrefManager.getInstance(getApplicationContext()).getUser().getUser_id())){
-                                    SharedPrefManager.getInstance(MainActivity.this).saveUser(new User(
-                                            user.getUser_id(),
-                                            user.getUser_nama(),
-                                            user.getUser_email(),
-                                            user.getUser_telpon(),
-                                            user.getUser_alamat(),
-                                            user.getUser_imgurl(),
-                                            user.getUser_skill(),
-                                            user.getUser_tentang()
-                                    ));
-                                }
                             }
 
                             //check empty db

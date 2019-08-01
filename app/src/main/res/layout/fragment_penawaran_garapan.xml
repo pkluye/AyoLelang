@@ -191,21 +191,14 @@
                 android:layout_marginLeft="4dp">
 
                 <TextView
+                    android:id="@+id/penawaran_terendah"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Rp "
-                    android:textSize="22dp"
-                    android:textColor="@color/colorBlack"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="50000"
+                    android:text="Rp. 50000"
                     android:textSize="22dp"
                     android:textColor="@color/colorBlack"/>
 
             </LinearLayout>
-
 
         </LinearLayout>
 

@@ -17,8 +17,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".Activity.Splash"></activity>
-        <activity android:name=".Activity.PenawaranActivity" />
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".Activity.Splash" />
+        <activity
+            android:name=".Activity.Splash"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Activity.PenawaranActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Activity.Profile"
             android:screenOrientation="portrait" />
@@ -35,9 +42,6 @@
             android:name=".Activity.MessageActivity"
             android:screenOrientation="portrait" />
 
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".Activity.LoginActivity" />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
