@@ -1,26 +1,16 @@
 package com.ags.ayolelang.Adapter;
 
 import android.app.Dialog;
-import android.app.TimePickerDialog;
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
-import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.ags.ayolelang.API.RetrofitClient;
-import com.ags.ayolelang.Activity.DetailSpesifikasi;
 import com.ags.ayolelang.DBHelper.KategoriHelper;
-import com.ags.ayolelang.DBHelper.REQPekerjaanHelper;
 import com.ags.ayolelang.DBHelper.SpecBarangHelper;
 import com.ags.ayolelang.Models.Kategori;
 import com.ags.ayolelang.Models.Pekerjaan;
@@ -31,13 +21,13 @@ import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class AdapterItemPekerjaan extends RecyclerView.Adapter<AdapterItemPekerjaan.CustomHolderView> {
+public class AdapterItemPekerjaan_pengerjaanclient extends RecyclerView.Adapter<AdapterItemPekerjaan_pengerjaanclient.CustomHolderView> {
 
     private LayoutInflater mInflater;
     private Context context;
     private ArrayList<Pekerjaan> pekerjaanArrayList;
 
-    public AdapterItemPekerjaan(Context context) {
+    public AdapterItemPekerjaan_pengerjaanclient(Context context) {
         this.context = context;
         this.mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -46,8 +36,8 @@ public class AdapterItemPekerjaan extends RecyclerView.Adapter<AdapterItemPekerj
     @Override
     public CustomHolderView onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
-        View v = inflater.inflate(R.layout.item_preview_lelang, viewGroup, false);
-        AdapterItemPekerjaan.CustomHolderView vh = new AdapterItemPekerjaan.CustomHolderView(v);
+        View v = inflater.inflate(R.layout.item_detailpengerjaan, viewGroup, false);
+        AdapterItemPekerjaan_pengerjaanclient.CustomHolderView vh = new AdapterItemPekerjaan_pengerjaanclient.CustomHolderView(v);
         return vh;
     }
 
@@ -63,29 +53,19 @@ public class AdapterItemPekerjaan extends RecyclerView.Adapter<AdapterItemPekerj
         specBarangHelper.open();
         String satuan = specBarangHelper.getSatuan(pekerjaan.getPekerjaan_kategoriid() + "");
         specBarangHelper.close();
+        if (pekerjaan.getPekerjaan_status() == 6) {
+            customHolderView.txt_status.setText("Selesai");
+        }
         customHolderView.txt_judul_item.setText(kategori.getKategori_nama() + "");
         customHolderView.txt_perkiraan_harga.setText("Rp. " + currencyFormat(pekerjaan.getPekerjaan_harga() + ""));
         customHolderView.txt_jumlah.setText(pekerjaan.getPekerjaan_jumlah() + " " + (satuan.equalsIgnoreCase("meter") ? "" : satuan));
         customHolderView.txt_catatan_item.setText(pekerjaan.getPekerjaan_catatan() + "");
-        if (pekerjaan.getPekerjaan_catatan().equalsIgnoreCase("-"))
-            customHolderView.txt_catatan_item.setVisibility(View.GONE);
 
-        customHolderView.btn_delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (pekerjaanArrayList.size() > 1) {
-                    if (pekerjaan.getPekerjaan_status() == 0) {
-                        deleteItem(pekerjaan.getPekerjaan_id());
-                    } else {
-                        updatestatus(pekerjaan.getPekerjaan_id());
-                    }
-                    pekerjaanArrayList.remove(i);
-                    notifyDataSetChanged();
-                } else {
-                    Toast.makeText(context, "Pekerjaan harus lebih dari 1", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+        if (pekerjaan.getPekerjaan_catatan().equalsIgnoreCase("-") ||
+                pekerjaan.getPekerjaan_catatan().equalsIgnoreCase("") ||
+                pekerjaan.getPekerjaan_catatan().equalsIgnoreCase(" ")) {
+            customHolderView.txt_catatan_item.setVisibility(View.GONE);
+        }
 
         customHolderView.btn_detailItemLelang.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,24 +73,6 @@ public class AdapterItemPekerjaan extends RecyclerView.Adapter<AdapterItemPekerj
                 detailItem(pekerjaan);
             }
         });
-        customHolderView.btn_editItemLelang.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, DetailSpesifikasi.class);
-                intent.putExtra("edit", true);
-                intent.putExtra("kategori_id",pekerjaan.getPekerjaan_kategoriid());
-                intent.putExtra("pekerjaan", pekerjaan);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
-            }
-        });
-    }
-
-    private void updatestatus(int id) {
-        REQPekerjaanHelper reqPekerjaanHelper = new REQPekerjaanHelper(context);
-        reqPekerjaanHelper.open();
-        reqPekerjaanHelper.updateStatusto1(id);
-        reqPekerjaanHelper.close();
     }
 
     private void detailItem(final Pekerjaan pekerjaan) {
@@ -168,30 +130,23 @@ public class AdapterItemPekerjaan extends RecyclerView.Adapter<AdapterItemPekerj
         notifyDataSetChanged();
     }
 
-    public void deleteItem(int id) {
-        REQPekerjaanHelper reqPekerjaanHelper = new REQPekerjaanHelper(context);
-        reqPekerjaanHelper.open();
-        reqPekerjaanHelper.delete(id);
-        reqPekerjaanHelper.close();
-    }
-
     public class CustomHolderView extends RecyclerView.ViewHolder {
 
+        TextView txt_status;
         TextView txt_catatan_item;
         TextView txt_judul_item, txt_perkiraan_harga, txt_jumlah;
-        ImageButton btn_delete;
-        TextView btn_editItemLelang, btn_detailItemLelang;
+        TextView btn_selesai, btn_detailItemLelang;
 
         public CustomHolderView(@NonNull View itemView) {
             super(itemView);
-
             txt_judul_item = itemView.findViewById(R.id.txt_judul_item);
+            txt_status = itemView.findViewById(R.id.txt_status);
             txt_perkiraan_harga = itemView.findViewById(R.id.txt_perkiraan_harga_item);
             txt_jumlah = itemView.findViewById(R.id.txt_jumlah);
             txt_catatan_item = itemView.findViewById(R.id.txt_catatan_item);
-            btn_delete = itemView.findViewById(R.id.btn_delete);
             btn_detailItemLelang = itemView.findViewById(R.id.btn_detailItemLelang);
-            btn_editItemLelang = itemView.findViewById(R.id.btn_editItemLelang);
+            btn_selesai = itemView.findViewById(R.id.btn_selesai);
+            btn_selesai.setVisibility(View.GONE);
         }
     }
 }

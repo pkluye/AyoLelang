@@ -14,7 +14,8 @@ import android.widget.LinearLayout;
 
 import com.ags.ayolelang.Activity.MainActivity;
 import com.ags.ayolelang.Adapter.AdapterListProgress_PemilihanvClient;
-import com.ags.ayolelang.Adapter.AdapterListProgress_PenawaranvMitra;
+import com.ags.ayolelang.Adapter.AdapterListProgress_general;
+import com.ags.ayolelang.Adapter.AdapterListProgress_itemHistoriTawaran;
 import com.ags.ayolelang.DBHelper.LelangHelper;
 import com.ags.ayolelang.Models.Lelang;
 import com.ags.ayolelang.R;
@@ -59,9 +60,17 @@ public class FragmentlistProgress extends Fragment {
         ArrayList<Lelang> lelangs = lelangHelper.getLelangbyMitra(SharedPrefManager.getInstance(getContext()).getUser().getUser_id(), status);
         lelangHelper.close();
         if (status==3){
-            AdapterListProgress_PenawaranvMitra adapterListlelang = new AdapterListProgress_PenawaranvMitra(getContext());
+            AdapterListProgress_general adapterListlelang = new AdapterListProgress_general(getContext(),"penawaran");
             adapterListlelang.addItem(lelangs);
             rv_lelang.setAdapter(adapterListlelang);
+        }else if(status==4){
+            AdapterListProgress_general adapterListProgress_general=new AdapterListProgress_general(getContext(),"pengerjaanmitra");
+            adapterListProgress_general.addItem(lelangs);
+            rv_lelang.setAdapter(adapterListProgress_general);
+        }else if(status==6){
+            AdapterListProgress_general adapterListProgress_general=new AdapterListProgress_general(getContext(),"selesaimitra");
+            adapterListProgress_general.addItem(lelangs);
+            rv_lelang.setAdapter(adapterListProgress_general);
         }
         if (rv_lelang.getAdapter().getItemCount() <1) {
             rv_lelang.setVisibility(View.GONE);
@@ -94,9 +103,19 @@ public class FragmentlistProgress extends Fragment {
         lelangHelper.open();
         ArrayList<Lelang> lelangs = lelangHelper.getLelangbyUser(SharedPrefManager.getInstance(getContext()).getUser().getUser_id(), status);
         lelangHelper.close();
-        AdapterListProgress_PemilihanvClient adapterListlelang = new AdapterListProgress_PemilihanvClient(getContext());
-        adapterListlelang.addItem(lelangs);
-        rv_lelang.setAdapter(adapterListlelang);
+        if (status==3){
+            AdapterListProgress_PemilihanvClient adapterListlelang = new AdapterListProgress_PemilihanvClient(getContext());
+            adapterListlelang.addItem(lelangs);
+            rv_lelang.setAdapter(adapterListlelang);
+        }else if(status==4){
+            AdapterListProgress_general adapterListProgress_general=new AdapterListProgress_general(getContext(),"pengerjaanclient");
+            adapterListProgress_general.addItem(lelangs);
+            rv_lelang.setAdapter(adapterListProgress_general);
+        }else if(status==6){
+            AdapterListProgress_general adapterListProgress_general=new AdapterListProgress_general(getContext(),"selesaiclient");
+            adapterListProgress_general.addItem(lelangs);
+            rv_lelang.setAdapter(adapterListProgress_general);
+        }
         if (rv_lelang.getAdapter().getItemCount() <1) {
             rv_lelang.setVisibility(View.GONE);
             default_layout.setVisibility(View.VISIBLE);

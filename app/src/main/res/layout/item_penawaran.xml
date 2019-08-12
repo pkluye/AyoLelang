@@ -86,7 +86,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/colorPrimaryDark"
             android:hint="Tentukan Harga Tawaran Anda"
-            android:inputType="text"
+            android:inputType="number"
             android:scrollbars="vertical"
             android:text=""
             android:textSize="@dimen/Font_Subtitle" />

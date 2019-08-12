@@ -84,14 +84,8 @@ public class DetailSpesifikasi extends AppCompatActivity {
         txt_subtext_kategori_dipilih.setText(kategori_nama);
         if (edit) {
             pekerjaan_id = intent.getIntExtra("pekerjaan_id", 0);
-            lastPekerjaan=new Pekerjaan();
-            lastPekerjaan.setPekerjaan_ukuran(intent.getStringExtra("ukuran"));
-            lastPekerjaan.setPekerjaan_bahan(intent.getStringExtra("bahan"));
-            lastPekerjaan.setPekerjaan_jumlah(intent.getIntExtra("jumlah", 0));
-            lastPekerjaan.setPekerjaan_harga(intent.getLongExtra("harga", 0));
-            lastPekerjaan.setPekerjaan_jmlsisi(intent.getStringExtra("jmlsisi"));
-            lastPekerjaan.setPekerjaan_laminasi(intent.getStringExtra("laminasi"));
-            lastPekerjaan.setPekerjaan_catatan(intent.getStringExtra("catatan"));
+            lastPekerjaan= (Pekerjaan) intent.getSerializableExtra("pekerjaan");
+            Log.d("pekerjaan",lastPekerjaan.toString());
             quantity.setText(lastPekerjaan.getPekerjaan_jumlah()+"");
         }
         loadbahan();
@@ -199,6 +193,7 @@ public class DetailSpesifikasi extends AppCompatActivity {
         SBHelper.open();
         ArrayList<String> listlaminasi = SBHelper.getLaminasi(kategori_id + "");
         SBHelper.close();
+        Log.d("laminasi",listlaminasi.size()+" "+listlaminasi.get(0));
         if (listlaminasi != null) {
             ArrayAdapter<String> spadapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, listlaminasi);
             spadapter.notifyDataSetChanged();
@@ -207,14 +202,17 @@ public class DetailSpesifikasi extends AppCompatActivity {
                 layout_laminasi.setVisibility(View.VISIBLE);
                 if (edit) {
                     if (listlaminasi.contains(lastPekerjaan.getPekerjaan_laminasi())) {
-                        int potition = spadapter.getPosition(lastPekerjaan.getPekerjaan_bahan());
+                        Log.d("p1","0");
+                        int potition = spadapter.getPosition(lastPekerjaan.getPekerjaan_laminasi());
                         laminasisp.setSelection(potition);
                     }else{
+                        Log.d("p1","1");
                         int potition = spadapter.getPosition("custom");
                         laminasisp.setSelection(potition);
                     }
                 }
             } else {
+                Log.d("p1","2");
                 layout_laminasi.setVisibility(View.GONE);
             }
         }
@@ -330,11 +328,13 @@ public class DetailSpesifikasi extends AppCompatActivity {
         SBHelper.open();
         ArrayList<String> listukuran = SBHelper.getUkuran(kategori_id + "");
         SBHelper.close();
-        if (listukuran != null) {
+        if (listukuran!=null) {
             ArrayAdapter<String> spadapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, listukuran);
             spadapter.notifyDataSetChanged();
             ukuransp.setAdapter(spadapter);
+
             if (!listukuran.contains("N/A")) {
+                Log.d("ppp","ppp");
                 layout_ukuran.setVisibility(View.VISIBLE);
                 if (edit) {
                     if (listukuran.contains(lastPekerjaan.getPekerjaan_ukuran())) {

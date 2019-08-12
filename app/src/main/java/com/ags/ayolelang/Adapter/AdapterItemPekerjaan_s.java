@@ -80,6 +80,7 @@ public class AdapterItemPekerjaan_s extends RecyclerView.Adapter<AdapterItemPeke
 
     private void detailItem(final Pekerjaan pekerjaan) {
         final Dialog dialog = new Dialog(context);
+        dialog.setContentView(R.layout.popup_pekerjaan);
         TextView txt_ukuran = dialog.findViewById(R.id.txt_ukuran);
         TextView txt_bahan = dialog.findViewById(R.id.txt_bahan);
         TextView txt_jmlsisi=dialog.findViewById(R.id.txt_jmlsisi);

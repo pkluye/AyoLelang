@@ -161,4 +161,18 @@ public interface Api {
             @Field("lelang_id") String lelang_id,
             @Field("user_id") String user_id);
 
+    @FormUrlEncoded
+    @POST("c_lelang/lelang_selesai")
+    Single<StringRespon> lelang_selesai(
+            @Field("secret_key") String secret_key,
+            @Field("lelang_id") String lelang_id,
+            @Field("user_id") String user_id);
+
+    @FormUrlEncoded
+    @POST("c_pekerjaan/pekerjaan_selesai")
+    Single<StringRespon> pekerjaan_selesai(
+            @Field("secret_key") String secret_key,
+            @Field("pekerjaan_id") String lelang_id,
+            @Field("user_id") String user_id);
+
 }

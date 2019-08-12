@@ -15,6 +15,10 @@ import com.ags.ayolelang.Activity.MainActivity;
 import com.ags.ayolelang.DBHelper.KotaHelper;
 import com.ags.ayolelang.DBHelper.ProvinsiHelper;
 import com.ags.ayolelang.Fragment.PenawaranGarapan;
+import com.ags.ayolelang.Fragment.PengerjaanClientGarapan;
+import com.ags.ayolelang.Fragment.PengerjaanMitraGarapan;
+import com.ags.ayolelang.Fragment.SelesaiClientGarapan;
+import com.ags.ayolelang.Fragment.SelesaiMitraGarapan;
 import com.ags.ayolelang.Models.Kota;
 import com.ags.ayolelang.Models.Lelang;
 import com.ags.ayolelang.Models.Provinsi;
@@ -22,14 +26,16 @@ import com.ags.ayolelang.R;
 
 import java.util.ArrayList;
 
-public class AdapterListProgress_PenawaranvMitra extends RecyclerView.Adapter<AdapterListProgress_PenawaranvMitra.CustomHolderView> {
+public class AdapterListProgress_general extends RecyclerView.Adapter<AdapterListProgress_general.CustomHolderView> {
     private LayoutInflater mInflater;
     Context context;
     ArrayList<Lelang> lelangs;
+    String status;
 
-    public AdapterListProgress_PenawaranvMitra(Context context) {
+    public AdapterListProgress_general(Context context,String status) {
         this.context = context;
         this.mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        this.status=status;
     }
 
     @NonNull
@@ -37,7 +43,7 @@ public class AdapterListProgress_PenawaranvMitra extends RecyclerView.Adapter<Ad
     public CustomHolderView onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
         View v = inflater.inflate(R.layout.item_pemilihan, viewGroup, false);
-        AdapterListProgress_PenawaranvMitra.CustomHolderView vh = new AdapterListProgress_PenawaranvMitra.CustomHolderView(v);
+        AdapterListProgress_general.CustomHolderView vh = new AdapterListProgress_general.CustomHolderView(v);
         return vh;
     }
 
@@ -54,7 +60,18 @@ public class AdapterListProgress_PenawaranvMitra extends RecyclerView.Adapter<Ad
         cvh.btn_status.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment fragment = new PenawaranGarapan();
+                Fragment fragment=null;
+                if (status.equalsIgnoreCase("pengerjaanclient")){
+                    fragment = new PengerjaanClientGarapan();
+                }else if (status.equalsIgnoreCase("pengerjaanmitra")){
+                    fragment = new PengerjaanMitraGarapan();
+                }else if (status.equalsIgnoreCase("penawaran")){
+                    fragment = new PenawaranGarapan();
+                }else if (status.equalsIgnoreCase("selesaiclient")){
+                    fragment = new SelesaiClientGarapan();
+                }else if (status.equalsIgnoreCase("selesaimitra")){
+                    fragment=new SelesaiMitraGarapan();
+                }
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("lelang", lelang);
                 fragment.setArguments(bundle);

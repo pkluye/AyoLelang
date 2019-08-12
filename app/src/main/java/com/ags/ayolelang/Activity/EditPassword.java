@@ -132,4 +132,8 @@ public class EditPassword extends AppCompatActivity {
                     }
                 });
     }
+
+    public void back(View view) {
+        onBackPressed();
+    }
 }

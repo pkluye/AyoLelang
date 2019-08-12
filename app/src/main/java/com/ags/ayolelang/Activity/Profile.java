@@ -11,9 +11,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ags.ayolelang.Adapter.AdapterItemPortofolio;
+import com.ags.ayolelang.DBHelper.LelangHelper;
 import com.ags.ayolelang.Models.Lelang;
 import com.ags.ayolelang.Models.User;
 import com.ags.ayolelang.R;
+import com.ags.ayolelang.Storage.SharedPrefManager;
 
 import java.util.ArrayList;
 import java.util.zip.Inflater;
@@ -40,34 +42,31 @@ public class Profile extends AppCompatActivity {
         recycle_portofolio.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
 
         Intent intent = getIntent();
-        String text_skill = null;
+
         if (intent != null) {
             User user = (User) intent.getSerializableExtra("user");
             txt_namaMitra.setText(user.getUser_nama());
-            txt_kotaProv.setText(user.getUser_alamat()!=null?user.getUser_alamat():"belum diset");
-            text_about.setText(user.getUser_tentang()!=null?user.getUser_tentang():"belum diset");
-            text_skill = user.getUser_skill();
-        }
-        if (text_skill!=null&&!text_skill.isEmpty()){
-            final String[] skills = text_skill.trim().split("\\s*,\\s*");
-            for (String s:skills){
-                TextView textView= (TextView) getLayoutInflater().inflate(R.layout.item_skill,null);
-                textView.setText(s);
-                flowlayout.addView(textView);
-                flowlayout.relayoutToAlign();
-            }
-        }
+            txt_kotaProv.setText(user.getUser_alamat() != null ? user.getUser_alamat() : "belum diset");
+            text_about.setText(user.getUser_tentang() != null ? user.getUser_tentang() : "belum diset");
+            String text_skill = user.getUser_skill();
 
-        ArrayList<Lelang> lelangs=new ArrayList<>();
-        Lelang lelang1=new Lelang();
-        lelang1.setLelang_userid("20190616061002eA0");
-        lelang1.setLelang_judul("Test saja");
-        lelang1.setLelang_anggaran(999999);
-        lelang1.setLelang_deskripsi("ini hanya test saja, test pertama");
-        lelangs.add(lelang1);
-        AdapterItemPortofolio portofolio=new AdapterItemPortofolio(getApplicationContext());
-        portofolio.addItem(lelangs);
-        recycle_portofolio.setAdapter(portofolio);
+            if (text_skill != null && !text_skill.isEmpty()) {
+                final String[] skills = text_skill.trim().split("\\s*,\\s*");
+                for (String s : skills) {
+                    TextView textView = (TextView) getLayoutInflater().inflate(R.layout.item_skill, null);
+                    textView.setText(s);
+                    flowlayout.addView(textView);
+                    flowlayout.relayoutToAlign();
+                }
+            }
+            LelangHelper lelangHelper = new LelangHelper(this);
+            lelangHelper.open();
+            ArrayList<Lelang> lelangs = lelangHelper.getLelangbyMitra(user.getUser_id(), 6);
+            lelangHelper.close();
+            AdapterItemPortofolio portofolio = new AdapterItemPortofolio(getApplicationContext());
+            portofolio.addItem(lelangs);
+            recycle_portofolio.setAdapter(portofolio);
+        }
     }
 
     public void back(View view) {

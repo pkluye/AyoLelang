@@ -1,6 +1,8 @@
 package com.ags.ayolelang.Models;
 
-public class Pekerjaan {
+import java.io.Serializable;
+
+public class Pekerjaan implements Serializable {
     private String pekerjaan_ukuran, pekerjaan_bahan, pekerjaan_catatan,pekerjaan_jmlsisi,pekerjaan_laminasi;
     private int pekerjaan_id, pekerjaan_lelangid,pekerjaan_jumlah,pekerjaan_kategoriid;
     private long pekerjaan_harga,hargaTawaran;
