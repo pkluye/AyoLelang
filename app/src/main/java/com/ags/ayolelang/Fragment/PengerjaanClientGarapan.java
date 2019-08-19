@@ -60,6 +60,7 @@ public class PengerjaanClientGarapan extends Fragment {
     private Button btn_selesai;
     private TextView mitraatauclient;
     private Button btn_hubMitra;
+    private TextView btn_back;
 
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -77,6 +78,13 @@ public class PengerjaanClientGarapan extends Fragment {
         btn_selesai=v.findViewById(R.id.btn_selesai);
         mitraatauclient=v.findViewById(R.id.mitraatauclient);
         btn_hubMitra=v.findViewById(R.id.btn_hubMitra);
+        btn_back=v.findViewById(R.id.btn_back);
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
+            }
+        });
 
         mitraatauclient.setText("Mitra");
 

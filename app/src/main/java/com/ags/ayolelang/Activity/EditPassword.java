@@ -8,6 +8,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ags.ayolelang.API.RetrofitClient;
@@ -32,14 +33,17 @@ public class EditPassword extends AppCompatActivity {
     private EditText txt_passwordLama;
     private EditText txt_passwordBaru;
     private EditText txt_passwordKonfirmasi;
+    private TextView txt_nama;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editpassword);
+        txt_nama=findViewById(R.id.txt_nama);
         txt_passwordLama=findViewById(R.id.txt_passwordLama);
         txt_passwordBaru=findViewById(R.id.txt_passwordBaru);
         txt_passwordKonfirmasi=findViewById(R.id.txt_passwordKonfirmasi);
+        txt_nama.setText(SharedPrefManager.getInstance(this).getUser().getUser_nama());
         txt_passwordKonfirmasi.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

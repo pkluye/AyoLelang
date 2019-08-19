@@ -5,6 +5,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.ags.ayolelang.DBHelper.UserHelper;
@@ -24,6 +26,7 @@ public class SelesaiClientGarapan extends Fragment {
     private TextView txt_perkiraanBiaya;
     private TextView txt_tglMulai;
     private TextView txt_tglSelesai;
+    private ImageButton btn_Menu;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -39,6 +42,13 @@ public class SelesaiClientGarapan extends Fragment {
         txt_perkiraanBiaya=v.findViewById(R.id.txt_perkiraanBiaya);
         txt_tglMulai=v.findViewById(R.id.txt_tglMulai);
         txt_tglSelesai=v.findViewById(R.id.txt_tglSelesai);
+        btn_Menu=v.findViewById(R.id.btn_Menu);
+        btn_Menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
+            }
+        });
 
         UserHelper userHelper=new UserHelper(getContext());
         userHelper.open();

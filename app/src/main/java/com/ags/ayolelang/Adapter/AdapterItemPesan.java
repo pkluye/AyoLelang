@@ -135,12 +135,12 @@ public class AdapterItemPesan extends RecyclerView.Adapter<RecyclerView.ViewHold
             mPesan=new ArrayList<>();
         }
         mPesan.add(pesan);
-        notifyDataSetChanged();
+        notifyItemInserted(mPesan.size()-1);
     }
 
     public void addTanggal(TanggalPesan tgl) {
         mPesan.add(tgl);
-        notifyDataSetChanged();
+        notifyItemInserted(mPesan.size()-1);
     }
 
     public boolean isAlreadySet(Pesan pesan){
@@ -159,7 +159,7 @@ public class AdapterItemPesan extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     public void removeItem(InterfacePesan pesan) {
         mPesan.remove(pesan);
-        notifyDataSetChanged();
+        notifyItemRemoved(mPesan.size()-1);
     }
 
     private class TanggalPesanHolder extends RecyclerView.ViewHolder {

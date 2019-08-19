@@ -100,17 +100,6 @@ public class MessageActivity extends AppCompatActivity {
                     public void onSuccess(SingleRoomRespon singleRoomRespon) {
                         if (!singleRoomRespon.isError()){
                             final RoomPesan roomPesan=singleRoomRespon.getData();
-                            btn_sendMessage.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    String text_isi = edittext_messagebox.getText().toString();
-                                    if (text_isi.isEmpty()) {
-                                        edittext_messagebox.requestFocus();
-                                        return;
-                                    }
-                                    KirimPesan(roomPesan.getRoom_id());
-                                }
-                            });
                             loadData(roomPesan.getRoom_id());
                         }else {
                             Log.d("error",singleRoomRespon.getMessage());
@@ -125,6 +114,17 @@ public class MessageActivity extends AppCompatActivity {
     }
 
     private void loadData(final int room_id) {
+        btn_sendMessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String text_isi = edittext_messagebox.getText().toString();
+                if (text_isi.isEmpty()) {
+                    edittext_messagebox.requestFocus();
+                    return;
+                }
+                KirimPesan(room_id);
+            }
+        });
         Observable<PesanRespon> observable = RetrofitClient.getInstance().getApi().getPesan(
                 secret_key,
                 room_id);
@@ -141,7 +141,7 @@ public class MessageActivity extends AppCompatActivity {
                     public void onNext(PesanRespon pesanRespon) {
                         ArrayList<Pesan> pesans = pesanRespon.getData();
                         AdapterItemPesan adapterItemPesan;
-                        if (recyclerView.getAdapter()==null) {
+                        //if (recyclerView.getAdapter()==null) {
                             adapterItemPesan = new AdapterItemPesan(MessageActivity.this);
                             ArrayList<InterfacePesan> iPesan = new ArrayList<>();
                             for (Pesan pesan : pesans) {
@@ -161,31 +161,32 @@ public class MessageActivity extends AppCompatActivity {
                             adapterItemPesan.addItem(iPesan);
                             recyclerView.setAdapter(adapterItemPesan);
                             recyclerView.scrollToPosition(adapterItemPesan.getItemCount() - 1);
-                        } else {
-                            adapterItemPesan = (AdapterItemPesan) recyclerView.getAdapter();
-                            if (!adapterItemPesan.getLastItem().getClass().isInstance(new Pesan())){
-                                adapterItemPesan.removeItem(adapterItemPesan.getLastItem());
-                            }
-
-                            Pesan lastItem = (Pesan) adapterItemPesan.getLastItem();
-                            if (lastItem.isNotSynch()){
-                                adapterItemPesan.removeItem(lastItem);
-                                lastItem=(Pesan) adapterItemPesan.getLastItem();
-                            }
-                            ArrayList<Integer> Array=adapterItemPesan.getlistIdPesan();
-                            for (Pesan pesan : pesans) {
-                                if (!Array.contains(pesan.getPesan_id())){
-                                    if (!pesan.getTanggal().substring(0, 10).equalsIgnoreCase(lastItem.getTanggal().substring(0, 10))){
-                                        TanggalPesan tPesan = new TanggalPesan(pesan.getTanggal().substring(0, 10));
-                                        adapterItemPesan.addTanggal(tPesan);
-                                        adapterItemPesan.addPesan(pesan);
-                                    }else{
-                                        adapterItemPesan.addPesan(pesan);
-                                    }
-                                    recyclerView.scrollToPosition(adapterItemPesan.getItemCount() - 1);
-                                }
-                            }
-                        }
+//                        } else {
+//                            adapterItemPesan = (AdapterItemPesan) recyclerView.getAdapter();
+//                            Log.d("size pesan",adapterItemPesan.getItemCount()+"");
+//                            if (!adapterItemPesan.getLastItem().getClass().isInstance(new Pesan())){
+//                                adapterItemPesan.removeItem(adapterItemPesan.getLastItem());
+//                            }
+//
+//                            Pesan lastItem = (Pesan) adapterItemPesan.getLastItem();
+//                            if (lastItem.isNotSynch()){
+//                                adapterItemPesan.removeItem(lastItem);
+//                                lastItem=(Pesan) adapterItemPesan.getLastItem();
+//                            }
+//                            ArrayList<Integer> Array=adapterItemPesan.getlistIdPesan();
+//                            for (Pesan pesan : pesans) {
+//                                if (!Array.contains(pesan.getPesan_id())){
+//                                    if (!pesan.getTanggal().substring(0, 10).equalsIgnoreCase(lastItem.getTanggal().substring(0, 10))){
+//                                        TanggalPesan tPesan = new TanggalPesan(pesan.getTanggal().substring(0, 10));
+//                                        adapterItemPesan.addTanggal(tPesan);
+//                                        adapterItemPesan.addPesan(pesan);
+//                                    }else{
+//                                        adapterItemPesan.addPesan(pesan);
+//                                    }
+//                                    recyclerView.scrollToPosition(adapterItemPesan.getItemCount() - 1);
+//                                }
+//                            }
+//                        }
                     }
 
                     @Override
@@ -210,10 +211,11 @@ public class MessageActivity extends AppCompatActivity {
         responSingle.subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe();
-        if (recyclerView.getAdapter()!=null){
-            AdapterItemPesan adapterItemPesan = (AdapterItemPesan) recyclerView.getAdapter();
-            adapterItemPesan.addPesan(new Pesan(edittext_messagebox.getText().toString(), SharedPrefManager.getInstance(this).getUser().getUser_id()));
+//        if (recyclerView.getAdapter()!=null){
+//            AdapterItemPesan adapterItemPesan = (AdapterItemPesan) recyclerView.getAdapter();
+//            adapterItemPesan.addPesan(new Pesan(edittext_messagebox.getText().toString(), SharedPrefManager.getInstance(this).getUser().getUser_id()));
+//            Log.d("size",adapterItemPesan.getItemCount()+"");
+//        }
             edittext_messagebox.setText("");
-        }
     }
 }
