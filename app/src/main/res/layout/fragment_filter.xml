@@ -7,12 +7,13 @@
     android:orientation="vertical"
     tools:context=".Fragment.Filter">
 
+    <!--Layout urutkan-->
     <LinearLayout
         android:id="@+id/layout_urutkan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -266,11 +267,12 @@
 
     </LinearLayout>
 
+    <!--Layout filter-->
     <RelativeLayout
         android:id="@+id/layout_filter"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -328,13 +330,36 @@
                     android:layout_height="wrap_content"
                     android:padding="8dp">
 
-                    <cn.lankton.flowlayout.FlowLayout
-                        android:id="@+id/flowlayout_lokasi"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="-10dp"
-                        android:paddingRight="-10dp"
-                        app:lineSpacing="10dp" />
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Pilih Lokasi Anda"
+                            android:textSize="@dimen/Font_Subtitle2" />
+
+                        <Spinner
+                            android:id="@+id/provinsi"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginRight="16dp"
+                            android:backgroundTint="@color/colorPrimaryDark" />
+
+                        <Spinner
+                            android:id="@+id/kota"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginRight="16dp"
+                            android:backgroundTint="@color/colorPrimaryDark" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
