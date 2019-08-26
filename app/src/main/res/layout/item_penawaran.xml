@@ -75,10 +75,58 @@
 
     </LinearLayout>
 
-    <android.support.design.widget.TextInputLayout
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginVertical="4dp"
+        android:background="@color/colorPrimaryDark"/>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp">
+        android:weightSum="2"
+        android:padding="8dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Harga Total"
+                android:textSize="@dimen/Font_Body2"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txt_hargaTotal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="100000"
+                android:textSize="@dimen/Font_Body2"
+                android:textColor="@color/colorBlack"
+                android:textAlignment="textEnd"
+                android:layout_gravity="end" />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <EditText
             android:id="@+id/et_tawaran"
@@ -86,7 +134,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/colorPrimaryDark"
             android:hint="Tentukan Harga Tawaran Anda"
-            android:inputType="number"
+            android:inputType="text"
             android:scrollbars="vertical"
             android:text=""
             android:textSize="@dimen/Font_Subtitle" />

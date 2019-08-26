@@ -37,8 +37,8 @@ public class AccountFragment extends Fragment {
         acc_Name=v.findViewById(R.id.acc_Name);
         acc_email=v.findViewById(R.id.acc_email);
         acc_noTelp=v.findViewById(R.id.acc_noTelp);
-        btn_editProfil=v.findViewById(R.id.btn_editProfil);
-        btn_editPassword=v.findViewById(R.id.btn_editPassword);
+//        btn_editProfil=v.findViewById(R.id.btn_editProfil);
+//        btn_editPassword=v.findViewById(R.id.btn_editPassword);
         loadAccount();
         logout_btn.setOnClickListener(new View.OnClickListener() {
             @Override
