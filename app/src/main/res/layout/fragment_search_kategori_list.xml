@@ -82,43 +82,78 @@
 
     </LinearLayout>
 
+    <!--<LinearLayout-->
+        <!--android:id="@+id/layout_search"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_marginTop="16dp"-->
+        <!--android:layout_marginLeft="16dp"-->
+        <!--android:layout_marginRight="16dp"-->
+        <!--android:layout_marginBottom="8dp"-->
+        <!--android:minHeight="24dp"-->
+        <!--android:padding="5dp"-->
+        <!--android:background="@drawable/search_bar"-->
+        <!--android:layout_gravity="center">-->
+
+        <!--<ImageView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--app:srcCompat="@drawable/ic_search_black_24dp"-->
+            <!--android:layout_gravity="center_vertical"-->
+            <!--android:layout_marginLeft="8dp"-->
+            <!--android:scaleY="0.9"-->
+            <!--android:scaleX="0.9"-->
+            <!--android:tint="@color/colorGrey1"/>-->
+
+        <!--<EditText-->
+            <!--android:id="@+id/et_fm_search"-->
+            <!--android:hint="Search"-->
+            <!--android:textSize="@dimen/Font_Body"-->
+            <!--android:textColorHint="@color/colorGrey2"-->
+            <!--android:textColor="@color/colorBlack"-->
+            <!--android:maxLines="1"-->
+            <!--android:background="@android:color/transparent"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:layout_marginLeft="8dp"-->
+            <!--android:layout_marginRight="16dp"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"/>-->
+
+    <!--</LinearLayout>-->
+
     <LinearLayout
-        android:id="@+id/layout_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:orientation="horizontal"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="8dp"
-        android:minHeight="24dp"
-        android:padding="5dp"
-        android:background="@drawable/search_bar"
-        android:layout_gravity="center">
+        android:paddingHorizontal="4dp">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_search_black_24dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="8dp"
-            android:scaleY="0.9"
-            android:scaleX="0.9"
-            android:tint="@color/colorGrey1"/>
+        <Button
+            android:id="@+id/btn_urutkan"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_rectangle_selector"
+            android:elevation="4dp"
+            android:padding="4dp"
+            android:text="Urutkan"
+            android:textAllCaps="false"
+            android:textColor="@drawable/button_textcolor_selector" />
 
-        <EditText
-            android:id="@+id/et_fm_search"
-            android:hint="Search"
-            android:textSize="@dimen/Font_Body"
-            android:textColorHint="@color/colorGrey2"
-            android:textColor="@color/colorBlack"
-            android:maxLines="1"
-            android:background="@android:color/transparent"
-            android:layout_gravity="center"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="16dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+        <Button
+            android:id="@+id/btn_filter"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_rectangle_selector"
+            android:elevation="4dp"
+            android:padding="4dp"
+            android:text="Filter"
+            android:textAllCaps="false"
+            android:textColor="@drawable/button_textcolor_selector" />
 
     </LinearLayout>
 
