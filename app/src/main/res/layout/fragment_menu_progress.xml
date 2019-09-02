@@ -58,8 +58,46 @@
 
     </LinearLayout>
 
-    <ScrollView
+    <LinearLayout
+        android:id="@+id/btn_toolbar"
         android:layout_below="@id/layoutLinear2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingHorizontal="4dp">
+
+        <Button
+            android:id="@+id/btn_klien"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_margin="12dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_rectangle_selector"
+            android:elevation="4dp"
+            android:padding="4dp"
+            android:text="Klien"
+            android:textAllCaps="false"
+            android:textColor="@drawable/button_textcolor_selector" />
+
+        <Button
+            android:id="@+id/btn_mitra"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_margin="12dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_rectangle_selector"
+            android:elevation="4dp"
+            android:padding="4dp"
+            android:text="Mitra"
+            android:textAllCaps="false"
+            android:textColor="@drawable/button_textcolor_selector" />
+
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_below="@id/btn_toolbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="60dp">
@@ -75,249 +113,110 @@
             android:weightSum="3"
             android:paddingHorizontal="16dp">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Klien"
-                android:textSize="@dimen/Font_Header2"
-                android:textColor="@color/colorBlack"/>
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:orientation="horizontal"
-                android:layout_weight="1"
-                android:weightSum="3"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp">>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
                     android:layout_weight="1"
-                    android:gravity="center">
+                    android:weightSum="2"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp">>
 
-                    <android.support.v7.widget.CardView
-                        android:id="@+id/klien_pemilihan"
-                        android:layout_width="98dp"
-                        android:layout_height="98dp"
-                        app:cardCornerRadius="8dp"
-                        app:cardElevation="2dp">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center">
 
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal|center_vertical"
-                            android:layout_margin="8dp"
-                            android:orientation="vertical">
+                        <android.support.v7.widget.CardView
+                            android:id="@+id/klien_pemilihan"
+                            android:layout_width="128dp"
+                            android:layout_height="128dp"
+                            app:cardCornerRadius="8dp"
+                            app:cardElevation="2dp">
 
-                            <ImageView
-                                android:layout_width="48dp"
-                                android:layout_height="48dp"
-                                android:layout_gravity="center_horizontal"
-                                android:tint="@color/colorPrimaryDark"
-                                app:srcCompat="@drawable/ic_mitra" />
-
-                            <TextView
+                            <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_marginTop="4dp"
-                                android:text="Pemilihan Mitra"
-                                android:textAlignment="center"
-                                android:textSize="@dimen/Font_Caption" />
-                        </LinearLayout>
-                    </android.support.v7.widget.CardView>
+                                android:layout_gravity="center_horizontal|center_vertical"
+                                android:layout_margin="8dp"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="48dp"
+                                    android:layout_height="48dp"
+                                    android:layout_gravity="center_horizontal"
+                                    android:tint="@color/colorPrimaryDark"
+                                    app:srcCompat="@drawable/ic_mitra" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginTop="4dp"
+                                    android:text="Pemilihan Mitra"
+                                    android:textAlignment="center"
+                                    android:textSize="@dimen/Font_Caption" />
+                            </LinearLayout>
+                        </android.support.v7.widget.CardView>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <android.support.v7.widget.CardView
+                            android:id="@+id/klien_pengerjaan"
+                            android:layout_width="128dp"
+                            android:layout_height="128dp"
+                            app:cardCornerRadius="8dp"
+                            app:cardElevation="2dp">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal|center_vertical"
+                                android:layout_margin="8dp"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="48dp"
+                                    android:layout_height="48dp"
+                                    android:layout_gravity="center_horizontal"
+                                    app:srcCompat="@drawable/ic_pengerjaan"
+                                    android:tint="@color/colorPrimaryDark" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginTop="4dp"
+                                    android:text="Tahap Pengerjaan"
+                                    android:textAlignment="center"
+                                    android:textSize="@dimen/Font_Caption" />
+                            </LinearLayout>
+                        </android.support.v7.widget.CardView>
+
+
+                    </LinearLayout>
 
 
                 </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center">
-
-                    <android.support.v7.widget.CardView
-                        android:id="@+id/klien_pengerjaan"
-                        android:layout_width="98dp"
-                        android:layout_height="98dp"
-                        app:cardCornerRadius="8dp"
-                        app:cardElevation="2dp">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal|center_vertical"
-                            android:layout_margin="8dp"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="48dp"
-                                android:layout_height="48dp"
-                                android:layout_gravity="center_horizontal"
-                                app:srcCompat="@drawable/ic_pengerjaan"
-                                android:tint="@color/colorPrimaryDark" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_marginTop="4dp"
-                                android:text="Tahap Pengerjaan"
-                                android:textAlignment="center"
-                                android:textSize="@dimen/Font_Caption" />
-                        </LinearLayout>
-                    </android.support.v7.widget.CardView>
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center">
-
-                    <android.support.v7.widget.CardView
-                        android:id="@+id/klien_selesai"
-                        android:layout_width="98dp"
-                        android:layout_height="98dp"
-                        app:cardCornerRadius="8dp"
-                        app:cardElevation="2dp">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal|center_vertical"
-                            android:layout_margin="8dp"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="48dp"
-                                android:layout_height="48dp"
-                                android:layout_gravity="center_horizontal"
-                                app:srcCompat="@drawable/ic_selesai"
-                                android:tint="@color/colorPrimaryDark" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_marginTop="4dp"
-                                android:text="Garapan Selesai"
-                                android:textAlignment="center"
-                                android:textSize="@dimen/Font_Caption"/>
-                        </LinearLayout>
-                    </android.support.v7.widget.CardView>
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <View
-                android:layout_marginVertical="8dp"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/colorGrey3"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Mitra"
-                android:textSize="@dimen/Font_Header2"
-                android:textColor="@color/colorBlack"/>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:orientation="horizontal"
-                android:layout_weight="1"
-                android:weightSum="3"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp">>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
                     android:layout_weight="1"
-                    android:gravity="center">
+                    android:weightSum="2"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp">>
 
-                    <android.support.v7.widget.CardView
-                        android:id="@+id/mitra_penawaran"
-                        android:layout_width="98dp"
-                        android:layout_height="98dp"
-                        app:cardCornerRadius="8dp"
-                        app:cardElevation="2dp">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal|center_vertical"
-                            android:layout_margin="8dp"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="48dp"
-                                android:layout_height="48dp"
-                                android:layout_gravity="center_horizontal"
-                                app:srcCompat="@drawable/ic_penawaran"
-                                android:tint="@color/colorPrimaryDark" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_marginTop="4dp"
-                                android:text="Penawaran Garapan"
-                                android:textAlignment="center"
-                                android:textSize="@dimen/Font_Caption" />
-                        </LinearLayout>
-                    </android.support.v7.widget.CardView>
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center">
-
-                    <android.support.v7.widget.CardView
-                        android:id="@+id/mitra_pengerjaan"
-                        android:layout_width="98dp"
-                        android:layout_height="98dp"
-                        app:cardCornerRadius="8dp"
-                        app:cardElevation="2dp">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal|center_vertical"
-                            android:layout_margin="8dp"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="48dp"
-                                android:layout_height="48dp"
-                                android:layout_gravity="center_horizontal"
-                                app:srcCompat="@drawable/ic_pengerjaan"
-                                android:tint="@color/colorPrimaryDark" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_marginTop="4dp"
-                                android:text="Pengerjaan Garapan"
-                                android:textAlignment="center"
-                                android:textSize="@dimen/Font_Caption" />
-                        </LinearLayout>
-                    </android.support.v7.widget.CardView>
-
-
-                </LinearLayout>
-
+                <!--selesai-->
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -326,8 +225,8 @@
 
                     <android.support.v7.widget.CardView
                         android:id="@+id/mitra_selesai"
-                        android:layout_width="98dp"
-                        android:layout_height="98dp"
+                        android:layout_width="128dp"
+                        android:layout_height="128dp"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="2dp">
 
@@ -358,30 +257,7 @@
 
                 </LinearLayout>
 
-            </LinearLayout>
-
-            <View
-                android:layout_marginVertical="8dp"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/colorGrey3"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="History Progress"
-                android:textSize="@dimen/Font_Header2"
-                android:textColor="@color/colorBlack"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:orientation="horizontal"
-                android:layout_weight="1"
-                android:weightSum="3"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp">>
-
+                <!--history-->
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -390,8 +266,8 @@
 
                     <android.support.v7.widget.CardView
                         android:id="@+id/akun_history"
-                        android:layout_width="98dp"
-                        android:layout_height="98dp"
+                        android:layout_width="128dp"
+                        android:layout_height="128dp"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="2dp">
 
@@ -423,88 +299,9 @@
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center">
-
-                    <android.support.v7.widget.CardView
-                        android:visibility="invisible"
-                        android:layout_width="98dp"
-                        android:layout_height="98dp"
-                        app:cardCornerRadius="8dp"
-                        app:cardElevation="2dp">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal|center_vertical"
-                            android:layout_margin="8dp"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="48dp"
-                                android:layout_height="48dp"
-                                android:layout_gravity="center_horizontal"
-                                app:srcCompat="@drawable/ic_pengerjaan"
-                                android:tint="@color/colorPrimaryDark" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_marginTop="4dp"
-                                android:text="Pengerjaan Garapan"
-                                android:textAlignment="center"
-                                android:textSize="@dimen/Font_Caption" />
-                        </LinearLayout>
-                    </android.support.v7.widget.CardView>
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center">
-
-                    <android.support.v7.widget.CardView
-                        android:visibility="invisible"
-                        android:layout_width="98dp"
-                        android:layout_height="98dp"
-                        app:cardCornerRadius="8dp"
-                        app:cardElevation="2dp">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal|center_vertical"
-                            android:layout_margin="8dp"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="48dp"
-                                android:layout_height="48dp"
-                                android:layout_gravity="center_horizontal"
-                                app:srcCompat="@drawable/ic_selesai"
-                                android:tint="@color/colorPrimaryDark" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_marginTop="4dp"
-                                android:text="Garapan Selesai"
-                                android:textAlignment="center"
-                                android:textSize="@dimen/Font_Caption"/>
-                        </LinearLayout>
-                    </android.support.v7.widget.CardView>
-
-                </LinearLayout>
 
             </LinearLayout>
+
 
         </LinearLayout>
 
