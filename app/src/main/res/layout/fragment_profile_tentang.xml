@@ -8,51 +8,51 @@
     android:orientation="vertical">
 
 
-    <LinearLayout
-        android:id="@+id/layout_linearAlamat"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:orientation="vertical">
+<!--    <LinearLayout-->
+<!--        android:id="@+id/layout_linearAlamat"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:orientation="vertical">-->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="32dp"
-            android:gravity="center_vertical">
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="32dp"-->
+<!--            android:gravity="center_vertical">-->
 
-            <TextView
-                android:layout_marginLeft="4dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Lokasi"
-                android:textSize="@dimen/Font_Header2"
-                android:textStyle="bold"
-                android:textColor="@color/colorBlack"/>
+<!--            <TextView-->
+<!--                android:layout_marginLeft="4dp"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Lokasi"-->
+<!--                android:textSize="@dimen/Font_Header2"-->
+<!--                android:textStyle="bold"-->
+<!--                android:textColor="@color/colorBlack"/>-->
 
-        </LinearLayout>
+<!--        </LinearLayout>-->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="8dp">
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:padding="8dp">-->
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_location"/>
+<!--            <ImageView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:srcCompat="@drawable/ic_location"/>-->
 
-            <TextView
-                android:id="@+id/txt_alamat"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Malang, Jawa Timur"
-                android:textSize="@dimen/Font_Subtitle"
-                />
+<!--            <TextView-->
+<!--                android:id="@+id/txt_alamat"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Malang, Jawa Timur"-->
+<!--                android:textSize="@dimen/Font_Subtitle"-->
+<!--                />-->
 
-        </LinearLayout>
+<!--        </LinearLayout>-->
 
 
-    </LinearLayout>
+<!--    </LinearLayout>-->
 
 
     <LinearLayout
@@ -124,18 +124,16 @@
             android:layout_height="wrap_content"
             android:padding="8dp">
 
-            <cn.lankton.flowlayout.FlowLayout
-                android:id="@+id/flowlayout"
+            <GridLayout
+                android:id="@+id/skill_grid"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="-10dp"
-                android:paddingRight="-10dp"
-                app:lineSpacing="10dp" />
+                android:rowCount="2"
+                android:columnCount="2"
+                android:orientation="vertical"
+                android:useDefaultMargins="true"/>
 
         </LinearLayout>
-
-
-
 
     </LinearLayout>
 

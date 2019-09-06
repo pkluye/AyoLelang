@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_marginVertical="4dp"
+    android:id="@+id/anggaran"
+    android:textSize="@dimen/Font_Subtitle"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Advertising"
+    android:layout_row="1"
+    android:textColor="@color/colorGrey1"
+    android:paddingHorizontal="4dp"
+    android:paddingVertical="2dp"/>

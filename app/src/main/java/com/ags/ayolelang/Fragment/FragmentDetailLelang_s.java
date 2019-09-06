@@ -172,6 +172,7 @@ public class FragmentDetailLelang_s extends Fragment {
             @Override
             public void onClick(View v) {
                 delete_tawaran(dialog);
+                dialog.dismiss();
             }
         });
 
