@@ -146,7 +146,7 @@
             android:background="@drawable/button_rectangle_selector"
             android:elevation="4dp"
             android:padding="4dp"
-            android:text="Kategori"
+            android:text="Tentang"
             android:textAllCaps="false"
             android:textColor="@drawable/button_textcolor_selector" />
 
@@ -159,7 +159,7 @@
             android:background="@drawable/button_rectangle_selector"
             android:elevation="4dp"
             android:padding="4dp"
-            android:text="Event"
+            android:text="Review"
             android:textAllCaps="false"
             android:textColor="@drawable/button_textcolor_selector" />
 

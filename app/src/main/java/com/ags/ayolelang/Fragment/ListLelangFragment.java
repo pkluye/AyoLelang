@@ -39,7 +39,6 @@ public class ListLelangFragment extends Fragment implements SwipeRefreshLayout.O
 //    ArrayList<Integer>listidkategori=new ArrayList<>();
     private SwipeRefreshLayout swipe_container;
     private ImageView btn_back;
-    EditText et_fm_search;
 
     @Nullable
     @Override
@@ -49,7 +48,7 @@ public class ListLelangFragment extends Fragment implements SwipeRefreshLayout.O
         rv_search_lelang=v.findViewById(R.id.rv_search_lelang);
         rv_search_lelang.setLayoutManager(new LinearLayoutManager(getContext()));
         swipe_container=v.findViewById(R.id.swipe_container);
-        et_fm_search=v.findViewById(R.id.et_fm_search);
+
         btn_back=v.findViewById(R.id.btn_Back);
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,26 +60,7 @@ public class ListLelangFragment extends Fragment implements SwipeRefreshLayout.O
         Bundle bundle=getArguments();
         txt_subtext_kategori_dipilih.setText(bundle.getString("tittle"));
         kategori_id=bundle.getInt("id");
-        et_fm_search.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if (s.length()>0){
-                    loadData(et_fm_search.getText().toString());
-                }else {
-                    loadData();
-                }
-            }
-        });
         loadData();
 
         swipe_container.setOnRefreshListener(this);

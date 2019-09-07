@@ -1,269 +1,174 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".Activity.Profile">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:elevation="4dp"
+        android:minHeight="?attr/actionBarSize"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        app:titleTextColor="@color/colorWhite">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <ImageButton
+                android:id="@+id/btn_Menu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:onClick="back"
+                android:scaleX="1.2"
+                android:scaleY="1.2"
+                app:srcCompat="@drawable/ic_arrow_back_black_24dp" />
+
+            <TextView
+                android:id="@+id/txt_subTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.9"
+                android:text="Profile"
+                android:textAlignment="center"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/Font_Header" />
+
+        </LinearLayout>
+
+    </android.support.v7.widget.Toolbar>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryDark"
-            android:elevation="4dp"
-            android:minHeight="?attr/actionBarSize"
-            app:contentInsetLeft="0dp"
-            app:contentInsetStart="0dp"
-            app:titleTextColor="@color/colorWhite">
+            android:background="@drawable/bg_main">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:src="@mipmap/ic_launcher"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txt_namaMitra"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:text="Nama User"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/Font_Subtitle"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
                 android:orientation="horizontal"
-                android:padding="16dp">
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_namaMitra">
 
-                <ImageButton
-                    android:id="@+id/btn_Menu"
+                <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"
-                    android:onClick="back"
-                    android:scaleX="1.2"
-                    android:scaleY="1.2"
-                    app:srcCompat="@drawable/ic_arrow_back_black_24dp" />
+                    android:scaleX="0.8"
+                    android:scaleY="0.8"
+                    app:srcCompat="@drawable/ic_location" />
 
                 <TextView
-                    android:id="@+id/txt_subTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.9"
-                    android:text="Profile"
-                    android:textAlignment="center"
+                    android:id="@+id/txt_kotaProv"
                     android:textColor="@color/colorWhite"
-                    android:textSize="@dimen/Font_Header" />
-
-                <ImageButton
-                    android:id="@+id/btn_More"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"
-                    android:scaleX="1.2"
-                    android:scaleY="1.2"
-                    app:srcCompat="@drawable/ic_more" />
+                    android:layout_marginLeft="2dp"
+                    android:text="Kota, Provinsi"
+                    android:textSize="@dimen/Font_Body2" />
 
             </LinearLayout>
 
-        </android.support.v7.widget.Toolbar>
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="true">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:id="@+id/layout_linear"
-                    android:layout_width="match_parent"
-                    android:layout_height="72dp"
-                    android:layout_marginTop="16dp"
-                    android:weightSum="4">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center">
-
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/img_Mitra"
-                            android:layout_width="64dp"
-                            android:layout_height="64dp"
-                            android:src="@mipmap/ic_launcher" />
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="3"
-                        android:gravity="center_vertical"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/txt_namaMitra"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/img_Mitra"
-                            android:text="Nama User"
-                            android:textSize="@dimen/Font_Header2" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/txt_namaMitra"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:scaleX="0.8"
-                                android:scaleY="0.8"
-                                app:srcCompat="@drawable/ic_location" />
-
-                            <TextView
-                                android:id="@+id/txt_kotaProv"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="2dp"
-                                android:text="Kota, Provinsi"
-                                android:textSize="@dimen/Font_Body2" />
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="4dp">
-
-                    <Button
-                        android:id="@+id/btn_tentang"
-                        android:layout_width="0dp"
-                        android:layout_height="38dp"
-                        android:layout_margin="4dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/button_rectangle_selector"
-                        android:elevation="4dp"
-                        android:padding="4dp"
-                        android:text="Tentang"
-                        android:textAllCaps="false"
-                        android:textColor="@drawable/button_textcolor_selector" />
-
-                    <Button
-                        android:id="@+id/btn_review"
-                        android:layout_width="0dp"
-                        android:layout_height="38dp"
-                        android:layout_margin="4dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/button_rectangle_selector"
-                        android:elevation="4dp"
-                        android:padding="4dp"
-                        android:text="Review"
-                        android:textAllCaps="false"
-                        android:textColor="@drawable/button_textcolor_selector" />
-
-                </LinearLayout>
-
-                <FrameLayout
-                    android:id="@+id/profile_container"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical">
-
-
-                    <TextView
-                        android:id="@+id/text_about"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="8dp"
-                        android:text="@string/lorem"
-                        android:textSize="@dimen/Font_Body2" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/layout_linearSkill"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="32dp"
-                        android:gravity="center_vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Skill"
-                            android:textSize="@dimen/Font_Header2" />
-
-                    </LinearLayout>
-
-                    <cn.lankton.flowlayout.FlowLayout
-                        android:id="@+id/flowlayout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="-10dp"
-                        android:paddingRight="-10dp"
-                        app:lineSpacing="10dp" />
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="16dp"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="32dp"
-                        android:gravity="center_vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Portofolio"
-                            android:textSize="@dimen/Font_Header2" />
-
-                    </LinearLayout>
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/recycle_portofolio"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        tools:listitem="@layout/item_portofolio">
-
-
-                    </android.support.v7.widget.RecyclerView>
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </ScrollView>
+        </android.support.constraint.ConstraintLayout>
 
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingHorizontal="4dp">
 
-</RelativeLayout>
+        <Button
+            android:id="@+id/btn_tentang"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_rectangle_selector"
+            android:elevation="4dp"
+            android:padding="4dp"
+            android:text="Tentang"
+            android:textAllCaps="false"
+            android:textColor="@drawable/button_textcolor_selector" />
+
+        <Button
+            android:id="@+id/btn_review"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_rectangle_selector"
+            android:elevation="4dp"
+            android:padding="4dp"
+            android:text="Review"
+            android:textAllCaps="false"
+            android:textColor="@drawable/button_textcolor_selector" />
+
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/profile_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+</LinearLayout>

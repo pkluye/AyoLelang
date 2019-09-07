@@ -20,6 +20,11 @@
         <item>Penyerahan Garapan</item>
     </string-array>
 
+    <string-array name="input_custom">
+        <item>cm</item>
+        <item>m</item>
+    </string-array>
+
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
 

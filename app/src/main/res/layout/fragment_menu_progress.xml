@@ -150,6 +150,7 @@
                                     app:srcCompat="@drawable/ic_mitra" />
 
                                 <TextView
+                                    android:id="@+id/txt_pemilihan"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
