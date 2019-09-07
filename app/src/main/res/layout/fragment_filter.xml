@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -272,7 +272,7 @@
         android:id="@+id/layout_filter"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -308,6 +308,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="4dp"
+                android:padding="16dp"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -316,12 +317,12 @@
                     android:gravity="center_vertical">
 
                     <TextView
-                        android:layout_marginLeft="8dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
                         android:text="Lokasi"
-                        android:textSize="@dimen/Font_Header2"
-                        android:textColor="@color/colorBlack"/>
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/Font_Header2" />
 
                 </LinearLayout>
 
@@ -363,20 +364,21 @@
 
                 </LinearLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:layout_marginVertical="4dp"
-                    android:background="@color/colorGrey2"/>
 
 
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/colorGrey2"/>
 
             <LinearLayout
                 android:id="@+id/layout_linearHarga"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="4dp"
+                android:padding="16dp"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -453,14 +455,15 @@
 
                 </LinearLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:layout_marginVertical="4dp"
-                    android:background="@color/colorGrey2"/>
+
 
 
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/colorGrey2"/>
 
         </LinearLayout>
 
@@ -472,15 +475,30 @@
             android:background="@color/colorBackground"
             android:gravity="center"
             android:orientation="horizontal"
-            android:padding="12dp">
+            android:padding="12dp"
+            android:weightSum="2">
+
 
             <Button
+                android:layout_weight="1"
                 android:id="@+id/btn_filterData"
-                android:layout_width="match_parent"
-                android:layout_height="34dp"
-                android:layout_marginLeft="12dp"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
                 android:background="@drawable/button_rectangle"
                 android:text="Filter"
+                android:layout_marginHorizontal="4dp"
+                android:textAllCaps="false"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/Font_Body2" />
+
+            <Button
+                android:layout_weight="1"
+                android:id="@+id/btn_hapusFilter"
+                android:layout_width="fill_parent"
+                android:layout_marginHorizontal="4dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/button_rectangle_red"
+                android:text="Hapus Filter"
                 android:textAllCaps="false"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/Font_Body2" />
