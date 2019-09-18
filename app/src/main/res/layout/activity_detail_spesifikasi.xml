@@ -58,7 +58,6 @@
 
     </android.support.v7.widget.Toolbar>
 
-
     <LinearLayout
         android:id="@+id/tag_halaman"
         android:layout_width="match_parent"
@@ -69,6 +68,7 @@
         android:orientation="horizontal"
         android:paddingLeft="16dp"
         android:paddingRight="16dp">
+
 
         <TextView
             android:id="@+id/txt_subtext_kategori"
@@ -84,7 +84,6 @@
             android:scaleX="0.8"
             android:scaleY="0.8"
             app:srcCompat="@drawable/ic_navigation_next" />
-
         <TextView
             android:id="@+id/txt_subtext_kategori_dipilih"
             android:layout_width="wrap_content"
@@ -94,6 +93,7 @@
             android:textSize="14sp" />
 
     </LinearLayout>
+
 
     <ScrollView
         android:layout_width="match_parent"
@@ -123,8 +123,8 @@
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:orientation="vertical"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -137,8 +137,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:backgroundTint="@color/colorPrimaryDark"/>
-
+                    android:backgroundTint="@color/colorPrimaryDark" />
                 <LinearLayout
                     android:id="@+id/in_custom"
                     android:layout_width="match_parent"
@@ -149,8 +148,8 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_weight="1">
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
 
                         <EditText
                             android:id="@+id/in_panjang"
@@ -158,16 +157,16 @@
                             android:layout_height="wrap_content"
                             android:backgroundTint="@color/colorPrimaryDark"
                             android:hint="Masukkan panjang"
-                            android:text="1"
                             android:inputType="number"
-                            android:textSize="@dimen/Font_Body"
-                            android:textAlignment="center" />
+                            android:text="1"
+                            android:textAlignment="center"
+                            android:textSize="@dimen/Font_Body" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="X"
-                            android:layout_marginHorizontal="8dp"/>
+                            android:layout_marginHorizontal="8dp"
+                            android:text="X" />
 
                         <EditText
                             android:id="@+id/in_lebar"
@@ -175,12 +174,15 @@
                             android:layout_height="wrap_content"
                             android:backgroundTint="@color/colorPrimaryDark"
                             android:hint="Masukkan lebar"
-                            android:text="1"
                             android:inputType="number"
-                            android:textSize="@dimen/Font_Body"
-                            android:textAlignment="center"/>
+                            android:text="1"
+                            android:textAlignment="center"
+                            android:textSize="@dimen/Font_Body" />
+
+
 
                     </LinearLayout>
+
 
                     <Spinner
                         android:id="@+id/in_satuan"
@@ -188,8 +190,9 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:backgroundTint="@color/colorPrimaryDark"
-                        android:entries="@array/input_custom"/>
+                        android:entries="@array/input_custom" />
 
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -197,8 +200,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:orientation="vertical"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -222,6 +225,8 @@
                     android:hint="Masukkan jenis bahan"
                     android:textSize="@dimen/Font_Body"
                     android:visibility="gone" />
+
+
             </LinearLayout>
 
             <LinearLayout
@@ -229,8 +234,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:orientation="vertical"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -239,9 +244,9 @@
                     android:textSize="@dimen/Font_Caption" />
 
                 <RadioGroup
-                    android:layout_marginTop="8dp"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
                     android:gravity="start"
                     android:orientation="horizontal">
 
@@ -261,6 +266,7 @@
 
                 </RadioGroup>
 
+
             </LinearLayout>
 
             <LinearLayout
@@ -268,8 +274,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:orientation="vertical"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -285,36 +291,19 @@
                     android:layout_weight="1"
                     android:backgroundTint="@color/colorPrimaryDark" />
 
-                <View
-                    android:layout_marginTop="4dp"
-                    android:layout_marginBottom="8dp"
-                    android:layout_width="292dp"
-                    android:layout_height="1dp"
-                    android:background="@color/colorPrimaryDark"/>
-
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:orientation="vertical"
-                android:gravity="center">
-
+                android:gravity="center"
+                android:orientation="vertical">
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Quantity"
                     android:textSize="@dimen/Font_Caption" />
-
-                <!--<EditText-->
-                <!--android:textSize="@dimen/Font_Body"-->
-                <!--android:layout_width="300dp"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:inputType="number"-->
-                <!--android:id="@+id/in_quantity"-->
-                <!--android:hint="Tentukan jumlah barang"-->
-                <!--android:backgroundTint="@color/colorPrimaryDark"/>-->
 
                 <LinearLayout
                     android:layout_width="300dp"
@@ -339,6 +328,7 @@
                             app:srcCompat="@drawable/ic_remove_black_24dp" />
 
                     </LinearLayout>
+
 
                     <com.rengwuxian.materialedittext.MaterialEditText
                         android:id="@+id/in_quantity"
@@ -376,6 +366,16 @@
 
                 </LinearLayout>
 
+                <!--<EditText-->
+                <!--android:textSize="@dimen/Font_Body"-->
+                <!--android:layout_width="300dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:inputType="number"-->
+                <!--android:id="@+id/in_quantity"-->
+                <!--android:hint="Tentukan jumlah barang"-->
+                <!--android:backgroundTint="@color/colorPrimaryDark"/>-->
+
+
             </LinearLayout>
 
             <LinearLayout
@@ -389,7 +389,6 @@
                     android:layout_height="wrap_content"
                     android:text="Estimasi Biaya Pekerjaan"
                     android:textSize="@dimen/Font_Caption" />
-
                 <EditText
                     android:id="@+id/in_harga"
                     android:layout_width="300dp"
@@ -400,16 +399,15 @@
                     android:hint="Masukan biaya estimasi"
                     android:inputType="number"
                     android:text="Rp. 0"
-                    android:textSize="@dimen/Font_Body"/>
-            </LinearLayout>
+                    android:textSize="@dimen/Font_Body" />
 
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:orientation="vertical">
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -427,13 +425,15 @@
                     android:lines="8"
                     android:maxLines="10"
                     android:minLines="1"
-                    android:textSize="@dimen/Font_Body"/>
+                    android:textSize="@dimen/Font_Body" />
+
 
             </LinearLayout>
 
         </LinearLayout>
 
-        </LinearLayout>
     </ScrollView>
+
+
 
 </RelativeLayout>

@@ -48,6 +48,8 @@ public class DetailSpesifikasi extends AppCompatActivity {
     private EditText lebar;
     private EditText panjang;
     private Pekerjaan lastPekerjaan;
+    private LinearLayout in_custom;
+    private Spinner in_satuan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,12 +67,14 @@ public class DetailSpesifikasi extends AppCompatActivity {
         harga = findViewById(R.id.in_harga);
         catatan = findViewById(R.id.in_catatan);
         txt_subtext_kategori_dipilih = findViewById(R.id.txt_subtext_kategori_dipilih);
+        in_satuan = findViewById(R.id.in_satuan);
 
         //layout
         layout_ukuran = findViewById(R.id.layout_ukuran);
         layout_bahan = findViewById(R.id.layout_bahan);
         layout_sisi = findViewById(R.id.layout_sisi);
         layout_laminasi = findViewById(R.id.layout_laminasi);
+        in_custom = findViewById(R.id.in_custom);
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -84,9 +88,9 @@ public class DetailSpesifikasi extends AppCompatActivity {
         txt_subtext_kategori_dipilih.setText(kategori_nama);
         if (edit) {
             pekerjaan_id = intent.getIntExtra("pekerjaan_id", 0);
-            lastPekerjaan= (Pekerjaan) intent.getSerializableExtra("pekerjaan");
-            Log.d("pekerjaan",lastPekerjaan.toString());
-            quantity.setText(lastPekerjaan.getPekerjaan_jumlah()+"");
+            lastPekerjaan = (Pekerjaan) intent.getSerializableExtra("pekerjaan");
+            Log.d("pekerjaan", lastPekerjaan.toString());
+            quantity.setText(lastPekerjaan.getPekerjaan_jumlah() + "");
         }
         loadbahan();
         loadukuran();
@@ -96,13 +100,15 @@ public class DetailSpesifikasi extends AppCompatActivity {
         sisiradio1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(ukuransp.getAdapter()!=null||bahansp.getAdapter()!=null||laminasisp!=null)loadharga();
+                if (ukuransp.getAdapter() != null || bahansp.getAdapter() != null || laminasisp != null)
+                    loadharga();
             }
         });
         sisiradio2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(ukuransp.getAdapter()!=null||bahansp.getAdapter()!=null||laminasisp!=null)loadharga();
+                if (ukuransp.getAdapter() != null || bahansp.getAdapter() != null || laminasisp != null)
+                    loadharga();
             }
         });
         quantity.addTextChangedListener(new TextWatcher() {
@@ -131,7 +137,8 @@ public class DetailSpesifikasi extends AppCompatActivity {
                     return;
                 }
 
-                if(ukuransp.getAdapter()!=null||bahansp.getAdapter()!=null||laminasisp!=null)loadharga();
+                if (ukuransp.getAdapter() != null || bahansp.getAdapter() != null || laminasisp != null)
+                    loadharga();
             }
         });
         harga.addTextChangedListener(new TextWatcher() {
@@ -165,7 +172,8 @@ public class DetailSpesifikasi extends AppCompatActivity {
                 harga.addTextChangedListener(this);
             }
         });
-        if(ukuransp.getAdapter()!=null||bahansp.getAdapter()!=null||laminasisp!=null)loadharga();
+        if (ukuransp.getAdapter() != null || bahansp.getAdapter() != null || laminasisp != null)
+            loadharga();
     }
 
     private void loadsisi() {
@@ -175,10 +183,10 @@ public class DetailSpesifikasi extends AppCompatActivity {
         if (listsisi != null) {
             if (!listsisi.contains("N/A")) {
                 layout_sisi.setVisibility(View.VISIBLE);
-                if (edit){
-                    if (lastPekerjaan.getPekerjaan_jmlsisi().equalsIgnoreCase("1")){
+                if (edit) {
+                    if (lastPekerjaan.getPekerjaan_jmlsisi().equalsIgnoreCase("1")) {
                         sisiradio1.setChecked(true);
-                    }else{
+                    } else {
                         sisiradio2.setChecked(true);
                     }
                 }
@@ -193,7 +201,7 @@ public class DetailSpesifikasi extends AppCompatActivity {
         SBHelper.open();
         ArrayList<String> listlaminasi = SBHelper.getLaminasi(kategori_id + "");
         SBHelper.close();
-        Log.d("laminasi",listlaminasi.size()+" "+listlaminasi.get(0));
+        Log.d("laminasi", listlaminasi.size() + " " + listlaminasi.get(0));
         if (listlaminasi != null) {
             ArrayAdapter<String> spadapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, listlaminasi);
             spadapter.notifyDataSetChanged();
@@ -202,24 +210,24 @@ public class DetailSpesifikasi extends AppCompatActivity {
                 layout_laminasi.setVisibility(View.VISIBLE);
                 if (edit) {
                     if (listlaminasi.contains(lastPekerjaan.getPekerjaan_laminasi())) {
-                        Log.d("p1","0");
+                        Log.d("p1", "0");
                         int potition = spadapter.getPosition(lastPekerjaan.getPekerjaan_laminasi());
                         laminasisp.setSelection(potition);
-                    }else{
-                        Log.d("p1","1");
+                    } else {
+                        Log.d("p1", "1");
                         int potition = spadapter.getPosition("custom");
                         laminasisp.setSelection(potition);
                     }
                 }
             } else {
-                Log.d("p1","2");
+                Log.d("p1", "2");
                 layout_laminasi.setVisibility(View.GONE);
             }
         }
         laminasisp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(bahansp.getAdapter()!=null||ukuransp.getAdapter()!=null)loadharga();
+                if (bahansp.getAdapter() != null || ukuransp.getAdapter() != null) loadharga();
             }
 
             @Override
@@ -237,17 +245,17 @@ public class DetailSpesifikasi extends AppCompatActivity {
         if (layout_sisi.getVisibility() == View.VISIBLE) {
             harga = SBHelper.getHargaSatuan(
                     kategori_id + "",
-                    ukuransp.getSelectedItem().toString()+"",
-                    bahansp.getSelectedItem().toString()+"",
+                    ukuransp.getSelectedItem().toString() + "",
+                    bahansp.getSelectedItem().toString() + "",
                     sisi + "",
-                    laminasisp.getSelectedItem().toString()+"");
+                    laminasisp.getSelectedItem().toString() + "");
         } else {
             harga = SBHelper.getHargaSatuan(
                     kategori_id + "",
-                    ukuransp.getSelectedItem().toString()+"",
-                    bahansp.getSelectedItem().toString()+"",
+                    ukuransp.getSelectedItem().toString() + "",
+                    bahansp.getSelectedItem().toString() + "",
                     "N/A",
-                    laminasisp.getSelectedItem().toString()+"");
+                    laminasisp.getSelectedItem().toString() + "");
         }
         if (harga > 0) {
             quantity.setHelperText("Rp. " + harga + "/" + SBHelper.getSatuan(kategori_id + ""));
@@ -296,7 +304,7 @@ public class DetailSpesifikasi extends AppCompatActivity {
                     if (listbahan.contains(lastPekerjaan.getPekerjaan_bahan())) {
                         int potition = spadapter.getPosition(lastPekerjaan.getPekerjaan_bahan());
                         bahansp.setSelection(potition);
-                    }else{
+                    } else {
                         int potition = spadapter.getPosition("custom");
                         bahansp.setSelection(potition);
                     }
@@ -314,7 +322,7 @@ public class DetailSpesifikasi extends AppCompatActivity {
                     bahan.setVisibility(View.VISIBLE);
                     bahan.requestFocus();
                 }
-                if(ukuransp.getAdapter()!=null||laminasisp.getAdapter()!=null)loadharga();
+                if (ukuransp.getAdapter() != null || laminasisp.getAdapter() != null) loadharga();
             }
 
             @Override
@@ -328,23 +336,23 @@ public class DetailSpesifikasi extends AppCompatActivity {
         SBHelper.open();
         ArrayList<String> listukuran = SBHelper.getUkuran(kategori_id + "");
         SBHelper.close();
-        if (listukuran!=null) {
+        if (listukuran != null) {
             ArrayAdapter<String> spadapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, listukuran);
             spadapter.notifyDataSetChanged();
             ukuransp.setAdapter(spadapter);
 
             if (!listukuran.contains("N/A")) {
-                Log.d("ppp","ppp");
+                Log.d("ppp", "ppp");
                 layout_ukuran.setVisibility(View.VISIBLE);
                 if (edit) {
                     if (listukuran.contains(lastPekerjaan.getPekerjaan_ukuran())) {
                         int potition = spadapter.getPosition(lastPekerjaan.getPekerjaan_bahan());
                         ukuransp.setSelection(potition);
                     } else {
-                        int potition=spadapter.getPosition("custom");
+                        int potition = spadapter.getPosition("custom");
                         ukuransp.setSelection(potition);
-                        String ukuran_et=lastPekerjaan.getPekerjaan_ukuran().replace(" ","");
-                        String []split=ukuran_et.split("x");
+                        String ukuran_et = lastPekerjaan.getPekerjaan_ukuran().replace(" ", "");
+                        String[] split = ukuran_et.split("x");
                         panjang.setText(split[0]);
                         lebar.setText(split[1]);
                     }
@@ -357,11 +365,9 @@ public class DetailSpesifikasi extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectitem = ukuransp.getSelectedItem().toString();
-                panjang.setVisibility(View.GONE);
-                lebar.setVisibility(View.GONE);
+                in_custom.setVisibility(View.GONE);
                 if (selectitem.equalsIgnoreCase("custom")) {
-                    panjang.setVisibility(View.VISIBLE);
-                    lebar.setVisibility(View.VISIBLE);
+                    in_custom.setVisibility(View.VISIBLE);
                     panjang.requestFocus();
                     panjang.addTextChangedListener(new TextWatcher() {
                         @Override
@@ -425,7 +431,7 @@ public class DetailSpesifikasi extends AppCompatActivity {
                         }
                     });
                 }
-                if(bahansp.getAdapter()!=null||laminasisp.getAdapter()!=null)loadharga();
+                if (bahansp.getAdapter() != null || laminasisp.getAdapter() != null) loadharga();
             }
 
             @Override
@@ -471,7 +477,7 @@ public class DetailSpesifikasi extends AppCompatActivity {
                 return;
             }
 
-            ukuran = this.panjang.getText().toString() + " x " + this.lebar.getText().toString();
+            ukuran = this.panjang.getText().toString() + " x " + this.lebar.getText().toString() + " " + in_satuan.getSelectedItem().toString();
         } else {
             ukuran = ukuransp;
         }
