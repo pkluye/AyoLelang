@@ -119,6 +119,87 @@ public class LelangHelper {
         return lelangs;
     }
 
+    public ArrayList<Lelang> getbyKategoriParent(String parent,String[] s) {
+        db.beginTransaction();
+        ArrayList<Lelang> lelangs = new ArrayList<>();
+        String sql = "SELECT DISTINCT " + LELANG_ID + " as number,l.* FROM " + TABLE_LELANG + " l JOIN " + TABLE_PEKERJAAN + " p ON l." + LELANG_ID + "=p." + PEKERJAAN_LELANGID + " WHERE p." + PEKERJAAN_KATEGORIID + " IN (SELECT " + KATEGORI_ID + " FROM " + TABLE_KATEGORI + " WHERE " + KATEGORI_PARENTID + "=? AND " + LELANG_STATUS + "=3 AND "+LELANG_ANGGARAN+">"+s[1]+" AND "+LELANG_ANGGARAN+"<"+s[2]+" AND "+LELANG_KOTA+"="+s[0]+")";
+        Cursor cursor = db.rawQuery(sql, new String[]{parent});
+        //Cursor cursor = db.query(TABLE_LELANG, null,null, null, null, null, null, String.valueOf(limit));
+        cursor.moveToFirst();
+        Lelang lelang;
+        if (cursor.getCount() > 0) {
+            do {
+                lelang = new Lelang();
+                lelang.setLelang_id(cursor.getInt(cursor.getColumnIndexOrThrow(LELANG_ID)));
+                lelang.setLelang_judul(cursor.getString(cursor.getColumnIndexOrThrow(LELANG_JUDUL)));
+                lelang.setLelang_alamat(cursor.getString(cursor.getColumnIndexOrThrow(LELANG_ALAMAT)));
+                lelang.setLelang_anggaran(cursor.getLong(cursor.getColumnIndexOrThrow(LELANG_ANGGARAN)));
+                lelang.setLelang_status(cursor.getInt(cursor.getColumnIndexOrThrow(LELANG_STATUS)));
+                lelang.setLelang_fileurl(cursor.getString(cursor.getColumnIndexOrThrow(LELANG_FILEURL)));
+                lelang.setLelang_kota(cursor.getInt(cursor.getColumnIndexOrThrow(LELANG_KOTA)));
+                lelang.setLelang_deskripsi(cursor.getString(cursor.getColumnIndexOrThrow(LELANG_DESKRIPSI)));
+                lelang.setLelang_pembayaran(cursor.getInt(cursor.getColumnIndexOrThrow(LELANG_PEMBAYARAN)));
+                lelang.setLelang_tglmulai(cursor.getString(cursor.getColumnIndexOrThrow(LELANG_TGLMULAI)));
+                lelang.setLelang_tglselesai(cursor.getString(cursor.getColumnIndexOrThrow(LELANG_TGLSELESAI)));
+                lelang.setLelang_userid(cursor.getString(cursor.getColumnIndexOrThrow(LELANG_USERID)));
+                lelang.setLelang_mitraid(cursor.getString(cursor.getColumnIndexOrThrow(LELANG_MITRAID)));
+                lelangs.add(lelang);
+                cursor.moveToNext();
+            } while (!cursor.isAfterLast());
+        }
+        cursor.close();
+        db.endTransaction();
+        return lelangs;
+    }
+
+    public ArrayList<Lelang> getbyKategoriParent(String parent,int code) {
+        db.beginTransaction();
+        ArrayList<Lelang> lelangs = new ArrayList<>();
+        String sql=null;
+        switch (code){
+            case 1:
+                sql = "SELECT DISTINCT " + LELANG_ID + " as number,l.* FROM " + TABLE_LELANG + " l JOIN " + TABLE_PEKERJAAN + " p ON l." + LELANG_ID + "=p." + PEKERJAAN_LELANGID + " WHERE p." + PEKERJAAN_KATEGORIID + " IN (SELECT " + KATEGORI_ID + " FROM " + TABLE_KATEGORI + " WHERE " + KATEGORI_PARENTID + "=? AND " + LELANG_STATUS + "=3) ORDER BY "+LELANG_ANGGARAN+" DESC";
+                break;
+            case 2:
+                sql = "SELECT DISTINCT " + LELANG_ID + " as number,l.* FROM " + TABLE_LELANG + " l JOIN " + TABLE_PEKERJAAN + " p ON l." + LELANG_ID + "=p." + PEKERJAAN_LELANGID + " WHERE p." + PEKERJAAN_KATEGORIID + " IN (SELECT " + KATEGORI_ID + " FROM " + TABLE_KATEGORI + " WHERE " + KATEGORI_PARENTID + "=? AND " + LELANG_STATUS + "=3) ORDER BY "+LELANG_ANGGARAN+" ASC";
+                break;
+            case 3:
+                sql = "SELECT DISTINCT " + LELANG_ID + " as number,l.* FROM " + TABLE_LELANG + " l JOIN " + TABLE_PEKERJAAN + " p ON l." + LELANG_ID + "=p." + PEKERJAAN_LELANGID + " WHERE p." + PEKERJAAN_KATEGORIID + " IN (SELECT " + KATEGORI_ID + " FROM " + TABLE_KATEGORI + " WHERE " + KATEGORI_PARENTID + "=? AND " + LELANG_STATUS + "=3) ORDER BY "+LELANG_ID+" DESC";
+                break;
+            case 4:
+                sql = "SELECT DISTINCT " + LELANG_ID + " as number,l.* FROM " + TABLE_LELANG + " l JOIN " + TABLE_PEKERJAAN + " p ON l." + LELANG_ID + "=p." + PEKERJAAN_LELANGID + " WHERE p." + PEKERJAAN_KATEGORIID + " IN (SELECT " + KATEGORI_ID + " FROM " + TABLE_KATEGORI + " WHERE " + KATEGORI_PARENTID + "=? AND " + LELANG_STATUS + "=3) ORDER BY "+LELANG_ID+" ASC";
+                break;
+        }
+
+        Cursor cursor = db.rawQuery(sql, new String[]{parent});
+        //Cursor cursor = db.query(TABLE_LELANG, null,null, null, null, null, null, String.valueOf(limit));
+        cursor.moveToFirst();
+        Lelang lelang;
+        if (cursor.getCount() > 0) {
+            do {
+                lelang = new Lelang();
+                lelang.setLelang_id(cursor.getInt(cursor.getColumnIndexOrThrow(LELANG_ID)));
+                lelang.setLelang_judul(cursor.getString(cursor.getColumnIndexOrThrow(LELANG_JUDUL)));
+                lelang.setLelang_alamat(cursor.getString(cursor.getColumnIndexOrThrow(LELANG_ALAMAT)));
+                lelang.setLelang_anggaran(cursor.getLong(cursor.getColumnIndexOrThrow(LELANG_ANGGARAN)));
+                lelang.setLelang_status(cursor.getInt(cursor.getColumnIndexOrThrow(LELANG_STATUS)));
+                lelang.setLelang_fileurl(cursor.getString(cursor.getColumnIndexOrThrow(LELANG_FILEURL)));
+                lelang.setLelang_kota(cursor.getInt(cursor.getColumnIndexOrThrow(LELANG_KOTA)));
+                lelang.setLelang_deskripsi(cursor.getString(cursor.getColumnIndexOrThrow(LELANG_DESKRIPSI)));
+                lelang.setLelang_pembayaran(cursor.getInt(cursor.getColumnIndexOrThrow(LELANG_PEMBAYARAN)));
+                lelang.setLelang_tglmulai(cursor.getString(cursor.getColumnIndexOrThrow(LELANG_TGLMULAI)));
+                lelang.setLelang_tglselesai(cursor.getString(cursor.getColumnIndexOrThrow(LELANG_TGLSELESAI)));
+                lelang.setLelang_userid(cursor.getString(cursor.getColumnIndexOrThrow(LELANG_USERID)));
+                lelang.setLelang_mitraid(cursor.getString(cursor.getColumnIndexOrThrow(LELANG_MITRAID)));
+                lelangs.add(lelang);
+                cursor.moveToNext();
+            } while (!cursor.isAfterLast());
+        }
+        cursor.close();
+        db.endTransaction();
+        return lelangs;
+    }
+
     public ArrayList<Lelang> getbyKategoriParentAndSearch(String parent, String search) {
         db.beginTransaction();
         ArrayList<Lelang> lelangs = new ArrayList<>();

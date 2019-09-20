@@ -38,13 +38,13 @@ public class GarapanFragment extends Fragment implements View.OnClickListener {
         cv_fotografi = v.findViewById(R.id.cv_fotografi);
         cv_palugada = v.findViewById(R.id.cv_palugada);
         txt_namaPengguna = v.findViewById(R.id.txt_namaPengguna);
-        cv_pendidikan.setOnClickListener(this);
+//        cv_pendidikan.setOnClickListener(this);
         cv_percetakan.setOnClickListener(this);
-        cv_hiburan.setOnClickListener(this);
-        cv_otomotif.setOnClickListener(this);
-        cv_fotografi.setOnClickListener(this);
-        cv_kuliner.setOnClickListener(this);
-        cv_palugada.setOnClickListener(this);
+//        cv_hiburan.setOnClickListener(this);
+//        cv_otomotif.setOnClickListener(this);
+//        cv_fotografi.setOnClickListener(this);
+//        cv_kuliner.setOnClickListener(this);
+//        cv_palugada.setOnClickListener(this);
 
         loadAccount();
 

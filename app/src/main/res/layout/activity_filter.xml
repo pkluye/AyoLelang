@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Fragment.Filter">
+    tools:context=".Activity.Filter">
 
     <!--Layout urutkan-->
     <LinearLayout
@@ -25,6 +25,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="close"
                 app:srcCompat="@drawable/ic_close_black_24dp"/>
 
             <TextView
@@ -43,6 +44,7 @@
             android:id="@+id/filter_hargaMax"
             android:layout_width="match_parent"
             android:orientation="vertical"
+            android:onClick="hargaMax"
             android:layout_height="wrap_content">
 
             <LinearLayout
@@ -82,6 +84,7 @@
                         android:tint="@color/colorPrimaryDark"
                         android:scaleX="1.5"
                         android:scaleY="1.5"
+                        android:onClick="hargaMax"
                         android:background="@android:color/transparent"/>
 
                 </LinearLayout>
@@ -100,6 +103,7 @@
             android:id="@+id/filter_hargaMin"
             android:layout_width="match_parent"
             android:orientation="vertical"
+            android:onClick="hargaMin"
             android:layout_height="wrap_content">
 
             <LinearLayout
@@ -138,6 +142,7 @@
                         android:tint="@color/colorPrimaryDark"
                         android:scaleX="1.5"
                         android:scaleY="1.5"
+                        android:onClick="hargaMin"
                         android:background="@android:color/transparent"/>
 
                 </LinearLayout>
@@ -156,6 +161,7 @@
             android:id="@+id/filter_Terbaru"
             android:layout_width="match_parent"
             android:orientation="vertical"
+            android:onClick="Terbaru"
             android:layout_height="wrap_content">
 
             <LinearLayout
@@ -194,6 +200,7 @@
                         android:tint="@color/colorPrimaryDark"
                         android:scaleX="1.5"
                         android:scaleY="1.5"
+                        android:onClick="Terbaru"
                         android:background="@android:color/transparent"/>
 
                 </LinearLayout>
@@ -212,18 +219,21 @@
             android:id="@+id/filter_terlama"
             android:layout_width="match_parent"
             android:orientation="vertical"
+            android:onClick="Terlama"
             android:layout_height="wrap_content">
 
             <LinearLayout
                 android:padding="16dp"
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
+                android:onClick="Terlama"
                 android:layout_height="wrap_content">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="4"
+                    android:onClick="Terlama"
                     android:orientation="vertical">
 
                     <TextView
@@ -231,6 +241,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Terlama"
+                        android:onClick="Terlama"
                         android:textColor="@color/colorGrey1"
                         android:textSize="16sp"/>
 
@@ -241,6 +252,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:onClick="Terlama"
                     android:gravity="center">
 
                     <ImageButton
@@ -250,6 +262,7 @@
                         android:tint="@color/colorPrimaryDark"
                         android:scaleX="1.5"
                         android:scaleY="1.5"
+                        android:onClick="Terlama"
                         android:background="@android:color/transparent"/>
 
                 </LinearLayout>
@@ -272,7 +285,7 @@
         android:id="@+id/layout_filter"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -290,6 +303,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="close"
                     app:srcCompat="@drawable/ic_close_black_24dp"/>
 
                 <TextView
@@ -434,6 +448,7 @@
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/Font_Subtitle"
+                        android:inputType="number"
                         android:text="0"/>
 
                     <TextView
@@ -449,9 +464,9 @@
                         android:layout_weight="1"
                         android:gravity="end"
                         android:layout_height="wrap_content"
+                        android:inputType="number"
                         android:textSize="@dimen/Font_Subtitle"
                         android:text="1000000"/>
-
 
                 </LinearLayout>
 
@@ -486,6 +501,7 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/button_rectangle"
                 android:text="Filter"
+                android:onClick="CustomFilter"
                 android:layout_marginHorizontal="4dp"
                 android:textAllCaps="false"
                 android:textColor="@color/colorWhite"
@@ -500,6 +516,7 @@
                 android:background="@drawable/button_rectangle_red"
                 android:text="Hapus Filter"
                 android:textAllCaps="false"
+                android:onClick="clear"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/Font_Body2" />
 
