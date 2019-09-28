@@ -170,6 +170,8 @@ public class PenawaranActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(StringRespon stringRespon) {
                         Toast.makeText(PenawaranActivity.this, stringRespon.getMessage(), Toast.LENGTH_SHORT).show();
+                        Intent intent=new Intent();
+                        setResult(RESULT_OK,intent);
                         finish();
                     }
 

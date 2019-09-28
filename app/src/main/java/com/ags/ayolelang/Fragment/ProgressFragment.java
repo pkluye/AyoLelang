@@ -13,6 +13,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -84,12 +85,12 @@ public class ProgressFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.klien_pemilihan:
                 if (role == 1) {
-                    fragment = new FragmentlistProgress();
                     bundle.putInt("status", 3);
                 } else {
                     bundle.putInt("status", 3);
                     bundle.putBoolean("mitra", true);
                 }
+                fragment = new FragmentlistProgress();
                 fragment.setArguments(bundle);
                 ((MainActivity) getActivity())._loadFragment(fragment);
                 break;
@@ -116,5 +117,6 @@ public class ProgressFragment extends Fragment implements View.OnClickListener {
                 ((MainActivity) getActivity())._loadFragment(fragment);
                 break;
         }
+        Log.e("print role",role+"");
     }
 }

@@ -38,6 +38,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static android.app.Activity.RESULT_OK;
 import static com.ags.ayolelang.API.RetrofitClient.secret_key;
 
 public class FragmentDetailLelang_s extends Fragment {
@@ -128,11 +129,11 @@ public class FragmentDetailLelang_s extends Fragment {
                     intent.putExtra("edit",true);
                     intent.putExtra("lelang_id",lelang.getLelang_id());
                     intent.putExtra("tawaran_id", finalTawaran_id);
-                    startActivity(intent);
+                    startActivityForResult(intent,1);
                 } else {
                     Intent intent= new Intent(getActivity(), PenawaranActivity.class);
                     intent.putExtra("lelang_id",lelang.getLelang_id());
-                    startActivity(intent);
+                    startActivityForResult(intent,2);
                 }
             }
         });
@@ -147,6 +148,13 @@ public class FragmentDetailLelang_s extends Fragment {
                 ((MainActivity)getActivity())._loadFragment(fragment);
             }
         });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode==RESULT_OK){
+            loadData();
+        }
     }
 
     private String currencyFormat(String harga) {
