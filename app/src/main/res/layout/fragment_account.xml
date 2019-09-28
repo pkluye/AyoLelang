@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginBottom="56dp"
-    android:background="@color/colorGrey3"
     android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
@@ -25,19 +24,10 @@
             android:gravity="center"
             android:orientation="horizontal"
             android:padding="16dp">
-
-            <ImageButton
-                android:id="@+id/btn_Menu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                app:srcCompat="@drawable/ic_menu" />
-
             <TextView
                 android:id="@+id/txt_Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
                 android:layout_weight="0.9"
                 android:text="Profil Saya"
                 android:textColor="@color/colorWhite"
@@ -49,43 +39,39 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorWhite"
-        android:fillViewport="true">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorWhite"
                 android:orientation="vertical"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="20dp">
+                android:padding="20dp">
 
                 <LinearLayout
+                    android:id="@+id/lihatProfil"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/button_round_border_grey"
                     android:gravity="center"
                     android:orientation="horizontal"
+                    android:background="@drawable/button_rectangle_border"
                     android:padding="8dp">
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/image_user"
-                        android:layout_width="86dp"
-                        android:layout_height="86dp"
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
                         android:src="@drawable/ic_user_big"
                         tools:ignore="VectorDrawableCompat" />
 
-
                     <LinearLayout
+                        android:layout_marginLeft="8dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
                         android:layout_weight="1"
                         android:orientation="vertical">
 
@@ -113,269 +99,253 @@
 
                     </LinearLayout>
 
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1"
+                        app:srcCompat="@drawable/ic_navigation_next" />
+
                 </LinearLayout>
-
-
 
             </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginVertical="8dp"
-                android:layout_marginHorizontal="20dp"
-                android:background="@color/colorPrimaryDark"/>
+                android:layout_height="20dp"
+                android:background="@color/colorGrey3"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/colorWhite"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingHorizontal="20dp"
-                android:gravity="center_horizontal">
+                android:padding="16dp">
 
                 <LinearLayout
+                    android:id="@+id/btn_Notifikasi"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginTop="4dp">
+                    android:background="@drawable/button_rectangle_border"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="8dp">
 
-                    <LinearLayout
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:weightSum="5"
-                        android:background="@drawable/button_round_border_grey"
-                        android:padding="4dp">
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="0.9"
+                        android:text="Notifikasi"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/Font_Body2" />
 
-                        <TextView
-                            android:textColor="@color/colorBlack"
-                            android:id="@+id/txt_notifikasi"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="4"
-                            android:text="Notifikasi"
-                            android:padding="8dp"
-                            android:textSize="@dimen/Font_Body"
-                            android:layout_marginLeft="16dp"/>
 
-                        <ImageView
-                            android:id="@+id/btn_nextArrow_notifikasi"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            app:srcCompat="@drawable/ic_keyboard_arrow_right_black_24dp"/>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <ImageView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:weightSum="5"
-                        android:background="@drawable/button_round_border_grey"
-                        android:padding="4dp">
-
-                        <TextView
-                            android:textColor="@color/colorBlack"
-                            android:id="@+id/txt_postingGarapan"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="4"
-                            android:text="Posting Garapan"
-                            android:padding="8dp"
-                            android:textSize="@dimen/Font_Body"
-                            android:layout_marginLeft="16dp"/>
-
-                        <ImageView
-                            android:id="@+id/btn_nextArrow_postingGarapan"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            app:srcCompat="@drawable/ic_keyboard_arrow_right_black_24dp"/>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:weightSum="5"
-                        android:background="@drawable/button_round_border_grey"
-                        android:padding="4dp">
-
-                        <TextView
-                            android:textColor="@color/colorBlack"
-                            android:id="@+id/txt_riwayatGarapan"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="4"
-                            android:text="Riwayat Garapan"
-                            android:padding="8dp"
-                            android:textSize="@dimen/Font_Body"
-                            android:layout_marginLeft="16dp"/>
-
-                        <ImageView
-                            android:id="@+id/btn_nextArrow_riwayatGarapan"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            app:srcCompat="@drawable/ic_keyboard_arrow_right_black_24dp"/>
-
-                    </LinearLayout>
+                        android:layout_weight="0.1"
+                        app:srcCompat="@drawable/ic_navigation_next" />
 
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/btn_Posting"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginTop="12dp">
+                    android:background="@drawable/button_rectangle_border"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="8dp">
 
-                    <LinearLayout
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:weightSum="5"
-                        android:background="@drawable/button_round_border_grey"
-                        android:padding="4dp">
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="0.9"
+                        android:text="Posting Garapan"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/Font_Body2" />
 
-                        <TextView
-                            android:textColor="@color/colorBlack"
-                            android:id="@+id/txt_gantiBahasa"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="4"
-                            android:text="Ganti Bahasa"
-                            android:padding="8dp"
-                            android:textSize="@dimen/Font_Body"
-                            android:layout_marginLeft="16dp"/>
 
-                        <ImageView
-                            android:id="@+id/btn_nextArrow_gantiBahasa"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            app:srcCompat="@drawable/ic_keyboard_arrow_right_black_24dp"/>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <ImageView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:weightSum="5"
-                        android:background="@drawable/button_round_border_grey"
-                        android:padding="4dp">
-
-                        <TextView
-                            android:textColor="@color/colorBlack"
-                            android:id="@+id/txt_editProfile"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="4"
-                            android:text="Ubah Profil"
-                            android:padding="8dp"
-                            android:textSize="@dimen/Font_Body"
-                            android:layout_marginLeft="16dp"/>
-
-                        <ImageView
-                            android:id="@+id/btn_nextArrow_editProfil"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            app:srcCompat="@drawable/ic_keyboard_arrow_right_black_24dp"/>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:weightSum="5"
-                        android:background="@drawable/button_round_border_grey"
-                        android:padding="4dp">
-
-                        <TextView
-                            android:textColor="@color/colorBlack"
-                            android:id="@+id/txt_editPassword"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="4"
-                            android:text="Ubah Password"
-                            android:padding="8dp"
-                            android:textSize="@dimen/Font_Body"
-                            android:layout_marginLeft="16dp"/>
-
-                        <ImageView
-                            android:id="@+id/btn_nextArrow_ubahPassword"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            app:srcCompat="@drawable/ic_keyboard_arrow_right_black_24dp"/>
-
-                    </LinearLayout>
+                        android:layout_weight="0.1"
+                        app:srcCompat="@drawable/ic_navigation_next" />
 
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/btn_Riwayat"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginTop="12dp">
+                    android:background="@drawable/button_rectangle_border"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="8dp">
 
-                    <LinearLayout
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:weightSum="5"
-                        android:background="@drawable/button_round_border_grey"
-                        android:padding="4dp">
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="0.9"
+                        android:text="Riwayat Garapan"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/Font_Body2" />
 
-                        <TextView
-                            android:textColor="@color/colorBlack"
-                            android:id="@+id/txt_bantuan"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="4"
-                            android:text="Pusat Bantuan"
-                            android:padding="8dp"
-                            android:textSize="@dimen/Font_Body"
-                            android:layout_marginLeft="16dp"/>
 
-                        <ImageView
-                            android:id="@+id/btn_nextArrow_pusatBantuan"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            app:srcCompat="@drawable/ic_keyboard_arrow_right_black_24dp"/>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <ImageView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:weightSum="5"
-                        android:background="@drawable/button_round_border_grey"
-                        android:padding="4dp">
-
-                        <TextView
-                            android:textColor="@color/colorBlack"
-                            android:id="@+id/txt_tentangAplikasi"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="4"
-                            android:text="Tentang Aplikasi"
-                            android:padding="8dp"
-                            android:textSize="@dimen/Font_Body"
-                            android:layout_marginLeft="16dp"/>
-
-                        <ImageView
-                            android:id="@+id/btn_nextArrow_tentangAplikasi"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            app:srcCompat="@drawable/ic_keyboard_arrow_right_black_24dp"/>
-
-                    </LinearLayout>
+                        android:layout_weight="0.1"
+                        app:srcCompat="@drawable/ic_navigation_next" />
 
                 </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/btn_Bahasa"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/button_rectangle_border"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="8dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="0.9"
+                        android:text="Ubah Bahasa"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/Font_Body2" />
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1"
+                        app:srcCompat="@drawable/ic_navigation_next" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/btn_Profil"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_rectangle_border"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="8dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="0.9"
+                        android:text="Ubah Profil"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/Font_Body2" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1"
+                        app:srcCompat="@drawable/ic_navigation_next" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/btn_Password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_rectangle_border"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="8dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="0.9"
+                        android:text="Ubah Password"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/Font_Body2" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1"
+                        app:srcCompat="@drawable/ic_navigation_next" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/btn_Bantuan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/button_rectangle_border"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="8dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="0.9"
+                        android:text="Pusat Bantuan"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/Font_Body2" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1"
+                        app:srcCompat="@drawable/ic_navigation_next" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/btn_Tentang"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_rectangle_border"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="8dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="0.9"
+                        android:text="Tentang Aplikasi"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/Font_Body2" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1"
+                        app:srcCompat="@drawable/ic_navigation_next" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12sp"
+                android:layout_marginBottom="8dp"
+                android:gravity="center"
+                android:padding="10dp">
 
                 <TextView
-                    android:layout_marginTop="20dp"
                     android:id="@+id/txt_Logout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -386,7 +356,6 @@
             </LinearLayout>
 
         </LinearLayout>
-
 
     </ScrollView>
 

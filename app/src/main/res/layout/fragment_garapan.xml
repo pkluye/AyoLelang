@@ -116,8 +116,7 @@
                         android:id="@+id/cv_pendidikan"
                         android:layout_width="0dp"
                         android:layout_height="86dp"
-                        android:background="@drawable/button_rectangle"
-                        android:backgroundTint="@color/colorWhite"
+                        android:background="@drawable/button_rectangle_border"
                         android:gravity="center"
                         android:elevation="2dp"
                         android:layout_margin="4dp"
@@ -135,7 +134,7 @@
                                 android:layout_height="48dp"
                                 android:layout_gravity="center_horizontal"
                                 app:srcCompat="@drawable/ic_book"
-                                android:tint="@color/colorPrimaryDark"/>
+                                android:tint="@color/colorGrey3"/>
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -143,6 +142,7 @@
                                 android:layout_gravity="center_horizontal"
                                 android:layout_marginTop="4dp"
                                 android:text="@string/garapan_1"
+                                android:textColor="@color/colorGrey3"
                                 android:textAlignment="center"
                                 android:textSize="@dimen/Font_Caption"/>
                         </LinearLayout>
@@ -189,8 +189,7 @@
                         android:id="@+id/cv_kuliner"
                         android:layout_width="0dp"
                         android:layout_height="86dp"
-                        android:background="@drawable/button_rectangle"
-                        android:backgroundTint="@color/colorWhite"
+                        android:background="@drawable/button_rectangle_border"
                         android:gravity="center"
                         android:elevation="2dp"
                         android:layout_margin="4dp"
@@ -208,7 +207,7 @@
                                 android:layout_height="48dp"
                                 android:layout_gravity="center_horizontal"
                                 app:srcCompat="@drawable/ic_cup"
-                                android:tint="@color/colorPrimaryDark" />
+                                android:tint="@color/colorGrey3" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -216,6 +215,7 @@
                                 android:layout_gravity="center_horizontal"
                                 android:layout_marginTop="4dp"
                                 android:text="@string/garapan_3"
+                                android:textColor="@color/colorGrey3"
                                 android:textAlignment="center"
                                 android:textSize="@dimen/Font_Caption" />
                         </LinearLayout>
@@ -225,8 +225,7 @@
                         android:id="@+id/cv_otomotif"
                         android:layout_width="0dp"
                         android:layout_height="86dp"
-                        android:background="@drawable/button_rectangle"
-                        android:backgroundTint="@color/colorWhite"
+                        android:background="@drawable/button_rectangle_border"
                         android:gravity="center"
                         android:elevation="2dp"
                         android:layout_margin="4dp"
@@ -244,7 +243,7 @@
                                 android:layout_height="48dp"
                                 android:layout_gravity="center_horizontal"
                                 app:srcCompat="@drawable/ic_car"
-                                android:tint="@color/colorPrimaryDark" />
+                                android:tint="@color/colorGrey3" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -252,6 +251,7 @@
                                 android:layout_gravity="center_horizontal"
                                 android:layout_marginTop="4dp"
                                 android:text="@string/garapan_4"
+                                android:textColor="@color/colorGrey3"
                                 android:textAlignment="center"
                                 android:textSize="@dimen/Font_Caption" />
                         </LinearLayout>
@@ -270,8 +270,7 @@
                         android:id="@+id/cv_hiburan"
                         android:layout_width="0dp"
                         android:layout_height="86dp"
-                        android:background="@drawable/button_rectangle"
-                        android:backgroundTint="@color/colorWhite"
+                        android:background="@drawable/button_rectangle_border"
                         android:gravity="center"
                         android:elevation="2dp"
                         android:layout_margin="4dp"
@@ -289,7 +288,7 @@
                                 android:layout_height="48dp"
                                 android:layout_gravity="center_horizontal"
                                 app:srcCompat="@drawable/ic_entertainment"
-                                android:tint="@color/colorPrimaryDark" />
+                                android:tint="@color/colorGrey3" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -297,6 +296,7 @@
                                 android:layout_gravity="center_horizontal"
                                 android:layout_marginTop="4dp"
                                 android:text="@string/garapan_5"
+                                android:textColor="@color/colorGrey3"
                                 android:textAlignment="center"
                                 android:textSize="@dimen/Font_Caption" />
                         </LinearLayout>
@@ -306,8 +306,7 @@
                         android:id="@+id/cv_fotografi"
                         android:layout_width="0dp"
                         android:layout_height="86dp"
-                        android:background="@drawable/button_rectangle"
-                        android:backgroundTint="@color/colorWhite"
+                        android:background="@drawable/button_rectangle_border"
                         android:gravity="center"
                         android:elevation="2dp"
                         android:layout_margin="4dp"
@@ -325,7 +324,7 @@
                                 android:layout_height="48dp"
                                 android:layout_gravity="center_horizontal"
                                 app:srcCompat="@drawable/ic_photo"
-                                android:tint="@color/colorPrimaryDark" />
+                                android:tint="@color/colorGrey3" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -333,6 +332,7 @@
                                 android:layout_gravity="center_horizontal"
                                 android:layout_marginTop="4dp"
                                 android:text="@string/garapan_6"
+                                android:textColor="@color/colorGrey3"
                                 android:textAlignment="center"
                                 android:textSize="@dimen/Font_Caption"/>
                         </LinearLayout>
@@ -342,8 +342,7 @@
                         android:id="@+id/cv_palugada"
                         android:layout_width="0dp"
                         android:layout_height="86dp"
-                        android:background="@drawable/button_rectangle"
-                        android:backgroundTint="@color/colorWhite"
+                        android:background="@drawable/button_rectangle_border"
                         android:gravity="center"
                         android:elevation="2dp"
                         android:layout_margin="4dp"
@@ -361,7 +360,7 @@
                                 android:layout_height="48dp"
                                 android:layout_gravity="center_horizontal"
                                 app:srcCompat="@drawable/ic_star"
-                                android:tint="@color/colorPrimaryDark"/>
+                                android:tint="@color/colorGrey3"/>
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -369,6 +368,7 @@
                                 android:layout_gravity="center_horizontal"
                                 android:layout_marginTop="4dp"
                                 android:text="@string/garapan_7"
+                                android:textColor="@color/colorGrey3"
                                 android:textAlignment="center"
                                 android:textSize="@dimen/Font_Caption" />
                         </LinearLayout>
@@ -378,8 +378,7 @@
                         android:id="@+id/cv_lainnya"
                         android:layout_width="0dp"
                         android:layout_height="86dp"
-                        android:background="@drawable/button_rectangle"
-                        android:backgroundTint="@color/colorWhite"
+                        android:background="@drawable/button_rectangle_border"
                         android:gravity="center"
                         android:elevation="2dp"
                         android:layout_margin="4dp"
@@ -397,7 +396,7 @@
                                 android:layout_height="48dp"
                                 android:layout_gravity="center_horizontal"
                                 app:srcCompat="@drawable/ic_lainnya"
-                                android:tint="@color/colorPrimaryDark" />
+                                android:tint="@color/colorGrey3" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -405,6 +404,7 @@
                                 android:layout_gravity="center_horizontal"
                                 android:layout_marginTop="4dp"
                                 android:text="@string/garapan_8"
+                                android:textColor="@color/colorGrey3"
                                 android:textAlignment="center"
                                 android:textSize="@dimen/Font_Caption" />
                         </LinearLayout>
@@ -439,8 +439,8 @@
                     android:id="@+id/cv_event"
                     android:layout_width="0dp"
                     android:layout_height="98dp"
-                    android:background="@drawable/button_rectangle"
-                    android:backgroundTint="@color/colorWhite"
+                    android:background="@drawable/button_rectangle_border"
+
                     android:gravity="center"
                     android:elevation="2dp"
                     android:layout_margin="4dp"
@@ -458,7 +458,7 @@
                             android:layout_height="48dp"
                             android:layout_gravity="center_horizontal"
                             app:srcCompat="@drawable/ic_event"
-                            android:tint="@color/colorPrimaryDark" />
+                            android:tint="@color/colorGrey3" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -466,6 +466,7 @@
                             android:layout_gravity="center_horizontal"
                             android:layout_marginTop="4dp"
                             android:text="@string/garapan_9"
+                            android:textColor="@color/colorGrey3"
                             android:textAlignment="center"
                             android:textSize="@dimen/Font_Caption" />
                     </LinearLayout>
@@ -475,8 +476,7 @@
                     android:id="@+id/cv_wedding"
                     android:layout_width="0dp"
                     android:layout_height="98dp"
-                    android:background="@drawable/button_rectangle"
-                    android:backgroundTint="@color/colorWhite"
+                    android:background="@drawable/button_rectangle_border"
                     android:gravity="center"
                     android:elevation="2dp"
                     android:layout_margin="4dp"
@@ -494,7 +494,7 @@
                             android:layout_height="48dp"
                             android:layout_gravity="center_horizontal"
                             app:srcCompat="@drawable/ic_wedding"
-                            android:tint="@color/colorPrimaryDark" />
+                            android:tint="@color/colorGrey3" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -502,6 +502,7 @@
                             android:layout_gravity="center_horizontal"
                             android:layout_marginTop="4dp"
                             android:text="@string/garapan_10"
+                            android:textColor="@color/colorGrey3"
                             android:textAlignment="center"
                             android:textSize="@dimen/Font_Caption" />
                     </LinearLayout>
@@ -511,8 +512,7 @@
                     android:id="@+id/cv_eventLain"
                     android:layout_width="0dp"
                     android:layout_height="98dp"
-                    android:background="@drawable/button_rectangle"
-                    android:backgroundTint="@color/colorWhite"
+                    android:background="@drawable/button_rectangle_border"
                     android:gravity="center"
                     android:elevation="2dp"
                     android:layout_margin="4dp"
@@ -530,7 +530,7 @@
                             android:layout_height="48dp"
                             android:layout_gravity="center_horizontal"
                             app:srcCompat="@drawable/ic_eventlain"
-                            android:tint="@color/colorPrimaryDark" />
+                            android:tint="@color/colorGrey3" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -538,6 +538,7 @@
                             android:layout_gravity="center_horizontal"
                             android:layout_marginTop="4dp"
                             android:text="@string/garapan_11"
+                            android:textColor="@color/colorGrey3"
                             android:textAlignment="center"
                             android:textSize="@dimen/Font_Caption"/>
                     </LinearLayout>
